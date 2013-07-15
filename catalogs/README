@@ -1,0 +1,31 @@
+# cfhsimcat.txt: Use Zooid to extract galaxy ID and lens type
+# simcat_c.txt: cluster-gal lenses
+# simcat_g.txt: gal-gal lenses
+# simcat_q.txt: gal-qso lenses
+
+#Explanation of the headers in the catalogs
+#==========================================
+
+#Foreground galaxy (galaxy-scale and cluster-scale lenses):
+#gid,gra,gdec,gfld,indxno,zd,gu,gg,gr,gi,gz,ell,ell_pa,reinst,sh_str,sh_pa:
+#====================================================
+#ID (galaxy or BGG), Ra (deg),Dec(deg), Fieldname, Fieldno.,redshift, ugriz AB magnitudes, ellipticity, PA, Einstein radius (pix), Shear strength and PA.
+#
+#Background galaxy/quasar:
+#srcx,srcy,smu,smg,smr,smi,smz,zs_n,smag,imno,ell_s,ell_pa_s,reff_s:
+#====================================================
+#Source position (pix),ugriz AB magnitudes,redshift,flux of the 2nd brightest image, no. of lensed images, ellipticity, PA, effective radius(pix)
+#Source positions are x,y offsets with respect to the lensing galaxy/BGG.
+#Background galaxies are assumed to have deVaucouleurs's profile and quasars
+#have gaussian profile.
+
+#Cluster_member catalog:
+#cid,gid,kappa,rscale, gx,gy, redshift,sig,ell,ell_pa:
+#====================================================
+#Cluster ID (unique for each cluster),galaxy ID (unique for each galaxy),convergence,scale radius (pix), galaxy position (pix), redshift, ellipticity and PA
+#All galaxies with the same cluster ID are members of the group/cluster. The
+#first galaxy is always the BGG for every group/cluster. The kappa and scale
+#radius are for the NFW component assumed for the DM halo. The BGG is always at
+#the center, hence, has gx,gy=0,0. All other member positions are offsets in
+#pixel. The BGG galaxy ID in clus_member.txt is same as the galaxy ID in
+# simcat_c.txt and can be used to extract respective group/cluster members. 

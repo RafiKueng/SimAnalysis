@@ -20,14 +20,27 @@ def geom(src,x,y):
             z[j,i] = ((x[i]-bx)**2 + (y[j]-by)**2)/2
     return z
 
-def shear(xs,x,y):
+def shear1(xs,x,y):
     z = zeros((len(x),len(y)))
-    gam,th = float(xs[1]), float(xs[2])*pi/180 + pi/4
-    gam1, gam2 = gam*cos(2*th), gam*sin(2*th)
+    gam,pa = float(xs[1]), float(xs[2])*pi/180 #+ pi/2
     for i in range(len(x)):
         for j in range(len(y)):
-            z[j,i] = (x[i]**2 - y[j]**2)*gam1/2 + x[i]*y[i]*gam2
+            rsq = x[i]**2 + y[j]**2
+            phi = arctan2(y[j],x[i]) - pa
+            z[j,i] = gam*rsq*cos(2*phi)/2
     return z
+
+def shear(xs,X,Y):  
+    z = zeros((len(Y),len(X)))
+    gam,thg = float(xs[1]), float(xs[2])*pi/180 + pi/2
+    for i in range(len(X)):
+        for j in range(len(Y)):
+            x,y = X[i],Y[j]
+            rsq = x*x + y*y
+            f = 2*(arctan2(y,x) - thg)
+            z[j,i] = -gam/2*rsq*cos(f)
+    return z
+
 
     
 def SIE(gal,x,y):
@@ -53,11 +66,11 @@ def grids(asw,x,y):
         gal = obj[2]
         kappa = SIE(gal,x,y)            
         delta = x[1]-x[0]
-        arriv += Laplace(kappa*delta**2)
+        arriv += Laplace(2*kappa*delta**2)
     return (kappa, arriv)
     
 N = 100
-R = 25
+R = 50
 x = linspace(-R,R,N)
 y = 1*x
 
@@ -65,13 +78,14 @@ fig = figure()
 panel = fig.add_subplot(1,1,1)
 panel.set_aspect('equal')
 
-#kappa, arriv = grids('ASW0002b6m',x,y)
+kappa, arriv = grids('ASW0002b6m',x,y)
 #kappa, arriv = grids('ASW000102p',x,y)
 #kappa, arriv = grids('ASW00019rw',x,y)
 #kappa, arriv = grids('ASW0000r8n',x,y)
-kappa, arriv = grids('ASW0001hpf',x,y)
+#kappa, arriv = grids('ASW0001hpf',x,y)
+#kappa, arriv = grids('ASW0000h2m',x,y)
 f = arriv
-lev = linspace(amin(f),amin(f)+.01*(amax(f)-amin(f)),30)
+lev = linspace(amin(f),amin(f)+.03*(amax(f)-amin(f)),30)
 #lev = linspace(1,R,N)
 #lev = 1/lev
 cs = panel.contour(x,y,f,lev)

@@ -1,16 +1,10 @@
 from numpy import pi, cos, sin, arctan2, linspace, zeros, amin, amax
-from pylab import contour, figure, show
+from pylab import contour, figure, savefig, show
 from Laplace_function import Laplace
 
 import params
 sim = params.read()
 
-for s in sim:
-    if sim[s][0] != 'cluster':
-        print s,sim[s][0],sim[s][-1]
-
-# for asw in sim:
-#    print asw, sim[asw]
 
 def geom(src,x,y):
     z = zeros((len(x),len(y)))
@@ -20,15 +14,6 @@ def geom(src,x,y):
             z[j,i] = ((x[i]-bx)**2 + (y[j]-by)**2)/2
     return z
 
-def shear1(xs,x,y):
-    z = zeros((len(x),len(y)))
-    gam,pa = float(xs[1]), float(xs[2])*pi/180 #+ pi/2
-    for i in range(len(x)):
-        for j in range(len(y)):
-            rsq = x[i]**2 + y[j]**2
-            phi = arctan2(y[j],x[i]) - pa
-            z[j,i] = gam*rsq*cos(2*phi)/2
-    return z
 
 def shear(xs,X,Y):  
     z = zeros((len(Y),len(X)))
@@ -69,26 +54,38 @@ def grids(asw,x,y):
         arriv += Laplace(2*kappa*delta**2)
     return (kappa, arriv)
     
-N = 100
-R = 50
-x = linspace(-R,R,N)
-y = 1*x
 
-fig = figure()
-panel = fig.add_subplot(1,1,1)
-panel.set_aspect('equal')
 
-kappa, arriv = grids('ASW0002b6m',x,y)
+def draw(asw):
+    print asw
+    N = 100
+    R = 50
+    x = linspace(-R,R,N)
+    y = 1*x
+    kappa, arriv = grids(asw,x,y)
+    fig = figure()
+    panel = fig.add_subplot(1,1,1)
+    panel.set_aspect('equal')
+    lev = linspace(0,amax(kappa),30)
+    panel.contour(x,y,kappa,lev)
+    savefig(asw+'_kappa.png')
+    fig = figure()
+    panel = fig.add_subplot(1,1,1)
+    panel.set_aspect('equal')
+    lo,hi = amin(arriv), amax(arriv)
+    lev = linspace(lo,lo+0.05*(hi-lo),30)
+    panel.contour(x,y,arriv,lev)
+    savefig(asw+'_arriv.png')
+    
+for asw in sim:
+    if sim[asw][0] != 'cluster':
+        draw(asw)
+
+
+#kappa, arriv = grids('ASW0002b6m',x,y)
 #kappa, arriv = grids('ASW000102p',x,y)
 #kappa, arriv = grids('ASW00019rw',x,y)
 #kappa, arriv = grids('ASW0000r8n',x,y)
 #kappa, arriv = grids('ASW0001hpf',x,y)
 #kappa, arriv = grids('ASW0000h2m',x,y)
-f = arriv
-lev = linspace(amin(f),amin(f)+.03*(amax(f)-amin(f)),30)
-#lev = linspace(1,R,N)
-#lev = 1/lev
-cs = panel.contour(x,y,f,lev)
-#panel.clabel(cs, inline=1, fontsize=10)
 
-show()

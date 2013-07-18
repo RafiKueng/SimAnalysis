@@ -1,6 +1,6 @@
 from numpy import linspace, zeros, amin, amax
 from pylab import contour, figure, savefig, show
-from Laplace_function import Laplace
+from poisson import Laplace
 from kappas import kappa_SIE, poten_shear, kappa_NFW
 
 import params
@@ -65,6 +65,7 @@ def grids(asw,x,y):
         clus = obj[2]
         for gal in clus:
             kappa += NFW(gal,x,y)
+#        kappa += NFW(clus[0],x,y)
         delta = x[1]-x[0]
         arriv += Laplace(2*kappa*delta**2)
     return (kappa, arriv)
@@ -74,7 +75,7 @@ def grids(asw,x,y):
 def draw(asw):
     print asw
     if sim[asw][0] == 'cluster':
-        R,N,M = 100,50,25
+        R,N,M = 500,100,1
     else:
         R,N,M = 50,50,1
     x = linspace(-R,R,2*N)
@@ -96,13 +97,18 @@ def draw(asw):
     lo,hi = amin(arriv), amax(arriv)
     lev = linspace(lo,lo+0.05*(hi-lo),50)
     panel.contour(x,y,arriv,lev)
+#    lev = linspace(lo,hi,40)
+#    pc = panel.contour(x,y,arriv,lev)
+#    panel.clabel(pc, inline=1, fontsize=10)
     savefig(asw+'_arriv.png')
     show()
     
-for asw in sim:
-    if sim[asw][0] == 'cluster':
-        draw(asw)
-        break
+draw('ASW0004nfh')
+    
+#for asw in sim:
+#    if sim[asw][0] == 'cluster':
+#       draw(asw)
+#       break
 
 
 

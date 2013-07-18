@@ -58,22 +58,26 @@ def grids(asw,x,y):
         gal = obj[2]
         kappa = SIE(gal,x,y)            
         arriv -= shear(obj[3],x,y)
+        delta = x[1]-x[0]
+        arriv += Laplace(2*kappa*delta**2)
     if obj[0]=='cluster':
         kappa = 0*arriv
         clus = obj[2]
         for gal in clus:
             kappa += NFW(gal,x,y)
-    delta = x[1]-x[0]
-    arriv += Laplace(2*kappa*delta**2)
+        delta = x[1]-x[0]
+        arriv += Laplace(2*kappa*delta**2)
     return (kappa, arriv)
     
 
 
 def draw(asw):
     print asw
-    N = 100
-    R = 50
-    x = linspace(-R,R,N)
+    if sim[asw][0] == 'cluster':
+        R,N,M = 100,50,25
+    else:
+        R,N,M = 50,50,1
+    x = linspace(-R,R,2*N)
     y = 1*x
     kappa, arriv = grids(asw,x,y)
     fig = figure()
@@ -86,8 +90,11 @@ def draw(asw):
     fig = figure()
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
+    x = x[M:-M]
+    y = y[M:-M]
+    arriv = arriv[M:-M,M:-M]
     lo,hi = amin(arriv), amax(arriv)
-    lev = linspace(lo,lo+0.05*(hi-lo),30)
+    lev = linspace(lo,lo+0.05*(hi-lo),50)
     panel.contour(x,y,arriv,lev)
     savefig(asw+'_arriv.png')
     show()
@@ -96,5 +103,6 @@ for asw in sim:
     if sim[asw][0] == 'cluster':
         draw(asw)
         break
+
 
 

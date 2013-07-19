@@ -1,0 +1,13 @@
+Figures for the sims are written to this directory.
+
+File names are like
+
+ASW etc, then one of Q,G,C then one or arriv,kappa,menc.
+
+-- The arriv figures are the arrival-time surface for a point source.
+
+-- The menc figures are the average kappa within a given radius.
+
+-- The kappa figures have the mass map, but there may additional mass
+   outside.
+

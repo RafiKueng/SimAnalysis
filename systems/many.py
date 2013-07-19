@@ -3,6 +3,10 @@ from pylab import contour, figure, savefig, show
 from poten import poten_SIE, poten_NFW, poten_shear
 from angdiam import dratio
 
+from matplotlib import rc
+rc('text', usetex=True)
+# rc('font', family='serif')
+
 import params
 sim = params.read()
 
@@ -36,7 +40,6 @@ def poten_gal(gal,x,y):
     return z
 
 def poten_clus(clus,zsrc,x,y):
-#    print clus
     z = zeros((len(y),len(x)))
     kaps = float(clus[0][1])
     rsc = float(clus[0][2])
@@ -84,6 +87,12 @@ def grids(asw,x,y):
 def draw(asw):
     print asw
     N,R = 100,50
+    if sim[asw][0] == 'quasar':
+        flag,R = 'Q',20
+    if sim[asw][0] == 'galaxy':
+        flag,R = 'G',20
+    if sim[asw][0] == 'cluster':
+        flag,R = 'C',50
     x = linspace(-R,R,N)
     y = 1*x
     kappa,arriv = grids(asw,x,y)
@@ -93,20 +102,35 @@ def draw(asw):
     lev = linspace(0,10,41)
     pc = panel.contour(x,y,kappa,lev)
     panel.clabel(pc, inline=1, fontsize=10)
-    savefig(asw+'_kappa.png')
+    savefig('figs/'+asw+flag+'_kappa.png')
+    fig = figure()
+    panel = fig.add_subplot(1,1,1)
+    rad = linspace(0,R,20)[1:]
+    radq = rad*rad
+    sum = 0*rad
+    for i in range(len(x)):
+        for j in range(len(y)):
+            rsq = x[i]**2 + y[j]**2
+            for k in range(len(rad)):
+                if rsq < radq[k]:
+                    sum[k] += kappa[j,i]
+    dx = x[1]-x[0]
+    for k in range(len(rad)):
+        sum[k] *= dx*dx/(pi*radq[k])
+    panel.scatter(rad,sum)
+    panel.set_xlabel('radius in pixels')
+    panel.set_ylabel('average interior $\kappa$')
+    savefig('figs/'+asw+flag+'_menc.png')
     fig = figure()
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
     lo,hi = amin(arriv), amax(arriv)
     lev = linspace(lo,lo+.2*(hi-lo),100)
     panel.contour(x,y,arriv,lev)
-    savefig(asw+'_arriv.png')
-    #show()
-    
+    savefig('figs/'+asw+flag+'_arriv.png')
+    show()
 
 for asw in sim:
-    if sim[asw][0] == 'cluster':
-        draw(asw)
-        #break
+    draw(asw)
 
 

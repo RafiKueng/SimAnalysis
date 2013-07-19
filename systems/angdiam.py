@@ -8,7 +8,7 @@ def dcomov(r,a):
     H = (Omm/a**3 + Omr/a**4 + Oml + Omk/a**2)**.5
     return 1/(a*a*H)
 
-def zfac(zlens,zsrc):
+def dratio(zlens,zsrc):
     alens = 1./(1+zlens)
     asrc = 1./(1+zsrc)
     a = [asrc,alens,1]

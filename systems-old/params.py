@@ -8,6 +8,7 @@ def read():
             s = l.split()
             gid = s[1]
             sim[gid] = [s[0],s[-1]]
+    print len(sim),'sims'
     fil = open('../catalogs/simcat_q.txt')
     all = fil.readlines()
     for k,l in enumerate(all):
@@ -47,6 +48,7 @@ def read():
     for cid in clus:
         c = clus[cid]
         sim[c[0]].append(c[1:])
+    print len(sim),'sims'
     tidy = {}
     for gid in sim:
         s = sim[gid]

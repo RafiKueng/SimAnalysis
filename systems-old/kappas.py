@@ -1,4 +1,4 @@
-from numpy import sqrt,pi,cos,arctan2,arctan,arctanh
+from numpy import sqrt,pi,cos,sin,arctan2,arctan,arctanh
 
 # Follows Amara and Kitching
 # http://gravitationallensing.pbworks.com/w/page/15553257/Strong-Lensing

@@ -1,11 +1,11 @@
-from numpy import linspace, zeros, amin, amax
+from numpy import linspace, zeros, amin, amax, sqrt
 from pylab import contour, figure, savefig, show
 from poisson import Laplace
 from kappas import kappa_SIE, poten_shear, kappa_NFW
 
 import params
 sim = params.read()
-
+print len(sim),'sims'
 
 def geom(src,x,y):
     z = zeros((len(y),len(x)))
@@ -65,20 +65,16 @@ def grids(asw,x,y):
         clus = obj[2]
         for gal in clus:
             kappa += NFW(gal,x,y)
-#        kappa += NFW(clus[0],x,y)
         delta = x[1]-x[0]
         arriv += Laplace(2*kappa*delta**2)
     return (kappa, arriv)
     
 
 
-def draw(asw):
+def draw(asw,R=50):
     print asw
-    if sim[asw][0] == 'cluster':
-        R,N,M = 500,100,1
-    else:
-        R,N,M = 50,50,1
-    x = linspace(-R,R,2*N)
+    N = 100
+    x = linspace(-R,R,N)
     y = 1*x
     kappa, arriv = grids(asw,x,y)
     fig = figure()
@@ -91,24 +87,43 @@ def draw(asw):
     fig = figure()
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
-    x = x[M:-M]
-    y = y[M:-M]
-    arriv = arriv[M:-M,M:-M]
     lo,hi = amin(arriv), amax(arriv)
-    lev = linspace(lo,lo+0.05*(hi-lo),50)
+    lev = linspace(lo,lo+.2*(hi-lo),100)
     panel.contour(x,y,arriv,lev)
-#    lev = linspace(lo,hi,40)
-#    pc = panel.contour(x,y,arriv,lev)
-#    panel.clabel(pc, inline=1, fontsize=10)
     savefig(asw+'_arriv.png')
-    show()
     
-draw('ASW0004nfh')
+def all():
+    draw('ASW00004k0')
+    draw('ASW0000ar2')
+    draw('ASW0000bl0',300)
+    draw('ASW0000bsh',400)
+    draw('ASW0000e28')
+    draw('ASW0000h2m')
+    draw('ASW0000kad',100)
+    draw('ASW0000r8n')
+    draw('ASW0000vqg',120)
+    draw('ASW0000w54')
+    draw('ASW000102p')
+    draw('ASW00013ml',200)
+    draw('ASW000195x',500)
+    draw('ASW00019rw')
+    draw('ASW0001a2m')
+    draw('ASW0001a8c')
+    draw('ASW0001d74',100)
+    draw('ASW0001gve')
+    draw('ASW0001hpf')
+    draw('ASW0001sym',100)
+    draw('ASW00023pg')
+    draw('ASW0002b6m')
+    draw('ASW0002jo0')
+    draw('ASW0002z6f',250)
+    draw('ASW00031ve',200)
+    draw('ASW0003ctp')
+    draw('ASW0004nfh',300)
+    draw('ASW0004oux')
+    draw('ASW00054e9')
     
-#for asw in sim:
-#    if sim[asw][0] == 'cluster':
-#       draw(asw)
-#       break
-
-
-
+#draw('ASW0000kad',100)
+#draw('ASW0001sym',200)
+draw('ASW0002b6m')
+show()

@@ -128,7 +128,6 @@ def draw(asw):
     lev = linspace(lo,lo+.2*(hi-lo),100)
     panel.contour(x,y,arriv,lev)
     savefig('figs/'+asw+flag+'_arriv.png')
-    show()
 
 for asw in sim:
     draw(asw)

@@ -57,7 +57,7 @@ def poten_clus(clus,zsrc,x,y):
         sig = float(gal[4])
         print 'sigma', sig
         ell,pa = float(gal[5]),float(gal[6])
-        reinst = 4*pi*(sig/3e5)**2 * 206265/.185 * fudge
+        reinst = 4*pi*(sig/3e5)**2 * 206265/.186 * fudge
         print 'pos',gx,gy
         print 'reinst,ell,pa',reinst,ell,pa
         for i in range(len(x)):

@@ -1,8 +1,9 @@
 from scipy.integrate import odeint
 
 Omr = 4.8e-5
-Omm, Oml = 0.3, 0.7
-Omk = 1 - Omm - Omr - Oml
+Oml = 0.72
+Omk = = 0
+Omk = 1 - Omr - Oml - Omk
 
 def dcomov(r,a):
     H = (Omm/a**3 + Omr/a**4 + Oml + Omk/a**2)**.5

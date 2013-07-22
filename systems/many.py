@@ -117,6 +117,10 @@ def draw(asw):
     dx = x[1]-x[0]
     for k in range(len(rad)):
         sum[k] *= dx*dx/(pi*radq[k])
+    fil = open('figs/'+asw+'.txt','w')
+    for k in range(len(rad)):
+        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+    fil.close()
     panel.scatter(rad,sum)
     panel.set_xlabel('radius in pixels')
     panel.set_ylabel('average interior $\kappa$')

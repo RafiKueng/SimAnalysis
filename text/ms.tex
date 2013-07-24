@@ -1,6 +1,7 @@
 \documentclass[12pt,preprint]{aastex}
 
 \usepackage{amsmath}
+\def\half{{\textstyle\frac12}}
 
 \begin{document}
 
@@ -23,11 +24,70 @@ This is an abstract.
 
 See Figure \ref{fig:ASW0000kad}.
 
+\section{Fermat's Principle}
+
+Explain Fermat's principle
+\begin{equation}
+\hbox{arrival time} = A_{\rm geom} - A_{\rm grav}
+\end{equation}
+By convention, $A_{\rm grav}$ is defined in such a way that it is
+negative, hence the minus sign.
+
+Although $A_{\rm geom}$ and $A_{\rm grav}$ are times, we are going to
+write them as if they are areas.  In other words, we will suppress a
+constant factor in the $A$.  That factor is basically the lens
+distance times the speed of light, but the precise expression is given
+in the Appendix.
+
+Introduce the Laplacian $\nabla^2 f(x,y)$ is
+\begin{equation}
+ \frac{ f(x+\Delta x, y) + f(x-\Delta x, y) +
+        f(x, y+\Delta y) + f(x, y-\Delta y) - 4 f(x,y) }
+      {\Delta x \; \Delta y}
+\end{equation}
+in the limit of $\Delta x,\Delta y$ small.
+
+Let $x,y$ be coordinates on the lens, transverse to the line of sight.
+Let there be a point source behind $x=0,y=0$.  Then
+\begin{equation}
+A_{\rm geom}(x,y) = \half(x^2 + y^2)
+\end{equation}
+\begin{equation}
+\nabla^2 A_{\rm grav}(x,y) = 2\kappa(x,y)
+\end{equation}
+Here $\kappa$ is a dimensionless quantity with two distinct physical
+interpretations.  On the one hand, it is the sky projected density ---
+in special units, to make it dimensionless.  On the other hand,
+$\kappa$ is the {\em convergence\/} of a bundle of rays.
+
+\section{SpaghettiLens}
+
+Give a guess for the maximum, minimum and saddle points.  Program
+tries find $\kappa(x,y)$ that reproduces these properties exactly, and
+looks reasonably like a galaxy.  Solution not unique, an ensemble
+generated.
+
+\section{The simulated lenses}
+
+Three kinds of sims.
+
+\begin{itemize}
+\item {\em Quasar:\/} A singular elliptical isothermal plus constant
+  external shear, with a circular Gaussian source.
+\item {\em Galaxy:\/} Lens as with quasar, but elliptical de
+  Vaucouleurs source.
+\item {\em Galaxy:\/} Lens is circular NFW plus one dominant
+  elliptical SIE and perturbating elliptical SIEs, source as with
+  galaxy.
+\end{itemize}
+Lenses follow \cite{2001astro.ph..2341K,2001astro.ph..2340K}.
+Parameters in online supplement.
+
+\section{Results}
+
 \appendix
 
-\section{Essentials of Lensing Theory}
-
-
+\section{More on Lensing Theory}
 
 First we define comoving distances, as follows.
 \begin{equation}
@@ -43,31 +103,39 @@ First we define comoving distances, as follows.
 \end{aligned}
 \end{equation}
 
-Then define the arrival time, following \cite{1986ApJ...310..568B}.
+\begin{equation}
+\begin{aligned}
+A           &= cD_L \frac{D_{LS}}{D_S} \times t \\
+\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{D_L}{1+z} \frac{D_{LS}}{D_S}
+               \times \Sigma(x,y)
+\end{aligned}
+\end{equation}
+
 Let $x,y$ be physical distances on the lens plane and $D_L$ be
 comoving distances.  Then
 \begin{equation}
-l_{\rm geom} = \frac1{2D_L} \frac{D_S}{D_{LS}}
+t_{\rm geom} = \frac{(1+z_L)^2}{2cD_L} \frac{D_S}{D_{LS}}
 \left( (x-s_x)^2 + (y-s_y)^2 \right)
 \end{equation}
 \begin{equation}
-\nabla^2 l_{\rm grav} = \frac{8\pi G}{c^2} \Sigma(x,y)
+\nabla^2 t_{\rm grav} = (1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
 \end{equation}
-But $l_{\rm grav}$ expands by $(1+z)$.
 
-It is usual to work in terms of
+Can replace comoving distances $D$ with angular-diameter distances
+$d$, as follows
 \begin{equation}
-\kappa = \frac{4\pi G}{c^2} \frac{D_L}{1+z} \frac{D_{LS}}{D_S} \Sigma
+\begin{aligned}
+D_L    &= (1+z_L) d_{OL}
+D_{LS} &= \frac{1+z_S}{1+z_L} d_{LS}
+D_S    &= (1+z_L) d_{OS}
+\end{aligned}
 \end{equation}
-known as the convergence.
+and
+\begin{equation}
+(x,y) = d_{OL} (\theta_x,\theta_y)
+\end{equation}
 
-The Laplacian $\nabla^2 f(x,y)$ is
-\begin{equation}
- \frac{ f(x+\Delta x, y) + f(x-\Delta x, y) +
-        f(x, y+\Delta y) + f(x, y-\Delta y) - 4 f(x,y) }
-      {\Delta x \; \Delta y}
-\end{equation}
-in the limit of $\Delta x,\Delta y$ small.
+Recover equations (2.1) to (2.6) from \cite{1986ApJ...310..568B}.
 
 \newpage
 

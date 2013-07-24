@@ -8,7 +8,6 @@ then:
 python glass.py analysis.py
 
 '''
-
 from __future__ import division
 
 import os
@@ -28,14 +27,17 @@ from matplotlib import rc
 rc('text', usetex=False)
 
 
+test = False
+
+
 #os.environ['LD_LIBRARY_PATH'] = '/win/proj/master/glassMint/build/glpk_build/lib'
 
 glass_basis('glass.basis.pixels', solver=None)
 exclude_all_priors()
 
 
-data_dir = '../../SimAnalysis/spaghetti/demodata'
 data_dir = '/srv/lmt/tmp_media'
+if test: data_dir = '../../SimAnalysis/spaghetti/demodata'
 data_dir = os.path.abspath(data_dir)
 
 
@@ -54,6 +56,9 @@ files  = [
   '003897','003916','003925','003926','003943'
   ]
 
+# local test run
+if test: files = ['003211']
+
 # i've gotten the filenames with:
 # re.findall('mite\.physik\.uzh\.ch\/data\/(\d+)', txt)
 # in the html source
@@ -61,6 +66,7 @@ files  = [
   
 auth_re = re.compile('meta\(author=\'(.*)\',')
 inf_re = re.compile('globject\(\'(\d+)__(.+)\'')
+nmod_re = re.compile('model\((\d+)')
 
   
 distance_factor = 0.428
@@ -78,7 +84,7 @@ csvfilen = csv.writer(filen)
 #csvfile2 = csv.writer(file0)
   
 for iii, fl in enumerate(files):
-  print 'file %3i / %3i' % (iii, len(files))
+  print 'file %3i / %3i' % (iii, len(files)),
 
   fstr = os.path.join(data_dir, fl, 'state.txt')
   g = loadstate(fstr)
@@ -105,8 +111,11 @@ for iii, fl in enumerate(files):
     pixPerRing[i] = len(obj.basis.rings[i])
     for j in range(i):
       pixEnc[i] += len(obj.basis.rings[j])
-
+  
+  print '  |',n_rings,
   for k in range(n_rings): #pixrad
+    print '*',
+    if (k+1)%3==0: print '\'',
     kappaRenc_k_all = np.zeros(0)
     for m in g.models:
       obj,ps = m['obj,data'][0]
@@ -126,13 +135,16 @@ for iii, fl in enumerate(files):
     kappaRenc_median[k] = kappaRenc_k_all[len(kappaRenc_k_all)/2]
 #    kappaRenc_1sigmaplus[k] = kappaRenc_k_all[5*len(kappaRenc_k_all)/6]
 #    kappaRenc_1sigmaminus[k] = kappaRenc_k_all[len(kappaRenc_k_all)/6]
-    p = 0.05
-    kappaRenc_1sigmaplus[k] = kappaRenc_k_all[int((1.0-p)*len(kappaRenc_k_all))]
-    kappaRenc_1sigmaminus[k] = kappaRenc_k_all[int(p*len(kappaRenc_k_all))]
+    
+#    p = 0.0
+#    kappaRenc_1sigmaplus[k] = kappaRenc_k_all[int((1.0-p)*len(kappaRenc_k_all))]
+#    kappaRenc_1sigmaminus[k] = kappaRenc_k_all[int(p*len(kappaRenc_k_all))]
+    kappaRenc_1sigmaplus[k] = kappaRenc_k_all[-1]
+    kappaRenc_1sigmaminus[k] = kappaRenc_k_all[0]
     
     #print k, kappaRenc_median[k], kappaRenc_1sigmaplus[k], kappaRenc_1sigmaminus[k]
 
-
+  print ' |',
 
 
 
@@ -177,15 +189,42 @@ for iii, fl in enumerate(files):
   
   with open(os.path.join(data_dir, fl, 'cfg.gls'), 'r') as df:
     txt = df.read()
+  
+  try:
+    author = auth_re.search(txt).groups()[0]
+    name = inf_re.search(txt).groups()[1]
+    nmod = int(nmod_re.search(txt).groups()[0])
+  except:
+    author = ''
+    name = ''
+    nmod = -1
+  
+  points = []
+  for _1 in range(10):
+    c = chr(65+_1) # chars from A=65 ... 
     try:
-      author = auth_re.search(txt).groups()[0]
-      name = inf_re.search(txt).groups()[1]
+      g = re.search(c+'.\=.(.\d*\.\d*),.(.\d*\.\d*)', txt).groups()
+      x,y = g
+      x=float(x)
+      y=float(y)
+      o = {'x':x, 'y':y, 'd': np.sqrt(x*x+y*y)}
+      points.append(o)
     except:
-      author = ''
-      name = ''
+      break
+  nImgs = _1
+  print 'nImgs:', _1, 
+  
+  types = re.findall('...,.\'(\w+)\'',txt)
+  for i, t in enumerate(types):
+    points[i]['t']=t
+    
+  pl = [item for sublist in [[_['d'],_['t']] for _ in points] for item in sublist]
+    
+    
 
   print '  > done: ', fl, author, name
-  csvfilen.writerow([fl, author, name, len(x_vals)] + list(x_vals) + list(kappaRenc_median) + list(kappaRenc_1sigmaplus) + list(kappaRenc_1sigmaminus))
+  csvfilen.writerow([fl, author, name, len(x_vals), nImgs, nmod] + list(x_vals) + list(kappaRenc_median) + list(kappaRenc_1sigmaplus) + list(kappaRenc_1sigmaminus) + pl)
+  if test: print [fl, author, name, len(x_vals), nImgs, nmod] + list(x_vals) + list(kappaRenc_median) + list(kappaRenc_1sigmaplus) + list(kappaRenc_1sigmaminus) + pl
   #csvfile0.writerow(kappaRenc_median)
   #csvfile1.writerow(kappaRenc_1sigmaplus)
   #csvfile2.writerow(kappaRenc_1sigmaminus)

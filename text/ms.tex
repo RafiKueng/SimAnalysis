@@ -5,7 +5,7 @@
 
 \begin{document}
 
-\title{Something about Lens Models}
+\title{Lens Modeling in Spacewarps}
 
 \author{First Author,\altaffilmark{1}
 Second Author,\altaffilmark{2} and
@@ -15,14 +15,21 @@ Third Author\altaffilmark{3}}
 \altaffiltext{3}{Third place}
 
 \begin{abstract}
-This is an abstract.
+In Spacewarps, volunteers are invited to search sky surveys for lens
+candidates.  Here we report on a system that allows experienced
+volunteers to model lens candidates.  A sample of 29 simulated lenses
+were modelled, each multiple times.  The quality of the models was
+then examined in two ways.  First, the image parities and time
+orderings: these were identified correctly in most cases, but not
+always.  Second, the mean convergence (equivalent to the enclosed
+mass): this was constrained consistently well in the image region.
+The performance of professionals and experienced volunteers was
+comparable.
 \end{abstract}
 
 \keywords{}
 
 \section{Introduction}
-
-See Figure \ref{fig:ASW0000kad}.
 
 \section{Fermat's Principle}
 
@@ -85,6 +92,8 @@ Parameters in online supplement.
 
 \section{Results}
 
+Example Figure \ref{fig:ASW0000ar2}.
+
 \appendix
 
 \section{More on Lensing Theory}
@@ -122,18 +131,19 @@ t_{\rm geom} = \frac{(1+z_L)^2}{2cD_L} \frac{D_S}{D_{LS}}
 \end{equation}
 
 Can replace comoving distances $D$ with angular-diameter distances
-$d$, as follows
+$d$,
+\begin{equation}
+(x,y) = d_L (\theta_x,\theta_y)
+\end{equation}
+and so on.
 \begin{equation}
 \begin{aligned}
-D_L    &= (1+z_L) d_{OL}
-D_{LS} &= \frac{1+z_S}{1+z_L} d_{LS}
-D_S    &= (1+z_L) d_{OS}
+D_S &= (1+z_S) \, d_S \\
+D_{LS} &= \frac{1+z_S}{1+z_L} \, d_{LS} \\
+D_L &= (1+z_L) \, d_L
 \end{aligned}
 \end{equation}
-and
-\begin{equation}
-(x,y) = d_{OL} (\theta_x,\theta_y)
-\end{equation}
+Angular-diameter distances are always smaller than comoving distances.
 
 Recover equations (2.1) to (2.6) from \cite{1986ApJ...310..568B}.
 
@@ -144,11 +154,17 @@ Recover equations (2.1) to (2.6) from \cite{1986ApJ...310..568B}.
 
 \newpage
 
+
 \begin{figure}
-\includegraphics[width=.3\hsize]{ASW0000kadC_kappa.png}
-\includegraphics[width=.3\hsize]{ASW0000kadC_arriv.png}
-\includegraphics[width=.3\hsize]{ASW0000kadC_menc.png}
-\caption{This is a figure.\label{fig:ASW0000kad}}
+\includegraphics[width=.32\hsize]{ASW0000ar2Q_kappa.png}
+\includegraphics[width=.32\hsize]{ASW0000ar2Q_arriv.png} \\
+\includegraphics[width=.32\hsize]{ASW0000ar2_kappa.png}
+\includegraphics[width=.32\hsize]{ASW0000ar2_arriv.png}
+\includegraphics[width=.32\hsize]{ASW0000ar2_menc.png}
+\caption{A simple two-image lensed quasar.  The minimum and saddle are
+  identified correctly.  The mean model shows two spurious images, but
+  the mean convergence in the region of images is good.
+\label{fig:ASW0000ar2}}
 \end{figure}
 
 \end{document}

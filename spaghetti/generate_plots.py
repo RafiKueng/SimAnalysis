@@ -187,5 +187,7 @@ def plot_all(show=True, cens=False):
     
 def plot_all1():
   plot_all(False, True)
-  
+
+# plot_all(False)
+
 #plott(56, False, True)

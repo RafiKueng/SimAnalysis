@@ -7,7 +7,9 @@ Created on Tue Jul 23 11:18:42 2013
 
 import csv
 import numpy as np
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+import random
 
 #from matplotlib import rc
 
@@ -102,7 +104,7 @@ for path in paths:
 
 
 # do the plots
-def plott(idd, show=True, cenc=False):
+def plott(idd, show=True, cens=False, plot_rE=False, print_rE=False):
 
   elem = data[idd]
   name = elem['name']
@@ -112,15 +114,34 @@ def plott(idd, show=True, cenc=False):
   except KeyError:
     print '!! missing sims data for', idd, name
     return
+
+  yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]
+
+
+  if plot_rE or print_rE:
+    rE_mean = getEinsteinR(elem['x'], elem['y'])
+    rE_max = getEinsteinR(elem['x'], elem['err_p'])
+    rE_min = getEinsteinR(elem['x'], elem['err_m'])
+    rE_data = getEinsteinR(sims[name]['x'], sims[name]['y'])
+
+  # plotting settings
+  ############################
+
+  #where (y val) to start plotting the extr points markers
+  mmax = np.max([np.max(elem['err_p']), np.max(sims[name]['y'])])
+  ofs = max(round(mmax*0.5), 2) 
+  rE_pos = max(round(mmax*0.75), 3) # there to draw the einsteinradius text
+  # text offsets and properties
+  t_dx = 0.0
+  t_dy = 0.1
+  t_dt = mmax/16.
+  t_props = {'ha':'left', 'va':'bottom'} 
     
     
   plt.ioff()
-  
   fig = plt.figure()
   #panel = fig.add_subplot(1,1,1)
   
-  
-  yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]
 
   #plt.errorbar(elem['x'], elem['y'], yerr=yerr)
   plt.plot(elem['x'], elem['err_p'], 'b')
@@ -129,22 +150,20 @@ def plott(idd, show=True, cenc=False):
   plt.fill_between(elem['x'], elem['err_p'], elem['err_m'], facecolor='blue', alpha=0.5)
   
   #print [np.max(elem['err_p']), np.max(sims[name]['y'])]
-  mmax = np.max([np.max(elem['err_p']), np.max(sims[name]['y'])])
-  ofs = max(round(mmax/2.), 2)
-  print mmax, ofs
+  #print mmax, ofs
   
   #plot vertical lines for point location
   for jj, p in enumerate(sorted(elem['pnts'])):
     if   p['t']=='min': c='c'
     elif p['t']=='max': c='r'
     elif p['t']=='sad': c='g'
-    plt.plot([p['d'], p['d']], [0,ofs-0.25*jj], c+':')
-    plt.text(p['d']+0.1, ofs-0.25*jj, p['t'])
+    plt.plot([p['d'], p['d']], [0,ofs-t_dt*jj], c+':')
+    plt.text(p['d']+t_dx, ofs-t_dt*jj+t_dy, p['t'], **t_props)
 
   plt.plot(sims[name]['x'], sims[name]['y'], 'r')
   plt.plot([0,np.max(elem['x'])], [1,1], ':m')  
   
-  if cenc:
+  if cens:
     plt.suptitle('Analysis for ID: **** - model of: ASW*******', fontsize=14)
     plt.title('by: %s - pixrad: %i - nModels: %i' % (elem['user'], elem['pxR'], elem['nMod']), fontsize=12)
   else:
@@ -154,8 +173,59 @@ def plott(idd, show=True, cenc=False):
   
   print 'stat:', idd, 
   print 'pixrad :', int(elem['nr'])-1,
-  print 'nmodels:', int(elem['nMod'])
+  print 'nmodels:', int(elem['nMod']),
+
+  if print_rE:
+    print 'rE_models = %4.2f [%4.2f...%4.2f] rE_sim = %4.2f' % (rE_mean, rE_min, rE_max, rE_data)
+  else:
+    print ''
+    
+  if plot_rE:
+    a_re_min = np.array([rE_min, rE_min])
+    a_re_max = np.array([rE_max, rE_max])
+    a_re_mean = np.array([rE_mean, rE_mean])
+    a_re_data = np.array([rE_data, rE_data])
+    fbx2 = rE_max
+    #fby = np.array([0.5,rE_pos-0.25])
+    fby = np.array([0.5,1,1.5])
+    a2_re_min = np.array([rE_min, rE_min, rE_min])
+    a2_re_max = np.array([rE_max, rE_max, rE_max])
+
+    plt.plot(a_re_mean, [0,rE_pos], '--', color=(0,0.5,0))
+    plt.text(rE_mean+t_dx, rE_pos+t_dy, 'r_E = %4.2f [%4.2f .. %4.2f]'%(rE_mean, rE_min, rE_max), **t_props)
+    #plt.plot(a_re_min, [0,rE_pos-0.25], ':b')
+    #plt.plot(a_re_max, [0,rE_pos-0.25], ':b')
+
+    print a_re_min, fbx2, fby
+    
+    #plt.fill_betweenx(fby,a2_re_min, a2_re_max, alpha=0.3, edgecolor='white', facecolor=['cyan','green'], cmap=plt.cm.Accent) #facecolor='cyan',
+    
+    cp1 = 0.0
+    cp2 = 1.0
+    cy = np.ones(rE_pos*4) # spaced in 1/4 steps, rE_pos is int!
+    cy[0]=0
+    cy[1]=0.5
+    cy[-1]=0
+    cy[-2]=0.5
+    
+    cy = np.array([cy,cy]).transpose()
+    #print cy
+
+    #cpatch = [[cp1],[cp2],[cp1]]
+
+    cdict = { 'red':   ((0,1,1),(1,0,0)),
+              'green': ((0,1,1),(1,0.5,0.5)),
+              'blue':  ((0,1,1),(1,0,0)),
+              'alpha': ((0,0,0),(1,1,1))}
+              
+    cmblue = mpl.colors.LinearSegmentedColormap('TransparentBlue', cdict)
+    
+    plt.imshow(cy, interpolation='bilinear', cmap=cmblue, extent=(rE_min, rE_max, 0.0, rE_pos), alpha=0.7, aspect='auto')
   
+    plt.plot(a_re_data, [0,rE_pos+t_dt], '--r')
+    plt.text(rE_data+t_dx, rE_pos+t_dt+t_dy, 'r_E,sim = %4.2f'%(rE_data), **t_props)
+    
+
   
   
   plt.xlabel(r'image radius [pixels]')
@@ -164,11 +234,11 @@ def plott(idd, show=True, cenc=False):
   plt.xlim([0,np.max(elem['x'])])
   
   if show:
-    print 'show'
+    #print 'show'
     plt.show()
   else:
     #print os.path.join, save_fig_path#, str(idd)+'.png')
-    if cenc:
+    if cens:
       imgname = ('%03i'%idd) + str(random.randint(1000,9999)) + '.png'
     else:
       imgname = ('%03i'%idd)+'.png'
@@ -181,13 +251,55 @@ def findd(key, val):
     if d[key]==val: print 'index:', kk, 'id:', d['id']
       
       
-def plot_all(show=True, cens=False):
+def plot_all(show=True, cens=False, plot_rE=False, print_rE=False):
   for i in range(len(data)):
-    plott(i, show, cens)
+    plott(i, show, cens, plot_rE, print_rE)
     
 def plot_all1():
-  plot_all(False, True)
+  plot_all(0,0,1,1)
 
 # plot_all(False)
 
 #plott(56, False, True)
+
+
+import scipy.interpolate as interp
+import scipy.optimize as optimize
+
+def getERs(idd):
+  elem = data[idd]
+  rE_mean = getEinsteinR(elem['x'], elem['y'])
+  rE_max = getEinsteinR(elem['x'], elem['err_p'])
+  rE_min = getEinsteinR(elem['x'], elem['err_m'])
+  rE_data = getEinsteinR(sims[name]['x'], sims[name]['y'])
+  print 'rE_models = %4.2f [%4.2f...%4.2f] rE_sim = %4.2f' % (rE_mean, rE_min, rE_max, rE_data)
+
+
+def getEinsteinR(x, y):
+    poly = interp.PiecewisePolynomial(x,y[:,np.newaxis])
+    
+    def one(x):
+        return poly(x)-1
+    
+    x_min = np.min(x)
+    x_max = np.max(x)
+    x_mid = poly(x[len(x)/2])
+    
+    rE,infodict,ier,mesg = optimize.fsolve(one, x_mid, full_output=True)
+    
+    #print rE,infodict,ier,mesg
+    
+    if (ier==1 or ier==5) and x_min<rE<x_max and len(rE)==1:
+      return rE[0]
+    elif len(rE)>1:
+      for r in rE:
+        if x_min<r<x_max:
+          return r
+    else:
+      return False
+    
+
+
+
+
+

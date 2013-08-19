@@ -14,6 +14,7 @@ Created on Tue Aug 15 12:05:31 2013
 
 debug = True
 dryrun = True
+win = False
 
 import requests as rq
 import math
@@ -149,11 +150,14 @@ from django.utils import timezone
 new_pxr = 12
 new_nmod = 200
 
-if debug:
-  logdir = './'
-else:
-  logdir = '/tmp/lmt/'
+logdir = '/tmp/lmt/'
+try:
   os.mkdir(logdir)
+except:
+  pass
+if win:
+  logdir = './'
+
 
 logf  = open(logdir+'log.txt', 'w')
 newids= open(logdir+'ids.txt', 'w')

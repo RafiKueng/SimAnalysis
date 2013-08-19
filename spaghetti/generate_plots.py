@@ -24,6 +24,9 @@ user_data_dir = './data.csv'
 save_fig_path = './figs'
 
 div_scale_factors = 440./500*100
+# 440 : width of a spacewarps image
+# 500 : viewbox size of input area
+# 100 : random factor i divide the pixel coordinates with for generating gls file
 
 data = []
 

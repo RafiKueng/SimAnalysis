@@ -41,6 +41,6 @@ nosetests.xml
 *.aux
 *.bbl
 *.blg
-systems/figs
+systems/figs*
 
 text/ms.pdf

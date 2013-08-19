@@ -201,6 +201,7 @@ for swid, models in lenses.items():
     with open(datapath+'/cfg.gls', 'w') as f:
       txt = re.sub('pixrad\((\d+)\)', "pixrad(%i) #man"%new_pxr, txt)
       txt = re.sub('model\((\d+)\)', "model(%i) #man"%new_nmod, txt)
+      txt = re.sub('tmp_media/\d+', "tmp_media/%06i"%new_id, txt)
       f.write(txt)
       
     task = calculateModel.apply_async(args=(new_id,), timeout=10e10, expires=10e10)

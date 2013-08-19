@@ -25,14 +25,17 @@ exclude_all_priors()
 
 if debug:
   ids = ['000010']
+  basepath='../tmp_media/%06i/'
 else:
   with open(filename, 'r') as f:
     ids = f.readlines()
+    ids = [i.strip() for i in ids]
   print ids
+  basepath='/srv/lmt/tmp_media/%06i/'
 
 for idd in ids:
   if brk: continue
-  path = '../tmp_media/%06i/'%int(idd)
+  path = basepath%int(idd.strip('\n'))
 
   print "ID: %s "%idd,
 
@@ -49,7 +52,7 @@ for idd in ids:
     g = loadstate(path+'state.txt')
     g.make_ensemble_average()
     g.srcdiff_plot_adv(g.ensemble_average, night=True, upsample=8)
-    pl.savefig('../tmp_media/%06i/img3_ipol.png'%int(idd), facecolor='black', edgecolor='none')
+    pl.savefig(path+'img3_ipol.png', facecolor='black', edgecolor='none')
     pl.close()
     continue
 

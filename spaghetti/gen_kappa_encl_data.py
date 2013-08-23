@@ -27,6 +27,7 @@ Created on Tue Jul 23 11:18:42 2013
 
 @author: rafik
 '''
+from __future__ import division
 
 #==============================================================================
 # SETTINGS
@@ -48,7 +49,6 @@ outputfilename = 'kappa_encl.csv'
 # PROGRAMM
 #==============================================================================
 
-from __future__ import division
 
 import os
 import re

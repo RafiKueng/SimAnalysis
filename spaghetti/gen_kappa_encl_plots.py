@@ -286,7 +286,8 @@ def plott(idd, show=True, cens=False, plot_rE=False, print_rE=False):
     if cens:
       imgname = ('%03i'%idd) + str(random.randint(1000,9999)) + '.png'
     else:
-      imgname = ('%03i'%idd)+'.png'
+      #imgname = ('%03i'%idd)+'.png'
+      imgname = ('%06i_%s_%s'%(elem['id'], elem['name'], elem['user']))+'.png'
     plt.savefig(os.path.join(save_fig_path, imgname))
     pass
   

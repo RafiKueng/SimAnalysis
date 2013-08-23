@@ -27,6 +27,27 @@ Created on Tue Jul 23 11:18:42 2013
 
 @author: rafik
 '''
+
+#==============================================================================
+# SETTINGS
+#==============================================================================
+
+# debug?
+test = False #test basic features without glass env
+
+outputdatadir = '/home/rafik/analysis/spaghetti/data/mod_chal/'
+
+# input files
+id_file_name = 'ids.txt'
+data_dir = '/srv/lmt/tmp_media'
+
+#output files
+outputfilename = 'kappa_encl.csv'
+
+#==============================================================================
+# PROGRAMM
+#==============================================================================
+
 from __future__ import division
 
 import os
@@ -45,14 +66,6 @@ import csv
 from matplotlib import rc
 rc('text', usetex=False)
 
-# debug?
-test = True #test basic features without glass env
-
-outputdatadir = '/home/rafik/analysis/spaghetti/data/mod_chal/'
-
-id_file_name = 'ids.txt'
-data_dir = '/srv/lmt/tmp_media'
-outputfilename = 'kappa_encl.csv'
 
 id_file_path = os.path.join(outputdatadir, id_file_name)
 outputfilepath = os.path.join(outputdatadir, outputfilename)
@@ -77,7 +90,7 @@ if id_file_path:
     files = [_.strip('\n') for _ in lines]
   print 'result_ids to process:'
   print ', '.join(files)
-  if test: 1/0
+  if test: 1/0 # hard break
   
 else:
   files  = [

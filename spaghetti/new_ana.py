@@ -12,8 +12,8 @@ Created on Tue Aug 15 12:05:31 2013
 @author: RafiK
 """
 
-debug = True
-dryrun = True
+debug = False
+dryrun = False
 win = False
 
 import requests as rq
@@ -124,8 +124,8 @@ if debug:
   user = {'user_name': u'Demouser'}
   model = {
       'pxr': '6',
-      'com': u"I can't make this one  look good.",
-      'id': u'000120',
+      'com': u"just a demo",
+      'id': u'006893',
       'nmod': '200',
       'user': user,
     }

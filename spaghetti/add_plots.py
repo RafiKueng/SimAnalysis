@@ -10,9 +10,9 @@ Created on Mon Aug 19 21:33:21 2013
 @author: RafiK
 """
 
-debug = True
-brk = True
-filename = "" #should contain one id per line
+debug = False
+brk = False
+filename = "/tmp/lmt/ids.txt" #should contain one id per line
 
 
 

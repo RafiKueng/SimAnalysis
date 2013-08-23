@@ -1,11 +1,22 @@
 # -*- coding: utf-8 -*-
 """
-
-perfect analysis script
+Upsample script
 
 1. fetches the modelled sims from the thread and gets their id
 2. increases the pixrad and lets the models run again
 3. creates nice output logs, list of ids for the analysis.py script and a posting for the forum
+
+needs to be run in the django environment! (on the server with database!)
+
+cd /srv/lmt
+source ./py_env/bin/activate
+cd ./backend
+python manage.py shell (make sure to have the ipython shell)
+
+then start this script in ipython with:
+%run /path/to/this_script.py
+
+
 
 Created on Tue Aug 15 12:05:31 2013
 
@@ -42,6 +53,7 @@ class GetOutOfLoop( Exception ):
 
 
 def getLenses():
+  """fetches all the result ids from a spacewarps talk forum thread"""
   
   board_id = "BSW0000006"
   disc_id = "DSW00007j5"
@@ -73,6 +85,7 @@ def getLenses():
       
       
       for rid, com, _ in rids:
+        # get the comment following a posted model
         com = swid_re.sub('', com) # remove spacewarps ids
         com = punct1_re.sub('', com) # remove punctuation chars at start
         #com = punct2_re.sub('', com) # remove punctuation chars at end
@@ -84,6 +97,7 @@ def getLenses():
         nmod = nmod_re.search(txt).groups()[0]
         rusr = rusr_re.search(txt).groups()[0]
         
+        # save the username of the poster in the user object
         if rusr not in user['alias']:
           user['alias'].append(rusr)
         users[rusr] = user
@@ -118,8 +132,7 @@ def getLenses():
   return lenses  
 
 
-#for debug
-
+#for debug, dont fetch the lenses from the forum but create my own
 if debug:
   user = {'user_name': u'Demouser'}
   model = {

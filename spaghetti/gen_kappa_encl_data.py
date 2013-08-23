@@ -1,13 +1,53 @@
-
+# -*- coding: utf-8 -*-
 '''
-how to run this file?
+Creates additional data (kappa enclosed) for provided glass models
+(using their result_id) from lmt.
 
-first export the env variables needed (see run_glass)
+Needs to be run on the server, in the glass environment!
 
-then:
+cd /srv/lmt/worker
+source ./run_glass
 python glass.py analysis.py
 
+
+takes the result_id to be processed either directly from the script
+(old version),
+or reads in a list of ids from file
+(/path/to/idfile.txt)
+
+id_file_path = None : take hardcoed resultids
+id_file_path = 'path..' use the txt file with one id per line
+
+
+needs the state.txt and cfg.gls files to be present!
+
+
+
+Created on Tue Jul 23 11:18:42 2013
+
+@author: rafik
 '''
+
+#==============================================================================
+# SETTINGS
+#==============================================================================
+
+# debug?
+test = False #test basic features without glass env
+
+outputdatadir = '/home/rafik/analysis/spaghetti/data/mod_chal/'
+
+# input files
+id_file_name = 'ids.txt'
+data_dir = '/srv/lmt/tmp_media'
+
+#output files
+outputfilename = 'kappa_encl.csv'
+
+#==============================================================================
+# PROGRAMM
+#==============================================================================
+
 from __future__ import division
 
 import os
@@ -27,34 +67,46 @@ from matplotlib import rc
 rc('text', usetex=False)
 
 
-test = False
+id_file_path = os.path.join(outputdatadir, id_file_name)
+outputfilepath = os.path.join(outputdatadir, outputfilename)
 
 
 #os.environ['LD_LIBRARY_PATH'] = '/win/proj/master/glassMint/build/glpk_build/lib'
 
-glass_basis('glass.basis.pixels', solver=None)
-exclude_all_priors()
+if not test:
+  glass_basis('glass.basis.pixels', solver=None)
+  exclude_all_priors()
 
 
-data_dir = '/srv/lmt/tmp_media'
 if test: data_dir = '../../SimAnalysis/spaghetti/demodata'
+
 data_dir = os.path.abspath(data_dir)
+outputfilepath = os.path.abspath(outputfilepath)
 
-
-files  = [
-  '002784','002787','002792','002794','002798','002782','002801','002860',
-  '002870','002872','002891','002895','002904','002964','002972','003851',
-  '002980','002996','003004','003034','003204','003211','003243','003250',
-  '003262','003270','003350','003353','003378','003380','003388','002903',
-  '002903','003150','003347','003301','003170','003186','003405','003408',
-  '003450','003451','003454','003469','003510','003530','003537','003542',
-  '003560','003596','003604','003642','003649','003782','003783','003802',
-  '003932',
-  #2nd page
-  '003417','003419','003440','003673','003495','003579','003661','003681',
-  '003692','003706','003834','003714','003733','003874','003889','003895',
-  '003897','003916','003925','003926','003943'
-  ]
+if id_file_path:
+  id_file_path = os.path.abspath(id_file_path)
+  with open(id_file_path) as idfile:
+    lines = idfile.readlines()
+    files = [_.strip('\n') for _ in lines]
+  print 'result_ids to process:'
+  print ', '.join(files)
+  if test: 1/0 # hard break
+  
+else:
+  files  = [
+    '002784','002787','002792','002794','002798','002782','002801','002860',
+    '002870','002872','002891','002895','002904','002964','002972','003851',
+    '002980','002996','003004','003034','003204','003211','003243','003250',
+    '003262','003270','003350','003353','003378','003380','003388','002903',
+    '002903','003150','003347','003301','003170','003186','003405','003408',
+    '003450','003451','003454','003469','003510','003530','003537','003542',
+    '003560','003596','003604','003642','003649','003782','003783','003802',
+    '003932',
+    #2nd page
+    '003417','003419','003440','003673','003495','003579','003661','003681',
+    '003692','003706','003834','003714','003733','003874','003889','003895',
+    '003897','003916','003925','003926','003943'
+    ]
 
 # local test run
 if test: files = ['003211']
@@ -73,7 +125,7 @@ distance_factor = 0.428
 div_scale_factors = 440./500*100
 
 #output file
-filen = open('/home/rafik/data.csv', 'w')
+filen = open(outputfilepath, 'w')
 
 csvfilen = csv.writer(filen)
 #file0 = open('kappaR_enc.csv', 'w')

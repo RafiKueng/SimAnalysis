@@ -90,6 +90,8 @@ if id_file_path:
     files = [_.strip('\n') for _ in lines]
   print 'result_ids to process:'
   print ', '.join(files)
+  print lines
+  print id_file_path
   if test: 1/0 # hard break
   
 else:

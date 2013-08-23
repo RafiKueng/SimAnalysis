@@ -1,0 +1,212 @@
+
+Sim ID: ASW0003ctp
+
+ - [model 006904, was 003353](http://mite.physik.uzh.ch/data/006904) | by: Jonas | time: 2013-07-11 09:51:46+00:00 | comment: ''
+ - [model 006905, was 003170](http://mite.physik.uzh.ch/data/006905) | by: Budgieye | time: 2013-07-09 21:47:23+00:00 | comment: 'looks convincing.'
+ - [model 006906, was 003186](http://mite.physik.uzh.ch/data/006906) | by: ElisabethB | time: 2013-07-10 11:35:01+00:00 | comment: ''
+ - [model 006907, was 003642](http://mite.physik.uzh.ch/data/006907) | by: Capella05 | time: 2013-07-14 16:25:15+00:00 | comment: 'Needs tweaking | 14/07/2013'
+ - [model 006908, was 003649](http://mite.physik.uzh.ch/data/006908) | by: Capella05 | time: 2013-07-14 16:48:58+00:00 | comment: 'Plausible | 14/07/2013'
+ - [model 006909, was 003897](http://mite.physik.uzh.ch/data/006909) | by: ElisabethB | time: 2013-07-21 17:25:31+00:00 | comment: ''
+
+Sim ID: ASW0002b6m
+
+ - [model 006910, was 003250](http://mite.physik.uzh.ch/data/006910) | by: Jonas | time: 2013-07-10 13:54:01+00:00 | comment: ''
+ - [model 006911, was 003673](http://mite.physik.uzh.ch/data/006911) | by: ElisabethB | time: 2013-07-14 18:53:19+00:00 | comment: 'not very good)'
+ - [model 006912, was 003661](http://mite.physik.uzh.ch/data/006912) | by: ElisabethB | time: 2013-07-14 18:17:45+00:00 | comment: ''
+
+Sim ID: ASW0001hpf
+
+ - [model 006913, was 003204](http://mite.physik.uzh.ch/data/006913) | by: Jonas | time: 2013-07-10 12:44:51+00:00 | comment: ''
+ - [model 006914, was 003150](http://mite.physik.uzh.ch/data/006914) | by: psaha | time: 2013-07-09 16:14:33+00:00 | comment: 'something complicated happening here. Is the centre offset from the galaxy as in [this other model?]('
+ - [model 006915, was 003347](http://mite.physik.uzh.ch/data/006915) | by: psaha | time: 2013-07-11 09:25:13+00:00 | comment: 'And this one.]('
+ - [model 006916, was 003301](http://mite.physik.uzh.ch/data/006916) | by: psaha | time: 2013-07-10 15:23:35+00:00 | comment: ''
+ - [model 006917, was 003495](http://mite.physik.uzh.ch/data/006917) | by: c_cld | time: 2013-07-12 22:37:51+00:00 | comment: ''
+ - [model 006918, was 005437](http://mite.physik.uzh.ch/data/006918) | by: Budgieye | time: 2013-08-08 20:53:44+00:00 | comment: 'another kite shaped Einstein cross, got the bright areas in about the right place'
+
+Sim ID: ASW0002z6f
+
+ - [model 006919, was 003270](http://mite.physik.uzh.ch/data/006919) | by: Jonas | time: 2013-07-10 14:22:10+00:00 | comment: ''
+ - [model 006920, was 005249](http://mite.physik.uzh.ch/data/006920) | by: Capella05 | time: 2013-08-07 18:13:03+00:00 | comment: 'Plausible, but the mass distribution map is a bit suspect | 07/08/2013'
+ - [model 006921, was 003706](http://mite.physik.uzh.ch/data/006921) | by: ElisabethB | time: 2013-07-15 15:08:03+00:00 | comment: 'a bit strange)'
+ - [model 006922, was 003714](http://mite.physik.uzh.ch/data/006922) | by: ElisabethB | time: 2013-07-15 16:15:05+00:00 | comment: 'and again, not a very good one.'
+ - [model 006923, was 003733](http://mite.physik.uzh.ch/data/006923) | by: ElisabethB | time: 2013-07-15 19:51:28+00:00 | comment: 'I'm not too happy with this one'
+ - [model 006924, was 003926](http://mite.physik.uzh.ch/data/006924) | by: ElisabethB | time: 2013-07-22 16:54:22+00:00 | comment: 'needs some tweaking'
+ - [model 006925, was 003943](http://mite.physik.uzh.ch/data/006925) | by: ElisabethB | time: 2013-07-22 21:26:50+00:00 | comment: ''
+ - [model 006926, was 005498](http://mite.physik.uzh.ch/data/006926) | by: Budgieye | time: 2013-08-08 21:45:45+00:00 | comment: 'couldn't quite get it'
+
+Sim ID: ASW00023pg
+
+ - [model 006927, was 003243](http://mite.physik.uzh.ch/data/006927) | by: Jonas | time: 2013-07-10 13:43:28+00:00 | comment: ''
+ - [model 006928, was 003932](http://mite.physik.uzh.ch/data/006928) | by: Capella05 | time: 2013-07-22 18:27:12+00:00 | comment: 'Plausible | 22/07/2013'
+ - [model 006929, was 005452](http://mite.physik.uzh.ch/data/006929) | by: Budgieye | time: 2013-08-08 21:10:03+00:00 | comment: 'some of it OK, bottom part needs more light'
+ - [model 006930, was 005468](http://mite.physik.uzh.ch/data/006930) | by: Budgieye | time: 2013-08-08 21:17:38+00:00 | comment: 'most of  arcs in right place'
+
+Sim ID: ASW0000vqg
+
+ - [model 006931, was 002870](http://mite.physik.uzh.ch/data/006931) | by: Jonas | time: 2013-07-09 08:38:18+00:00 | comment: ''
+ - [model 006932, was 002903](http://mite.physik.uzh.ch/data/006932) | by: psaha | time: 2013-07-09 09:38:47+00:00 | comment: ''
+ - [model 006933, was 002903](http://mite.physik.uzh.ch/data/006933) | by: psaha | time: 2013-07-09 09:38:47+00:00 | comment: ''
+ - [model 006934, was 003692](http://mite.physik.uzh.ch/data/006934) | by: ElisabethB | time: 2013-07-15 11:41:04+00:00 | comment: ''
+ - [model 006935, was 004120](http://mite.physik.uzh.ch/data/006935) | by: Budgieye | time: 2013-07-30 02:45:16+00:00 | comment: 'kept it simple, used lens z of 0.5,  and source of 1. decided that lens was yellow and closer'
+ - [model 006936, was 004155](http://mite.physik.uzh.ch/data/006936) | by: Budgieye | time: 2013-07-30 09:51:19+00:00 | comment: ''
+ - [model 006937, was 004144](http://mite.physik.uzh.ch/data/006937) | by: Budgieye | time: 2013-07-30 09:33:35+00:00 | comment: ''
+ - [model 006938, was 004127](http://mite.physik.uzh.ch/data/006938) | by: Budgieye | time: 2013-07-30 02:59:34+00:00 | comment: ''
+
+Sim ID: ASW000102p
+
+ - [model 006939, was 002891](http://mite.physik.uzh.ch/data/006939) | by: Jonas | time: 2013-07-09 09:19:53+00:00 | comment: ''
+ - [model 006940, was 003782](http://mite.physik.uzh.ch/data/006940) | by: Capella05 | time: 2013-07-17 17:01:42+00:00 | comment: 'Complicated - got 2 points not happy with contour and mass distribution | 17/07/2013'
+ - [model 006941, was 003783](http://mite.physik.uzh.ch/data/006941) | by: Capella05 | time: 2013-07-17 17:07:29+00:00 | comment: 'Uncertain, seems to suggest a cusp arrangement | 17/07/2013'
+ - [model 006942, was 004128](http://mite.physik.uzh.ch/data/006942) | by: Budgieye | time: 2013-07-30 03:05:36+00:00 | comment: ''
+
+Sim ID: ASW0000w54
+
+ - [model 006943, was 002872](http://mite.physik.uzh.ch/data/006943) | by: Jonas | time: 2013-07-09 08:42:53+00:00 | comment: ''
+ - [model 006944, was 003530](http://mite.physik.uzh.ch/data/006944) | by: Capella05 | time: 2013-07-13 11:31:41+00:00 | comment: 'Plausible | 13/07/2013'
+ - [model 006945, was 004141](http://mite.physik.uzh.ch/data/006945) | by: Budgieye | time: 2013-07-30 03:40:51+00:00 | comment: ''
+ - [model 006946, was 004142](http://mite.physik.uzh.ch/data/006946) | by: Budgieye | time: 2013-07-30 03:43:33+00:00 | comment: ''
+
+Sim ID: ASW00054e9
+
+ - [model 006947, was 003388](http://mite.physik.uzh.ch/data/006947) | by: Jonas | time: 2013-07-11 10:27:45+00:00 | comment: 'I hardly think this on is correct... (But seems to be ok)'
+ - [model 006948, was 003405](http://mite.physik.uzh.ch/data/006948) | by: ElisabethB | time: 2013-07-11 16:38:35+00:00 | comment: ''
+ - [model 006949, was 003950](http://mite.physik.uzh.ch/data/006949) | by: Capella05 | time: 2013-07-23 09:58:53+00:00 | comment: 'Plausible | 23/07/2013'
+ - [model 006950, was 005511](http://mite.physik.uzh.ch/data/006950) | by: Budgieye | time: 2013-08-08 22:04:30+00:00 | comment: 'arc a bit too long'
+
+Sim ID: ASW0000bl0
+
+ - [model 006951, was 002787](http://mite.physik.uzh.ch/data/006951) | by: Jonas | time: 2013-07-08 15:48:03+00:00 | comment: ''
+ - [model 006952, was 004052](http://mite.physik.uzh.ch/data/006952) | by: Budgieye | time: 2013-07-29 16:16:56+00:00 | comment: 'can't get arcs to be short'
+
+Sim ID: ASW00031ve
+
+ - [model 006953, was 003350](http://mite.physik.uzh.ch/data/006953) | by: Jonas | time: 2013-07-11 09:43:03+00:00 | comment: ''
+ - [model 006954, was 003604](http://mite.physik.uzh.ch/data/006954) | by: Capella05 | time: 2013-07-14 11:49:54+00:00 | comment: 'Plausible | 14/07/2013'
+ - [model 006955, was 003916](http://mite.physik.uzh.ch/data/006955) | by: ElisabethB | time: 2013-07-21 21:14:47+00:00 | comment: ''
+ - [model 006956, was 003925](http://mite.physik.uzh.ch/data/006956) | by: ElisabethB | time: 2013-07-22 16:45:58+00:00 | comment: ''
+ - [model 006957, was 005500](http://mite.physik.uzh.ch/data/006957) | by: Budgieye | time: 2013-08-08 21:51:16+00:00 | comment: 'nearly a complete ring'
+
+Sim ID: ASW0000bsh
+
+ - [model 006958, was 002792](http://mite.physik.uzh.ch/data/006958) | by: Jonas | time: 2013-07-08 15:51:36+00:00 | comment: ''
+ - [model 006959, was 003450](http://mite.physik.uzh.ch/data/006959) | by: Capella05 | time: 2013-07-12 16:50:15+00:00 | comment: 'Plausible | 12/07/2013'
+ - [model 006960, was 003451](http://mite.physik.uzh.ch/data/006960) | by: Capella05 | time: 2013-07-12 16:55:08+00:00 | comment: 'Plausible | 12/07/2013'
+ - [model 006961, was 004987](http://mite.physik.uzh.ch/data/006961) | by: ElisabethB | time: 2013-08-05 20:26:50+00:00 | comment: 'not a very good one, but this looks easy but isn't !'
+ - [model 006962, was 004053](http://mite.physik.uzh.ch/data/006962) | by: Budgieye | time: 2013-07-29 16:21:13+00:00 | comment: 'not too bad'
+
+Sim ID: ASW0000r8n
+
+ - [model 006963, was 002801](http://mite.physik.uzh.ch/data/006963) | by: Jonas | time: 2013-07-08 16:20:50+00:00 | comment: ''
+ - [model 006964, was 002860](http://mite.physik.uzh.ch/data/006964) | by: Jonas | time: 2013-07-09 08:23:26+00:00 | comment: ''
+ - [model 006965, was 003510](http://mite.physik.uzh.ch/data/006965) | by: Capella05 | time: 2013-07-13 09:53:58+00:00 | comment: 'Okay, but needs work  | 13/07/2013'
+ - [model 006966, was 003874](http://mite.physik.uzh.ch/data/006966) | by: ElisabethB | time: 2013-07-19 18:22:46+00:00 | comment: ''
+
+Sim ID: ASW00019rw
+
+ - [model 006967, was 002964](http://mite.physik.uzh.ch/data/006967) | by: Jonas | time: 2013-07-09 13:01:20+00:00 | comment: ''
+ - [model 006968, was 004165](http://mite.physik.uzh.ch/data/006968) | by: Budgieye | time: 2013-07-30 10:12:07+00:00 | comment: 'Einstein cross, quite poorly done'
+
+Sim ID: ASW0001a2m
+
+ - [model 006969, was 002972](http://mite.physik.uzh.ch/data/006969) | by: Jonas | time: 2013-07-09 13:10:35+00:00 | comment: ''
+ - [model 006970, was 004167](http://mite.physik.uzh.ch/data/006970) | by: Budgieye | time: 2013-07-30 19:06:02+00:00 | comment: 'messy'
+ - [model 006971, was 004168](http://mite.physik.uzh.ch/data/006971) | by: Budgieye | time: 2013-07-30 19:10:50+00:00 | comment: 'tried different saddle'
+
+Sim ID: ASW000195x
+
+ - [model 006972, was 002904](http://mite.physik.uzh.ch/data/006972) | by: Jonas | time: 2013-07-09 09:39:59+00:00 | comment: ''
+ - [model 006973, was 003596](http://mite.physik.uzh.ch/data/006973) | by: Capella05 | time: 2013-07-14 11:19:04+00:00 | comment: 'Failure, keep on getting a counter image predicted at 2 | 14/07/2013'
+ - [model 006974, was 003954](http://mite.physik.uzh.ch/data/006974) | by: Capella05 | time: 2013-07-23 10:28:26+00:00 | comment: 'Best after a few attempts, always predicts an arc at 1:30 | 23/07/2013'
+ - [model 006975, was 004161](http://mite.physik.uzh.ch/data/006975) | by: Budgieye | time: 2013-07-30 10:01:51+00:00 | comment: 'arc too long, but contour map is nice'
+
+Sim ID: ASW0000e28
+
+ - [model 006976, was 002794](http://mite.physik.uzh.ch/data/006976) | by: Jonas | time: 2013-07-08 16:09:48+00:00 | comment: ''
+ - [model 006977, was 004062](http://mite.physik.uzh.ch/data/006977) | by: Budgieye | time: 2013-07-29 16:35:19+00:00 | comment: 'got most of the light in one arc, not too bad'
+
+Sim ID: ASW0001gae
+
+ - [model 006978, was 003004](http://mite.physik.uzh.ch/data/006978) | by: Jonas | time: 2013-07-09 13:50:08+00:00 | comment: ''
+ - [model 006979, was 004677](http://mite.physik.uzh.ch/data/006979) | by: Capella05 | time: 2013-08-04 16:36:56+00:00 | comment: 'Plausible | 04/08/2013'
+ - [model 006980, was 005431](http://mite.physik.uzh.ch/data/006980) | by: Budgieye | time: 2013-08-08 20:44:26+00:00 | comment: 'good, model sensitive to the center of mass'
+
+Sim ID: ASW0002jo0
+
+ - [model 006981, was 003262](http://mite.physik.uzh.ch/data/006981) | by: Jonas | time: 2013-07-10 14:13:00+00:00 | comment: ''
+ - [model 006982, was 003542](http://mite.physik.uzh.ch/data/006982) | by: Capella05 | time: 2013-07-13 12:12:01+00:00 | comment: 'Mmmm, got 4 points not happy about spacing | 13/072013'
+ - [model 006983, was 005474](http://mite.physik.uzh.ch/data/006983) | by: Budgieye | time: 2013-08-08 21:22:54+00:00 | comment: ''
+ - [model 006984, was 005476](http://mite.physik.uzh.ch/data/006984) | by: Budgieye | time: 2013-08-08 21:24:14+00:00 | comment: ''
+
+Sim ID: ASW0004nfh
+
+ - [model 006985, was 003378](http://mite.physik.uzh.ch/data/006985) | by: Jonas | time: 2013-07-11 10:14:50+00:00 | comment: ''
+ - [model 006986, was 003681](http://mite.physik.uzh.ch/data/006986) | by: ElisabethB | time: 2013-07-14 19:42:24+00:00 | comment: ''
+ - [model 006987, was 003895](http://mite.physik.uzh.ch/data/006987) | by: ElisabethB | time: 2013-07-21 17:12:16+00:00 | comment: ''
+ - [model 006988, was 005503](http://mite.physik.uzh.ch/data/006988) | by: Budgieye | time: 2013-08-08 21:55:18+00:00 | comment: 'generally OK'
+
+Sim ID: ASW00004k0
+
+ - [model 006989, was 004032](http://mite.physik.uzh.ch/data/006989) | by: Budgieye | time: 2013-07-29 15:24:13+00:00 | comment: 'I can't make this one  look good.'
+
+Sim ID: ASW0004oux
+
+ - [model 006990, was 003380](http://mite.physik.uzh.ch/data/006990) | by: Jonas | time: 2013-07-11 10:18:55+00:00 | comment: ''
+ - [model 006991, was 003408](http://mite.physik.uzh.ch/data/006991) | by: Capella05 | time: 2013-07-11 17:31:30+00:00 | comment: 'Plausible     |     11/07/2013'
+ - [model 006992, was 003417](http://mite.physik.uzh.ch/data/006992) | by: ElisabethB | time: 2013-07-11 18:42:39+00:00 | comment: ''
+ - [model 006993, was 003419](http://mite.physik.uzh.ch/data/006993) | by: ElisabethB | time: 2013-07-11 19:02:18+00:00 | comment: ''
+ - [model 006994, was 003889](http://mite.physik.uzh.ch/data/006994) | by: ElisabethB | time: 2013-07-21 15:58:26+00:00 | comment: ''
+ - [model 006995, was 005504](http://mite.physik.uzh.ch/data/006995) | by: Budgieye | time: 2013-08-08 21:58:01+00:00 | comment: 'got it first try'
+
+Sim ID: ASW0001sym
+
+ - [model 006996, was 003211](http://mite.physik.uzh.ch/data/006996) | by: Jonas | time: 2013-07-10 12:55:11+00:00 | comment: ''
+ - [model 006997, was 005440](http://mite.physik.uzh.ch/data/006997) | by: Budgieye | time: 2013-08-08 20:59:07+00:00 | comment: 'is OK,'
+ - [model 006998, was 005442](http://mite.physik.uzh.ch/data/006998) | by: Budgieye | time: 2013-08-08 21:00:54+00:00 | comment: 'makes a square Einstein ring, with bright spots in the right areas.'
+
+Sim ID: ASW0001a8c
+
+ - [model 006999, was 003851](http://mite.physik.uzh.ch/data/006999) | by: Jonas | time: 2013-07-19 11:16:53+00:00 | comment: 'Solution]('
+ - [model 007000, was 002980](http://mite.physik.uzh.ch/data/007000) | by: Jonas | time: 2013-07-09 13:20:41+00:00 | comment: ''
+ - [model 007001, was 003454](http://mite.physik.uzh.ch/data/007001) | by: Capella05 | time: 2013-07-12 17:07:53+00:00 | comment: 'Not too sure about this one... | 12/07/2013'
+ - [model 007002, was 003949](http://mite.physik.uzh.ch/data/007002) | by: Capella05 | time: 2013-07-23 09:52:48+00:00 | comment: 'Still needs tweaking | 23/07/2013'
+ - [model 007003, was 005398](http://mite.physik.uzh.ch/data/007003) | by: Budgieye | time: 2013-08-08 20:20:56+00:00 | comment: 'Einstein cross, not too bad'
+
+Sim ID: ASW00013ml
+
+ - [model 007004, was 002895](http://mite.physik.uzh.ch/data/007004) | by: Jonas | time: 2013-07-09 09:29:41+00:00 | comment: ''
+ - [model 007005, was 003560](http://mite.physik.uzh.ch/data/007005) | by: Capella05 | time: 2013-07-13 16:56:53+00:00 | comment: 'Needs tweaking | 13/07/2013'
+ - [model 007006, was 003945](http://mite.physik.uzh.ch/data/007006) | by: Capella05 | time: 2013-07-23 09:33:59+00:00 | comment: 'Uncertain | 23/07/2013'
+ - [model 007007, was 004136](http://mite.physik.uzh.ch/data/007007) | by: Budgieye | time: 2013-07-30 03:26:50+00:00 | comment: 'kept it simple as possible'
+
+Sim ID: ASW0000ar2
+
+ - [model 007008, was 002784](http://mite.physik.uzh.ch/data/007008) | by: Jonas | time: 2013-07-08 15:45:47+00:00 | comment: ''
+ - [model 007009, was 004038](http://mite.physik.uzh.ch/data/007009) | by: Budgieye | time: 2013-07-29 15:47:10+00:00 | comment: 'Are there 3 arcs?'
+
+Sim ID: ASW0001gve
+
+ - [model 007010, was 003034](http://mite.physik.uzh.ch/data/007010) | by: Jonas | time: 2013-07-09 14:10:44+00:00 | comment: ''
+ - [model 007011, was 003802](http://mite.physik.uzh.ch/data/007011) | by: Capella05 | time: 2013-07-17 18:01:16+00:00 | comment: 'Plausible | 17/07/2013'
+ - [model 007012, was 005434](http://mite.physik.uzh.ch/data/007012) | by: Budgieye | time: 2013-08-08 20:49:12+00:00 | comment: 'lovely kite shaped Einstein cross'
+
+Sim ID: ASW0000kad
+
+ - [model 007013, was 002782](http://mite.physik.uzh.ch/data/007013) | by: Jonas | time: 2013-07-08 15:42:43+00:00 | comment: ''
+ - [model 007014, was 003834](http://mite.physik.uzh.ch/data/007014) | by: ElisabethB | time: 2013-07-17 21:00:25+00:00 | comment: ''
+ - [model 007015, was 004110](http://mite.physik.uzh.ch/data/007015) | by: Budgieye | time: 2013-07-30 02:24:29+00:00 | comment: 'I can't seem to work all the arcs into the model, so I chose 2 arcs.'
+
+Sim ID: ASW0001d74
+
+ - [model 007016, was 002996](http://mite.physik.uzh.ch/data/007016) | by: Jonas | time: 2013-07-09 13:44:33+00:00 | comment: ''
+ - [model 007017, was 003537](http://mite.physik.uzh.ch/data/007017) | by: Capella05 | time: 2013-07-13 11:49:02+00:00 | comment: 'Plausible | 13/07/2013'
+ - [model 007018, was 003440](http://mite.physik.uzh.ch/data/007018) | by: ElisabethB | time: 2013-07-12 15:20:09+00:00 | comment: ''
+ - [model 007019, was 005400](http://mite.physik.uzh.ch/data/007019) | by: Budgieye | time: 2013-08-08 20:24:54+00:00 | comment: 'rather pleased with this one'
+
+Sim ID: ASW0000h2m
+
+ - [model 007020, was 002798](http://mite.physik.uzh.ch/data/007020) | by: Jonas | time: 2013-07-08 16:15:35+00:00 | comment: ''
+ - [model 007021, was 003469](http://mite.physik.uzh.ch/data/007021) | by: Capella05 | time: 2013-07-12 20:06:50+00:00 | comment: 'Failure - this was the best after 10+ attempts | 12/07/2013'
+ - [model 007022, was 003579](http://mite.physik.uzh.ch/data/007022) | by: psaha | time: 2013-07-13 21:48:14+00:00 | comment: ''
+ - [model 007023, was 004074](http://mite.physik.uzh.ch/data/007023) | by: Budgieye | time: 2013-07-29 19:38:50+00:00 | comment: 'Einstein cross is a challenge,'
+ - [model 007024, was 004091](http://mite.physik.uzh.ch/data/007024) | by: Budgieye | time: 2013-07-29 19:59:21+00:00 | comment: 'synthetic image is a perfect cross, too bad the initial image isn't.'
+ - [model 007025, was 004095](http://mite.physik.uzh.ch/data/007025) | by: Budgieye | time: 2013-07-29 20:07:50+00:00 | comment: 'another nice cross, is there supposed to be an arc in the middle? ie. 5 arcs?'

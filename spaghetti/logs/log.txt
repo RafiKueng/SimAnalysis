@@ -1,0 +1,152 @@
+ASW0003ctp
+  003353: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6904
+  003170: by: psaha        p:8  m:200  comment: 'looks convincing.'  improved_id: 6905
+  003186: by: ElisabethB   p:12 m:200  comment: ''  improved_id: 6906
+  003642: by: Capella05    p:8  m:200  comment: 'Needs tweaking | 14/07/2013'  improved_id: 6907
+  003649: by: Capella05    p:8  m:200  comment: 'Plausible | 14/07/2013'  improved_id: 6908
+  003897: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6909
+ASW0002b6m
+  003250: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6910
+  003673: by: ElisabethB   p:8  m:200  comment: 'not very good)'  improved_id: 6911
+  003661: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6912
+ASW0001hpf
+  003204: by: Praktika2013 p:10 m:200  comment: ''  improved_id: 6913
+  003150: by: psaha        p:8  m:200  comment: 'something complicated happening here. Is the centre offset from the galaxy as in [this other model?]('  improved_id: 6914
+  003347: by: psaha        p:8  m:200  comment: 'And this one.]('  improved_id: 6915
+  003301: by: psaha        p:8  m:200  comment: ''  improved_id: 6916
+  003495: by: C_cld        p:8  m:200  comment: ''  improved_id: 6917
+  005437: by: Budgieye     p:8  m:200  comment: 'another kite shaped Einstein cross, got the bright areas in about the right place'  improved_id: 6918
+ASW0002z6f
+  003270: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6919
+  005249: by: Capella05    p:8  m:200  comment: 'Plausible, but the mass distribution map is a bit suspect | 07/08/2013'  improved_id: 6920
+  003706: by: ElisabethB   p:8  m:200  comment: 'a bit strange)'  improved_id: 6921
+  003714: by: ElisabethB   p:8  m:200  comment: 'and again, not a very good one.'  improved_id: 6922
+  003733: by: ElisabethB   p:8  m:200  comment: 'I'm not too happy with this one'  improved_id: 6923
+  003926: by: ElisabethB   p:8  m:200  comment: 'needs some tweaking'  improved_id: 6924
+  003943: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6925
+  005498: by: Budgieye     p:8  m:200  comment: 'couldn't quite get it'  improved_id: 6926
+ASW00023pg
+  003243: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6927
+  003932: by: Capella05    p:8  m:200  comment: 'Plausible | 22/07/2013'  improved_id: 6928
+  005452: by: Budgieye     p:8  m:50   comment: 'some of it OK, bottom part needs more light'  improved_id: 6929
+  005468: by: Budgieye     p:8  m:50   comment: 'most of  arcs in right place'  improved_id: 6930
+ASW0000vqg
+  002870: by: Praktika2013 p:6  m:200  comment: ''  improved_id: 6931
+  002903: by: psaha        p:10 m:200  comment: ''  improved_id: 6932
+  002903: by: psaha        p:10 m:200  comment: ''  improved_id: 6933
+  003692: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6934
+  004120: by: Budgieye     p:8  m:200  comment: 'kept it simple, used lens z of 0.5,  and source of 1. decided that lens was yellow and closer'  improved_id: 6935
+  004155: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6936
+  004144: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6937
+  004127: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6938
+ASW000102p
+  002891: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6939
+  003782: by: Capella05    p:8  m:200  comment: 'Complicated - got 2 points not happy with contour and mass distribution | 17/07/2013'  improved_id: 6940
+  003783: by: Capella05    p:8  m:200  comment: 'Uncertain, seems to suggest a cusp arrangement | 17/07/2013'  improved_id: 6941
+  004128: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6942
+ASW0000w54
+  002872: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6943
+  003530: by: Capella05    p:8  m:200  comment: 'Plausible | 13/07/2013'  improved_id: 6944
+  004141: by: Budgieye     p:5  m:200  comment: ''  improved_id: 6945
+  004142: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6946
+ASW00054e9
+  003388: by: Praktika2013 p:8  m:200  comment: 'I hardly think this on is correct... (But seems to be ok)'  improved_id: 6947
+  003405: by: ElisabethB   p:12 m:200  comment: ''  improved_id: 6948
+  003950: by: Capella05    p:8  m:200  comment: 'Plausible | 23/07/2013'  improved_id: 6949
+  005511: by: Budgieye     p:8  m:200  comment: 'arc a bit too long'  improved_id: 6950
+ASW0000bl0
+  002787: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6951
+  004052: by: Budgieye     p:6  m:200  comment: 'can't get arcs to be short'  improved_id: 6952
+ASW00031ve
+  003350: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6953
+  003604: by: Capella05    p:8  m:200  comment: 'Plausible | 14/07/2013'  improved_id: 6954
+  003916: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6955
+  003925: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6956
+  005500: by: Budgieye     p:8  m:200  comment: 'nearly a complete ring'  improved_id: 6957
+ASW0000bsh
+  002792: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6958
+  003450: by: Capella05    p:8  m:200  comment: 'Plausible | 12/07/2013'  improved_id: 6959
+  003451: by: Capella05    p:8  m:200  comment: 'Plausible | 12/07/2013'  improved_id: 6960
+  004987: by: ElisabethB   p:8  m:200  comment: 'not a very good one, but this looks easy but isn't !'  improved_id: 6961
+  004053: by: Budgieye     p:8  m:200  comment: 'not too bad'  improved_id: 6962
+ASW0000r8n
+  002801: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6963
+  002860: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6964
+  003510: by: Capella05    p:8  m:200  comment: 'Okay, but needs work  | 13/07/2013'  improved_id: 6965
+  003874: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6966
+ASW00019rw
+  002964: by: Praktika2013 p:10 m:200  comment: ''  improved_id: 6967
+  004165: by: Budgieye     p:6  m:100  comment: 'Einstein cross, quite poorly done'  improved_id: 6968
+ASW0001a2m
+  002972: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6969
+  004167: by: Budgieye     p:8  m:200  comment: 'messy'  improved_id: 6970
+  004168: by: Budgieye     p:5  m:50   comment: 'tried different saddle'  improved_id: 6971
+ASW000195x
+  002904: by: Praktika2013 p:10 m:200  comment: ''  improved_id: 6972
+  003596: by: Capella05    p:8  m:200  comment: 'Failure, keep on getting a counter image predicted at 2 | 14/07/2013'  improved_id: 6973
+  003954: by: Capella05    p:8  m:200  comment: 'Best after a few attempts, always predicts an arc at 1:30 | 23/07/2013'  improved_id: 6974
+  004161: by: Budgieye     p:8  m:50   comment: 'arc too long, but contour map is nice'  improved_id: 6975
+ASW0000e28
+  002794: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6976
+  004062: by: Budgieye     p:6  m:200  comment: 'got most of the light in one arc, not too bad'  improved_id: 6977
+ASW0001gae
+  003004: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6978
+  004677: by: Capella05    p:8  m:200  comment: 'Plausible | 04/08/2013'  improved_id: 6979
+  005431: by: Budgieye     p:8  m:200  comment: 'good, model sensitive to the center of mass'  improved_id: 6980
+ASW0002jo0
+  003262: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6981
+  003542: by: Capella05    p:8  m:200  comment: 'Mmmm, got 4 points not happy about spacing | 13/072013'  improved_id: 6982
+  005474: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6983
+  005476: by: Budgieye     p:8  m:200  comment: ''  improved_id: 6984
+ASW0004nfh
+  003378: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6985
+  003681: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6986
+  003895: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6987
+  005503: by: Budgieye     p:8  m:200  comment: 'generally OK'  improved_id: 6988
+ASW00004k0
+  004032: by: Budgieye     p:6  m:200  comment: 'I can't make this one  look good.'  improved_id: 6989
+ASW0004oux
+  003380: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6990
+  003408: by: Capella05    p:12 m:200  comment: 'Plausible     |     11/07/2013'  improved_id: 6991
+  003417: by: ElisabethB   p:12 m:200  comment: ''  improved_id: 6992
+  003419: by: ElisabethB   p:12 m:200  comment: ''  improved_id: 6993
+  003889: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 6994
+  005504: by: Budgieye     p:8  m:200  comment: 'got it first try'  improved_id: 6995
+ASW0001sym
+  003211: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 6996
+  005440: by: Budgieye     p:8  m:200  comment: 'is OK,'  improved_id: 6997
+  005442: by: Budgieye     p:8  m:200  comment: 'makes a square Einstein ring, with bright spots in the right areas.'  improved_id: 6998
+ASW0001a8c
+  003851: by: Praktika2013 p:8  m:200  comment: 'Solution]('  improved_id: 6999
+  002980: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 7000
+  003454: by: Capella05    p:8  m:200  comment: 'Not too sure about this one... | 12/07/2013'  improved_id: 7001
+  003949: by: Capella05    p:8  m:200  comment: 'Still needs tweaking | 23/07/2013'  improved_id: 7002
+  005398: by: Budgieye     p:8  m:200  comment: 'Einstein cross, not too bad'  improved_id: 7003
+ASW00013ml
+  002895: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 7004
+  003560: by: Capella05    p:8  m:200  comment: 'Needs tweaking | 13/07/2013'  improved_id: 7005
+  003945: by: Capella05    p:8  m:200  comment: 'Uncertain | 23/07/2013'  improved_id: 7006
+  004136: by: Budgieye     p:8  m:200  comment: 'kept it simple as possible'  improved_id: 7007
+ASW0000ar2
+  002784: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 7008
+  004038: by: Budgieye     p:8  m:200  comment: 'Are there 3 arcs?'  improved_id: 7009
+ASW0001gve
+  003034: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 7010
+  003802: by: Capella05    p:8  m:200  comment: 'Plausible | 17/07/2013'  improved_id: 7011
+  005434: by: Budgieye     p:8  m:200  comment: 'lovely kite shaped Einstein cross'  improved_id: 7012
+ASW0000kad
+  002782: by: Praktika2013 p:10 m:200  comment: ''  improved_id: 7013
+  003834: by: ElisabethB   p:8  m:200  comment: ''  improved_id: 7014
+  004110: by: Budgieye     p:8  m:200  comment: 'I can't seem to work all the arcs into the model, so I chose 2 arcs.'  improved_id: 7015
+ASW0001d74
+  002996: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 7016
+  003537: by: Capella05    p:8  m:200  comment: 'Plausible | 13/07/2013'  improved_id: 7017
+  003440: by: ElisabethB   p:12 m:200  comment: ''  improved_id: 7018
+  005400: by: Budgieye     p:8  m:200  comment: 'rather pleased with this one'  improved_id: 7019
+ASW0000h2m
+  002798: by: Praktika2013 p:8  m:200  comment: ''  improved_id: 7020
+  003469: by: Capella05    p:8  m:200  comment: 'Failure - this was the best after 10+ attempts | 12/07/2013'  improved_id: 7021
+  003579: by: psaha        p:8  m:200  comment: ''  improved_id: 7022
+  004074: by: Budgieye     p:8  m:200  comment: 'Einstein cross is a challenge,'  improved_id: 7023
+  004091: by: Budgieye     p:5  m:200  comment: 'synthetic image is a perfect cross, too bad the initial image isn't.'  improved_id: 7024
+  004095: by: Budgieye     p:5  m:200  comment: 'another nice cross, is there supposed to be an arc in the middle? ie. 5 arcs?'  improved_id: 7025

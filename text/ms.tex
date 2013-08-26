@@ -8,15 +8,31 @@
 \usepackage{xspace}   % fixes spaces after custom commands
 \usepackage{float}    % exact placement of figures (using \begin{figure}[H])
 %\usepackage{caption}  % better captions for floats
+\usepackage{color}  % well... color...
+
 
 
 
 %%% DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\half{{\textstyle\frac12}}
+% makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
 \newcommand{\sw}{SpaceWarps\xspace}
 
+% shorcuts for refs
+\newcommand{\figref}[1]{figure~\ref{fig:#1}}
+\newcommand{\secref}[1]{chapter~\ref{sec:#1}}
+
+
+% todo annotations on side in red. easy to search for at the end
+\newcommand{\todo}[1]{\marginpar{\flushleft\sffamily\textcolor{red}{\footnotesize #1}}}
+\setlength{\marginparsep}{1mm}
+\setlength{\marginparwidth}{3cm}
+% quick todo annotations
+\newcommand{\todocit}{\todo{insert citation}}
+\newcommand{\todoref}{\todo{insert ref}}
+\newcommand{\todochk}{\todo{check again}}
 
 
 %%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

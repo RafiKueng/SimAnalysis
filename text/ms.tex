@@ -31,7 +31,23 @@ comparable.
 
 \section{Introduction}
 
-\section{Fermat's Principle}
+Spacewarps is the future.
+
+Moreover, that lens modelling is an essential accompaniment to lens
+searches has been clear since the early days \citep{1981ApJ...244..723Y}.
+
+Why Fermat's principle?  Details in \ref{sec:Fermat} and
+\ref{sec:more-theory}.
+
+SpaghettiLens details in \ref{sec:SpaghettiLens}.
+
+Sims in \ref{sec:sims}.
+
+Results in \ref{sec:results}.
+
+Things to do in \ref{sec:todo}.
+
+\section{Fermat's Principle} \label{sec:Fermat}
 
 Explain Fermat's principle
 \begin{equation}
@@ -67,14 +83,14 @@ interpretations.  On the one hand, it is the sky projected density ---
 in special units, to make it dimensionless.  On the other hand,
 $\kappa$ is the {\em convergence\/} of a bundle of rays.
 
-\section{SpaghettiLens}
+\section{SpaghettiLens} \label{sec:SpaghettiLens}
 
 Give a guess for the maximum, minimum and saddle points.  Program
 tries find $\kappa(x,y)$ that reproduces these properties exactly, and
 looks reasonably like a galaxy.  Solution not unique, an ensemble
 generated.
 
-\section{The simulated lenses}
+\section{The simulated lenses} \label{sec:sims}
 
 Three kinds of sims.
 
@@ -90,13 +106,15 @@ Three kinds of sims.
 Lenses follow \cite{2001astro.ph..2341K,2001astro.ph..2340K}.
 Parameters in online supplement.
 
-\section{Results}
+\section{Results} \label{sec:results}
 
 Example Figure \ref{fig:ASW0000ar2}.
 
+\section{Extensions needed} \label{sec:todo}
+
 \appendix
 
-\section{More on Lensing Theory}
+\section{More on Lensing Theory} \label{sec:more-theory}
 
 First we define comoving distances, as follows.
 \begin{equation}
@@ -156,11 +174,18 @@ Recover equations (2.1) to (2.6) from \cite{1986ApJ...310..568B}.
 
 
 \begin{figure}
+\includegraphics[height=.3\vsize]{arriv1.png}
+\includegraphics[height=.3\vsize]{arriv2.png}
+\includegraphics[height=.3\vsize]{arriv3.png}
+\caption{Arrival-time surfaces\label{fig:arriv}}
+\end{figure}
+
+\begin{figure}
 \includegraphics[width=.32\hsize]{ASW0000ar2Q_kappa.png}
-\includegraphics[width=.32\hsize]{ASW0000ar2Q_arriv.png} \\
 \includegraphics[width=.32\hsize]{ASW0000ar2_kappa.png}
+\includegraphics[width=.32\hsize]{ASW0000ar2_menc.png} \\
+\includegraphics[width=.32\hsize]{ASW0000ar2Q_arriv.png}
 \includegraphics[width=.32\hsize]{ASW0000ar2_arriv.png}
-\includegraphics[width=.32\hsize]{ASW0000ar2_menc.png}
 \caption{A simple two-image lensed quasar.  The minimum and saddle are
   identified correctly.  The mean model shows two spurious images, but
   the mean convergence in the region of images is good.

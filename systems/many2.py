@@ -1,4 +1,5 @@
-from numpy import linspace, zeros, amin, amax, sqrt, pi
+from numpy import linspace, zeros, amin, amax, sqrt, pi, gradient
+import numpy as np
 from pylab import contour, figure, savefig, show
 from poten import poten_SIE, poten_NFW, poten_shear
 from angdiam import dratio
@@ -127,17 +128,17 @@ def draw(asw):
     savefig(folder+asw+flag+'_menc.png')
     
     
-    x1, y1 = np.gradient(arriv)
+    x1, y1 = gradient(arriv)
     x1, y1 = np.abs(x1), np.abs(y1)
     
-    z1 = (x1*x1+y1*y1)
+    z1 = x1*x1+y1*y1
     zmin = amin(z1) * 42. # because it's 42
     print 'zmin',zmin
     mask = z1<zmin
   
     fig = figure()
     panel = fig.add_subplot(1,1,1)
-    panel.imshow(mask, vmin=0, vmax=1)
+    panel.imshow(mask, vmin=0, vmax=1, origin='lower')
 #    panel = fig.add_subplot(2,1,2)
 #    panel.imshow(y)
     savefig(folder+asw+flag+'_derr.png')

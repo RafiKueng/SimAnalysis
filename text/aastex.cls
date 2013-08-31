@@ -601,20 +601,20 @@
 \renewcommand\baselinestretch{\@tightleading}%
 \newcommand\tighten{\def\baselinestretch{\@tightleading}}%
 \newcommand\tightenlines{\tighten}%
-\newcommand\singlespace{%
+\newcommand\singlespacee{%
  \def\baselinestretch{\@tightleading}%
  \normalsize
 }%
-\newcommand\doublespace{%
+\newcommand\doublespacee{%
  \def\baselinestretch{\@doubleleading}%
  \normalsize
 }%
-\def\singlespace@apj{%
+\def\singlespacee@apj{%
  \def\baselinestretch{\@tightleading}%
  \def\arraystretch{\@tightleading}%
  \normalsize
 }%
-\def\doublespace@apj{%
+\def\doublespacee@apj{%
  \def\baselinestretch@apj{\@doubleleading}%
  \def\arraystretch{\@doubleleading}%
  \normalsize
@@ -2029,8 +2029,8 @@
  \setlength\emergencystretch{6\p@}%
  \def\baselinestretch{1.0}%
  \def\@tightleading{1.0}%
- \let\singlespace\@empty
- \let\doublespace\@empty
+ \let\singlespacee\@empty
+ \let\doublespacee\@empty
  \let\@dates\@dates@pptt
  \let\@abstract\@abstract@pptt
  \let\make@title\make@title@pptt
@@ -2085,8 +2085,8 @@
  \def\baselinestretch{\@doubleleading}%
  \let\footnote@size\@empty
  \def\tighten{\def\baselinestretch{\@doubleleading}}%
- \def\singlespace{}%
- \def\doublespace{}%
+ \def\singlespacee{}%
+ \def\doublespacee{}%
  \opt@tighten
  \setlength\@slugcmmntwidth{\textwidth}%
  \let\@makeslugcmmnt\@makeslugcmmnt@mss

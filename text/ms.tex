@@ -9,7 +9,9 @@
 \usepackage{float}    % exact placement of figures (using \begin{figure}[H])
 %\usepackage{caption}  % better captions for floats
 \usepackage{color}  % well... color...
-
+%\usepackage{todonotes}  % only used during writing..
+%\usepackage{ifdraft}    % executes commands if in draft mode
+\usepackage{setspace}    % remove this pgk for final compile!! 
 
 
 
@@ -26,13 +28,41 @@
 
 
 % todo annotations on side in red. easy to search for at the end
-\newcommand{\todo}[1]{\marginpar{\flushleft\sffamily\textcolor{red}{\footnotesize #1}}}
-\setlength{\marginparsep}{1mm}
-\setlength{\marginparwidth}{3cm}
+\newcommand{\todo}[2][red]{%\marginpar{\raggedright\scriptsize\sffamily\textcolor{red}{#1}}}
+%{\marginpar{\raggedright\sffamily\textcolor{red}\footnotesize
+%\setstretch{1.025}%
+%#1}}}
+\textcolor{#1}{\textbullet}%
+\marginpar{\colorbox{#1}{\parbox{\marginparwidth}{%
+\setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{#2}}}}}}
+
+\newcommand{\needfig}[1][]{%
+\colorbox{yellow}{\parbox{0.5\textwidth}{%
+\vspace{0.5cm}\setstretch{0.5}\textcolor{black}{\scriptsize{fig #1}}\vspace{0.5cm}}}%
+\marginpar{\colorbox{yellow}{\parbox{\marginparwidth}{%
+\setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{fig}}}}}}
+
+\setlength{\marginparsep}{0mm}
+\setlength{\marginparwidth}{2.2cm}
+
 % quick todo annotations
-\newcommand{\todocit}{\todo{insert citation}}
-\newcommand{\todoref}{\todo{insert ref}}
-\newcommand{\todochk}{\todo{check again}}
+%\newcommand{\todocit}{\todo{insert citation}}
+%\newcommand{\todoref}{\todo{insert ref}}
+%\newcommand{\todochk}{\todo{check again}}
+\newcommand{\needcite}[1][]{\todo[green]{cit #1}}
+\newcommand{\needref}[1][]{\todo[cyan]{ref #1}}
+\newcommand{\needchk}[1][]{\todo[red]{chk #1}}
+
+% using todo notes:
+%\newcommand{\needcite}[1][]{\todo[color=blue!40, size=\tiny]{cit: #1}}
+%\newcommand{\needref}[1][]{\todo[color=green!40, size=\tiny]{ref: #1}}
+%\newcommand{\needchk}[1][]{\todo[color=yellow!40, size=\tiny]{chk: #1}}
+%\newcommand{\needfig}[1][]{\missingfigure{#1}}
+
+
+
+\newcommand{\hr}{\vspace{5mm}\noindent\centering\rule{0.8\textwidth}{0.4pt}\vspace{5mm}}
+
 
 
 
@@ -67,6 +97,10 @@ Third Author\altaffilmark{3}}
 \newpage
 
 \input{tex/figures}
+
+\newpage
+
+%\listoftodos
 
 \end{document}
 

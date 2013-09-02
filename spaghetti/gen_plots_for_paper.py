@@ -20,7 +20,7 @@ Created on Mon Sep 02 18:26:32 2013
 
 
 
-import os, shutil
+import os
 import matplotlib.pylab as pl
 
 
@@ -55,8 +55,9 @@ for idd in ids:
   outpath = os.path.join(outdir, idstr)  
   
   try:
-    shutil.makedirs(outpath)
+    os.makedirs(outpath)
   except:
+    print 'path creat failed'
     pass
   
   g.make_ensemble_average()

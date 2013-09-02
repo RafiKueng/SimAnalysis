@@ -10,6 +10,7 @@ generated.
 SpaghettiLens is build on top of GLASS \citep{Lubini2012}, that builds and improves upon PixeLens \citep{Saha2004}.
 It provides a web based graphical user interface that allows to trace contours with the mouse and identify extremal points by clicking on the image.
 \spl then tries to find a mass distribution $\kappa(x,y)$ that reproduces the input parameters.
+Since there is no unique solution, \spl samples the solution space and produces an ensemble of solutions, as described in the paper \citep{Lubini2012}.
 It provides direct visual feedback by rendering a synthetic image side by side the original image, such that users can directly compare the predictions of their model to the survey image.
 It additinally provides plots of the modelled mass distribution and the contour lines of arrival time surface as feedback. 
 
@@ -50,13 +51,13 @@ Volunteers then organise them selves to narrow down the different branches and c
 Three kinds of sims.
 
 \begin{itemize}
-\item {\em Quasar:\/} A singular elliptical isothermal plus constant
-  external shear, with a circular Gaussian source.
-\item {\em Galaxy:\/} Lens as with quasar, but elliptical de
-  Vaucouleurs source.
-\item {\em Galaxy:\/} Lens is circular NFW plus one dominant
-  elliptical SIE and perturbating elliptical SIEs, source as with
-  galaxy.
+  \item {\em Quasar:\/} A singular elliptical isothermal plus constant
+    external shear, with a circular Gaussian source.
+  \item {\em Galaxy:\/} Lens as with quasar, but elliptical de
+    Vaucouleurs source.
+  \item {\em Galaxy:\/} Lens is circular NFW plus one dominant
+    elliptical SIE and perturbating elliptical SIEs, source as with
+    galaxy.
 \end{itemize}
 Lenses follow \cite{2001astro.ph..2341K,2001astro.ph..2340K}.
 Parameters in online supplement.

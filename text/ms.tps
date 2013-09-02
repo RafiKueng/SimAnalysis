@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1060
+NormalPos.right=1671
 NormalPos.bottom=638
-Class=BibTeXView
-Document=bib\ms.bib
+Class=LaTeXView
+Document=tex\spaghetti.tex
 
 [Frame0_View0,0]
-TopLine=15
-Cursor=851
+TopLine=0
+Cursor=2037
 
 [Frame1]
 Flags=0
@@ -27,16 +27,16 @@ MinPos.x=-1
 MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
-NormalPos.left=1069
+NormalPos.left=4
 NormalPos.top=23
 NormalPos.right=1671
 NormalPos.bottom=638
 Class=LaTeXView
-Document=ms.tex
+Document=tex\intro.tex
 
 [Frame1_View0,0]
-TopLine=20
-Cursor=2768
+TopLine=0
+Cursor=513
 
 [Frame2]
 Flags=0
@@ -47,7 +47,7 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1060
+NormalPos.right=1671
 NormalPos.bottom=638
 Class=LaTeXView
 Document=tex\abstract.tex
@@ -65,14 +65,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1060
+NormalPos.right=1671
 NormalPos.bottom=638
 Class=LaTeXView
-Document=tex\spaghetti.tex
+Document=ms.tex
 
 [Frame3_View0,0]
-TopLine=0
-Cursor=801
+TopLine=62
+Cursor=2512
 
 [Frame4]
 Flags=0
@@ -83,14 +83,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1060
+NormalPos.right=1671
 NormalPos.bottom=638
 Class=LaTeXView
-Document=tex\intro.tex
+Document=tex\theory.tex
 
 [Frame4_View0,0]
 TopLine=0
-Cursor=513
+Cursor=112
 
 [Frame5]
 Flags=0
@@ -101,34 +101,16 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1060
-NormalPos.bottom=638
-Class=LaTeXView
-Document=tex\theory.tex
-
-[Frame5_View0,0]
-TopLine=0
-Cursor=112
-
-[Frame6]
-Flags=0
-ShowCmd=1
-MinPos.x=-1
-MinPos.y=-1
-MaxPos.x=-1
-MaxPos.y=-1
-NormalPos.left=4
-NormalPos.top=23
-NormalPos.right=1060
+NormalPos.right=1671
 NormalPos.bottom=638
 Class=LaTeXView
 Document=tex\figures.tex
 
-[Frame6_View0,0]
+[Frame5_View0,0]
 TopLine=0
 Cursor=243
 
 [SessionInfo]
-FrameCount=7
+FrameCount=6
 ActiveFrame=0
 

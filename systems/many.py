@@ -133,7 +133,11 @@ def draw(asw):
     panel.contour(x,y,arriv,lev)
     savefig('figs/'+asw+flag+'_arriv.png')
 
-for asw in sim:
+
+
+if __name__ == '__main__':
+  for asw in sim:
     draw(asw)
+
 
 

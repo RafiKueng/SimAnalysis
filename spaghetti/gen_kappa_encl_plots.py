@@ -60,6 +60,7 @@ import os.path
 #rc('font',**{'family':'serif','serif':['Palatino']})
 #rc('text', usetex=True)
 
+datadir = os.path.abspath(os.path.join(os.path.dirname(__file__), datadir))
 
 user_data_dir = os.path.abspath(os.path.join(datadir, inpfilename))
 save_fig_path = os.path.abspath(os.path.join(datadir, fig_dir))
@@ -344,8 +345,3 @@ def getEinsteinR(x, y):
     else:
       return False
     
-
-
-
-
-

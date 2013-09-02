@@ -35,6 +35,10 @@ datadir = '/srv/lmt/tmp_media'
 plts = [True, True, True, False]
 
 
+glass_basis('glass.basis.pixels', solver=None)
+exclude_all_priors()
+
+
 
 with open(idfile, 'r') as f:
   ids = f.readlines()

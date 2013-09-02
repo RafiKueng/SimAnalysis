@@ -20,7 +20,7 @@ Created on Mon Sep 02 18:26:32 2013
 
 
 
-import os, shutils
+import os, shutil
 import matplotlib.pylab as pl
 
 
@@ -51,7 +51,7 @@ for idd in ids:
   outpath = os.path.join(outdir, idstr)  
   
   try:
-    shutils.makedirs(outpath)
+    shutil.makedirs(outpath)
   except:
     pass
   

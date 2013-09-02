@@ -24,9 +24,9 @@ import os, shutil
 import matplotlib.pylab as pl
 
 
-idfile = '/srv/lmt/scripts_output/incr_result_resolution/ids.txt'
+idfile = '/srv/lmt/script_output/incr_result_resolution/ids.txt'
 
-outdir = '/srv/lmt/scripts_output/gen_plots_for_paper/'
+outdir = '/srv/lmt/script_output/gen_plots_for_paper/'
 
 datadir = '/srv/lmt/tmp_media'
 

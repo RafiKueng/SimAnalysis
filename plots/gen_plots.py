@@ -1,7 +1,49 @@
 # -*- coding: utf-8 -*-
 """
 collects all the data distributed all over this place and generates the
-final plots
+final plots.
+
+make sure to have the following installed:
+- python module 'requests'
+- latex modules 'amsmath', 'textgreek'?
+
+should run in this folder /plots, doens't do much by default, you need
+to call some command after importing this module that anything happens.
+Needs the whole repro to be checked out. (folders /spaghetti and /systems)
+
+either:
+  use python in interactive mode:
+  python -i -c "import gen_plots"
+
+or (better):
+  use ipython:
+  ipython
+  %run gen_plots.py
+  
+available commands are:
+
+- run():
+  does all the work below
+  
+- all_sim_plot()
+  creates all the simulation data plots ('real' data)
+  
+- all_mod_plots()
+  creates all the results / modells plots
+  (server side created plots get grapped from internet)
+  
+- all_tex()
+  assumes the plots are already created (under /plots)
+  creates all the tex files and copies the relevant files
+  to the tex folder
+
+
+data is stored in:
+- many.sim
+- spg.data
+
+
+
 
 Created on Mon Sep 02 15:35:36 2013
 
@@ -44,8 +86,11 @@ import matplotlib.pylab as pl
 
 from numpy import pi
 
-
+# set to false to do a dry run in /plots/res
 write_to_tex_folder = True
+#image extension (png or pdf)
+ext = 'png'
+
 
 # realtive to plots dir
 outdir = 'figs'
@@ -53,14 +98,10 @@ outdir = 'figs'
 simdir = 'sim'
 moddir = 'mod'
 
-
-
 resdir = 'res'
 # relative to root of git repro
 texdir = 'text/fig/sims'
 
-#image extension
-ext = 'png'
 
 
 pardir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -205,6 +246,12 @@ def create_tex(mid, asw):
       sf_opt
     ),  
     tFig(
+      r'fig/sims/%s/kappa.%s'%(asw, ext),
+      r'[real mass distribution]',
+      r'%04i_sim_mass' % mid,
+      sf_opt
+    ),
+    tFig(
       r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
       r'[modelled arrivaltime contour lines]',
       r'%04i_cont'%mid,
@@ -216,12 +263,6 @@ def create_tex(mid, asw):
       r'%04i_sim_arr' % mid,
       sf_opt
     ),  
-    tFig(
-      r'fig/sims/%s/kappa.%s'%(asw, ext),
-      r'[real mass distribution]',
-      r'%04i_sim_mass' % mid,
-      sf_opt
-    ),
   ]
 
   #figpath = os.path.join(resdir, '%06i'%mid)

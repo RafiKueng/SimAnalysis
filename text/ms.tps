@@ -11,14 +11,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=638
+NormalPos.right=1186
+NormalPos.bottom=432
 Class=LaTeXView
-Document=tex\spaghetti.tex
+Document=tex\figures.tex
 
 [Frame0_View0,0]
 TopLine=0
-Cursor=2037
+Cursor=944
 
 [Frame1]
 Flags=0
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=638
+NormalPos.right=1186
+NormalPos.bottom=432
 Class=LaTeXView
-Document=tex\intro.tex
+Document=tex\spaghetti.tex
 
 [Frame1_View0,0]
-TopLine=0
-Cursor=513
+TopLine=16
+Cursor=3011
 
 [Frame2]
 Flags=0
@@ -47,14 +47,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=638
+NormalPos.right=1186
+NormalPos.bottom=432
 Class=LaTeXView
-Document=tex\abstract.tex
+Document=tex\intro.tex
 
 [Frame2_View0,0]
 TopLine=0
-Cursor=653
+Cursor=513
 
 [Frame3]
 Flags=0
@@ -65,14 +65,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=638
+NormalPos.right=1186
+NormalPos.bottom=432
 Class=LaTeXView
-Document=ms.tex
+Document=tex\abstract.tex
 
 [Frame3_View0,0]
-TopLine=62
-Cursor=2512
+TopLine=0
+Cursor=653
 
 [Frame4]
 Flags=0
@@ -83,14 +83,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=638
+NormalPos.right=1186
+NormalPos.bottom=432
 Class=LaTeXView
-Document=tex\theory.tex
+Document=ms.tex
 
 [Frame4_View0,0]
-TopLine=0
-Cursor=112
+TopLine=59
+Cursor=2512
 
 [Frame5]
 Flags=0
@@ -101,14 +101,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=638
+NormalPos.right=1186
+NormalPos.bottom=432
 Class=LaTeXView
-Document=tex\figures.tex
+Document=tex\theory.tex
 
 [Frame5_View0,0]
 TopLine=0
-Cursor=243
+Cursor=112
 
 [SessionInfo]
 FrameCount=6

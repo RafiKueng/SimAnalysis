@@ -17,11 +17,35 @@ import requests as rq
 
 import numpy as np
 import matplotlib as mpl
+
+mpl.rc('text', usetex=True)
+mpl.rc('font', family='serif')
+
+params = {
+# see http://matplotlib.org/users/customizing.html
+#  'backend': 'ps',
+  'text.latex.preamble': [
+    r"\usepackage{amsmath}",
+    r"\usepackage{textgreek}"
+    ],
+  'mathtext.default': 'regular',
+  'axes.labelsize': 14,
+  'text.fontsize': 14,
+  'legend.fontsize': 10,
+  'xtick.labelsize': 12,
+  'ytick.labelsize': 12,
+  'text.usetex': True,
+#  'figure.figsize': fig_size,
+#  'axes.unicode_minus': True
+  }
+mpl.rcParams.update(params)
+
 import matplotlib.pylab as pl
 
 from numpy import pi
 
-write_to_tex_folder = False
+
+write_to_tex_folder = True
 
 # realtive to plots dir
 outdir = 'figs'
@@ -35,6 +59,8 @@ resdir = 'res'
 # relative to root of git repro
 texdir = 'text/fig/sims'
 
+#image extension
+ext = 'png'
 
 
 pardir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
@@ -55,56 +81,251 @@ sys.path.append(os.path.join(pardir, 'systems'))
 import gen_kappa_encl_plots as spg
 import many
 
+debug = False
 
-def tmp():
+
+
+def test():
+#  for idd, elem in enumerate(spg.data):
+#    mid = elem['id']
+#    draw_mod(0, mid, 0, spg.data, spg.sims)
+#    break
   for asw in many.sim:
     draw_sim(asw, many.sim)
     break
-  
-  for idd, elem in enumerate(spg.data):
-    draw_mod(0, elem['id'], 0, spg.data, spg.sims)
-    break
-  
-  for idd, elem in enumerate(spg.data):
-    create_tex(elem['id'], None)
-    break
+
+
+
+def run():
+  all_sim_plots()
+  all_mod_plots()
+  all_tex()
+
+#==============================================================================
+#   # generate sim plots
+#==============================================================================
+def all_sim_plots():
+  print '\nSIMS'
+  print '============================================='  
+  for asw in many.sim:
+
+    path = os.path.join(simdir, asw)
+    if not os.path.isdir(path):
+      os.makedirs(path)    
     
+    draw_sim(asw, many.sim)
+    if debug: break
   
+#==============================================================================
+#   # generate models plots
+#==============================================================================
+def all_mod_plots():
+  print '\nMODS'
+  print '============================================='  
+  for idd, elem in enumerate(spg.data):
+    
+    mid = elem['id']
+
+    path = os.path.join(moddir, '%06i'%mid)
+    if not os.path.isdir(path):
+      os.makedirs(path)    
+
+    get_mod_adv_data(mid) #download plots generated on server with glass
+    draw_mod(0, mid, 0, spg.data, spg.sims)
+
+    if debug: break
+  
+  
+  
+#==============================================================================
+#   # create tex folder / files for easy include
+#==============================================================================
+def all_tex():
+  print '\nTEX'
+  print '============================================='
+  mid_list = []
+  for idd, elem in enumerate(spg.data):
+
+    mid = elem['id']
+    asw = elem['name']
+    
+      
+    spath = os.path.join(resdir, asw)
+    mpath = os.path.join(resdir, '%06i'%mid)
+    for path in [spath, mpath]:
+      #print path
+      if not os.path.isdir(path):
+        os.makedirs(path)
+
+    t1 = copy_model_files(mid)
+    t2 = copy_sim_files(asw)
+    
+    #only create tex file if all files available and copied    
+    if t1 and t2:
+      create_tex(mid, asw)
+      mid_list.append(str(mid))
+    if debug: break
+  
+  with open(os.path.join(resdir, '_all.tex'), 'w') as ff:
+    ff.write('\n'.join(['\input{fig/sims/%s}\n\clearpage'%_ for _ in mid_list]))
+
+class tFig(dict):
+  def __init__(self, sf_path, sf_capt, sf_label, sf_opt):
+    self.sf_path = sf_path
+    self.sf_capt = sf_capt
+    self.sf_label = sf_label
+    self.sf_opt = sf_opt
+    
+  def __getitem__(self, key):
+    return self.__dict__[key]
+    
   
 def create_tex(mid, asw):
-  try:
-    figpath = os.path.join(resdir, '%06i'%mid)
-    texpath = resdir
-    os.makedirs(figpath)
-  except OSError as e:
-    print 'error creating dir', e
+  
+  print '> generating tex file',mid,
+  
+  sf_opt = r'[width=0.45\textwidth]'
+  txFigs = [
+    tFig(
+      r'fig/sims/%06i/arr_time.%s'%(mid, ext),
+      r'[modelled arrival time surface]',
+      r'%04i_atime'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/kappa_encl.%s'%(mid, ext),
+      r'[modelled enclosed mass]',
+      r'%04i_kappa'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/mass.%s'%(mid, ext),
+      r'[modelled mass distribution]',
+      r'%04i_mass'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
+      r'[modelled arrivaltime contour lines]',
+      r'%04i_cont'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%s/arriv.%s'%(asw, ext),
+      r'[real arrival time surface]',
+      r'%04i_sim_arr' % mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%s/kappa.%s'%(asw, ext),
+      r'[real mass distribution]',
+      r'%04i_sim_mass' % mid,
+      sf_opt
+    ),
+  ]
 
-  rawtex = r"""
+  #figpath = os.path.join(resdir, '%06i'%mid)
+  texpath = resdir
+
+#  try:
+#    figpath = os.path.join(resdir, '%06i'%mid)
+#    texpath = resdir
+#    #os.makedirs(figpath)
+#  except OSError as e:
+#    print 'error creating dir', e
+
+  tex_env = r"""
 \begin{figure}
   \centering
-    \includegraphics[width=0.45\textwidth]{%s}
-  \caption{%s}
-  \label{fig:%s}
+%(subfigtex)s
+  \caption%(env_capt_short)s{%(env_capt_long)s}
+  \label{fig:%(env_label)s}
 \end{figure}
+  """
+  
+  tex_sub = r"""  \subfigure%(sf_capt)s{
+    \label{fig:%(sf_label)s}
+    \includegraphics%(sf_opt)s{%(sf_path)s}
+  }
 """
 
-  tex = ''
+  subfigtex = ''
   
-  for i in range(1):
-    figpath_rel = 'fig/sims/%06i/'
-    capt =  'tmpdesc'
-    lbl = 'tmplbl'
-    tex += rawtex % (figpath_rel, capt, lbl)
+  for fig in txFigs:
+    data = {
+#      'sf_path'   : r'fig/sims/%06i/img.%s' % (mid, ext),
+#      'sf_capt'   : r'[some capt]',
+#      'sf_label'  : r'tmplbl',
+#      'sf_opt'    : r'[width=0.3\textwidth]'
+    }
+    subfigtex += tex_sub % fig
     
+  data = {
+    'subfigtex'      : subfigtex,
+    'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
+    'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
+    'env_label'      : r'%04i'%mid,
+  }
   
+  tex = tex_env % data
   
-  with open(os.path.join(texpath, '%06i.tex'%mid), 'w') as ff:
+  with open(os.path.join(texpath, '%04i.tex'%mid), 'w') as ff:
     ff.write(tex)
-    
-  #copy files
-  img = os.path.join(moddir, os.path.join('%06i'%mid, '006904_ASW0003ctp_Jonas.png'))
-  shutil.copy2(img, figpath)
+
+  print '...DONE.'
+  print '  - %04i.tex'%mid
+
+
+def copy_model_files(mid):
+  '''copies files to the final desination, with right ordering'''
   
+  print '> copying model files',
+  
+  figpath = os.path.join(resdir, '%06i'%mid)
+  
+  imgpath = os.path.join(moddir, '%06i'%mid)
+
+  imgs = os.listdir(imgpath)
+  imgs = [_ for _ in imgs if _.endswith('.%s'%ext)]
+  #imgs = ['']
+  
+  for img in imgs:
+    ipath = os.path.join(imgpath, img)
+    try:
+      shutil.copy2(ipath, figpath)
+      print '.',
+    except OSError:
+      print '!! copy error', mid
+      return False
+
+  print ' ...DONE.'
+  for f in imgs: print '  - %s'%f
+  return True
+
+def copy_sim_files(asw):
+  '''copies files to the final desination, with right ordering'''
+
+  print '> copying sim files',
+
+  figpath = os.path.join(resdir, asw)
+  imgpath = os.path.join(simdir, asw)
+  try:  
+    files = os.listdir(imgpath)
+  except OSError:
+    print ' ... FAILED'
+    print '!! sim not found:', asw, imgpath
+    return False
+  for f in files:
+    if f.endswith('.%s'%ext):
+      try:
+        shutil.copy2(os.path.join(imgpath,f), figpath)
+      except:
+        print '!! file not found:', os.path.join(imgpath,f)
+      print '.',
+
+  print ' ...DONE.'
+  for f in files: print '  - %s'%f
+  return True
     
 
 def get_mod_def_data(mid):
@@ -127,12 +348,19 @@ def get_mod_def_data(mid):
 
 def get_mod_adv_data(mid):
   """gets the better plots produced by script"""
+  print '> getting model data online', 
+  
   baseurl = 'http://mite.physik.uzh.ch/script_output/gen_plots_for_paper/%06i/' %mid
   
-  imgs = ['img2.png', 'img3.png']
-  saveas = ['mass.png', 'arr_time.png']
+  imgs = ['img1', 'img2', 'img3']
+  saveas = ['spaghetti', 'mass', 'arr_time']
+
+  #append eextension
+  imgs = [_+'.%s'%ext for _ in imgs]
+  saveas = [_+'.%s'%ext for _ in saveas]
 
   path = os.path.join(moddir, '%06i'%mid)
+  
 
   for k, img in enumerate(imgs):
     r = rq.get(baseurl+img, stream=True)
@@ -140,18 +368,33 @@ def get_mod_adv_data(mid):
       with open(os.path.join(path, saveas[k]), 'wb') as f:
         for chunk in r.iter_content(1024):
           f.write(chunk)
+    else:
+      print '!! file', baseurl, img, 'not found'
           
-
+  print '...DONE.'
+  for f in saveas: print '  - %s'%f
 
 
 def draw_sim(asw, sim):
-    try:
-      path = os.path.join(simdir, asw)
-      os.mkdir(path)
-    except OSError as e:
-      print 'error creating dir', e
-      #return
-      
+  
+    path = os.path.join(simdir, asw)
+#    try:
+#      path = os.path.join(simdir, asw)
+#      #os.makedirs(path)
+#    except OSError as e:
+#      print 'error creating dir', e
+#      #return
+
+    filenames = ['arriv', 'kappa', 'm_encl']
+    
+    print '> drawing sim %s'%asw,    
+    
+    #prevent submodules prints..
+    old_stdout = sys.stdout
+    old_stderr = sys.stderr
+    devnull = open(os.devnull, 'w')
+    sys.stdout = devnull
+    #sys.stderr = devnull
       
     print asw
     N,R = 100,50
@@ -164,13 +407,17 @@ def draw_sim(asw, sim):
     x = np.linspace(-R,R,N)
     y = 1*x
     kappa,arriv = many.grids(asw,x,y)
+
+
     fig = pl.figure()
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
     lev = np.linspace(0,10,41)
     pc = panel.contour(x,y,kappa,lev)
     panel.clabel(pc, inline=1, fontsize=10)
-    pl.savefig(os.path.join(path, asw+flag+'_kappa.png'))
+    pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
+
+
     fig = pl.figure()
     panel = fig.add_subplot(1,1,1)
     rad = np.linspace(0,R,20)[1:]
@@ -190,20 +437,25 @@ def draw_sim(asw, sim):
         fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
     fil.close()
     panel.scatter(rad,sum)
-    panel.set_xlabel('radius in pixels')
-    panel.set_ylabel('average interior $\kappa$')
-    pl.savefig(os.path.join(path, asw+flag+'_menc.png'))
+    panel.set_xlabel('radius [pixels]')
+    panel.set_ylabel('average interior \textkappa [1]')
+    pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
+    
+    
     fig = pl.figure()
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
     lo,hi = np.amin(arriv), np.amax(arriv)
     lev = np.linspace(lo,lo+.2*(hi-lo),100)
     panel.contour(x,y,arriv,lev)
-    pl.savefig(os.path.join(path, asw+flag+'_arriv.png'))
+    pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
 
-
-
-
+    #restore stdout
+    sys.stdout = old_stdout
+    sys.stderr = old_stderr
+    
+    print '...DONE.'
+    for f in filenames: print '  - %s'%(f+'.'+ext)
 
 
 def draw_mod(idd, mid, count, data, sims):
@@ -211,18 +463,32 @@ def draw_mod(idd, mid, count, data, sims):
 
   plot_rE = True
   print_rE = True
+  prnt = False
   show = False
-  cens = False
   save_fig_path = os.path.join(moddir, '%06i'%mid)
-  try:
-    os.mkdir(save_fig_path)
-  except OSError as e:
-    print 'could not create folder', e
+
+#  try:
+#    os.mkdir(save_fig_path)
+#  except OSError as e:
+#    print 'could not create folder', e
     #return
     
 
   elem = data[idd]
   name = elem['name']
+  user = elem['user']
+  
+  if prnt:
+    print '...drawing modelling result', idd, mid, name, user
+  else:
+    print '> drawing modres %06i'%mid,
+  
+  # create info files
+  with open(os.path.join(save_fig_path, name + '.txt'), 'a'):
+    pass
+  with open(os.path.join(save_fig_path, user + '.txt'), 'a'):
+    pass
+  
 
   try:
     sims[name]
@@ -230,7 +496,7 @@ def draw_mod(idd, mid, count, data, sims):
     print '!! missing sims data for', idd, name
     return
 
-  yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]
+  #yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]
 
 
   if plot_rE or print_rE:
@@ -250,22 +516,34 @@ def draw_mod(idd, mid, count, data, sims):
   t_dx = 0.0
   t_dy = 0.1
   t_dt = mmax/16.
-  t_props = {'ha':'left', 'va':'bottom'} 
+  t_props = {'ha':'left', 'va':'bottom', 'fontsize':params['text.fontsize']} 
     
     
   pl.ioff()
-  fig = pl.figure()
+  pl.figure()
   #panel = fig.add_subplot(1,1,1)
   
+  x  = elem['x']
+  y  = elem['y']
+  yp = elem['err_p']
+  ym = elem['err_m']
+  
+  # get interpolated values
+  x_ip  = np.linspace(np.min(x), np.max(x), 1000)
+  #y_ip  = np.interp(x_ip, x, y)
+  yp_ip = np.interp(x_ip, x, yp)
+  ym_ip = np.interp(x_ip, x, ym)
+  
+  #genrate mask, only values between the extr. points
+  pnts_x = [_['d'] for _ in elem['pnts'] ]
+  mask = (x_ip > np.min(pnts_x)) & (x_ip < np.max(pnts_x))
+  
 
-  #pl.errorbar(elem['x'], elem['y'], yerr=yerr)
+  #plot the model values
   pl.plot(elem['x'], elem['err_p'], 'b')
   pl.plot(elem['x'], elem['err_m'], 'b')
-  #pl.plot(elem['x'], elem['y'], 'k')
-  pl.fill_between(elem['x'], elem['err_p'], elem['err_m'], facecolor='blue', alpha=0.5)
-  
-  #print [np.max(elem['err_p']), np.max(sims[name]['y'])]
-  #print mmax, ofs
+  pl.fill_between(x_ip[mask], yp_ip[mask], ym_ip[mask], facecolor='blue', alpha=0.5)
+
   
   #plot vertical lines for point location
   for jj, p in enumerate(sorted(elem['pnts'])):
@@ -275,70 +553,57 @@ def draw_mod(idd, mid, count, data, sims):
     pl.plot([p['d'], p['d']], [0,ofs-t_dt*jj], c+':')
     pl.text(p['d']+t_dx, ofs-t_dt*jj+t_dy, p['t'], **t_props)
 
+  # plot simulation parameter data
   pl.plot(sims[name]['x'], sims[name]['y'], 'r')
   pl.plot([0,np.max(elem['x'])], [1,1], ':m')  
   
-  if cens:
-    pl.suptitle('Analysis for ID: **** - model of: ASW*******', fontsize=14)
-    pl.title('by: %s - pixrad: %i - nModels: %i' % (elem['user'], elem['pxR'], elem['nMod']), fontsize=12)
-  else:
-    pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=14)
-    pl.title('by: %s - pixrad: %i - nModels: %i' % (elem['user'], elem['pxR'], elem['nMod']), fontsize=12)
-  #pl.title('Analysis for id: %s, model of: %s by: %s' % (elem['id'], name, elem['user']))
+  #titles etc
+  pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
+  pl.title('by: %s - pixrad: %i - nModels: %i' % (elem['user'], elem['pxR'], elem['nMod']), fontsize=14)
   
-  print 'stat:', idd, 
-  print 'pixrad :', int(elem['nr'])-1,
-  print 'nmodels:', int(elem['nMod']),
 
-  if print_rE:
-    print 'rE_models = %4.2f [%4.2f...%4.2f] rE_sim = %4.2f' % (rE_mean, rE_min, rE_max, rE_data)
-  else:
-    print ''
+#  if prnt:
+#    print 'stat:', idd, 
+#    print 'pixrad :', int(elem['nr'])-1,
+#    print 'nmodels:', int(elem['nMod']),
+#  if prnt & print_rE:
+#    print 'rE_models = %4.2f [%4.2f...%4.2f] rE_sim = %4.2f' % (rE_mean, rE_min, rE_max, rE_data)
+#  elif prnt:
+#    print ''
     
+  # plot einsteinradius
   if plot_rE:
-    a_re_min = np.array([rE_min, rE_min])
-    a_re_max = np.array([rE_max, rE_max])
+    #a_re_min = np.array([rE_min, rE_min])
+    #a_re_max = np.array([rE_max, rE_max])
     a_re_mean = np.array([rE_mean, rE_mean])
     a_re_data = np.array([rE_data, rE_data])
-    fbx2 = rE_max
+    #fbx2 = rE_max
     #fby = np.array([0.5,rE_pos-0.25])
-    fby = np.array([0.5,1,1.5])
-    a2_re_min = np.array([rE_min, rE_min, rE_min])
-    a2_re_max = np.array([rE_max, rE_max, rE_max])
+    #fby = np.array([0.5,1,1.5])
+    #a2_re_min = np.array([rE_min, rE_min, rE_min])
+    #a2_re_max = np.array([rE_max, rE_max, rE_max])
 
     pl.plot(a_re_mean, [0,rE_pos], '--', color=(0,0.5,0))
-    pl.text(rE_mean+t_dx, rE_pos+t_dy, '$r_E$ = %4.2f [%4.2f .. %4.2f]'%(rE_mean, rE_min, rE_max), **t_props)
+    pl.text(rE_mean+t_dx, rE_pos+t_dy, r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **t_props)
     #pl.plot(a_re_min, [0,rE_pos-0.25], ':b')
     #pl.plot(a_re_max, [0,rE_pos-0.25], ':b')
 
-    print a_re_min, fbx2, fby
+    #if prnt: print a_re_min, fbx2, fby
     
     #pl.fill_betweenx(fby,a2_re_min, a2_re_max, alpha=0.3, edgecolor='white', facecolor=['cyan','green'], cmap=pl.cm.Accent) #facecolor='cyan',
     
-    cp1 = 0.0
-    cp2 = 1.0
-    cy = np.ones(rE_pos*4) # spaced in 1/4 steps, rE_pos is int!
-    cy[0]=0
-    cy[1]=0.5
-    cy[-1]=0
-    cy[-2]=0.5
+    #cp1 = 0.0
+    #cp2 = 1.0
+    #cy = np.ones(rE_pos*4) # spaced in 1/4 steps, rE_pos is int!
+    #cy[0]=0
+    #cy[1]=0.5
+    #cy[-1]=0
+    #cy[-2]=0.5
     
-    cy = np.array([cy,cy]).transpose()
-    #print cy
-
-    #cpatch = [[cp1],[cp2],[cp1]]
-
-    cdict = { 'red':   ((0,1,1),(1,0,0)),
-              'green': ((0,1,1),(1,0.5,0.5)),
-              'blue':  ((0,1,1),(1,0,0)),
-              'alpha': ((0,0,0),(1,1,1))}
-              
-    cmblue = mpl.colors.LinearSegmentedColormap('TransparentBlue', cdict)
+    #cy = np.array([cy,cy]).transpose()
     
-    pl.imshow(cy, interpolation='bilinear', cmap=cmblue, extent=(rE_min, rE_max, 0.0, rE_pos), alpha=0.7, aspect='auto')
-  
     pl.plot(a_re_data, [0,rE_pos+t_dt], '--r')
-    pl.text(rE_data+t_dx, rE_pos+t_dt+t_dy, '$r_E$,sim = %4.2f'%(rE_data), **t_props)
+    pl.text(rE_data+t_dx, rE_pos+t_dt+t_dy, r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
     
 
   
@@ -352,12 +617,10 @@ def draw_mod(idd, mid, count, data, sims):
     #print 'show'
     pl.show()
   else:
-    #print os.path.join, save_fig_path#, str(idd)+'.png')
-    if cens:
-      imgname = ('%03i'%idd) + str(random.randint(1000,9999)) + '.png'
-    else:
-      #imgname = ('%03i'%idd)+'.png'
-      imgname = ('%06i_%s_%s'%(elem['id'], elem['name'], elem['user']))+'.png'
+    imgname = ('kappa_encl.%s'%ext)
     pl.savefig(os.path.join(save_fig_path, imgname))
-    print os.path.join(save_fig_path, imgname)
     pass
+  
+  
+  print ' ... DONE.'
+  print '  - %s' % imgname

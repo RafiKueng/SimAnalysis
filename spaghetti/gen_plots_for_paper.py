@@ -19,6 +19,38 @@ Created on Mon Sep 02 18:26:32 2013
 """
 
 
+#==============================================================================
+# MATPLOTLIB SETTINGS
+#==============================================================================
+
+# make sure they are in sync with the local plots command
+import matplotlib as mpl
+
+mpl.rc('text', usetex=True)
+mpl.rc('font', family='serif')
+
+params = {
+# see http://matplotlib.org/users/customizing.html
+#  'backend': 'ps',
+  'text.latex.preamble': [
+    r"\usepackage{amsmath}",
+    r"\usepackage{textgreek}"
+    ],
+  'mathtext.default': 'regular',
+  'axes.labelsize': 14,
+  'text.fontsize': 14,
+  'legend.fontsize': 10,
+  'xtick.labelsize': 12,
+  'ytick.labelsize': 12,
+  'text.usetex': True,
+#  'figure.figsize': fig_size,
+#  'axes.unicode_minus': True
+  }
+mpl.rcParams.update(params)
+#==============================================================================
+# END MATPLOTLIB SETTINGS
+#==============================================================================
+
 
 import os
 import matplotlib.pylab as pl

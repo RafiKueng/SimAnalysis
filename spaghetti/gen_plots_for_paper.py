@@ -96,6 +96,7 @@ for idd in ids:
   
   if plts[0]:
     g.arrival_plot(g.ensemble_average, only_contours=True, colors='magenta', clevels=40)
+    g.overlay_input_points(g.ensemble_average)
     #pl.gca().axes.get_xaxis().set_visible(False)
     #pl.gca().axes.get_yaxis().set_visible(False)
     pl.savefig(outpath + '/img1.png')
@@ -110,13 +111,15 @@ for idd in ids:
   
   if plts[2]:
     g.srcdiff_plot(g.ensemble_average)
+    g.overlay_input_points(g.ensemble_average)
     #pl.gca().axes.get_xaxis().set_visible(False)
     #pl.gca().axes.get_yaxis().set_visible(False)
     pl.savefig(outpath + '/img3.png')
     pl.close()
   
   if plts[3]:
-    g.srcdiff_plot_adv(g.ensemble_average, night=True, upsample=8)
+    g.srcdiff_plot_adv(g.ensemble_average, night=False, upsample=8)
+    g.overlay_input_points(g.ensemble_average)
     pl.savefig(outpath + '/img4.png', facecolor='black', edgecolor='none')
     pl.close()
     

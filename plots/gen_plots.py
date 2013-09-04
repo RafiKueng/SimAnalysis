@@ -154,6 +154,7 @@ def all_sim_plots():
     if not os.path.isdir(path):
       os.makedirs(path)    
     
+    get_sim_adv_data(asw)
     draw_sim(asw, many.sim)
     if debug: break
   
@@ -172,7 +173,7 @@ def all_mod_plots():
       os.makedirs(path)    
 
     get_mod_adv_data(mid) #download plots generated on server with glass
-    draw_mod(0, mid, 0, spg.data, spg.sims)
+    draw_mod(mid, elem, spg.data, spg.sims)
 
     if debug: break
   
@@ -411,9 +412,51 @@ def get_mod_adv_data(mid):
           f.write(chunk)
     else:
       print '!! file', baseurl, img, 'not found'
-          
+  
+  # get input image
+  r = rq.get('http://mite.physik.uzh.ch/result/%06i/input.png'%mid, stream=True)
+  if r.status_code == 200:
+    with open(os.path.join(path, 'input.png'), 'wb') as f:
+      for chunk in r.iter_content(1024):
+        f.write(chunk)
+  else:
+    print '!! file input.png not found'
+  
   print '...DONE.'
   for f in saveas: print '  - %s'%f
+  print '  - input.png'
+
+
+def get_sim_adv_data(asw):
+  """gets some online data"""
+  print '> getting sims data online', 
+
+  path = os.path.join(simdir, asw)
+
+  #get sw image
+  data = {
+    'action': 'datasourceApi',
+    'src_id':3,
+    'do':'fetch',
+    'swid':'ASW0001mze'
+    }
+  r=rq.post('http://mite.physik.uzh.ch/api', data)
+  if r.status_code == 200:
+    iurl = r.json()['list'][0]['url']
+    
+    r = rq.get(iurl, stream=True)
+    if r.status_code == 200:
+      with open(os.path.join(path, 'sw.png'), 'wb') as f:
+        for chunk in r.iter_content(1024):
+          f.write(chunk)
+    else:
+      print '!! file on spacewarps not found'        
+    
+  else:
+    pass
+
+  print '...DONE.'
+  print '  - sw.png'
 
 
 def draw_sim(asw, sim):
@@ -499,7 +542,7 @@ def draw_sim(asw, sim):
     for f in filenames: print '  - %s'%(f+'.'+ext)
 
 
-def draw_mod(idd, mid, count, data, sims):
+def draw_mod(mid, elem, data, sims):
 #def plot2(idd, count):
 
   plot_rE = True
@@ -514,13 +557,11 @@ def draw_mod(idd, mid, count, data, sims):
 #    print 'could not create folder', e
     #return
     
-
-  elem = data[idd]
   name = elem['name']
   user = elem['user']
   
   if prnt:
-    print '...drawing modelling result', idd, mid, name, user
+    print '...drawing modelling result', mid, name, user
   else:
     print '> drawing modres %06i'%mid,
   
@@ -534,7 +575,7 @@ def draw_mod(idd, mid, count, data, sims):
   try:
     sims[name]
   except KeyError:
-    print '!! missing sims data for', idd, name
+    print '!! missing sims data for', mid, name
     return
 
   #yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]
@@ -542,8 +583,8 @@ def draw_mod(idd, mid, count, data, sims):
 
   if plot_rE or print_rE:
     rE_mean = spg.getEinsteinR(elem['x'], elem['y'])
-    rE_max = spg.getEinsteinR(elem['x'], elem['err_p'])
-    rE_min = spg.getEinsteinR(elem['x'], elem['err_m'])
+    #rE_max = spg.getEinsteinR(elem['x'], elem['err_p'])
+    #rE_min = spg.getEinsteinR(elem['x'], elem['err_m'])
     rE_data = spg.getEinsteinR(sims[name]['x'], sims[name]['y'])
 
   # plotting settings
@@ -565,7 +606,7 @@ def draw_mod(idd, mid, count, data, sims):
   #panel = fig.add_subplot(1,1,1)
   
   x  = elem['x']
-  y  = elem['y']
+  #y  = elem['y']
   yp = elem['err_p']
   ym = elem['err_m']
   
@@ -599,8 +640,8 @@ def draw_mod(idd, mid, count, data, sims):
   pl.plot([0,np.max(elem['x'])], [1,1], ':m')  
   
   #titles etc
-  pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
-  pl.title('by: %s - pixrad: %i - nModels: %i' % (elem['user'], elem['pxR'], elem['nMod']), fontsize=14)
+  #pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
+  #pl.title('by: %s - pixrad: %i - nModels: %i' % (r'\verb|%s|'%elem['user'], elem['pxR'], elem['nMod']), fontsize=14)
   
 
 #  if prnt:

@@ -229,15 +229,15 @@ def create_tex(mid, asw):
   sf_opt = r'[width=0.45\textwidth]'
   txFigs = [
     tFig(
-      r'fig/sims/%06i/arr_time.%s'%(mid, ext),
-      r'[modelled arrival time surface]',
-      r'%04i_atime'%mid,
+      r'fig/sims/%s/kappa.%s'%(asw, ext),
+      r'[real mass distribution]',
+      r'%04i_sim_mass' % mid,
       sf_opt
-    ),  
+    ),
     tFig(
-      r'fig/sims/%06i/kappa_encl.%s'%(mid, ext),
-      r'[modelled enclosed mass]',
-      r'%04i_kappa'%mid,
+      r'fig/sims/%s/arriv.%s'%(asw, ext),
+      r'[real arrival time surface]',
+      r'%04i_sim_arr' % mid,
       sf_opt
     ),  
     tFig(
@@ -247,21 +247,21 @@ def create_tex(mid, asw):
       sf_opt
     ),  
     tFig(
-      r'fig/sims/%s/kappa.%s'%(asw, ext),
-      r'[real mass distribution]',
-      r'%04i_sim_mass' % mid,
-      sf_opt
-    ),
-    tFig(
       r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
       r'[modelled arrivaltime contour lines]',
       r'%04i_cont'%mid,
       sf_opt
     ),  
     tFig(
-      r'fig/sims/%s/arriv.%s'%(asw, ext),
-      r'[real arrival time surface]',
-      r'%04i_sim_arr' % mid,
+      r'fig/sims/%06i/kappa_encl.%s'%(mid, ext),
+      r'[modelled enclosed mass]',
+      r'%04i_kappa'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/arr_time.%s'%(mid, ext),
+      r'[modelled arrival time surface]',
+      r'%04i_atime'%mid,
       sf_opt
     ),  
   ]

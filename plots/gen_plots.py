@@ -236,34 +236,34 @@ def create_tex(mid, asw):
     ),
     tFig(
       r'fig/sims/%s/arriv.%s'%(asw, ext),
-      r'[real arrival time surface]',
+      r'[real arrival-time surface]',
       r'%04i_sim_arr' % mid,
       sf_opt
     ),  
     tFig(
       r'fig/sims/%06i/mass.%s'%(mid, ext),
-      r'[modelled mass distribution]',
+      r'[model mass distribution]',
       r'%04i_mass'%mid,
       sf_opt
     ),  
     tFig(
       r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
-      r'[modelled arrivaltime contour lines]',
+      r'[model arrival-time surface]',
       r'%04i_cont'%mid,
       sf_opt
     ),  
     tFig(
       r'fig/sims/%06i/kappa_encl.%s'%(mid, ext),
-      r'[modelled enclosed mass]',
+      r'[real vs model enclosed mass]',
       r'%04i_kappa'%mid,
       sf_opt
     ),  
     tFig(
       r'fig/sims/%06i/arr_time.%s'%(mid, ext),
-      r'[modelled arrival time surface]',
+      r'[model lensed image]',
       r'%04i_atime'%mid,
       sf_opt
-    ),  
+    ),
   ]
 
   #figpath = os.path.join(resdir, '%06i'%mid)

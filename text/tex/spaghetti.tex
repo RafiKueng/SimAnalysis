@@ -1,4 +1,9 @@
-\section{\spl} \label{sec:SpaghettiLens}
+\section {Setup} \label{sec:setup}
+
+\subsection{\sw} \label{sec:SpaceWarps}
+some words about \sw
+
+\subsection{\spl} \label{sec:SpaghettiLens}
 
 Give a guess for the maximum, minimum and saddle points.  Program
 tries find $\kappa(x,y)$ that reproduces these properties exactly, and
@@ -46,9 +51,11 @@ Volunteers then organise them selves to narrow down the different branches and c
 
 
 
-\section{The simulated lenses} \label{sec:sims}
+\subsection{The simulated lenses} \label{sec:sims}
 
-Three kinds of sims.
+In order to estimate users performance, \sw included some simulated lensing configurations in their image set.
+
+There are three kinds of simulated lenses:
 
 \begin{itemize}
   \item {\em Quasar:\/} A singular elliptical isothermal plus constant
@@ -60,4 +67,26 @@ Three kinds of sims.
     galaxy.
 \end{itemize}
 Lenses follow \cite{2001astro.ph..2341K,2001astro.ph..2340K}.
-Parameters in online supplement.
+Parameters can be looked up in online supplement.
+
+
+\subsection{The Test setup} \label{sec:testsetup}
+We made use of this simulated lenses and further tested the volunteers abilities to model those simulated lensing images.
+
+The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations (N_{sim}=30) chosen to represent some typical configurations.
+\todo{witch??}
+
+Two tests were done on the models created by the volunteers:
+
+\begin{enumerate}
+  \item Correct identification of extremal points
+  \item Reproduction of the mass distribution of the lens
+\end{enumerate}
+
+The first test required the volunteers to accomplish 2 tasks: First to identify and distinguish lensed images from background light sources.
+Second to come up with a logical ordering of the arrival time of those lensed images.
+
+The second test compared the enclosed mass $\kappa(r)$ of the models and the simulations.
+
+
+

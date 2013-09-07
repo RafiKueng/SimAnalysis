@@ -35,6 +35,7 @@ datadir = './data/mod_chal/'
 
 #input files
 sims_dir = '../systems/figs' #rel to ./spaghetti
+sims_alt_dir = '../plots/figs/sims'
 inpfilename = 'kappa_encl.csv'
 
 #output
@@ -119,6 +120,10 @@ import glob
 import os
 
 paths = glob.glob(os.path.join(sims_dir, '*.txt' ))
+
+# fix for running gen_plots
+if len(paths)==0:
+  paths = glob.glob(os.path.join(sims_alt_dir, '*.txt' ))
 
 sims = {}
 

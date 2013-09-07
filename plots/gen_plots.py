@@ -520,6 +520,10 @@ def draw_sim(asw, sim):
     for k in range(len(rad)):
         fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
     fil.close()
+    fil = open(os.path.join(simdir, asw+'.txt'),'w')
+    for k in range(len(rad)):
+        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+    fil.close()
     panel.scatter(rad,sum)
     panel.set_xlabel('radius [pixels]')
     panel.set_ylabel('average interior \textkappa [1]')
@@ -575,7 +579,7 @@ def draw_mod(mid, elem, data, sims):
   try:
     sims[name]
   except KeyError:
-    print '!! missing sims data for', mid, name
+    print '\n!! missing sims data for', mid, name
     return
 
   #yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]

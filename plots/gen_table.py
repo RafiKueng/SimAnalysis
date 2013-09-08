@@ -119,9 +119,9 @@ with open(inpfile, 'r') as f:
 #==============================================================================
 
 # caption
-ca = '''1. col: places of imgs idendited correctly; 2. col: more or less
-correct identification of extr points. 3.col: exact identification of extremal
-points. 4.col: type(s) of errors ocured....
+ca = '''1. col: id of model; 2.col: places of imgs idendited correctly; 3. col: more or less
+correct identification of extr points. 4.col: exact identification of extremal
+points. 5.col: type(s) of errors ocured....
 '''
 eee=[
 'inaccurate placement in an extended arc',
@@ -129,7 +129,7 @@ eee=[
 'identified only 3 instead of 5 images',
 'tried to model an arc with a min instead of min-sad-min',
 'PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)',
-'PI/2-err (rotation by 90 degree; sad->min->sad->min->sad)',
+'PI/2-err (rotation by 90 degree; sad-min-sad-min-sad)',
 'missed faint image(s)',
 'tried to model an arc with min-sad-min instead of only min',
 'did identify two close by images as one',

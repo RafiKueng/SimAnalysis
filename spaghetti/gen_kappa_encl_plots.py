@@ -350,3 +350,15 @@ def getEinsteinR(x, y):
     else:
       return False
     
+def genREData():
+  '''generates the einsteinradius data for all the elemts'''
+  
+  # all models:
+  for elem in data:
+    elem['rE_mean'] = getEinsteinR(elem['x'], elem['y'])
+    elem['rE_max'] = getEinsteinR(elem['x'], elem['err_p'])
+    elem['rE_min'] = getEinsteinR(elem['x'], elem['err_m'])
+  
+  for key, val in sims.items():
+    val['rE'] = getEinsteinR(val['x'], val['y'])
+    

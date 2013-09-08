@@ -822,3 +822,126 @@ def draw_mod(mid, elem, data, sims):
   
   print ' ... DONE.'
   print '  - %s' % imgname
+
+tmp={}
+def plotAllRE():
+  '''plots the final big scatter plot with all rE'''
+  print '> drawing einsteinR plot',
+
+  plots = [True, True, True, True]
+  
+  path = resdir
+
+  spg.genREData() # genreate the data
+
+  #collect data
+  sims = {}
+  lu = {}
+  for i, item in enumerate(spg.sims.items()):
+    key, val = item
+    sims[key] = val['rE']
+    lu[key] = i
+    
+  xi = []
+  re = []
+  ep = []
+  em = []
+  re_rel = []
+  ep_rel = []
+  em_rel = []
+  se = []
+  for dat in spg.data:
+    try:
+      re_sim = sims[dat['name']]
+    except KeyError:
+      continue
+    se.append(re_sim)
+    xi.append(dat['id'])
+    re.append(dat['rE_mean'])
+    ep.append(dat['rE_max'])
+    em.append(dat['rE_min'])
+    re_rel.append(dat['rE_mean']/re_sim)
+    ep_rel.append(dat['rE_max']/re_sim)
+    em_rel.append(dat['rE_min']/re_sim)
+    
+  xi = np.array(xi)
+  re = np.array(re)
+  ep = np.array(ep) - re
+  em = re - np.array(em)
+  ee = [ep, em]
+  re_rel = np.array(re_rel)
+  ep_rel = np.array(ep_rel) - re_rel
+  em_rel = re_rel - np.array(em_rel)
+  ee_rel = [ep_rel, em_rel]
+  
+  if plots[0]:
+    pl.figure()
+    pl.errorbar(xi, re, ee, marker='s', mfc='blue', ls='' ,ecolor='blue')
+    pl.plot(xi, se, 'rx')
+    
+    pl.savefig(os.path.join(path, 'eR_1.png'))
+    print '.',
+    #pl.show()
+  
+  if plots[1]:  
+    pl.figure()
+    pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
+    pl.plot(xi, xi*0+1, '-r')
+    
+    pl.savefig(os.path.join(path, 'eR_2.png'))
+    print '.',
+    #pl.show()
+  
+  if plots[2]:
+    pl.figure()
+    for i, dat in enumerate(spg.data):
+      simn = dat['name']    
+      try:
+        lu[simn]
+      except KeyError:
+        continue
+      pl.plot(lu[simn], dat['rE_mean'], 'bx')
+      
+    lbls = [key for key, val in spg.sims.items()]
+    for i, item in enumerate(spg.sims.items()):
+      key, val = item
+      try:
+        pl.plot(lu[key], val['rE'], 'rs')
+      except KeyError:
+        continue
+      #lbls[i] = key
+      
+    pl.xticks(range(i+1), lbls, rotation=90)
+    pl.gcf().subplots_adjust(bottom=0.2)
+    pl.xlim([-.5, i+0.5])
+    pl.ylabel(r'Einstein Radius $\Theta_{E}$')
+
+    pl.savefig(os.path.join(path, 'eR_3.png'))
+    print '.',
+    #pl.show()
+    
+  if plots[3]:
+    pl.figure()
+    for i, dat in enumerate(spg.data):
+      simn = dat['name']    
+      try:
+        lu[simn]
+      except KeyError:
+        continue
+      pl.plot(lu[simn], dat['rE_mean']/sims[simn], 'bx')
+      
+    lbls = [key for key, val in spg.sims.items()]
+    for i, item in enumerate(spg.sims.items()):
+      key, val = item
+    pl.plot([-0.5, i+0.5], [1,1], '--r')
+      
+    pl.xticks(range(i+1), lbls, rotation=90)
+    pl.gcf().subplots_adjust(bottom=0.2)
+    pl.xlim([-.5, i+0.5])
+    pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
+
+    pl.savefig(os.path.join(path, 'eR_4.png'))
+    print '.',
+    #pl.show()
+    
+  print ' ... DONE'

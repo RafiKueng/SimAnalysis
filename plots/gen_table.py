@@ -123,12 +123,13 @@ ca = '''1. col: places of imgs idendited correctly; 2. col: more or less
 correct identification of extr points. 3.col: exact identification of extremal
 points. 4.col: type(s) of errors ocured....
 1) innacurate in arc
-2) min-sad conf in 3 img.
+2) min-sad conf in 3 img. conf
 3) only 3 imgs instead 5
-4) arc not expanded ()
+4) arc not expanded
 5) PI-err (rot by 180deg, 2 saddle points false)
 6) PI/2-err (rot by 90deg, sad->min->sad->min->sad)
 7) missed faint image(s)
+8) expanded point too mucj (min-sad-min instead of only min)
 8) missed double img(s)
 9) too many imgs
 '''
@@ -273,7 +274,7 @@ for key, val in all_stats[1].items():
 
 # table footer
 tex_stats += '\n'
-tex_stats += r'\end{tabular}\caption{Stats}\label{tab:stats}\end{table}'
+tex_stats += r'\end{tabular}\caption{Error Statistics}\label{tab:stats}\end{table}'
 
 # ... and save
 path = os.path.join(os.path.abspath(out_file_path), '_stats.tex')

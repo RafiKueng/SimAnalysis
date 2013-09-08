@@ -324,7 +324,9 @@ def create_tex(mid, asw):
 
 
 def create_alt_tex(mid, asw):
-  '''creates tex files for alternative arrangement (to compare point placement)'''
+  '''creates tex files for alternative arrangement (to compare point placement)
+  you have to manually copy the output of many2 into the sims folder..  
+  '''
   print '> generating alt tex file',mid,
   
   sf_opt = r'[height=0.4\vsize]'
@@ -343,7 +345,7 @@ def create_alt_tex(mid, asw):
       sf_opt
     ),  
     tFig(
-      r'fig/sims/%s/sw.%s'%(asw, ext),
+      r'fig/sims/%s/extr_points.%s'%(asw, ext),
       r'[sw image]',
       r'%04i_sw'%mid,
       sf_opt

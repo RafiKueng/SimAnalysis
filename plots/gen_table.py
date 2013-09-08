@@ -122,17 +122,20 @@ with open(inpfile, 'r') as f:
 ca = '''1. col: places of imgs idendited correctly; 2. col: more or less
 correct identification of extr points. 3.col: exact identification of extremal
 points. 4.col: type(s) of errors ocured....
-1) innacurate in arc
-2) min-sad conf in 3 img. conf
-3) only 3 imgs instead 5
-4) arc not expanded
-5) PI-err (rot by 180deg, 2 saddle points false)
-6) PI/2-err (rot by 90deg, sad->min->sad->min->sad)
-7) missed faint image(s)
-8) expanded point too mucj (min-sad-min instead of only min)
-8) missed double img(s)
-9) too many imgs
 '''
+eee=[
+'inaccurate placement in an extended arc',
+'wrongly identified sad and min in 3 image configuration',
+'identified only 3 instead of 5 images',
+'tried to model an arc with a min instead of min-sad-min',
+'PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)',
+'PI/2-err (rotation by 90 degree; sad->min->sad->min->sad)',
+'missed faint image(s)',
+'tried to model an arc with min-sad-min instead of only min',
+'did identify two close by images as one',
+'used 7 or more image to model a 5 image system. ',
+]
+ca+='; '.join(['%i) %s'%(i+1,e) for i, e in enumerate(eee)])
 
 
 settings = {
@@ -261,7 +264,7 @@ nn=int(all_stats[1]['n'])
 for key, val in all_stats[1].items():
   if key=='err': # split up errors
     for m, v in enumerate(val):
-      tex_stats += r' %s & %s & %.2f\\' % (key+'%2i'%m, v, float(v)/nn)
+      tex_stats += r' %s & %s & %.2f\\' % (key+' %i'%(m+1), v, float(v)/nn)
       tex_stats += '\n'
 
   elif key=='': # should not happend...

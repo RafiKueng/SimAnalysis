@@ -141,6 +141,7 @@ def run():
   all_sim_plots()
   all_mod_plots()
   all_tex()
+  plotAllRE()
 
 #==============================================================================
 #   # generate sim plots
@@ -826,7 +827,7 @@ def draw_mod(mid, elem, data, sims):
 tmp={}
 def plotAllRE():
   '''plots the final big scatter plot with all rE'''
-  print '> drawing einsteinR plot',
+  print '> drawing EinsteinR plots',
 
   plots = [True, True, True, True]
   
@@ -914,7 +915,7 @@ def plotAllRE():
     pl.xticks(range(i+1), lbls, rotation=90)
     pl.gcf().subplots_adjust(bottom=0.2)
     pl.xlim([-.5, i+0.5])
-    pl.ylabel(r'Einstein Radius $\Theta_{E}$')
+    pl.ylabel(r'Einstein Radius $\Theta_{\text{E}}$')
 
     pl.savefig(os.path.join(path, 'eR_3.png'))
     print '.',

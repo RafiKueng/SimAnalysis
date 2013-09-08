@@ -23,20 +23,28 @@ echo "or similar"
 echo "(but you should really use virtualenv and pip)"
 echo "and of course numpy and matplotlib"
 
+read -p "Press [Enter] key to start..."
+
 echo " > generating data (many.py)"
 cd systems
 python many.py
 cd ..
 
-echo " > generating plots (gen_plots.py)"
+echo " "
+echo "/===================================="
+echo "=> generating plots (gen_plots.py)"
 cd plots
-python -c "import gen_plots; run()"
+python -c "from gen_plots import *; run()"
 cd ..
 
-echo " > generating tables (gen_tables.py)"
+echo " "
+echo "/===================================="
+echo "=> generating tables (gen_tables.py)"
 cd plots
-python gen_tables.py
+python gen_table.py
 cd ..
 
+echo " "
+echo "/===================================="
 echo "finished. you can start working on the tex files in /text"
 echo "please only compile the master file <ms.tex>"

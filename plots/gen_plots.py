@@ -205,11 +205,15 @@ def all_tex():
     #only create tex file if all files available and copied    
     if t1 and t2:
       create_tex(mid, asw)
+      create_alt_tex(mid, asw)
       mid_list.append(str(mid))
     if debug: break
   
   with open(os.path.join(resdir, '_all.tex'), 'w') as ff:
     ff.write('\n'.join(['\input{fig/sims/%s}\n\clearpage'%_ for _ in mid_list]))
+
+  with open(os.path.join(resdir, '_all_alt.tex'), 'w') as ff:
+    ff.write('\n'.join(['\input{fig/sims/%s_alt}\n\clearpage'%_ for _ in mid_list]))
 
 class tFig(dict):
   def __init__(self, sf_path, sf_capt, sf_label, sf_opt):
@@ -317,6 +321,112 @@ def create_tex(mid, asw):
   print '...DONE.'
   print '  - %04i.tex'%mid
 
+
+
+def create_alt_tex(mid, asw):
+  '''creates tex files for alternative arrangement (to compare point placement)'''
+  print '> generating alt tex file',mid,
+  
+  sf_opt = r'[height=0.4\vsize]'
+  
+  txFigs = [
+    tFig(
+      r'fig/sims/%s/arriv.%s'%(asw, ext),
+      r'[real arrival-time surface]',
+      r'%04i_sim_arr' % mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
+      r'[model arrival-time surface]',
+      r'%04i_cont'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%s/sw.%s'%(asw, ext),
+      r'[sw image]',
+      r'%04i_sw'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/input.%s'%(mid, ext),
+      r'[input image]',
+      r'%04i_input'%mid,
+      sf_opt
+    ),
+  ]
+
+  #figpath = os.path.join(resdir, '%06i'%mid)
+  texpath = resdir
+
+#  try:
+#    figpath = os.path.join(resdir, '%06i'%mid)
+#    texpath = resdir
+#    #os.makedirs(figpath)
+#  except OSError as e:
+#    print 'error creating dir', e
+
+  tex_env = r"""
+\begin{figure}
+  \centering
+%(subfigtex)s
+  \caption%(env_capt_short)s{%(env_capt_long)s}
+  \label{fig:%(env_label)s}
+\end{figure}
+  """
+  
+  tex_sub = r"""  \subfigure%(sf_capt)s{
+    \label{fig:%(sf_label)s}
+    \includegraphics%(sf_opt)s{%(sf_path)s}
+  }
+"""
+
+  tex = []
+  for i in [0,1]:
+    subfigtex = ''
+    
+    for fig in txFigs[i*2:i*2+2]:
+      subfigtex += tex_sub % fig
+      
+    data = {
+      'subfigtex'      : subfigtex,
+      'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
+      'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
+      'env_label'      : r'%04i.%i'%(mid,i),
+    }
+    
+    tex.append(tex_env % data)
+  
+  with open(os.path.join(texpath, '%04i_alt.tex'%mid), 'w') as ff:
+    s = '\n'+r'\clearpage'+'\n'
+    ff.write(s.join(tex))
+
+  print '...DONE.'
+  print '  - %04i_alt.tex'%mid
+
+import csv
+def create_csv():
+  '''creates an overview in csv format over results and models'''
+
+  path = os.path.join(outdir,'overview.csv')  
+  
+  s = {}
+  for d in spg.data:
+    name = d['name']
+    try:
+      s[name]
+    except KeyError:
+      s[name] = []
+    s[name].append(d)
+    
+  with open(path, 'wb') as csvfile:
+    writer = csv.writer(csvfile)
+    for key, val in s.items():
+      writer.writerow([key])
+      for v in val:
+        writer.writerow(['',v['id'],v['nPnt'],v['user']])
+      
+    
 
 def copy_model_files(mid):
   '''copies files to the final desination, with right ordering'''
@@ -438,7 +548,7 @@ def get_sim_adv_data(asw):
     'action': 'datasourceApi',
     'src_id':3,
     'do':'fetch',
-    'swid':'ASW0001mze'
+    'swid': asw
     }
   r=rq.post('http://mite.physik.uzh.ch/api', data)
   if r.status_code == 200:

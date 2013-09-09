@@ -1,6 +1,76 @@
 
 \section{Results} \label{sec:results}
 
+\subsection{First test} \label{sec:results.1}
+
+The evaluation of the volunteers performance was done manually / by hand/eye, comparing their input to the actual contour lines.
+The actual contour lines were generated from the original simulation parameters.
+
+For each model a set of binary tests was done:
+
+\begin{enumerate}
+  \item (approxPlace) have the images approximately been identified correctly (approx within of 10\% of img width)
+%  \item (rightPlace) are the images placed precisely (approx. within 5\% of image width)
+  \item (rightOrder) is the ordering of the images correct (sad / min / max detection and ordering)
+\end{enumerate}
+
+Additionally, ten categories of error that could happend were recorded, where each model could contain multiple of those:
+
+\begin{enumerate}
+  \item inaccurate placement in an extended arc
+  \item wrongly identified sad and min in 3 image configuration
+  \item identified only 3 instead of 5 images
+  \item tried to model an arc with a min instead of min-sad-min
+  \item PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)
+  \item PI/2-err (rotation by 90 degree; sad$\longmapsto$min$\longmapsto$sad$\longmapsto$min$\longmapsto$sad)
+  \item missed faint image(s)
+  \item tried to model an arc with min-sad-min instead of only min
+  \item did identify two close by images as one
+  \item used 7 or more image to model a 5 image system.
+\end{enumerate}
+
+\input{tab/auto/_stats}
+
+By looking at the numbers in table \ref{tab:stats}, we conclude that the volunteers are performing very well identifying images and putting them approximately at the right spot (test 1), with a performance of 92%.
+Most of the problems where due to unclear arc-like structures. (Error 1, p=0.18)
+
+\todo{add more detail?} Add more details like total amount of images detected / tot am images (rightPlace fraction)??
+
+The ordering and assignment of minima / maxima / saddlepoint posed a more difficult task.
+In p=59\% (N=70) of the cases the volunteers succeeded to identify the right configuration.
+Most of the failures are due to error type 6 (PI/2), with N=38, p=32\%, followed by type 5 (PI) with N=7, p=6\%.
+For an example of type 6 error, see \figref{6971}.
+
+
+
+
+
+
+
+
+
+
+\subsection{Second test} \label{sec:results.2}
+
+In \figref{eR_all} can be seen, that the calculated einstein radius $\Theta_E$ of the models tend to be too high.
+The overshoot varies from around 0.2 to 0.4 for for good models.
+One of the reasons for this is, that it's hard to get the center of the lens on spot.
+An offset leads to a a flatter mass profile for the model compared to the simulation.
+
+
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[width=0.80\textwidth]{fig/sims/eR_4.png}
+  \caption{relative Einstein Radius for each model, per sim. }
+  \label{fig:eR_all}
+\end{figure}
+
+
+
+
+\hr
+
 Figure \ref{fig:6941} shows a simple example.
 
 Figure \ref{fig:6975} shows an example where substructure introduces a
@@ -20,3 +90,7 @@ Figure \ref{fig:6915} shows an inclined quad.
 Figure \ref{fig:6971} shows incorrect identification, but the enclosed
 mass still quite well recovered.
 
+
+
+
+\clearpage

@@ -5,6 +5,8 @@ from poten import poten_SIE, poten_NFW, poten_shear
 from angdiam import dratio
 import matplotlib as mpl
 
+import os
+
 from scipy import ndimage
 
 from matplotlib import rc
@@ -198,7 +200,8 @@ def draw(asw):
     cmap1._init()
     cmap1._lut[:,-1] = np.array([0,1,1,1,1,1,1,1,1])
     panel.imshow(pnttype,origin='lower',interpolation='nearest', cmap=cmap1, vmin=-2, vmax=+3)
-    savefig(folder+asw+flag+'_extr_points.png')
+    os.mkdir(os.path.join(folder,asw))
+    savefig(os.path.join(folder,asw,'extr_points.png'))
 
 
     '''

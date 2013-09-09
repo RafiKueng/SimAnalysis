@@ -35,6 +35,7 @@ datadir = './data/mod_chal/'
 
 #input files
 sims_dir = '../systems/figs' #rel to ./spaghetti
+sims_alt_dir = '../plots/figs/sims'
 inpfilename = 'kappa_encl.csv'
 
 #output
@@ -119,6 +120,10 @@ import glob
 import os
 
 paths = glob.glob(os.path.join(sims_dir, '*.txt' ))
+
+# fix for running gen_plots
+if len(paths)==0:
+  paths = glob.glob(os.path.join(sims_alt_dir, '*.txt' ))
 
 sims = {}
 
@@ -344,4 +349,16 @@ def getEinsteinR(x, y):
           return r
     else:
       return False
+    
+def genREData():
+  '''generates the einsteinradius data for all the elemts'''
+  
+  # all models:
+  for elem in data:
+    elem['rE_mean'] = getEinsteinR(elem['x'], elem['y'])
+    elem['rE_max'] = getEinsteinR(elem['x'], elem['err_p'])
+    elem['rE_min'] = getEinsteinR(elem['x'], elem['err_m'])
+  
+  for key, val in sims.items():
+    val['rE'] = getEinsteinR(val['x'], val['y'])
     

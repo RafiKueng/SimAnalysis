@@ -5,12 +5,16 @@ some words about \sw
 
 
 \begin{figure}
-\includegraphics[height=.3\vsize]{fig/spag6941.png} \\
-\includegraphics[height=.3\vsize]{fig/spag7022.png} \\
-\includegraphics[height=.3\vsize]{fig/spag6919.png}
-\caption{Examples of Spaghetti input.  The models from these appear
-  later in Figures \ref{fig:6941}, \ref{fig:7022} and
-  \ref{fig:6919}. \label{fig:input-spag}}
+  \centering
+  \subfigure{\includegraphics[width=0.45\textwidth]{fig/sims/006941/input.png}}
+  \subfigure{\includegraphics[width=0.45\textwidth]{fig/sims/007022/input.png}}
+  \subfigure{\includegraphics[width=0.45\textwidth]{fig/sims/006919/input.png}}
+%  \includegraphics[width=.45\textsize]{fig/spag6941.png}
+%  \includegraphics[width=.45\textsize]{fig/spag7022.png}
+%  \includegraphics[width=.45\textsize]{fig/spag6919.png}
+  \caption{Examples of Spaghetti input.  The models from these appear
+    later in Figures \ref{fig:6941}, \ref{fig:7022} and \ref{fig:6919}.
+  \label{fig:input-spag}}
 \end{figure}
 
 \subsection{\spl} \label{sec:SpaghettiLens}
@@ -99,8 +103,7 @@ equation (76) of that work.
 \subsection{The Test setup} \label{sec:testsetup}
 We made use of this simulated lenses and further tested the volunteers abilities to model those simulated lensing images.
 
-The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations ($N_{sim}=30$) chosen to represent some typical configurations.
-\todo{witch??}
+The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations ($N_{sim}=29$) chosen to represent some typical configurations.
 
 Two tests were done on the models created by the volunteers:
 
@@ -111,5 +114,6 @@ Two tests were done on the models created by the volunteers:
 
 The first test required the volunteers to accomplish 2 tasks: First to identify and distinguish lensed images from background light sources.
 Second to come up with a logical ordering of the arrival time of those lensed images.
+It also tries to identify the problems volunteers encounter during modelling.
 
 The second test compared the enclosed mass $\kappa(r)$ of the models and the simulations.

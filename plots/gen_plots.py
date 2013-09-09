@@ -141,6 +141,7 @@ def run():
   all_sim_plots()
   all_mod_plots()
   all_tex()
+  plotAllRE()
 
 #==============================================================================
 #   # generate sim plots
@@ -205,11 +206,15 @@ def all_tex():
     #only create tex file if all files available and copied    
     if t1 and t2:
       create_tex(mid, asw)
+      create_alt_tex(mid, asw)
       mid_list.append(str(mid))
     if debug: break
   
   with open(os.path.join(resdir, '_all.tex'), 'w') as ff:
     ff.write('\n'.join(['\input{fig/sims/%s}\n\clearpage'%_ for _ in mid_list]))
+
+  with open(os.path.join(resdir, '_all_alt.tex'), 'w') as ff:
+    ff.write('\n'.join(['\input{fig/sims/%s_alt}\n\clearpage'%_ for _ in mid_list]))
 
 class tFig(dict):
   def __init__(self, sf_path, sf_capt, sf_label, sf_opt):
@@ -317,6 +322,114 @@ def create_tex(mid, asw):
   print '...DONE.'
   print '  - %04i.tex'%mid
 
+
+
+def create_alt_tex(mid, asw):
+  '''creates tex files for alternative arrangement (to compare point placement)
+  you have to manually copy the output of many2 into the sims folder..  
+  '''
+  print '> generating alt tex file',mid,
+  
+  sf_opt = r'[height=0.4\vsize]'
+  
+  txFigs = [
+    tFig(
+      r'fig/sims/%s/arriv.%s'%(asw, ext),
+      r'[real arrival-time surface]',
+      r'%04i_sim_arr' % mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
+      r'[model arrival-time surface]',
+      r'%04i_cont'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%s/extr_points.%s'%(asw, ext),
+      r'[sw image]',
+      r'%04i_sw'%mid,
+      sf_opt
+    ),  
+    tFig(
+      r'fig/sims/%06i/input.%s'%(mid, ext),
+      r'[input image]',
+      r'%04i_input'%mid,
+      sf_opt
+    ),
+  ]
+
+  #figpath = os.path.join(resdir, '%06i'%mid)
+  texpath = resdir
+
+#  try:
+#    figpath = os.path.join(resdir, '%06i'%mid)
+#    texpath = resdir
+#    #os.makedirs(figpath)
+#  except OSError as e:
+#    print 'error creating dir', e
+
+  tex_env = r"""
+\begin{figure}
+  \centering
+%(subfigtex)s
+  \caption%(env_capt_short)s{%(env_capt_long)s}
+  \label{fig:%(env_label)s}
+\end{figure}
+  """
+  
+  tex_sub = r"""  \subfigure%(sf_capt)s{
+    \label{fig:%(sf_label)s}
+    \includegraphics%(sf_opt)s{%(sf_path)s}
+  }
+"""
+
+  tex = []
+  for i in [0,1]:
+    subfigtex = ''
+    
+    for fig in txFigs[i*2:i*2+2]:
+      subfigtex += tex_sub % fig
+      
+    data = {
+      'subfigtex'      : subfigtex,
+      'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
+      'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
+      'env_label'      : r'%04i.%i'%(mid,i),
+    }
+    
+    tex.append(tex_env % data)
+  
+  with open(os.path.join(texpath, '%04i_alt.tex'%mid), 'w') as ff:
+    s = '\n'+r'\clearpage'+'\n'
+    ff.write(s.join(tex))
+
+  print '...DONE.'
+  print '  - %04i_alt.tex'%mid
+
+import csv
+def create_csv():
+  '''creates an overview in csv format over results and models'''
+
+  path = os.path.join(outdir,'overview.csv')  
+  
+  s = {}
+  for d in spg.data:
+    name = d['name']
+    try:
+      s[name]
+    except KeyError:
+      s[name] = []
+    s[name].append(d)
+    
+  with open(path, 'wb') as csvfile:
+    writer = csv.writer(csvfile)
+    for key, val in s.items():
+      writer.writerow([key])
+      for v in val:
+        writer.writerow(['',v['id'],v['nPnt'],v['user']])
+      
+    
 
 def copy_model_files(mid):
   '''copies files to the final desination, with right ordering'''
@@ -438,7 +551,7 @@ def get_sim_adv_data(asw):
     'action': 'datasourceApi',
     'src_id':3,
     'do':'fetch',
-    'swid':'ASW0001mze'
+    'swid': asw
     }
   r=rq.post('http://mite.physik.uzh.ch/api', data)
   if r.status_code == 200:
@@ -520,6 +633,10 @@ def draw_sim(asw, sim):
     for k in range(len(rad)):
         fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
     fil.close()
+    fil = open(os.path.join(simdir, asw+'.txt'),'w')
+    for k in range(len(rad)):
+        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+    fil.close()
     panel.scatter(rad,sum)
     panel.set_xlabel('radius [pixels]')
     panel.set_ylabel('average interior \textkappa [1]')
@@ -575,7 +692,7 @@ def draw_mod(mid, elem, data, sims):
   try:
     sims[name]
   except KeyError:
-    print '!! missing sims data for', mid, name
+    print '\n!! missing sims data for', mid, name
     return
 
   #yerr=[elem['err_p'] - elem['y'], elem['y']- elem['err_m']]
@@ -706,3 +823,128 @@ def draw_mod(mid, elem, data, sims):
   
   print ' ... DONE.'
   print '  - %s' % imgname
+
+tmp={}
+def plotAllRE():
+  '''plots the final big scatter plot with all rE'''
+  print '> drawing EinsteinR plots',
+
+  plots = [True, True, True, True]
+  
+  path = resdir
+
+  spg.genREData() # genreate the data
+
+  #collect data
+  sims = {}
+  lu = {}
+  for i, item in enumerate(spg.sims.items()):
+    key, val = item
+    sims[key] = val['rE']
+    lu[key] = i
+    
+  xi = []
+  re = []
+  ep = []
+  em = []
+  re_rel = []
+  ep_rel = []
+  em_rel = []
+  se = []
+  for dat in spg.data:
+    try:
+      re_sim = sims[dat['name']]
+    except KeyError:
+      continue
+    se.append(re_sim)
+    xi.append(dat['id'])
+    re.append(dat['rE_mean'])
+    ep.append(dat['rE_max'])
+    em.append(dat['rE_min'])
+    re_rel.append(dat['rE_mean']/re_sim)
+    ep_rel.append(dat['rE_max']/re_sim)
+    em_rel.append(dat['rE_min']/re_sim)
+    
+  xi = np.array(xi)
+  re = np.array(re)
+  ep = np.array(ep) - re
+  em = re - np.array(em)
+  ee = [ep, em]
+  re_rel = np.array(re_rel)
+  ep_rel = np.array(ep_rel) - re_rel
+  em_rel = re_rel - np.array(em_rel)
+  ee_rel = [ep_rel, em_rel]
+  
+  if plots[0]:
+    pl.figure()
+    pl.errorbar(xi, re, ee, marker='s', mfc='blue', ls='' ,ecolor='blue')
+    pl.plot(xi, se, 'rx')
+    
+    pl.savefig(os.path.join(path, 'eR_1.png'))
+    print '.',
+    #pl.show()
+  
+  if plots[1]:  
+    pl.figure()
+    pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
+    pl.plot(xi, xi*0+1, '-r')
+    
+    pl.savefig(os.path.join(path, 'eR_2.png'))
+    print '.',
+    #pl.show()
+  
+  if plots[2]:
+    pl.figure()
+    for i, dat in enumerate(spg.data):
+      simn = dat['name']    
+      try:
+        lu[simn]
+      except KeyError:
+        continue
+      pl.plot(lu[simn], dat['rE_mean'], 'bx')
+      
+    lbls = [key for key, val in spg.sims.items()]
+    for i, item in enumerate(spg.sims.items()):
+      key, val = item
+      try:
+        pl.plot(lu[key], val['rE'], 'rs')
+      except KeyError:
+        continue
+      #lbls[i] = key
+      
+    pl.xticks(range(i+1), lbls, rotation=90)
+    pl.gcf().subplots_adjust(bottom=0.2)
+    pl.xlim([-.5, i+0.5])
+    pl.ylabel(r'Einstein Radius $\Theta_{\text{E}}$')
+
+    pl.savefig(os.path.join(path, 'eR_3.png'))
+    print '.',
+    #pl.show()
+    
+  if plots[3]:
+    pl.figure()
+    for i, dat in enumerate(spg.data):
+      simn = dat['name']    
+      try:
+        lu[simn]
+      except KeyError:
+        continue
+      pl.plot(lu[simn], dat['rE_mean']/sims[simn], 'bx')
+      
+    lbls = [key for key, val in spg.sims.items()]
+    for i, item in enumerate(spg.sims.items()):
+      key, val = item
+    pl.plot([-0.5, i+0.5], [1,1], '--r')
+    
+    pl.xticks(range(i+1), lbls, rotation=90)
+    pl.yticks(np.linspace(0,2,(2/0.25)+1))
+    pl.grid(axis='y')
+    pl.gcf().subplots_adjust(bottom=0.2)
+    pl.xlim([-.5, i+0.5])
+    pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
+
+    pl.savefig(os.path.join(path, 'eR_4.png'))
+    print '.',
+    #pl.show()
+    
+  print ' ... DONE'

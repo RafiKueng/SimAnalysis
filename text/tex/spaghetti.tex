@@ -13,6 +13,9 @@
 
 \subsection{\spl} \label{sec:SpaghettiLens}
 
+In \spl the user input is an educated guess for the topography of the
+arrival-time surface.
+
 A saddle point is recognizable in a contour map because contours do
 not loop around it, they tend to approach and then pull away.  There
 is one contour ---the saddle-point contour--- that makes an X on the
@@ -20,26 +23,11 @@ saddle point itself.  A saddle point contour may not appear on a plot
 (and Figure~\ref{fig:arriv} does not show one.  But we can tell from
 the other contours where the saddle-point contour would be.
 
-
-
-Give a guess for the maximum, minimum and saddle points.  Program
-tries find $\kappa(x,y)$ that reproduces these properties exactly, and
-looks reasonably like a galaxy.  Solution not unique, an ensemble
-generated.
-
-\hr
-
-SpaghettiLens is build on top of GLASS \citep{Lubini2012}, that builds and improves upon PixeLens \citep{Saha2004}.
 It provides a web based graphical user interface that allows to trace contours with the mouse and identify extremal points by clicking on the image.
-\spl then tries to find a mass distribution $\kappa(x,y)$ that reproduces the input parameters.
-Since there is no unique solution, \spl samples the solution space and produces an ensemble of solutions, as described in the paper \citep{Lubini2012}.
-It provides direct visual feedback by rendering a synthetic image side by side the original image, such that users can directly compare the predictions of their model to the survey image.
-It additinally provides plots of the modelled mass distribution and the contour lines of arrival time surface as feedback. 
 
-Using this direct visual feedback, even unexperienced users can successfully model lenses using a iterative approach if they know what to look for.
+\spl provides plug ins to support any data source. At the moment, a data link to \sw and to the MasterLens database\needcite are implemented.
 
 The modelling process consitis of three basic steps:
-
 \begin{enumerate}
   \item identify lensed images and separate them from other background light sources
   \item classify and order images accoring to arrival time. (local minima, maxima, saddlepoints)
@@ -49,19 +37,36 @@ The modelling process consitis of three basic steps:
 \spl assists volunteers with several features in this process.
 Step 1 by supplying several images from several bands (not yet implemented in \sw).
 Step 2 by restricting the user, only valid configuration can be entered, the odd number theorem\needcite is taken care of.
+
+
+Give a guess for the maximum, minimum and saddle points.  Program
+tries find $\kappa(x,y)$ that reproduces these properties exactly, and
+looks reasonably like a galaxy.  Solution not unique, an ensemble
+generated.
+SpaghettiLens is build on top of GLASS \citep{Lubini2012}, that builds and improves upon PixeLens \citep{Saha2004}.
+
+\spl then tries to find a mass distribution $\kappa(x,y)$ that reproduces the input parameters.
+Since there is no unique solution, \spl samples the solution space and produces an ensemble of solutions, as described in the paper \citep{Lubini2012}.
+
 Step 3 by providing the visual feedback. Users can check the generated mass distribution and synthetic image.
 
-Explanation:
-Synthetic image: A rendering of the derivative of the arrival time for each pixel. This leads to a black and white image that reasonably looks like the visual appearace of the model.
+It additinally provides plots of the modelled mass distribution and the contour lines of arrival time surface as feedback. 
 
-Volunteers enter an assumed lens configuration and get a rendered synthetic image along with a reconstructed / simulated mass map and reconstructed / simulated contour lines.
-This allows volunteers to directly see the effect of changing the parameters of the model and to iteratively approach a good solution.
+It provides direct visual feedback by rendering a synthetic image side
+by side the original image, such that users can directly compare the
+predictions of their model to the survey image. Explanation: Synthetic
+image: A rendering of the derivative of the arrival time for each
+pixel. This leads to a black and white image that reasonably looks
+like the visual appearace of the model.
+
+Using this direct visual feedback, even inexperienced users can
+successfully model lenses using a iterative approach if they know what
+to look for.
 
 In the next step, several volunteers can work together / exchange their ideas and models and try to improve previous modelling attempts by others.
 This leads to a set of models organised in a branching, tree like structre for each model.
 Volunteers then organise them selves to narrow down the different branches and come up with a few consensus models in the end.
 
-\spl provides plug ins to support any data source. At the moment, a data link to \sw and to the MasterLens database\needcite are implemented.
 
 
 

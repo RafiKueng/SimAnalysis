@@ -1,25 +1,17 @@
-\section {Setup} \label{sec:setup}
-
-\subsection{\sw} \label{sec:SpaceWarps}
-some words about \sw
-
-
 \begin{figure}
   \centering
-  \subfigure{\includegraphics[width=0.45\textwidth]{fig/sims/006941/input.png}}
-  \subfigure{\includegraphics[width=0.45\textwidth]{fig/sims/007022/input.png}}
-  \subfigure{\includegraphics[width=0.45\textwidth]{fig/sims/006919/input.png}}
-%  \includegraphics[width=.45\textsize]{fig/spag6941.png}
-%  \includegraphics[width=.45\textsize]{fig/spag7022.png}
-%  \includegraphics[width=.45\textsize]{fig/spag6919.png}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/006941/input.png}} \\
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/007022/input.png}} \\
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/006919/input.png}}
   \caption{Examples of Spaghetti input.  The models from these appear
     later in Figures \ref{fig:6941}, \ref{fig:7022} and \ref{fig:6919}.
   \label{fig:input-spag}}
 \end{figure}
 
 \subsection{\spl} \label{sec:SpaghettiLens}
-
-
 
 A saddle point is recognizable in a contour map because contours do
 not loop around it, they tend to approach and then pull away.  There
@@ -76,44 +68,3 @@ Volunteers then organise them selves to narrow down the different branches and c
 
 
 
-\subsection{The simulated lenses} \label{sec:sims}
-
-In order to estimate users performance, \sw included some simulated lensing configurations in their image set.
-
-There are three kinds of simulated lenses.
-
-Sims produced using {\tt gravlens}
-\citep{2001astro.ph..2341K,2001astro.ph..2340K}.
-
-\begin{itemize}
-  \item {\em Quasar:\/} A singular elliptical isothermal plus constant
-    external shear, with a circular Gaussian source.
-  \item {\em Galaxy:\/} Lens as with quasar, but elliptical de
-    Vaucouleurs source.
-  \item {\em Galaxy:\/} Lens is circular NFW plus one dominant
-    elliptical SIE and perturbating elliptical SIEs, source as with
-    galaxy.
-\end{itemize}
-
-Singular isothermal is in equations (33-35) of
-\cite{2001astro.ph..2341K} with core radius set to zero. NFW is
-equations (48,50) of the same paper, and shear is the $\gamma$ term in
-equation (76) of that work.
-
-\subsection{The Test setup} \label{sec:testsetup}
-We made use of this simulated lenses and further tested the volunteers abilities to model those simulated lensing images.
-
-The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations ($N_{sim}=29$) chosen to represent some typical configurations.
-
-Two tests were done on the models created by the volunteers:
-
-\begin{enumerate}
-  \item Correct identification of extremal points
-  \item Reproduction of the mass distribution of the lens
-\end{enumerate}
-
-The first test required the volunteers to accomplish 2 tasks: First to identify and distinguish lensed images from background light sources.
-Second to come up with a logical ordering of the arrival time of those lensed images.
-It also tries to identify the problems volunteers encounter during modelling.
-
-The second test compared the enclosed mass $\kappa(r)$ of the models and the simulations.

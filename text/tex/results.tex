@@ -64,10 +64,10 @@ The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ 
 
 
 
-\subsection{T1} \label{sec:tests.t1}
+\subsection{First test T1} \label{sec:tests.t1}
 
-The evaluation of the volunteers performance for T1 was done manually, comparing their input from \spl () and the resulting reconstructed arrival time surface contour line plot (arrival plot) to the arrival plot genreated using simulation parameters.
-\figref{output_compare} shows the setup used to evaluate the models.
+The evaluation of the volunteers performance for T1 was done manually, comparing their input from \spl and the resulting reconstructed arrival time surface contour line plot (arrival plot) to the arrival plot genreated using simulation parameters.
+\Figref{output_compare} shows the setup used to evaluate the models.
 
 \begin{figure}
   \centering
@@ -83,35 +83,38 @@ The evaluation of the volunteers performance for T1 was done manually, comparing
   \label{fig:output_compare}}
 \end{figure}
 
-For each model a set of binary tests was done:
+To evaluate T1a and T1b, each model was evaluated with two binary tests.
+The first is passed, if all the images have been identified and are approx. within $\pm0.05\cdot\text{imgwidth}$.
+The second test is passed, if those identified points have the right parity, ordering with respect to arrival time.
 
-\begin{enumerate}
-  \item (approxPlace) have the images approximately been identified correctly (approx within of 10\% of img width)
-%  \item (rightPlace) are the images placed precisely (approx. within 5\% of image width)
-  \item (rightOrder) is the ordering of the images correct (sad / min / max detection and ordering)
-\end{enumerate}
+Additionally, ten types of errors that could occur were analyzed, where each model could contain multiple of those.
+The complete table with the results for each model can be found in the appendix, \tabref{detail_results}.
 
-Additionally, ten categories of error that could happend were recorded, where each model could contain multiple of those:
+In \tabref{stats} a summary of this evaluation is presented.
 
-\begin{enumerate}
-  \item inaccurate placement in an extended arc
-  \item wrongly identified sad and min in 3 image configuration
-  \item identified only 3 instead of 5 images
-  \item tried to model an arc with a min instead of min-sad-min
-  \item PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)
-  \item PI/2-err (rotation by 90 degree; sad$\longmapsto$min$\longmapsto$sad$\longmapsto$min$\longmapsto$sad)
-  \item missed faint image(s)
-  \item tried to model an arc with min-sad-min instead of only min
-  \item did identify two close by images as one
-  \item used 7 or more image to model a 5 image system.
-\end{enumerate}
+%\begin{enumerate}
+%1  \item inaccurate placement in an extended arc
+%2  \item wrongly identified sad and min in 3 image configuration
+%3  \item identified only 3 instead of 5 images
+%4  \item tried to model an arc with a min instead of min-sad-min
+%5  \item PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)
+%6  \item PI/2-err (rotation by 90 degree; sad$\longmapsto$min$\longmapsto$sad$\longmapsto$min$\longmapsto$sad)
+%7  \item missed faint image(s)
+%8  \item tried to model an arc with min-sad-min instead of only min
+%9  \item did identify two close by images as one
+%10  \item used 7 or more image to model a 5 image system.
+%\end{enumerate}
 
 \input{tab/auto/_stats}
 
-By looking at the numbers in table \ref{tab:stats}, we conclude that the volunteers are performing very well identifying images and putting them approximately at the right spot (test 1), with a performance of 92%.
-Most of the problems where due to unclear arc-like structures. (Error 1, p=0.18)
+
+We conclude that the volunteers are performing very well identifying images and putting them approximately at the right spot (test 1), with a performance of 92\%.
+Most of the problems where due to unclear arc-like structures (Error 1, p=0.18; Error 4, p=0.03; Error 8, p=0.04).
+Critical failures like the failure to identify all fife images in an fife image system (Error 3, p=0.04) or to include too many images (Error 10, p=0.01) did almost never happend.
+From this we conclude that the introduction materials was adequate and the volunteers got the basics of gravitational lensing.
 
 \todo{add more detail?} Add more details like total amount of images detected / tot am images (rightPlace fraction)??
+
 
 The ordering and assignment of minima / maxima / saddlepoint posed a more difficult task.
 In p=59\% (N=70) of the cases the volunteers succeeded to identify the right configuration.
@@ -127,7 +130,7 @@ For an example of type 6 error, see \figref{6971}.
 
 
 
-\subsection{Second test} \label{sec:results.2}
+\subsection{Second test T2} \label{sec:results.2}
 
 In \figref{eR_all} can be seen, that the calculated einstein radius $\Theta_E$ of the models tend to be too high.
 The overshoot varies from around 0.2 to 0.4 for for good models.

@@ -36,8 +36,9 @@ outfile = os.path.join(os.path.abspath(out_file_path),out_file_name)
 
 try:
   os.makedirs(os.path.abspath(out_file_path))
-except:
-  print 'error creating paths'
+except OSError as e:
+  print 'error creating paths', e
+  print 'continuing'
   
 
 all_data = {}

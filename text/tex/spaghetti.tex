@@ -13,15 +13,36 @@
 
 \subsection{\spl} \label{sec:SpaghettiLens}
 
-In \spl the user input is an educated guess for the topography of the
-arrival-time surface.
+In \spl the user begins by making an educated guess for the topography
+of the arrival-time surface --- specifically, the locations of the
+maxima, minima and saddle points that correspond to images of the
+brightest part of the source.  Input is given by tracing a proposal
+for the saddle-point contours.  Figure \ref{fig:input-spag} shows some
+example inputs --- and incidentally also indicates the origin of the
+name \spl.
 
-A saddle point is recognizable in a contour map because contours do
-not loop around it, they tend to approach and then pull away.  There
-is one contour ---the saddle-point contour--- that makes an X on the
-saddle point itself.  A saddle point contour may not appear on a plot
-(and Figure~\ref{fig:arriv} does not show one.  But we can tell from
-the other contours where the saddle-point contour would be.
+\spl, as implemented so far, assumes that the lens is dominated by a
+single galaxy, and that the centre of that galaxy is the sole maximum.
+Once the maximum has been identified, we wish to characterize the rest
+of the arrival-time surface in relation to it.  From geometry, any
+surface that has a central maximum and goes high at the edges must
+have a lima\c con-like contour, meaning a two-looped curve with one
+loop inside the other.  The maximum lies within the inner loop, a
+minimum lies between the two loops, and a saddle point lies at the
+self-intersection of the contour.  The top panel of
+Figure~\ref{fig:input-spag} shows an example: red marks a suggested
+maximum, green a saddle point, and blue a minimum.  (The small pink
+dots are just help sketch the proposed contour.)  The middle and lower
+panels of Figure~\ref{fig:input-spag} show a more complex situation.
+The minimum has split into three images: two new minima with a saddle
+point in between.  In this situation the contour through the new
+saddle point forms a figure of eight, its two loops enclosing the two
+new minima.  The configuration of a lima\c con, possibly with a figure
+of eight inside, suffices to give a preliminary description of the
+arrival-time surface for nearly all cases where the lens is dominated
+by one galaxy, and the source is a single small object.
+
+
 
 It provides a web based graphical user interface that allows to trace contours with the mouse and identify extremal points by clicking on the image.
 

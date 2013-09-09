@@ -2,7 +2,12 @@
 
 \section{More on Lensing Theory} \label{sec:more-theory}
 
-First we define comoving distances, as follows.
+In Section \ref{sec:Fermat}, for the sake of a more intuitive
+explanation, we suppressed some constant factors in
+equations \eqref{eq:Ageom}, \eqref{eq:Ageom} and \eqref{eq:Poisson}.
+Here we fill in the details.
+
+First we define comoving distances.
 \begin{equation}
 \int \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
 \end{equation}
@@ -15,31 +20,8 @@ First we define comoving distances, as follows.
 &D_L    &                                &\int_0^{z_L}
 \end{aligned}
 \end{equation}
-
-\begin{equation}
-\begin{aligned}
-A           &= cD_L \frac{D_{LS}}{D_S} \times t \\
-\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{D_L}{1+z} \frac{D_{LS}}{D_S}
-               \times \Sigma(x,y)
-\end{aligned}
-\end{equation}
-
-Let $x,y$ be physical distances on the lens plane and $D_L$ be
-comoving distances.  Then
-\begin{equation}
-t_{\rm geom} = \frac{(1+z_L)^2}{2cD_L} \frac{D_S}{D_{LS}}
-\left( (x-s_x)^2 + (y-s_y)^2 \right)
-\end{equation}
-\begin{equation}
-\nabla^2 t_{\rm grav} = -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
-\end{equation}
-
 Can replace comoving distances $D$ with angular-diameter distances
-$d$,
-\begin{equation}
-(x,y) = d_L (\theta_x,\theta_y)
-\end{equation}
-and so on.
+$d$, and so on:
 \begin{equation}
 \begin{aligned}
 D_S &= (1+z_S) \, d_S \\
@@ -48,5 +30,30 @@ D_L &= (1+z_L) \, d_L
 \end{aligned}
 \end{equation}
 Angular-diameter distances are always smaller than comoving distances.
+Locations on the lens plane can be replaced angular coordinates on the
+sky, as
+\begin{equation}
+(x,y) = d_L (\theta_x,\theta_y) \,.
+\end{equation}
 
-Recover equations (2.1) to (2.6) from \cite{1986ApJ...310..568B}.
+The $A$ times and the $\kappa$ density are related to physical arrival
+time $t$ and density $\Sigma$ as
+\begin{equation}
+\begin{aligned}
+A           &= \frac{cD_L}{(1+z_L)^2} \frac{D_{LS}}{D_S} \times t \\
+\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{D_L}{1+z_L} \frac{D_{LS}}{D_S}
+               \times \Sigma(x,y)
+\end{aligned}
+\end{equation}
+Letting the source be behind $(s_x,s_y)$ rather than behind the
+origin, we have
+\begin{equation}
+\begin{aligned}
+t_{\rm geom} &= \frac{(1+z_L)^2}{2cD_L} \frac{D_S}{D_{LS}}
+\left( (x-s_x)^2 + (y-s_y)^2 \right)
+\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
+\end{aligned}
+\end{equation}
+We can now compare with equations (2.1) to (2.6)
+from \cite{1986ApJ...310..568B}.
+

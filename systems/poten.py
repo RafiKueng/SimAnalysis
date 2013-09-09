@@ -1,6 +1,6 @@
 from numpy import sqrt,pi,cos,sin,arctan2,arctan,arctanh,log
 
-# See eqns (34,35) from Keeton astro-ph/0102341
+# See eqns (33-35) from Keeton astro-ph/0102341
 def poten_SIE(x,y,reinst,ell,ell_pa):
     pa = ell_pa*pi/180 + pi/2
     q = 1 - ell

@@ -76,7 +76,10 @@ Volunteers then organise them selves to narrow down the different branches and c
 
 In order to estimate users performance, \sw included some simulated lensing configurations in their image set.
 
-There are three kinds of simulated lenses:
+There are three kinds of simulated lenses.
+
+Sims produced using {\tt gravlens}
+\citep{2001astro.ph..2341K,2001astro.ph..2340K}.
 
 \begin{itemize}
   \item {\em Quasar:\/} A singular elliptical isothermal plus constant
@@ -87,15 +90,16 @@ There are three kinds of simulated lenses:
     elliptical SIE and perturbating elliptical SIEs, source as with
     galaxy.
 \end{itemize}
-Lenses follow \cite{2001astro.ph..2341K,2001astro.ph..2340K}.
 
-Parameters can be looked up in online supplement.
-
+Singular isothermal is in equations (33-35) of
+\cite{2001astro.ph..2341K} with core radius set to zero. NFW is
+equations (48,50) of the same paper, and shear is the $\gamma$ term in
+equation (76) of that work.
 
 \subsection{The Test setup} \label{sec:testsetup}
 We made use of this simulated lenses and further tested the volunteers abilities to model those simulated lensing images.
 
-The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations (N_{sim}=30) chosen to represent some typical configurations.
+The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations ($N_{sim}=30$) chosen to represent some typical configurations.
 \todo{witch??}
 
 Two tests were done on the models created by the volunteers:

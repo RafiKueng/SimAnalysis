@@ -62,10 +62,26 @@ The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ 
 \todo{!} Should I write down prior expectation for T2 too?
 
 
-\subsection{First test} \label{sec:results.1}
 
-The evaluation of the volunteers performance was done manually / by hand/eye, comparing their input to the actual contour lines.
-The actual contour lines were generated from the original simulation parameters.
+
+\subsection{T1} \label{sec:tests.t1}
+
+The evaluation of the volunteers performance for T1 was done manually, comparing their input from \spl () and the resulting reconstructed arrival time surface contour line plot (arrival plot) to the arrival plot genreated using simulation parameters.
+\figref{output_compare} shows the setup used to evaluate the models.
+
+\begin{figure}
+  \centering
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/006917/input.png}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/006917/spaghetti.png}} \\
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/ASW0001hpf/arriv.png}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/ASW0001hpf/extr_points.png}}
+  \caption{Examples of Spaghetti input (left top) and modeled arrival time surface (right top) vs reconstructed arrival time surface from simulation parameters (bottom left), additionally using a extremal point detector (bottom right).
+  \label{fig:output_compare}}
+\end{figure}
 
 For each model a set of binary tests was done:
 

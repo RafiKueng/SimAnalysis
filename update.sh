@@ -8,9 +8,7 @@ read -p "Press [Enter] key to start..."
 echo " "
 echo "/===================================="
 echo "=> generating plots (gen_plots.py)"
-pwd
 cd plots
-pwd
 python -c "from gen_plots import *; all_tex(); plotAllRE()"
 cd ..
 

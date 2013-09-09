@@ -1,4 +1,4 @@
-\section{The lens modelling challenge} \label{sec:results}
+\section{The lens modeling challenge} \label{sec:results}
 
 \subsection{\sw} \label{sec:SpaceWarps}
 some words about \sw
@@ -27,23 +27,39 @@ Singular isothermal is in equations (33-35) of
 equations (48,50) of the same paper, and shear is the $\gamma$ term in
 equation (76) of that work.
 
-\subsection{The Test setup} \label{sec:testsetup}
-We made use of this simulated lenses and further tested the volunteers abilities to model those simulated lensing images.
 
-The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations ($N_{sim}=29$) chosen to represent some typical configurations.
 
-Two tests were done on the models created by the volunteers:
 
-\begin{enumerate}
-  \item Correct identification of extremal points
-  \item Reproduction of the mass distribution of the lens
-\end{enumerate}
+\subsection{The test setup} \label{sec:testsetup}
 
-The first test required the volunteers to accomplish 2 tasks: First to identify and distinguish lensed images from background light sources.
-Second to come up with a logical ordering of the arrival time of those lensed images.
-It also tries to identify the problems volunteers encounter during modelling.
+We made use of the simulated lenses (sims) to test the volunteers abilities to model those sims.
 
-The second test compared the enclosed mass $\kappa(r)$ of the models and the simulations.
+The testing was done with a small number of volunteers ($N_\text{v}=4$) and a set of simulated configurations ($N_\text{sim}=29$) chosen to represent some typical configurations.
+The volunteers were given an introduction video explaining the theory behind gravitational lensing and the usage of \spl.
+Additionally the volunteers had the opportunity to pose general questions to the experts during several hangouts during the training phase that preceded the modeling challenge.\footnote{No questions about the to be modeled sims were answered.}
+
+To estimate the performance of the volunteers and the quality of the generated models, two test T1 and T2 were done.
+%\begin{enumerate}
+%  \item (T1) Correct identification of extremal points
+%  \item (T2) Reproduction of the mass distribution of the lens
+%\end{enumerate}
+
+T1 tested the volunteers ability to reconstruct the arrival time surface given a survey image containing a sim.
+This task consists of two parts.
+First, the correct identification and location of lensed images (T1a).
+Second to find the correct ordering in respect of the arrival time for the identified lensed images (T1b).
+
+While we expected T1a to be trivial, given the nature of the survey images and the success of \sw, we expect T1b to pose more problems.
+T1b tests the volunteers understandings of the theory of arrival time surfaces and the odd number theorem.
+While we can provide the volunteers with some general rule of thumbs, T1b involves a lot of imagination and guessing and therefore a training effect could be visible in this test.
+
+T1 was also designed to give some feedback on the difficulties volunteers encounter, to further imrove the tutorial materials.
+
+The second test T2 was to compare the desired results of a modeling process, the mass distribution of the lens $\kappa(x, y)$.
+To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
+The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ and gives a number that allows the comparison between the sims and the models.
+
+\todo{!} Should I write down prior expectation for T2 too?
 
 
 \subsection{First test} \label{sec:results.1}

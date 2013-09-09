@@ -935,8 +935,10 @@ def plotAllRE():
     for i, item in enumerate(spg.sims.items()):
       key, val = item
     pl.plot([-0.5, i+0.5], [1,1], '--r')
-      
+    
     pl.xticks(range(i+1), lbls, rotation=90)
+    pl.yticks(np.linspace(0,2,(2/0.25)+1))
+    pl.grid(axis='y')
     pl.gcf().subplots_adjust(bottom=0.2)
     pl.xlim([-.5, i+0.5])
     pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')

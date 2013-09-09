@@ -1,4 +1,4 @@
-\section{The lens modelling challenge} \label{sec:results}
+\section{The lens modeling challenge} \label{sec:results}
 
 \subsection{\sw} \label{sec:SpaceWarps}
 some words about \sw
@@ -27,64 +27,101 @@ Singular isothermal is in equations (33-35) of
 equations (48,50) of the same paper, and shear is the $\gamma$ term in
 equation (76) of that work.
 
-\subsection{The Test setup} \label{sec:testsetup}
-We made use of this simulated lenses and further tested the volunteers abilities to model those simulated lensing images.
-
-The testing was done with a small number of volunteers ($N_v=4$) and a set of simulated configurations ($N_{sim}=29$) chosen to represent some typical configurations.
-
-Two tests were done on the models created by the volunteers:
-
-\begin{enumerate}
-  \item Correct identification of extremal points
-  \item Reproduction of the mass distribution of the lens
-\end{enumerate}
-
-The first test required the volunteers to accomplish 2 tasks: First to identify and distinguish lensed images from background light sources.
-Second to come up with a logical ordering of the arrival time of those lensed images.
-It also tries to identify the problems volunteers encounter during modelling.
-
-The second test compared the enclosed mass $\kappa(r)$ of the models and the simulations.
 
 
-\subsection{First test} \label{sec:results.1}
 
-The evaluation of the volunteers performance was done manually / by hand/eye, comparing their input to the actual contour lines.
-The actual contour lines were generated from the original simulation parameters.
 
-For each model a set of binary tests was done:
+\subsection{The test setup} \label{sec:testsetup}
 
-\begin{enumerate}
-  \item (approxPlace) have the images approximately been identified correctly (approx within of 10\% of img width)
-%  \item (rightPlace) are the images placed precisely (approx. within 5\% of image width)
-  \item (rightOrder) is the ordering of the images correct (sad / min / max detection and ordering)
-\end{enumerate}
+We made use of the simulated lenses (sims) to test the volunteers abilities to model those sims.
 
-Additionally, ten categories of error that could happend were recorded, where each model could contain multiple of those:
+The testing was done with a small number of volunteers ($N_\text{v}=4$) and a set of simulated configurations ($N_\text{sim}=29$) chosen to represent some typical configurations.
+The volunteers were given an introduction video explaining the theory behind gravitational lensing and the usage of \spl.
+Additionally the volunteers had the opportunity to pose general questions to the experts during several hangouts during the training phase that preceded the modeling challenge.\footnote{No questions about the to be modeled sims were answered.}
 
-\begin{enumerate}
-  \item inaccurate placement in an extended arc
-  \item wrongly identified sad and min in 3 image configuration
-  \item identified only 3 instead of 5 images
-  \item tried to model an arc with a min instead of min-sad-min
-  \item PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)
-  \item PI/2-err (rotation by 90 degree; sad$\longmapsto$min$\longmapsto$sad$\longmapsto$min$\longmapsto$sad)
-  \item missed faint image(s)
-  \item tried to model an arc with min-sad-min instead of only min
-  \item did identify two close by images as one
-  \item used 7 or more image to model a 5 image system.
-\end{enumerate}
+To estimate the performance of the volunteers and the quality of the generated models, two test T1 and T2 were done.
+%\begin{enumerate}
+%  \item (T1) Correct identification of extremal points
+%  \item (T2) Reproduction of the mass distribution of the lens
+%\end{enumerate}
+
+T1 tested the volunteers ability to reconstruct the arrival time surface given a survey image containing a sim.
+This task consists of two parts.
+First, the correct identification and location of lensed images (T1a).
+Second to find the correct ordering in respect of the arrival time for the identified lensed images (T1b).
+
+While we expected T1a to be trivial, given the nature of the survey images and the success of \sw, we expect T1b to pose more problems.
+T1b tests the volunteers understandings of the theory of arrival time surfaces and the odd number theorem.
+While we can provide the volunteers with some general rule of thumbs, T1b involves a lot of imagination and guessing and therefore a training effect could be visible in this test.
+
+T1 was also designed to give some feedback on the difficulties volunteers encounter, to further imrove the tutorial materials.
+
+The second test T2 was to compare the desired results of a modeling process, the mass distribution of the lens $\kappa(x, y)$.
+To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
+The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ and gives a number that allows the comparison between the sims and the models.
+
+\todo{!} Should I write down prior expectation for T2 too?
+
+
+
+
+\subsection{First test T1} \label{sec:tests.t1}
+
+The evaluation of the volunteers performance for T1 was done manually, comparing their input from \spl and the resulting reconstructed arrival time surface contour line plot (arrival plot) to the arrival plot genreated using simulation parameters.
+\Figref{output_compare} shows the setup used to evaluate the models.
+
+\begin{figure}
+  \centering
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/006917/input.png}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/006917/spaghetti.png}} \\
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/ASW0001hpf/arriv.png}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/ASW0001hpf/extr_points.png}}
+  \caption{Examples of Spaghetti input (left top) and modeled arrival time surface (right top) vs reconstructed arrival time surface from simulation parameters (bottom left), additionally using a extremal point detector (bottom right).
+  \label{fig:output_compare}}
+\end{figure}
+
+To evaluate T1a and T1b, each model was evaluated with two binary tests.
+The first is passed, if all the images have been identified and are approx. within $\pm0.05\cdot\text{imgwidth}$.
+The second test is passed, if those identified points have the right parity, ordering with respect to arrival time.
+
+Additionally, ten types of errors that could occur were analyzed, where each model could contain multiple of those.
+The complete table with the results for each model can be found in the appendix, \tabref{detail_results}.
+
+In \tabref{stats} a summary of this evaluation is presented.
+
+%\begin{enumerate}
+%1  \item inaccurate placement in an extended arc
+%2  \item wrongly identified sad and min in 3 image configuration
+%3  \item identified only 3 instead of 5 images
+%4  \item tried to model an arc with a min instead of min-sad-min
+%5  \item PI-err (rotation by 180 degrees; in 5 image configuration, exchanged the ordering of the two saddle points)
+%6  \item PI/2-err (rotation by 90 degree; sad$\longmapsto$min$\longmapsto$sad$\longmapsto$min$\longmapsto$sad)
+%7  \item missed faint image(s)
+%8  \item tried to model an arc with min-sad-min instead of only min
+%9  \item did identify two close by images as one
+%10  \item used 7 or more image to model a 5 image system.
+%\end{enumerate}
 
 \input{tab/auto/_stats}
 
-By looking at the numbers in table \ref{tab:stats}, we conclude that the volunteers are performing very well identifying images and putting them approximately at the right spot (test 1), with a performance of 92%.
-Most of the problems where due to unclear arc-like structures. (Error 1, p=0.18)
+
+We conclude that the volunteers are performing very well identifying and positioning images (T1a), with a performance of 92\% (approxPlace p=0.92).
+Most of the problems where due to unclear arc-like structures (Error 1, p=0.18; Error 4, p=0.03; Error 8, p=0.04).
+Critical failures like the failure to identify all fife images in an fife image system (Error 3, p=0.04) or to include too many images (Error 10, p=0.01) did almost never happened.
+From this we conclude that the introduction materials was adequate and the volunteers understand the basics of gravitational lensing.
 
 \todo{add more detail?} Add more details like total amount of images detected / tot am images (rightPlace fraction)??
 
-The ordering and assignment of minima / maxima / saddlepoint posed a more difficult task.
-In p=59\% (N=70) of the cases the volunteers succeeded to identify the right configuration.
-Most of the failures are due to error type 6 (PI/2), with N=38, p=32\%, followed by type 5 (PI) with N=7, p=6\%.
+The assignment of the parity of the images (T1b) posed a more difficult task.
+In 59\% (rightOrder, p=0.59, N=70) of the cases the volunteers succeeded to identify the right configuration.
+Most of the failures are due to Error 6 (PI/2), with N=38, p=32\%, followed by Error 5 (PI) with N=7, p=6\%.
 For an example of type 6 error, see \figref{6971}.
+While these errors occurred, we suspect they can be avoided with better training material and some examples for the obvious cases.
+For more challenging cases, like very symmetrical distribution of the lensed images (for example model 6971, \figref{6971}), those errors should still produce plausible results, as will be explained in the next section.
 
 
 
@@ -92,12 +129,22 @@ For an example of type 6 error, see \figref{6971}.
 
 
 
+\subsection{Second test T2} \label{sec:results.2}
 
+To compare the enclosed mass profile and the Einstein radius of the simulation and the models, \kenc was calculated using the mass map \kap[x,y] directly generated in the modeling process.
+From the ensemble of models generated by one modelling process, the mean is taken as the resulting $\kappa(r)$ to calculate $\theta_E$.
+To estimate the errors, also the extremal models are used to estimate a lower and upper limit for $\theta_E$.
+These results can be seen in \figref{eR_all_models}.
+This figure shows that this tecnique of esitmating the error is underestimating the error significantly and should be improved for further analysis.
 
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[width=0.80\textwidth]{fig/sims/eR_1.png}
+  \caption{\tEr \gEr for all models with estimated erros in blue, \gEr of simulation in red}
+  \label{fig:eR_all_models}
+\end{figure}
 
-\subsection{Second test} \label{sec:results.2}
-
-In \figref{eR_all} can be seen, that the calculated einstein radius $\Theta_E$ of the models tend to be too high.
+In \figref{eR_per_sim} can be seen, that the calculated \tEr \gEr of the models tend to be too high.
 The overshoot varies from around 0.2 to 0.4 for for good models.
 One of the reasons for this is, that it's hard to get the center of the lens on spot.
 An offset leads to a a flatter mass profile for the model compared to the simulation.
@@ -108,14 +155,19 @@ An offset leads to a a flatter mass profile for the model compared to the simula
   \centering
     \includegraphics[width=0.80\textwidth]{fig/sims/eR_4.png}
   \caption{relative Einstein Radius for each model, per sim. }
-  \label{fig:eR_all}
+  \label{fig:eR_per_sim}
 \end{figure}
 
 
+Error 5 and 6 happen mostly in very symmetric images, where it's hard to tell
+It changes the orientation of the mass distribution \kap[x,y].
+But \kenc and thus the \tEr \gEr is not changed, and thus the final result is still a valid model.
+This can be easily corrected, if further analysis is done for the modeled system and time delays are known.
 
 
 \hr
 
+\todo{incl this figs}
 Figure \ref{fig:6941} shows a simple example.
 
 Figure \ref{fig:6975} shows an example where substructure introduces a

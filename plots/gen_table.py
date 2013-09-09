@@ -147,7 +147,7 @@ ca+='; '.join(['%i) %s'%(i+1,e) for i, e in enumerate(eee)])
 settings = {
   'layout': 'p{1cm} l c c c c',
   'capt': ca,
-  'lbl' : 'Label',
+  'lbl' : 'detail_results',
 }
       
 

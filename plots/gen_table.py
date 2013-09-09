@@ -34,6 +34,11 @@ out_file_path = '../text/tab/auto'
 inpfile = os.path.join(os.path.abspath(inp_file_path),inp_file_name)
 outfile = os.path.join(os.path.abspath(out_file_path),out_file_name)
 
+try:
+  os.makedirs(os.path.abspath(out_file_path))
+except:
+  print 'error creating paths'
+  
 
 all_data = {}
 all_stats = []

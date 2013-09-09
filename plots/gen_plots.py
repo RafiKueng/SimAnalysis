@@ -68,7 +68,7 @@ params = {
 #  'backend': 'ps',
   'text.latex.preamble': [
     r"\usepackage{amsmath}",
-    r"\usepackage{textgreek}"
+    #r"\usepackage{textgreek}"
     ],
   'mathtext.default': 'regular',
   'axes.labelsize': 14,

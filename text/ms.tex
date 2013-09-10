@@ -23,11 +23,15 @@
 % makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
 \newcommand{\sw}{SpaceWarps\xspace}
-\newcommand{\tEr}{Einstein radius\xspace}
-\newcommand{\gEr}[1][]{$\Theta_\text{E#1}$\xspace}
+
+% shortcut for einstein radius
+\newcommand{\tEr}{Einstein radius\xspace} % text
+\newcommand{\gEr}[1][]{$\Theta_\text{E#1}$\xspace} % er in textmode with greek
+\newcommand{\mEr}[1][]{\Theta_\text{E#1}} % mathmode with greek symbol
+
+%shortcuts for kappa
 \newcommand{\kenc}[1][r]{$\kappa_\text{encl}(#1)$\xspace}
 \newcommand{\kap}[1][r]{$\kappa(#1)$\xspace}
-
 
 % shorcuts for refs
 \newcommand{\figref}[1]{figure~\ref{fig:#1}}
@@ -36,6 +40,10 @@
 \newcommand{\Figref}[1]{Figure~\ref{fig:#1}}
 \newcommand{\Secref}[1]{Section~\ref{sec:#1}}
 \newcommand{\Tabref}[1]{Table~\ref{tab:#1}}
+
+% shortcut for asw000xxxx
+\newcommand{\asw}[1]{ASW000#1\xspace}
+
 
 
 % todo annotations on side in red. easy to search for at the end

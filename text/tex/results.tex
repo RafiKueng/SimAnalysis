@@ -27,8 +27,26 @@ Singular isothermal is in equations (33-35) of
 equations (48,50) of the same paper, and shear is the $\gamma$ term in
 equation (76) of that work.
 
+\subsection{Some example models}
 
+Figure \ref{fig:6941} shows a simple example.
 
+Figure \ref{fig:6975} shows an example where substructure introduces a
+complication, but model ok.
+
+Figure \ref{fig:6937} shows a case where substructure leads to a
+poorer model.
+
+Figure \ref{fig:6975} shows a nice symmetric quad.
+
+Figure \ref{fig:6990} shows a long-axis quad.
+
+Figure \ref{fig:6919} shows a short-axis quad.
+
+Figure \ref{fig:6915} shows an inclined quad.
+
+Figure \ref{fig:6971} shows incorrect identification, but the enclosed
+mass still quite well recovered.
 
 
 \subsection{The test setup} \label{sec:testsetup}
@@ -54,7 +72,7 @@ While we expected T1a to be trivial, given the nature of the survey images and t
 T1b tests the volunteers understandings of the theory of arrival time surfaces and the odd number theorem.
 While we can provide the volunteers with some general rule of thumbs, T1b involves imagination and guessing and therefore training could improve their skills in a later stage.
 
-T1 was also designed to give some feedback on the difficulties volunteers encounter, to further improve the tutorial materials.
+T1 was also designed to give some feedback on the difficulties volunteers encounter, to further imrove the tutorial materials.
 
 The second test T2 was to compare the desired results of a modeling process, the mass distribution of the lens $\kappa(x, y)$.
 To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
@@ -79,8 +97,8 @@ The evaluation of the volunteers performance for T1 was done manually, comparing
              {fig/sims/006917/spaghetti.png}} \\
   \subfigure{\includegraphics[width=0.45\textwidth]
              {fig/sims/ASW0001hpf/arriv.png}}
-  \subfigure{\includegraphics[width=0.45\textwidth]
-             {fig/sims/ASW0001hpf/extr_points.png}}
+%  \subfigure{\includegraphics[width=0.45\textwidth]
+%             {fig/sims/ASW0001hpf/extr_points.png}}
   \caption{Examples of Spaghetti input (left top) and modeled arrival time surface (right top) vs reconstructed arrival time surface from simulation parameters (bottom left), additionally using a extremal point detector (bottom right).}
   \label{fig:output_compare}
 \end{figure}
@@ -190,30 +208,6 @@ This can be easily corrected, if further analysis is done for the modeled system
 
 Comparing the models of volunteers and experts can be done in \figref{kapenc_compare_faulty}, where only the
 expert got the right configuration, but all the resulting models are comparable, besides rotation.
-
-
-\hr
-
-\todo{incl this figs}
-Figure \ref{fig:6941} shows a simple example.
-
-Figure \ref{fig:6975} shows an example where substructure introduces a
-complication, but model ok.
-
-Figure \ref{fig:6937} shows a case where substructure leads to a
-poorer model.
-
-Figure \ref{fig:6975} shows a nice symmetric quad.
-
-Figure \ref{fig:6990} shows a long-axis quad.
-
-Figure \ref{fig:6919} shows a short-axis quad.
-
-Figure \ref{fig:6915} shows an inclined quad.
-
-Figure \ref{fig:6971} shows incorrect identification, but the enclosed
-mass still quite well recovered.
-
 
 
 

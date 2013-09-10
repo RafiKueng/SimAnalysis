@@ -929,7 +929,8 @@ def plotAllRE():
         lu[simn]
       except KeyError:
         continue
-      pl.plot(lu[simn], dat['rE_mean']/sims[simn], 'bx')
+      style = 'rx' if dat['user']=='psaha' else 'bx'
+      pl.plot(lu[simn], dat['rE_mean']/sims[simn], style)
       
     lbls = [key for key, val in spg.sims.items()]
     for i, item in enumerate(spg.sims.items()):

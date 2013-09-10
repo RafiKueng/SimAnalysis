@@ -71,13 +71,14 @@ Second to find the correct ordering in respect of the arrival time for the ident
 
 While we expected T1a to be trivial, given the nature of the survey images and the success of \sw, we expect T1b to pose more problems.
 T1b tests the volunteers understandings of the theory of arrival time surfaces and the odd number theorem.
-While we can provide the volunteers with some general rule of thumbs, T1b involves a lot of imagination and guessing and therefore a training effect could be visible in this test.
+While we can provide the volunteers with some general rule of thumbs, T1b involves imagination and guessing and therefore training could improve their skills in a later stage.
 
 T1 was also designed to give some feedback on the difficulties volunteers encounter, to further imrove the tutorial materials.
 
 The second test T2 was to compare the desired results of a modeling process, the mass distribution of the lens $\kappa(x, y)$.
 To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
 The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ and gives a number that allows the comparison between the sims and the models.
+We also let an expert model two selected systems to compare the results from volunteers to those of a professional.
 
 \todo{!} Should I write down prior expectation for T2 too?
 
@@ -99,12 +100,12 @@ The evaluation of the volunteers performance for T1 was done manually, comparing
              {fig/sims/ASW0001hpf/arriv.png}}
 %  \subfigure{\includegraphics[width=0.45\textwidth]
 %             {fig/sims/ASW0001hpf/extr_points.png}}
-  \caption{Examples of Spaghetti input (left top) and modeled arrival time surface (right top) vs reconstructed arrival time surface from simulation parameters (bottom left), additionally using a extremal point detector (bottom right).
-  \label{fig:output_compare}}
+  \caption{Examples of Spaghetti input (left top) and modeled arrival time surface (right top) vs reconstructed arrival time surface from simulation parameters (bottom left), additionally using a extremal point detector (bottom right).}
+  \label{fig:output_compare}
 \end{figure}
 
 To evaluate T1a and T1b, each model was evaluated with two binary tests.
-The first is passed, if all the images have been identified and are approx. within $\pm0.05\cdot\text{imgwidth}$.
+The first is passed, if all the images have been identified and are approx. within $\pm0.05\cdot\text{imgage width}$.
 The second test is passed, if those identified points have the right parity, ordering with respect to arrival time.
 
 Additionally, ten types of errors that could occur were analyzed, where each model could contain multiple of those.
@@ -181,8 +182,33 @@ An offset leads to a a flatter mass profile for the model compared to the simula
 Error 5 and 6 happen mostly in very symmetric images, where it's hard to tell
 It changes the orientation of the mass distribution \kap[x,y].
 But \kenc and thus the \tEr \gEr is not changed, and thus the final result is still a valid model.
+This can be seen by comparing the results for \asw{0h2m}, shown in \figref{kapenc_compare_faulty}: 
+The correct model 7022 ($\mEr=10.76$), which was done by an expert, and
+7020 ($\mEr=10.72$),
+7024 ($\mEr=10.80$),
+7025 ($\mEr=11.16$),
+7021 ($\mEr=11.04$).
+The first three show error 6, while the last is of error type 5.
 This can be easily corrected, if further analysis is done for the modeled system and time delays are known.
 
+\begin{figure}
+  \centering
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/007020/kappa_encl}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/007021/kappa_encl}} \\
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/007024/kappa_encl}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/007025/kappa_encl}}
+  \subfigure{\includegraphics[width=0.45\textwidth]
+             {fig/sims/007022/kappa_encl}}
+  \caption{\kenc for models of \asw{0vqg}: 7020 (top left), 7021 (top right), 7024 (mid left), 7025 (mid right) by volunteers and a correct model 7022 (bottom) by an expert.}
+  \label{fig:kapenc_compare_faulty}
+\end{figure}
+
+Comparing the models of volunteers and experts can be done in \figref{kapenc_compare_faulty}, where only the
+expert got the right configuration, but all the resulting models are comparable, besides rotation.
 
 
 

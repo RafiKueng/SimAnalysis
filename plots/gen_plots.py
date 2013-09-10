@@ -37,11 +37,15 @@ available commands are:
   creates all the tex files and copies the relevant files
   to the tex folder
 
+by just calling the script from command line:
+  python gen_plots
+the run() function gets called automatically
+
+
 
 data is stored in:
 - many.sim
 - spg.data
-
 
 
 
@@ -951,3 +955,9 @@ def plotAllRE():
     #pl.show()
     
   print ' ... DONE'
+
+
+#if __name__ == "__main__":
+#  run()
+  
+  

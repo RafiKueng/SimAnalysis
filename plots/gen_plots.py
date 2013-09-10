@@ -30,7 +30,7 @@ available commands are:
   
 - all_mod_plots()
   creates all the results / modells plots
-  (server side created plots get grapped from internet)
+  (server side created plots get grabbed from internet)
   
 - all_tex()
   assumes the plots are already created (under /plots)
@@ -884,6 +884,9 @@ def plotAllRE():
     pl.figure()
     pl.errorbar(xi, re, ee, marker='s', mfc='blue', ls='' ,ecolor='blue')
     pl.plot(xi, se, 'rx')
+    pl.xlim([np.min(xi)-1, np.max(xi)+1])
+    pl.xlabel('model id')
+    pl.ylabel(r'Einstrin radius $\Theta_\text{E}$ [pixel]')
     
     pl.savefig(os.path.join(path, 'eR_1.png'))
     print '.',

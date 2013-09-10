@@ -280,23 +280,23 @@ def genStatsTable():
   lue = {
     'n'          : (00, 'n points'),
     'npnt'       : (00, 'correct amount of images'),
-    'approxPlace': (01, 'images approx. on right location'),
+    'approxPlace': (01, 'R1: images approx. on right location'),
     'approx'     : (00, 'setup approx. correct'),
     'veryRight'  : (00, 'setup correct'),
     'rightPlace' : (00, 'fraction of images on right place'),
     'rightType'  : (00, 'fraction of images right type'),
-    'rightOrder' : (02, 'images with correct parity'),
+    'rightOrder' : (02, 'R2: images with correct parity'),
     'err'        : (10, r'\hline', (
-      (20 , 'Error 01'),
-      (21 , 'Error 02'),
-      (22 , 'Error 03'),
-      (23 , 'Error 04'),
-      (24 , 'Error 05'),
-      (25 , 'Error 06'),
-      (26 , 'Error 07'),
-      (27 , 'Error 08'),
-      (28 , 'Error 09'),
-      (29 , 'Error 10'),
+      (20 , 'E01: inaccurate in arc'),
+      (21 , 'E02: wrong parity in 3 lens conf.'),
+      (22 , 'E03: identified 3 of 5 imgs.'),
+      (23 , 'E04: modeled arc with single img.'),
+      (24 , 'E05: wrong order of sad. points'),
+      (25 , 'E06: $\pi$/2 rotated parity'),
+      (26 , 'E07: missed faint img.'),
+      (27 , 'E08: too many imgs in arc.'),
+      (28 , 'E09: missed double img'),
+      (29 , 'E10: too many imgs.'),
     )),
   }  
   
@@ -326,7 +326,7 @@ def genStatsTable():
 
   entries.sort()
   
-  for e in entries: print e
+  #for e in entries: print e
   
   tex_stats += '\n'.join([e[1] for e in entries if not e[0]==0])
   tex_stats += '\n'

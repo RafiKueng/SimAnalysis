@@ -43,3 +43,8 @@ Backup[ ]of[ ]*.numbers/
 
 #jabref backups
 *.bak
+
+#meld backups
+*.orig
+
+

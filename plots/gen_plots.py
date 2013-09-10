@@ -830,6 +830,7 @@ def plotAllRE():
   print '> drawing EinsteinR plots',
 
   plots = [True, True, True, True]
+  #plots = [0, 0, 0, True]
   
   path = resdir
 
@@ -930,7 +931,8 @@ def plotAllRE():
       except KeyError:
         continue
       style = 'rx' if dat['user']=='psaha' else 'bx'
-      pl.plot(lu[simn], dat['rE_mean']/sims[simn], style)
+      xofs = 0.15 if dat['user']=='psaha' else -0.15
+      pl.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
       
     lbls = [key for key, val in spg.sims.items()]
     for i, item in enumerate(spg.sims.items()):

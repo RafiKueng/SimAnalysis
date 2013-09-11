@@ -8,20 +8,21 @@
              {fig/sims/006919/input.png}}
   \caption{Examples of Spaghetti input.  The models from these appear
     later in Figures \ref{fig:6941}, \ref{fig:7022} and \ref{fig:6919}.
-  \label{fig:input-spag}}
+  }
+  \label{fig:input-spag}
 \end{figure}
 
 \subsection{\spl} \label{sec:SpaghettiLens}
 
-\spl implements the ideas of the arrival-time surface into a modelling
+\spl implements the ideas of the arrival-time surface into a modeling
 program.
 
-The first modelling step with \spl is for the user to call up the \sw
+The first modeling step with \spl is for the user to call up the \sw
 of interest, and make an educated guess for the topography of the
 arrival-time surface --- specifically, the locations of the maxima,
 minima and saddle points that correspond to images of the brightest
 part of the source.  Input is given by tracing a proposal for the
-saddle-point contours.  Figure \ref{fig:input-spag} shows some example
+saddle-point contours.  \Figref{input-spag} shows some example
 inputs --- and incidentally also indicates the origin of the name
 \spl.
 
@@ -34,10 +35,10 @@ have a lima\c con-like contour, meaning a two-looped curve with one
 loop inside the other.  The maximum lies within the inner loop, a
 minimum lies between the two loops, and a saddle point lies at the
 self-intersection of the contour.  The top panel of
-Figure~\ref{fig:input-spag} shows an example: red marks a suggested
+\figref{input-spag} shows an example: red marks a suggested
 maximum, green a saddle point, and blue a minimum.  (The small pink
 dots are just help sketch the proposed contour.)  The middle and lower
-panels of Figure~\ref{fig:input-spag} show a more complex situation.
+panels of \figref{input-spag} show a more complex situation.
 The minimum has split into three images: two new minima with a saddle
 point in between.  In this situation the contour through the new
 saddle point forms a figure of eight, its two loops enclosing the two
@@ -47,7 +48,7 @@ arrival-time surface for nearly all cases where the lens is dominated
 by one galaxy, and the source is a single small object.
 
 The exact placement of the pink spaghetti loops shown in
-Figure~\ref{fig:input-spag} has no significance.  Their utility is
+\Figref{input-spag} has no significance.  Their utility is
 just to help mark up the image as maximum, minima and saddle points.
 As the figure suggests, the marking up can be done very easily with a
 mouse.  Human intuition is required to (a)~identify lensed images and
@@ -65,7 +66,7 @@ is extremely underdetermined --- there are infinitely many mass
 distributions that will reproduce a given set of maxima, minima and
 saddle points, but typically they (a)~produce lots of extra images,
 and (b)~look very unlike galaxies.  Additional assumptions (a prior)
-are necessary.  GLASS uses a prior based on suggestions by by
+are necessary.  GLASS uses a prior based on suggestions by
 \cite{1997MNRAS.292..148S}.
 \begin{enumerate}
 \item The mass distribution is built out of non-negative tiles of

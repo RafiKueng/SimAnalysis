@@ -836,6 +836,10 @@ def plotAllRE():
   plots = [True, True, True, True]
   #plots = [0, 0, 0, True]
   
+  import gen_table as tab
+
+  tab.read()  
+  
   path = resdir
 
   spg.genREData() # genreate the data
@@ -856,6 +860,7 @@ def plotAllRE():
   ep_rel = []
   em_rel = []
   se = []
+  ac = [] # accepted and not rejected?
   for dat in spg.data:
     try:
       re_sim = sims[dat['name']]
@@ -869,6 +874,8 @@ def plotAllRE():
     re_rel.append(dat['rE_mean']/re_sim)
     ep_rel.append(dat['rE_max']/re_sim)
     em_rel.append(dat['rE_min']/re_sim)
+
+    ac.append(tab.all_mods[str(dat['id'])]['acc'])
     
   xi = np.array(xi)
   re = np.array(re)
@@ -879,12 +886,18 @@ def plotAllRE():
   ep_rel = np.array(ep_rel) - re_rel
   em_rel = re_rel - np.array(em_rel)
   ee_rel = [ep_rel, em_rel]
+
+  ac = np.array(ac, dtype=bool)
   
   if plots[0]:
     pl.figure()
-    pl.errorbar(xi, re, ee, marker='s', mfc='blue', ls='' ,ecolor='blue')
+    #paint accepted
+    pl.errorbar(xi[ac], re[ac], [ep[ac], em[ac]], marker='s', mfc='blue', ls='' ,ecolor='blue')
+    #paint rejected
+    pl.errorbar(xi[~ac], re[~ac], [ep[~ac], em[~ac]], marker='o', mfc='green', ls='' ,ecolor='green')
     pl.plot(xi, se, 'rx')
-    pl.xlim([np.min(xi)-1, np.max(xi)+1])
+    pl.xlim([np.min(xi), np.max(xi)])
+    pl.ylim([0., 35.])
     pl.xlabel('model id')
     pl.ylabel(r'Einstrin radius $\Theta_\text{E}$ [pixel]')
     
@@ -937,7 +950,12 @@ def plotAllRE():
         lu[simn]
       except KeyError:
         continue
-      style = 'rx' if dat['user']=='psaha' else 'bx'
+      if dat['user']=='psaha':
+        style = 'rx'
+      elif not tab.all_mods[str(dat['id'])]['acc']:
+        style = 'g+'
+      else:
+        style = 'bx'
       xofs = 0.15 if dat['user']=='psaha' else -0.15
       pl.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
       
@@ -949,8 +967,9 @@ def plotAllRE():
     pl.xticks(range(i+1), lbls, rotation=90)
     pl.yticks(np.linspace(0,2,(2/0.25)+1))
     pl.grid(axis='y')
-    pl.gcf().subplots_adjust(bottom=0.2)
+    pl.gcf().subplots_adjust(bottom=0.25)
     pl.xlim([-.5, i+0.5])
+    pl.xlabel('Simulation id')
     pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
 
     pl.savefig(os.path.join(path, 'eR_4.png'))

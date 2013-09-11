@@ -37,6 +37,7 @@ outfile = os.path.join(os.path.abspath(out_file_path),out_file_name)
   
 
 all_data = {}
+all_mods = {}
 all_stats = []
 
 
@@ -93,7 +94,8 @@ def read():
         all_data[simname]=[]
         
       else: # regular data
-        if simname=='ASW0001gae': # we don't like this sim
+        if simname=='ASW0001gae' or row[28]!='1': # we don't like this sim (all flag not set)
+          #print 'skipping'          
           continue
   
         # recover the fractions in row 12 and 13 as such..
@@ -117,8 +119,9 @@ def read():
           'rightOrder' : t if row[14]=='1' else f,
           'errors'     : '',
           'use'        : True if row[29]=='1' else False,
-          'fav1'       : True if row[30]=='1' else False,
-          'fav2'       : True if row[31]=='1' else False,
+          'acc'        : True if row[30]=='1' else False,
+          'fav1'       : True if row[31]=='1' else False,
+          'fav2'       : True if row[32]=='1' else False,
         }
         
         # parse the errors into a string of error number
@@ -130,7 +133,9 @@ def read():
             s.append(str(j+1))
         er = ','.join(s) #final string ,-sep ids
         data['errors'] = er
+        data['errors2'] = a # in form of bool array
         
+        all_mods[data['id']] = data
         all_data[simname].append(data)
 
 
@@ -278,55 +283,59 @@ def genStatsTable():
   # lookUptable for entries
   # which lines display in what order (order, 'descr'), 0=skip
   lue = {
-    'n'          : (00, 'n points'),
-    'npnt'       : (00, 'correct amount of images'),
-    'approxPlace': (01, 'R1: images approx. on right location'),
-    'approx'     : (00, 'setup approx. correct'),
-    'veryRight'  : (00, 'setup correct'),
-    'rightPlace' : (00, 'fraction of images on right place'),
-    'rightType'  : (00, 'fraction of images right type'),
-    'rightOrder' : (02, 'R2: images with correct parity'),
-    'err'        : (10, r'\hline', (
-      (20 , 'E01: inaccurate in arc'),
-      (21 , 'E02: wrong parity in 3 lens conf.'),
-      (22 , 'E03: identified 3 of 5 imgs.'),
-      (23 , 'E04: modeled arc with single img.'),
-      (24 , 'E05: wrong order of sad. points'),
-      (25 , 'E06: $\pi$/2 rotated parity'),
-      (26 , 'E07: missed faint img.'),
-      (27 , 'E08: too many imgs in arc.'),
-      (28 , 'E09: missed double img'),
-      (29 , 'E10: too many imgs.'),
+    'n'          : (01, 'N:' , 'Total number of models'),
+    'npnt'       : (00, ''   , 'correct amount of images'),
+    'approxPlace': (04, 'R1:', 'images approx. on right location'),
+    'approx'     : (00, ''   ,'setup approx. correct'),
+    'veryRight'  : (00, ''   ,'setup correct'),
+    'rightPlace' : (00, ''   ,'fraction of images on right place'),
+    'rightType'  : (00, ''   ,'fraction of images right type'),
+    'rightOrder' : (05, 'R2:', 'images with correct parity'),
+    'err'        : (10, (
+      (20 , 'E01:', 'inaccurate in arc'),
+      (21 , 'E02:', 'wrong parity in 3 lens conf.'),
+      (22 , 'E03:', 'identified 3 of 5 imgs.'),
+      (23 , 'E04:', 'modeled arc with single img.'),
+      (24 , 'E05:', '$\pi$ rotated parity'),
+      (25 , 'E06:', '$\pi$/2 rotated parity'),
+      (26 , 'E07:', 'missed faint img.'),
+      (27 , 'E08:', 'too many imgs in arc.'),
+      (28 , 'E09:', 'missed double img'),
+      (29 , 'E10:', 'too many imgs.'),
     )),
+    'hl' : (02,10), #insert hlines
   }  
   
   
   # gen header
-  tex_stats = r'\begin{table}\centering\begin{tabular}{lcc}\hline'
+  tex_stats = r'\begin{table}\centering\begin{tabular}{llcc}\hline'
   tex_stats += '\n'
-  tex_stats += r'value & n & p \\'
+  tex_stats += r' & & n & p \\'
   tex_stats += '\n'
   tex_stats += r'\hline'
   tex_stats += '\n'
+
+  s_item = 1 # which stat ros to use? 0: all, 1: use, 2: rejected, 3:fav1, 4;fav2
   
   # get number of samples (for % calc)
-  nn=int(all_stats[1]['n'])
+  nn=int(all_stats[s_item]['n'])
   
   #collect entries
   entries = []
-  for key, val in all_stats[1].items():
+
+  for n in lue['hl']:
+    entries.append((n, r'\hline'))
+
+  for key, val in all_stats[s_item].items():
     if key=='err': # split up errors
-      entries.append((lue[key][0], lue[key][1]))
       for m, v in enumerate(val):
-        #print key, val, m, v
-        #print lue[key]
-        entries.append((lue[key][2][m][0], r' %s & %i & %.2f\\' % (lue[key][2][m][1], int(v), float(v)/nn)))
+        st = lue[key][1][m]
+        entries.append((st[0], r' %s & %s & %i & %.2f\\' % (st[1], st[2], int(v), float(v)/nn)))
     else: # normal case
-      entries.append((lue[key][0], r' %s & %i & %.2f\\' % (lue[key][1], int(val), float(val)/nn)))
+      st = lue[key]
+      entries.append((st[0], r' %s & %s & %i & %.2f\\' % (st[1], st[2], int(val), float(val)/nn)))
 
   entries.sort()
-  
-  #for e in entries: print e
   
   tex_stats += '\n'.join([e[1] for e in entries if not e[0]==0])
   tex_stats += '\n'
@@ -348,7 +357,7 @@ def genStatsTable():
   
   # table footer
   tex_stats += '\n'
-  tex_stats += r'\end{tabular}\caption{Error Statistics}\label{tab:stats}\end{table}'
+  tex_stats += r'\end{tabular}\caption{T1 evaulation statistics}\label{tab:stats}\end{table}'
   
   # ... and save
   path = os.path.join(os.path.abspath(out_file_path), '_stats.tex')

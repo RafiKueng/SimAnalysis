@@ -24,25 +24,36 @@
 \newcommand{\spl}{SpaghettiLens\xspace}
 \newcommand{\sw}{SpaceWarps\xspace}
 
-% shortcut for einstein radius
-\newcommand{\tEr}{Einstein radius\xspace} % text
-\newcommand{\gEr}[1][]{$\Theta_\text{E#1}$\xspace} % er in textmode with greek
-\newcommand{\mEr}[1][]{\Theta_\text{E#1}} % mathmode with greek symbol
+% shortcut for einstein radius (Text Greek Full Math)
+\newcommand{\ER}{Einstein radius\xspace} % text
+\newcommand{\ERg}[1][]{$\Theta_\text{E#1}$\xspace} % er in textmode with greek
+\newcommand{\ERf}[1][]{Einstein radius $\Theta_\text{E#1}$\xspace} % full output
+\newcommand{\ERm}[1][]{\Theta_\text{E#1}} % mathmode with greek symbol
 
 %shortcuts for kappa
 \newcommand{\kenc}[1][r]{$\kappa_\text{encl}(#1)$\xspace}
 \newcommand{\kap}[1][r]{$\kappa(#1)$\xspace}
 
-% shorcuts for refs
-\newcommand{\figref}[1]{figure~\ref{fig:#1}}
-\newcommand{\secref}[1]{section~\ref{sec:#1}}
-\newcommand{\tabref}[1]{table~\ref{tab:#1}}
+% shorcuts for refs (use capital for beginning of sentence)
+% first 3 are for the real layz people..
+\newcommand{\fref}[1]{\ref{fig:#1}}
+\newcommand{\sref}[1]{\ref{sec:#1}}
+\newcommand{\tref}[1]{\ref{tab:#1}}
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\tabref}[1]{Table~\ref{tab:#1}}
 \newcommand{\Figref}[1]{Figure~\ref{fig:#1}}
 \newcommand{\Secref}[1]{Section~\ref{sec:#1}}
 \newcommand{\Tabref}[1]{Table~\ref{tab:#1}}
 
-% shortcut for asw000xxxx
+% shortcut for ASW000xxxx
 \newcommand{\asw}[1]{ASW000#1\xspace}
+
+%shorcut for model (maybe link later to appendix)
+% use \model{4356} for with text and
+% \model[]{3456} for only number
+\newcommand{\model}[2][Model~]{#1#2\xspace}
+
 
 %degrees
 \newcommand{\dgr}{^{\circ}}
@@ -90,7 +101,6 @@
 %%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
-
 
 \title{Lens Modeling in \sw}
 \author{First Author,\altaffilmark{1}

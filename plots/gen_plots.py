@@ -93,8 +93,8 @@ from numpy import pi
 # set to false to do a dry run in /plots/res
 write_to_tex_folder = True
 #image extension (png or pdf)
-ext = 'png'
-
+#ext = 'png'
+ext = 'pdf'
 
 # realtive to plots dir
 outdir = 'figs'
@@ -901,7 +901,7 @@ def plotAllRE():
     pl.xlabel('model id')
     pl.ylabel(r'Einstrin radius $\Theta_\text{E}$ [pixel]')
     
-    pl.savefig(os.path.join(path, 'eR_1.png'))
+    pl.savefig(os.path.join(path, 'eR_1.'+ext))
     print '.',
     #pl.show()
   
@@ -910,7 +910,7 @@ def plotAllRE():
     pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
     pl.plot(xi, xi*0+1, '-r')
     
-    pl.savefig(os.path.join(path, 'eR_2.png'))
+    pl.savefig(os.path.join(path, 'eR_2.'+ext))
     print '.',
     #pl.show()
   
@@ -938,7 +938,7 @@ def plotAllRE():
     pl.xlim([-.5, i+0.5])
     pl.ylabel(r'Einstein Radius $\Theta_{\text{E}}$')
 
-    pl.savefig(os.path.join(path, 'eR_3.png'))
+    pl.savefig(os.path.join(path, 'eR_3.'+ext))
     print '.',
     #pl.show()
     
@@ -972,7 +972,7 @@ def plotAllRE():
     pl.xlabel('Simulation id')
     pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
 
-    pl.savefig(os.path.join(path, 'eR_4.png'))
+    pl.savefig(os.path.join(path, 'eR_4.'+ext))
     print '.',
     #pl.show()
     

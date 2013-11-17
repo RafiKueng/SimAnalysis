@@ -9,16 +9,16 @@ MinPos.x=-1
 MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
-NormalPos.left=1103
+NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
-Document=ms.tex
+Document=tex\theory.tex
 
 [Frame0_View0,0]
-TopLine=14
-Cursor=2131
+TopLine=89
+Cursor=4983
 
 [Frame1]
 Flags=0
@@ -29,14 +29,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
-Document=tex\results.tex
+Document=tex\intro.tex
 
 [Frame1_View0,0]
-TopLine=178
-Cursor=9310
+TopLine=6
+Cursor=1007
 
 [Frame2]
 Flags=0
@@ -47,14 +47,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
-Document=tex\figures.tex
+Document=tex\appendix.tex
 
 [Frame2_View0,0]
-TopLine=0
-Cursor=364
+TopLine=12
+Cursor=1261
 
 [Frame3]
 Flags=0
@@ -63,16 +63,16 @@ MinPos.x=-1
 MinPos.y=-1
 MaxPos.x=-1
 MaxPos.y=-1
-NormalPos.left=1103
+NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1671
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
-Document=tmp.tex
+Document=ms.tex
 
 [Frame3_View0,0]
 TopLine=0
-Cursor=73
+Cursor=1011
 
 [Frame4]
 Flags=0
@@ -83,14 +83,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
-Document=tex\appendix.tex
+Document=tex\results.tex
 
 [Frame4_View0,0]
-TopLine=0
-Cursor=80
+TopLine=177
+Cursor=9310
 
 [Frame5]
 Flags=0
@@ -101,14 +101,14 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
-Document=tex\theory.tex
+Document=tex\figures.tex
 
 [Frame5_View0,0]
-TopLine=89
-Cursor=7092
+TopLine=0
+Cursor=364
 
 [Frame6]
 Flags=0
@@ -119,8 +119,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
 Document=tex\spaghetti.tex
 
@@ -137,8 +137,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
 Document=tex\outlook.tex
 
@@ -155,13 +155,13 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
 Document=tab\auto\results.tex
 
 [Frame8_View0,0]
-TopLine=177
+TopLine=175
 Cursor=5915
 
 [Frame9]
@@ -173,8 +173,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
 Document=tab\auto\ASW0000h2m.tex
 
@@ -191,8 +191,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
 Document=fig\sims\7025.tex
 
@@ -209,8 +209,8 @@ MaxPos.x=-1
 MaxPos.y=-1
 NormalPos.left=4
 NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
+NormalPos.right=1593
+NormalPos.bottom=612
 Class=LaTeXView
 Document=all_plots.tex
 
@@ -218,25 +218,7 @@ Document=all_plots.tex
 TopLine=0
 Cursor=552
 
-[Frame12]
-Flags=0
-ShowCmd=1
-MinPos.x=-1
-MinPos.y=-1
-MaxPos.x=-1
-MaxPos.y=-1
-NormalPos.left=4
-NormalPos.top=23
-NormalPos.right=1094
-NormalPos.bottom=732
-Class=LaTeXView
-Document=tex\intro.tex
-
-[Frame12_View0,0]
-TopLine=4
-Cursor=2123
-
 [SessionInfo]
-FrameCount=13
-ActiveFrame=1
+FrameCount=12
+ActiveFrame=0
 

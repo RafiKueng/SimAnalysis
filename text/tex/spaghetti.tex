@@ -1,6 +1,6 @@
 \subsection{\spl} \label{sec:SpaghettiLens}
 
-\spl implements the ideas of the arrival-time surface into a modelling
+\spl implements the ideas of the arrival-time surface into a modeling
 program.
 
 The first modeling step with \spl is for the user to call up the \sw
@@ -13,7 +13,7 @@ inputs --- and incidentally also indicates the origin of the name
 \spl.
 
 \spl, as implemented so far, assumes that the lens is dominated by a
-single galaxy, and that the centre of that galaxy is the sole maximum.
+single galaxy, and that the center of that galaxy is the sole maximum.
 Once the maximum has been identified, we wish to characterize the rest
 of the arrival-time surface in relation to it.  From geometry, any
 surface that has a central maximum and goes high at the edges must
@@ -39,16 +39,16 @@ just to help mark up the image as maximum, minima and saddle points.
 As the figure suggests, the marking up can be done very easily with a
 mouse.  Human intuition is required to (a)~identify lensed images and
 separate them from other background light sources, and (b)~classify
-and order images accoring to arrival time.  But the computer helps by
+and order images according to arrival time.  But the computer helps by
 allowing only valid lensing configurations to be entered, and ensuring
 that the odd image theorem\needcite is taken care of.
 
-In the second modelling step, once the user has sketched a proposed
+In the second modeling step, once the user has sketched a proposed
 spaghetti configurations, \spl sends the input to its server-side
-modelling engine, called GLASS.  The task of GLASS is to find a mass
+modeling engine, called GLASS.  The task of GLASS is to find a mass
 distribution $\kappa(x,y)$ that exactly reproduces the locations of
 the maximum, minima and saddle points.  Now, this criterion by itself
-is extremely underdetermined --- there are infinitely many mass
+is extremely under-determined --- there are infinitely many mass
 distributions that will reproduce a given set of maxima, minima and
 saddle points, but typically they (a)~produce lots of extra images,
 and (b)~look very unlike galaxies.  Additional assumptions (a prior)
@@ -59,9 +59,9 @@ are necessary.  GLASS uses a prior based on suggestions by
   mass.  (Sometimes these tiles are called mass pixels, but we should
   emphasize that they are unrelated to image pixels, and are much
   larger.)
-\item There is a notional lens centre, say $(x_0,y_0)$ which is
+\item There is a notional lens center, say $(x_0,y_0)$ which is
   identified with the maximum of the arrival time.  The source can
-  have an arbitrary offset with respect to the lens centre.
+  have an arbitrary offset with respect to the lens center.
 \item The mass distribution must be centrally concentrated, in two
   respects.  First, the circularly averaged density must fall away
   like $$ \left[(x-x_0)^2+(y-y_0)^2\right]^{-1/2}$$ or more steeply.
@@ -80,11 +80,11 @@ Typically, ensembles of 200 models are used.  That is to say, what we
 call a \spl model is really the mean of an ensemble of 200 models, and
 its estimated uncertainty is the range covered by the whole ensemble.
 
-In the third modelling step, having generated a model ensemble, \spl
-postprocesses it to present results and diagnostics to the user for
+In the third modeling step, having generated a model ensemble, \spl
+post-processes it to present results and diagnostics to the user for
 inspection.  This takes the form of three figures.
 \begin{enumerate}
-\item A grayscale plus contour map of the mass distribution.
+\item A gray scale plus contour map of the mass distribution.
 \item A contour map of the arrival-time surface.
 \item A synthetic image of the lensed features.
 \end{enumerate}
@@ -92,11 +92,11 @@ After examining this feedback, the user can archive the results for
 discussion, or modify their input and try again, or discard the
 attempt altogether.
 
-The fourth modelling step is discussion among modellers and iteration
+The fourth modeling step is discussion among modelers and iteration
 on the model.  Any archived model can be revised by another user: they
 can modify the spaghetti configuration slightly or drastically, or
 change options like the size of the mass tiles.  Particularly
 interesting lens candidates lead to trees of models in this way.
-Forum discussion then prunes the tree, focussing attention on one or a
+Forum discussion then prunes the tree, focusing attention on one or a
 few models.
 

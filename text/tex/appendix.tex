@@ -13,15 +13,17 @@ First we define comoving distances.
 \end{equation}
 \begin{equation}
 \begin{aligned}
-&D_S    &                                &\int_0^{a_S} \\
+&D_S    &                                &\int_0^{z_S} \\
 \noalign{\medskip}
 &D_{LS} & = \frac c{H_0} \ \times \quad  &\int_{z_L}^{z_S} \\
 \noalign{\medskip}
 &D_L    &                                &\int_0^{z_L}
 \end{aligned}
 \end{equation}
-Can replace comoving distances $D$ with angular-diameter distances
-$d$, and so on:
+
+% wording and equations to be revised
+Comoving distances $D$ are defined in angular-diameter distances
+$d$ by:
 \begin{equation}
 \begin{aligned}
 D_S &= (1+z_S) \, d_S \\
@@ -30,18 +32,19 @@ D_L &= (1+z_L) \, d_L
 \end{aligned}
 \end{equation}
 Angular-diameter distances are always smaller than comoving distances.
-Locations on the lens plane can be replaced angular coordinates on the
-sky, as
+Locations on the lens plane in angular coordinates on the
+sky, are expressed as
 \begin{equation}
 (x,y) = d_L (\theta_x,\theta_y) \,.
 \end{equation}
 
-The $A$ times and the $\kappa$ density are related to physical arrival
+The $A$ areas (with the implicit
+constant factor that makes them time delays) and the $\kappa$ density are related to physical arrival
 time $t$ and density $\Sigma$ as
 \begin{equation}
 \begin{aligned}
 A           &= \frac{cD_L}{(1+z_L)^2} \frac{D_{LS}}{D_S} \times t \\
-\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{D_L}{1+z_L} \frac{D_{LS}}{D_S}
+\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{{D_L}{D_{LS}}}{D_S}
                \times \Sigma(x,y)
 \end{aligned}
 \end{equation}

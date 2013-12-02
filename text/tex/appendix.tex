@@ -7,10 +7,12 @@ explanation, we suppressed some constant factors in
 equations \eqref{eq:Ageom}, \eqref{eq:Ageom} and \eqref{eq:Poisson}.
 Here we fill in the details.
 
-First we define comoving distances.
+First we define comoving distances:
+The scale factor is
 \begin{equation}
 \int \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
 \end{equation}
+The total line-of-sight comoving distance is then given by
 \begin{equation}
 \begin{aligned}
 &D_S    &                                &\int_0^{z_S} \\
@@ -22,7 +24,7 @@ First we define comoving distances.
 \end{equation}
 
 % wording and equations to be revised
-Comoving distances $D$ are defined in angular-diameter distances
+Then the comoving distances $D$ can be written as function of the angular-diameter distances
 $d$ by:
 \begin{equation}
 \begin{aligned}
@@ -43,20 +45,20 @@ constant factor that makes them time delays) and the $\kappa$ density are relate
 time $t$ and density $\Sigma$ as
 \begin{equation}
 \begin{aligned}
-A           &= \frac{cD_L}{(1+z_L)^2} \frac{D_{LS}}{D_S} \times t \\
-\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{{D_L}{D_{LS}}}{D_S}
-               \times \Sigma(x,y)
+A           &= \frac{c}{(1+z_L)^2} \frac{D_L D_{LS}}{D_S} \times t \\
+\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{D_L D_{LS}}{D_S}
+               \times \Sigma(x,y)\end{aligned}
 \end{aligned}
 \end{equation}
-Letting the source be behind $(s_x,s_y)$ rather than behind the
+Letting the source be offset at $(s_x,s_y)$ rather than at the
 origin, we have
 \begin{equation}
 \begin{aligned}
-t_{\rm geom} &= \frac{(1+z_L)^2}{2cD_L} \frac{D_S}{D_{LS}}
-\left( (x-s_x)^2 + (y-s_y)^2 \right)
+t_{\rm geom} &= \frac{(1+z_L)^2}{2c} \frac{D_S}{D_L D_{LS}}
+\left( (x-s_x)^2 + (y-s_y)^2 \right) \\
 \nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
 \end{aligned}
 \end{equation}
 We can now compare with equations (2.1) to (2.6)
 from \cite{1986ApJ...310..568B}.
-
+%% to be explicited

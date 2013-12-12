@@ -17,26 +17,47 @@ the in Spacewarps environment.
 
 Second, \spl needs some enhancements.
 
-One, model the source as well.
+\begin{itemize}
+\item Currently, \spl does not attempt to model the source shape; the
+  user identifies the brightest points on the image, and these are
+  taken as the images of a point-like source, whose positions must be
+  reproduced exactly.  For generating a synthetic image, a conical
+  source profile is assumed.  Fitting for the source profile to
+  optimize resemblance to the observed lensed image after the lens
+  model has been generated, is algorithmically straightforward and
+  planned to be implemented.  This would alleviate another problem
+  with \spl, which is that there is no numerical figure of merit, and
+  assessment of a model is a judgement call based on the synthetic
+  image, and on whether the mass distribution and the arrival-time
+  surface show suspect features.
+\item Another current limitation in \spl is that the lens is assumed
+  to be dominated by one galaxy, which puts most galaxy-group lenses
+  beyond the reach of the modeller.  Since complicated group lenses
+  are some of the most interesting candidates present, removing this
+  limitation is most desirable.  From the users' point of view, it
+  would mean that spaghetti contours with more than one maximum can be
+  allowed.  For examples, see Figure 5c in \citep{2001ApJ...557..594R}
+  and Figure 4b in \cite{2003ApJ...590...39K}.
+\item Currently, a single false-colour composite is used as the data.
+  An option could be added to use all available filters, individually
+  or in cmbination, as the user wishes.
+\end{itemize}
 
+The third desirable avenue of improvement is to facilitate
+collaborative work.
 
-Another, lenses with more than one maximum can be allowed for.  See
-Figure 5c in \citep{2001ApJ...557..594R} and Figure 4b in
-\cite{2003ApJ...590...39K}.
-
-Other modelling approaches also possible.
-
-As seen in \secref{tests.t1}, volunteers fail mostly in two situations:
-when to identify an arc like structure while placing the points
-and in 5 image configurations, that are quite symmetric, then to identify the correct ordering of the points.
-
-The first can be improved by additional images from different filters (?)
-Will be implemented with a next major \spl upgrade.
-
-The second can be made less by better training (introduce the ruler), may be more filters help too?
-
-We hope that those problems are also taken care of when staring collaborative modeling. (Already in progress)
-Basics are available ('revise functionality') but better community tools would help (having overview, comparison between different models etc...)
-
-
+\begin{itemize}
+\item As mentioned above, the option of revising an already-archived
+  model is already available.  Desired now are tools for comparing
+  different models of a given system, both visually and through
+  different statistical measures.  As evidenced by a current
+  collaborative modelling effort, a particularly interesting candidate
+  can lead to an extended discussion and dozens of models.
+\item Better tutorial materials are also needed, and this would
+  address some of the problem areas found in the modelling challenge.
+  For example, we saw in \secref{tests.t1} that volunteers are most
+  prone to making errors in two situations: when to identify an arc-
+  like structure while placing the points, and in identifying the
+  correct ordering of the points in nearly-symmetric configurations.
+\end{itemize}
 

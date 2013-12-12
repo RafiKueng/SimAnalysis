@@ -47,7 +47,7 @@ $\gamma$ term in equation (76).
 \subsection{Some example models} \label{sec:example_models}
 
 The modellers proffered a total of 129 models for the 29 sims in the
-challenge.  Figures \ref{fig:6941} to \ref{fig:6915} show eight of
+challenge.  Figures \ref{fig:6941} to \ref{fig:6919} show eight of
 models in some detail.
 
 Figure \ref{fig:6941} shows a simple example.  The top two panels show
@@ -96,6 +96,16 @@ only a little underestimated.
 Figure \ref{fig:6937} shows a case where substructure leads to a
 poor model.
 
+Figure \ref{fig:6990} shows an example of an arc that has split into
+three images.  This kind of configuration, with a counter-image close
+to the lensing galaxy and a more distant arc/triplet on the other
+side, generically arises from an elongated mass distribution when the
+source is displaced along the elongated direction.
+
+Figure \ref{fig:6915} shows another quad.  This kind of configuration
+arises when the mass is elongated and the source is displaced at an
+angle to the elongation.
+
 Figure \ref{fig:6975} shows a fairly symmetric quad.  The minima and
 saddle points are correctly identified, and the orientation of the
 ellipticity of the mass distribution is correctly reproduced.  The
@@ -110,11 +120,19 @@ mass is, however, none the worse --- the reason is probably that in a
 relatively symmetric image configuration, the Einstein radius is quite
 well constrained by the images in a fairly model-independent way.
 
-Figure \ref{fig:6990} shows a long-axis quad.
-
-Figure \ref{fig:6919} shows a short-axis quad.
-
-Figure \ref{fig:6915} shows an inclined quad.
+To conclude this set of examples, Figure \ref{fig:6919} shows another
+type of quad.  Actually, in this case the brightest part of the source
+is only doubly imaged, but the source extends into a region that
+produces four images.  We can also see from the real arrival-time
+surface that a point source is a double on the verge of splitting into
+a quad.  The modeller interpreted the system as a quad.  The
+appearance of the arcs, shown in the bottom panel of Figure
+\ref{fig:input-spag}, looks like an arc and counter-image such as
+discussed with Figure \ref{fig:6990} above.  But there is an important
+difference: the long arc is closer to the galaxy, as if the arc and
+counter-image have swapped roles.  This configuration arises if the
+source displacement is perpendicular to the long axis of the lensing
+mass.
 
 \subsection{Test of image identification} \label{sec:tests.t1}
 
@@ -128,16 +146,6 @@ T1b tests the volunteers understandings of the theory of arrival time surfaces a
 While we can provide the volunteers with some general rules of thumb, T1b involves imagination and guessing and therefore training could improve their skills in a later stage.
 
 T1 was also designed to give some feedback on the difficulties volunteers encounter, to further improve the tutorial materials.
-
-The second test T2 was to compare the desired results of a modeling process, the mass distribution of the lens $\kappa(x, y)$.
-To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
-The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ and gives a number that allows the comparison between the sims and the models.
-We also let an expert model three selected systems to compare the results from volunteers to those of a professional.
-
-\todo{!} Should I write down prior expectation for T2 too?
-
-
-\subsection{Test of image identification} \label{sec:tests.t1}
 
 The evaluation of the volunteers performance for T1 was done manually, comparing their input from \spl and the resulting reconstructed arrival time surface contour line plot (arrival plot) to the arrival plot generated using simulation parameters.
 % \Figref{output_compare} shows the setup used to evaluate the models.
@@ -186,6 +194,14 @@ For more challenging cases, like very symmetrical distribution of the lensed ima
 
 
 \subsection{Test of mass-profile recovery} \label{sec:tests.t2}
+
+The second test T2 was to compare the desired results of a modeling process, the mass distribution of the lens $\kappa(x, y)$.
+To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
+The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ and gives a number that allows the comparison between the sims and the models.
+We also let an expert model three selected systems to compare the results from volunteers to those of a professional.
+
+\todo{!} Should I write down prior expectation for T2 too?
+
 
 To get a means of comparing the simulated data (sims) to the generated modeled data (models), the total convergence, also called enclosed mass $\kappa_{\text{encl}}(r)$ for both was calculated.
 The Einstein radius $\Theta_E$ is defined by $\kappa_{\text{encl}}(\Theta_E)=1$ and gives a number that allows the comparison between the sims and the models.

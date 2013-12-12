@@ -118,10 +118,10 @@ order=-1
 
 [item:ms.tex]
 archive=true
-column=0
+column=33
 encoding=UTF-8
 highlight=LaTeX
-line=19
+line=7
 mode=LaTeX
 open=true
 order=0
@@ -207,8 +207,8 @@ open=false
 order=-1
 
 [view-settings,view=0,item:ms.tex]
-CursorColumn=0
-CursorLine=19
+CursorColumn=33
+CursorLine=7
 
 [view-settings,view=0,item:tex/abstract.tex]
 CursorColumn=0

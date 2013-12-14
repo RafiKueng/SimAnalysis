@@ -44,10 +44,10 @@ allowing only valid lensing configurations to be entered, and ensuring
 that the odd image theorem\needcite is taken care of.
 
 In the second modeling step, once the user has sketched a proposed
-spaghetti configurations, \spl sends the input to its server-side
+spaghetti configuration, \spl sends the input to its server-side
 modeling engine, called GLASS.  The task of GLASS is to find a mass
 distribution $\kappa(x,y)$ that exactly reproduces the locations of
-the maximum, minima and saddle points.  Now, this criterion by itself
+the maximum, minima and saddle points. Now, this criterion by itself
 is extremely under-determined --- there are infinitely many mass
 distributions that will reproduce a given set of maxima, minima and
 saddle points, but typically they (a)~produce lots of extra images,
@@ -67,7 +67,7 @@ are necessary.  GLASS uses a prior based on suggestions by
   like $$ \left[(x-x_0)^2+(y-y_0)^2\right]^{-1/2}$$ or more steeply.
   Second, the direction of increasing density at any $(x,y)$ can point
   at most $45^\circ$ away from $(x_0,y_0)$.
-\item The lens must symmetric with respect to $180^\circ$ rotations
+\item The lens must be symmetrical with respect to $180^\circ$ rotations
   about $(x_0,y_0)$.  This symmetry assumption can be relaxed if the
   user wishes.
 \end{enumerate}
@@ -82,7 +82,7 @@ its estimated uncertainty is the range covered by the whole ensemble.
 
 In the third modeling step, having generated a model ensemble, \spl
 post-processes it to present results and diagnostics to the user for
-inspection.  This takes the form of three figures.
+inspection. This takes the form of three figures.
 \begin{enumerate}
 \item A gray scale plus contour map of the mass distribution.
 \item A contour map of the arrival-time surface.

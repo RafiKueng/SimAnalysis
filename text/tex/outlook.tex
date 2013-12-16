@@ -30,15 +30,23 @@ Second, \spl needs some enhancements.
   assessment of a model is a judgment call based on the synthetic
   image, and on whether the mass distribution and the arrival-time
   surface show suspect features.
-\item Another current limitation in \spl is that the lens is assumed
-  to be dominated by one galaxy, which puts most galaxy-group lenses
-  beyond the reach of the modeler. Since complicated group lenses
-  are some of the most interesting candidates present, removing this
+\item \spl has a tendency to somewhat overestimate the Einstein radius
+  (evident from Figure \ref{fig:ER_per_sim}), and it is also apparent
+  that the models tend to be too shallow.  This possible explanation
+  is that, while the sims are steeply peaked at the centre, the
+  pixellated mass model fixes a comparatively large area near the
+  central at constant density.  One way to solve this problem would be
+  to introduce smaller pixels in the central region, thus enabled a
+  steeper centre.
+\item Another limitation so far in \spl is that the lens is assumed to
+  be dominated by one galaxy, which puts most galaxy-group lenses
+  beyond the reach of the modeler. Since complicated group lenses are
+  some of the most interesting candidates present, removing this
   limitation is most desirable.  From the users' point of view, it
   would mean that spaghetti contours with more than one maximum can be
   allowed.  For examples, see Figure 5c in \citep{2001ApJ...557..594R}
   and Figure 4b in \cite{2003ApJ...590...39K}.
-\item Currently, a single false-color composite is used as the data.
+\item At present, a single false-color composite is used as the data.
   An option could be added to use all available filters, individually
   or in combination, at the user wishes.
 \end{itemize}

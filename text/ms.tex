@@ -1,14 +1,12 @@
 \documentclass[12pt,preprint]{aastex}
 
 \usepackage{amsmath}
-\usepackage{xspace}   % fixes spaces after custom commands
-\usepackage{float}    % exact placement of figures (using \begin{figure}[H])
-\usepackage{color}  % well... color...
-\usepackage{setspace}    % remove this pgk for final compile!! 
-\usepackage{subfigure}
+\usepackage{xspace}     % fixes spaces after custom commands
+\usepackage{float}      % exact placement of figures (using \begin{figure}[H])
+\usepackage{subfigure}  % does what it says
 
-\usepackage{longtable}   % those two to generate the 2 ol table
-\usepackage{multicol}
+%\usepackage{longtable}   % those two to generate the 2 ol table
+%\usepackage{multicol}
 
 \def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
@@ -39,7 +37,6 @@
 
 % shortcut for ASW000xxxx
 \newcommand{\asw}[1]{ASW000#1\xspace}
-
 \newcommand{\model}[2][Model~]{#1#2\xspace}
 
 %degrees
@@ -47,8 +44,12 @@
 
 
 % todo annotations on side in red. easy to search for at the end
-\newcommand{\todo}[2][red]{%\marginpar{\raggedright\scriptsize\sffamily\textcolor{red}{#1}}}
+% !!! REMOVE THIS LINES FOR FINAL COMPILE
+%
+\usepackage{setspace}    % remove this pgk for final compile!! 
+\usepackage{color}    % well... color...
 
+\newcommand{\todo}[2][red]{%
 \textcolor{#1}{\textbullet}%
 \marginpar{\colorbox{#1}{\parbox{\marginparwidth}{%
 \setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{#2}}}}}}
@@ -65,6 +66,9 @@
 \newcommand{\needcite}[1][]{\todo[green]{cit #1}}
 \newcommand{\needref}[1][]{\todo[cyan]{ref #1}}
 \newcommand{\needchk}[1][]{\todo[red]{chk #1}}
+
+% \\\ END OF REMOVAL SECION
+
 
 \newcommand{\hr}{\vspace{5mm}\noindent\rule{0.8\textwidth}{0.4pt}\vspace{5mm}}
 

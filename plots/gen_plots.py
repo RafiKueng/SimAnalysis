@@ -97,7 +97,7 @@ write_to_tex_folder = True
 ext = 'pdf'
 
 # realtive to plots dir
-outdir = 'figs'
+outdir = 'figs_new'
 
 simdir = 'sim'
 moddir = 'mod'
@@ -815,13 +815,29 @@ def draw_mod(mid, elem, data, sims):
   pl.ylabel(r'mean convergance [1]')  
   
   pl.xlim([0,np.max(elem['x'])])
+
+  ax = pl.gca()
+  pl.text(0.95, 0.95,elem['name'],
+    horizontalalignment='right',
+    verticalalignment='top',
+    fontsize=14,
+    transform = ax.transAxes)
+
   
   if show:
     #print 'show'
     pl.show()
   else:
-    imgname = ('kappa_encl.%s'%ext)
-    pl.savefig(os.path.join(save_fig_path, imgname))
+    #imgname = ('kappa_encl.%s'%ext)
+    #pl.savefig(os.path.join(save_fig_path, imgname))
+    
+    # new style direct image names \figs_new\mod\001234_kappa_encl.ext
+    # save as png and pdf anyways
+    imgname1 = ('_kappa_encl.%s'%'png')
+    imgname2 = ('_kappa_encl.%s'%'pdf')
+    imgname = ('_kappa_encl.%s'%'pdf')
+    pl.savefig(os.path.join(save_fig_path + imgname1))
+    pl.savefig(os.path.join(save_fig_path + imgname2))
     pass
   
   

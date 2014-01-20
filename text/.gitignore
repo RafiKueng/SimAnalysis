@@ -47,4 +47,5 @@ Backup[ ]of[ ]*.numbers/
 #meld backups
 *.orig
 
-
+# texnic center temp settings
+*.tps

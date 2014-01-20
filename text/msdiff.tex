@@ -1,17 +1,15 @@
 \documentclass[12pt,preprint]{aastex}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL ms-before.tex   Thu Jan 16 17:46:31 2014
-%DIF ADD ms.tex          Thu Jan 16 19:40:48 2014
+%DIF DEL ms-before.tex   Mon Jan 20 14:50:31 2014
+%DIF ADD ms.tex          Mon Jan 20 15:01:47 2014
 
 \usepackage{amsmath}
-\usepackage{xspace}   % fixes spaces after custom commands
-\usepackage{float}    % exact placement of figures (using \begin{figure}[H])
-\usepackage{color}  % well... color...
-\usepackage{setspace}    % remove this pgk for final compile!! 
-\usepackage{subfigure}
+\usepackage{xspace}     % fixes spaces after custom commands
+\usepackage{float}      % exact placement of figures (using \begin{figure}[H])
+\usepackage{subfigure}  % does what it says
 
-\usepackage{longtable}   % those two to generate the 2 ol table
-\usepackage{multicol}
+%\usepackage{longtable}   % those two to generate the 2 ol table
+%\usepackage{multicol}
 
 \def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
@@ -42,7 +40,6 @@
 
 % shortcut for ASW000xxxx
 \newcommand{\asw}[1]{ASW000#1\xspace}
-
 \newcommand{\model}[2][Model~]{#1#2\xspace}
 
 %degrees
@@ -50,8 +47,12 @@
 
 
 % todo annotations on side in red. easy to search for at the end
-\newcommand{\todo}[2][red]{%\marginpar{\raggedright\scriptsize\sffamily\textcolor{red}{#1}}}
+% !!! REMOVE THIS LINES FOR FINAL COMPILE
+%
+\usepackage{setspace}    % remove this pgk for final compile!! 
+\usepackage{color}    % well... color...
 
+\newcommand{\todo}[2][red]{%
 \textcolor{#1}{\textbullet}%
 \marginpar{\colorbox{#1}{\parbox{\marginparwidth}{%
 \setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{#2}}}}}}
@@ -68,6 +69,9 @@
 \newcommand{\needcite}[1][]{\todo[green]{cit #1}}
 \newcommand{\needref}[1][]{\todo[cyan]{ref #1}}
 \newcommand{\needchk}[1][]{\todo[red]{chk #1}}
+
+% \\\ END OF REMOVAL SECION
+
 
 \newcommand{\hr}{\vspace{5mm}\noindent\rule{0.8\textwidth}{0.4pt}\vspace{5mm}}
 %DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
@@ -101,19 +105,22 @@ Third Author\altaffilmark{3}}
 \altaffiltext{3}{Third place}
 
 \begin{abstract}
-In Spacewarps, volunteers are invited to search CFHTLS sky survey for
-lens candidates.  Here we report on a system that allows experienced
-volunteers to model lens candidates.  A sample of 29 simulated lenses
-were modeled, each multiple times.  The quality of the models was then
-examined in different ways.  In particular: (i)~the image parities and
-time arrivals were identified correctly in most cases, but not
-always; (ii)~the mean convergence (equivalent to the enclosed mass)
-was quite well constrained in the image region; (iii)~the performance
-of experienced volunteers was comparable to professionals.
-\end{abstract}
+In \DIFdelbegin \DIFdel{Spacewarps, volunteers are }\DIFdelend \DIFaddbegin \DIFadd{the initial phase of Spacewarps (SW1), volunteers were }\DIFaddend invited to search \DIFaddbegin \DIFadd{the }\DIFaddend CFHTLS sky survey \DIFdelbegin \DIFdel{for
+lens candidates}\DIFdelend \DIFaddbegin \DIFadd{to look for gravitational lenses}\DIFaddend . Here we report on a \DIFdelbegin \DIFdel{system that allows experienced volunteers to model lens candidates .  A }\DIFdelend \DIFaddbegin \DIFadd{web interface    
+that gives experienced volunteers the opportunity to model the candidates that have been identified. These volunteers, were also invited to model a }\DIFaddend sample of 29 simulated lenses\DIFdelbegin \DIFdel{were modeled, each multiple times.  The }\DIFdelend \DIFaddbegin \DIFadd{, to order to gauge the }\DIFaddend quality of the models \DIFdelbegin \DIFdel{was }\DIFdelend \DIFaddbegin \DIFadd{that were being generated. These were }\DIFaddend then examined in \DIFdelbegin \DIFdel{different ways.  In particular }\DIFdelend \DIFaddbegin \DIFadd{greater detail, with particular attention being paid to the following}\DIFaddend : (i)~\DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{identification of }\DIFaddend image parities and time arrivals\DIFdelbegin \DIFdel{were identified correctly in most cases, but not
+always}\DIFdelend ; (ii)~the mean convergence (equivalent to the enclosed mass)\DIFdelbegin \DIFdel{was quite well constrained in the image region}\DIFdelend \DIFaddbegin \DIFadd{, and finally}\DIFaddend ;
+ (iii)~ the performance of \DIFdelbegin \DIFdel{experienced volunteers was comparable to professionals.
+}\DIFdelend \DIFaddbegin \DIFadd{a volunteer vs. a professional. In most cases, the volunteers were found to correctly identify the image parities and time arrivals, along with a mean convergence that was contained within the image region; In all, the results could be comparable to that of professionals.
+}
+
+\todo[red]{or should that be web application? Also, I change the tense of the opening statement. Not too sure of the correct way of introducing an abbreviation (SW1 in this case), and I was a bit liberal with my editing - Sorry. Another comment - is 'Well contained' better than 'contained' or is it just a figure of speech?} 
+
+
+\DIFaddend \end{abstract}
 
 \keywords{}
 \section{Introduction}
+
 
 Our present picture of the formation of the largest structures in the
 Universe --- galaxies and clusters of galaxies --- is that
@@ -190,24 +197,21 @@ prioritize completeness or purity, but they cannot deliver both.
 
 In response to the lessons learned from automated lens searches, the
 {\em Spacewarps\/} project\footnote{\tt http://www.spacewarps.org}
- \DIFdelbegin \DIFdel{(Saha is a co-investigator) }\DIFdelend has been launched.  {\em Spacewarps\/} is
+ has been launched.  {\em Spacewarps\/} is
 part of the {\em Zooniverse\/} family of citizen-science
 projects,\footnote{\tt http://www.zooniverse.org} where members of the
 public are invited to analyze different kinds of scientific data which
 are too difficult for robots and too large for specialists.  In {\em
- Spacewarps\/} itself, \DIFdelbegin \DIFdel{since the launch in }\DIFdelend \DIFaddbegin \DIFadd{survey sky images are presented for volunteers to identify lens candidates.  The first tranche of survey data, introduced from }\DIFaddend May 2013, \DIFdelbegin \DIFdel{$\sim100$ }\DIFdelend \DIFaddbegin \DIFadd{is an area of $\sim172$ }\DIFaddend square
-degrees (or a quarter of a percent of the sky) \DIFdelbegin \DIFdel{has been examined}\DIFdelend \DIFaddbegin \DIFadd{from the Canada-France-Hawaii Telescope Legacy Survey}\DIFaddend .
+ Spacewarps\/} itself, survey sky images are presented for volunteers to identify lens candidates.  The first tranche of survey data, introduced from May 2013, is an area of $\sim172$ square
+degrees (or a quarter of a percent of the sky) from the Canada-France-Hawaii Telescope Legacy Survey.
  The survey is divided into patches of $440\times 440$ pixels, each of
 which is seen by ten volunteers.  Simulated lenses are mixed in with
 the data, both to help train volunteers on what to look for, and to
 estimate completeness and purity.
-\DIFaddbegin \DIFadd{These data had previously been analyzed by robots \mbox{%DIFAUXCMD
-\cite{Gavazzi2012, More2012ApJ}
-}%DIFAUXCMD
-.  
-  }\DIFaddend A list of candidates is being
+These data had previously been analyzed by robots \cite{Gavazzi2012, More2012ApJ}.  
+  A list of candidates is being
 processed, but intermediate results show some very good candidates, as
-well \DIFaddbegin \DIFadd{as }\DIFaddend re-discoveries of \DIFdelbegin \DIFdel{a few known lenses}\DIFdelend \DIFaddbegin \DIFadd{candidates previously found robotically}\DIFaddend .
+well as re-discoveries of candidates previously found robotically.
 
 These encouraging results now raise the question: could modeling of
 the lenses also be done by volunteers?  Modeling is a much more
@@ -507,11 +511,8 @@ nor to the modelers (volunteers EB, CC, CM, JO, JW and `expert
 modeler' PS) until the modeling stage was done.
 
 The sims were produced using {\tt gravlens}
-\citep{2001astro.ph..2341K,2001astro.ph..2340K} \DIFaddbegin \DIFadd{using the CFHTLS survey data
-and catalogues \mbox{%DIFAUXCMD
-\cite{Coupon2009}
-}%DIFAUXCMD
-}\DIFaddend . They were of three
+\citep{2001astro.ph..2341K,2001astro.ph..2340K} using the CFHTLS survey data
+and catalogues \cite{Coupon2009}. They were of three
 kinds, as follows.
 
 \begin{enumerate}
@@ -524,7 +525,7 @@ kinds, as follows.
     more complicated lens, with one dominant elliptical SIE and
     one or more perturbing elliptical SIEs, plus a circular NFW
     \citep{1996ApJ...462..563N,1997ApJ...490..493N} to represent
-    the \DIFdelbegin \DIFdel{intergalactic mass}\DIFdelend \DIFaddbegin \DIFadd{underlying dark matter distribution}\DIFaddend .
+    the underlying dark matter distribution.
 \end{enumerate}
 
 Formulas for the lenses appear in \cite{2001astro.ph..2341K}. The SIE
@@ -965,25 +966,10 @@ The Einstein radius $\Theta_\text{E}$ is defined by $\kappa_{\text{encl}}(\Theta
 We also let an expert (PS) model three selected systems to compare the results from volunteers to those of a professional.
 
 
-\DIFdelbegin %DIFDELCMD < \begin{figure}[htbp]
-%DIFDELCMD <   \centering
-%DIFDELCMD <     \includegraphics[width=0.80\textwidth]{fig/eR_1.png}
-%DIFDELCMD <   %%%
-%DIFDELCMD < \caption{%
-{%DIFAUXCMD
-%DIFDELCMD < \ERf %%%
-\DIFdel{for all models with estimated errors in blue squares, }%DIFDELCMD < \ERg %%%
-\DIFdel{of simulation in red crosses}}
-  %DIFAUXCMD
-%DIFDELCMD < \label{fig:ER_all_models}
-%DIFDELCMD < \end{figure}
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend To compare the enclosed mass profile and the Einstein radius of the simulation and the models, \kenc was calculated using the mass map \kap[x,y] generated in the modeling process.
+To compare the enclosed mass profile and the Einstein radius of the simulation and the models, \kenc was calculated using the mass map \kap[x,y] generated in the modeling process.
 From the ensemble of models generated by one modeling process, the mean is taken as the resulting $\kappa(r)$ to calculate \ERg.
 To estimate the errors, the extremal models are used to estimate a lower and upper limit for \ERg.
-These results can be seen in \DIFdelbegin \DIFdel{\figref{ER_all_models}}\DIFdelend \DIFaddbegin \DIFadd{\figref{ER_per_sim}}\DIFaddend .
+These results can be seen in \figref{ER_per_sim}.
 This figure shows that this technique of estimating the error using the ensemble of all models underestimates the error significantly and should be improved for further analysis.
 
 \begin{figure}[htbp]
@@ -997,18 +983,11 @@ This figure shows that this technique of estimating the error using the ensemble
   \centering
   \subfigure{\includegraphics[width=0.45\textwidth]
              {fig/007020_kappa_encl}}
-  \DIFaddbeginFL \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.45\textwidth]
              {fig/007024_kappa_encl}}
-  \DIFaddendFL \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.45\textwidth]
              {fig/007021_kappa_encl}} \\
-  \DIFdelbeginFL %DIFDELCMD < \subfigure{\includegraphics[width=0.45\textwidth]
-%DIFDELCMD <              {fig/007024_kappa_encl}}
-%DIFDELCMD <   \subfigure{\includegraphics[width=0.45\textwidth]
-%DIFDELCMD <              {fig/007025_kappa_encl}}
-%DIFDELCMD <   \subfigure{\includegraphics[width=0.45\textwidth]
-%DIFDELCMD <              {fig/007022_kappa_encl}}
-%DIFDELCMD <   %%%
-\DIFdelendFL \caption{\DIFaddbeginFL \DIFaddFL{Enclosed mass }\DIFaddendFL \kenc for models of \asw{0h2m} \DIFdelbeginFL \DIFdelFL{: 7020 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{with incorrect image identifications. \figref{7022} shows a model }\DIFaddendFL (\DIFdelbeginFL \DIFdelFL{top left}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{by an expert}\DIFaddendFL ) \DIFaddbeginFL \DIFaddFL{with the correct identifications}\DIFaddendFL , \DIFdelbeginFL \DIFdelFL{7021 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{while \figref{7025} shows a model with error E06 }\DIFaddendFL (\DIFdelbeginFL \DIFdelFL{top right), 7024 (mid left), 7025 (mid right) }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{parities rotated }\DIFaddendFL by \DIFdelbeginFL \DIFdelFL{volunteers }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\pi/2$).  Shown here are the }\kenc \DIFaddFL{results for two models with error E06 }\DIFaddendFL and \DIFdelbeginFL \DIFdelFL{a correct }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{one }\DIFaddendFL model \DIFdelbeginFL \DIFdelFL{7022 }\DIFdelendFL (bottom) \DIFaddbeginFL \DIFaddFL{with error E05 (parities rotated }\DIFaddendFL by \DIFdelbeginFL \DIFdelFL{an expert}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$\pi$)}\DIFaddendFL .}
+  \caption{Enclosed mass \kenc for models of \asw{0h2m} with incorrect image identifications. \figref{7022} shows a model (by an expert) with the correct identifications, while \figref{7025} shows a model with error E06 (parities rotated by $\pi/2$).  Shown here are the \kenc results for two models with error E06 and one model (bottom) with error E05 (parities rotated by $\pi$).}
 \label{fig:kapenc_compare_faulty}
 \end{figure}
 
@@ -1017,27 +996,11 @@ The overshoot varies from around 0.2 to 0.4 for good models.
 One of the reasons for this is that it is hard to get the center of the lens on spot.
 An offset leads to a flatter mass profile for the model compared to the simulation.
 
-\DIFdelbegin \DIFdel{E05 and E06 happen mostly in very symmetric images, that are hard to come up with a unique valid solution.  This errors change }\DIFdelend \DIFaddbegin \DIFadd{Comparing the models from volunteers and experts can be done in Figures \ref{fig:7022}, \ref{fig:7025} and \ref{fig:kapenc_compare_faulty}, where only the
-expert got the right configuration (\figref{7022}) but enclosed masses are all fairly similar.  In cases with nearly symmetric image configurations, like this example, it is more difficult to identify the image parities correctly.  Incorrect image-parity identification changes }\DIFaddend the orientation of the mass distribution \kap[x,y],
-but \kenc and thus the \ERf \DIFdelbegin \DIFdel{is }\DIFdelend \DIFaddbegin \DIFadd{are }\DIFaddend not influenced that much\DIFdelbegin \DIFdel{, and thus the final result is still a valid model.
-This can be seen by comparing the results for }%DIFDELCMD < \asw{0h2m}%%%
-\DIFdel{, shown in \figref{kapenc_compare_faulty}: 
-The correct model 7022 ($\ERm=10.76px$), which was done by an expert, and
-7020 ($\ERm=10.72px$),
-7024 ($\ERm=10.80px$),
-7025 ($\ERm=11.16px$),
-7021 ($\ERm=11.04px$).
-The first three are of type E06, while the last is of type E05.
-This can be easily corrected, if further analysis is done for the modeled system and time delays are known.
-}\DIFdelend \DIFaddbegin \DIFadd{.
-}\DIFaddend 
+Comparing the models from volunteers and experts can be done in Figures \ref{fig:7022}, \ref{fig:7025} and \ref{fig:kapenc_compare_faulty}, where only the
+expert got the right configuration (\figref{7022}) but enclosed masses are all fairly similar.  In cases with nearly symmetric image configurations, like this example, it is more difficult to identify the image parities correctly.  Incorrect image-parity identification changes the orientation of the mass distribution \kap[x,y],
+but \kenc and thus the \ERf are not influenced that much.
 
-\DIFdelbegin \DIFdel{Comparing the models from volunteers and experts can be done in \figref{kapenc_compare_faulty}, where only the
-expert got the right configuration, but all the resulting models are comparable, besides rotation.
-}%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdelend Two additional sims were modeled by an expert, \asw{1hpf} and \asw{0vqg}.
+Two additional sims were modeled by an expert, \asw{1hpf} and \asw{0vqg}.
 Looking at the results for \ERg for those models in \figref{ER_per_sim}, we conclude that the performance of volunteers (blue crosses) and experts (red crosses, offset) is comparable.
 %Note that the models of \asw{0vqg} with \ERg[, rel] around 0.25 (6935 -- 6937) are failed models that show the attempts of a single user, that came finally up with model 6938 as final result.\todo{remove?}
 
@@ -1124,24 +1087,16 @@ explanation, we suppressed some constant factors in
 equations \eqref{eq:Ageom}, \eqref{eq:Aarriv} and \eqref{eq:Poisson}.
 Here we fill in the details.
 
-First let us recall \DIFdelbegin \DIFdel{the formulasfor comoving distances. }\begin{displaymath}\DIFdel{
-D = \int \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
-}\end{displaymath}
-%DIFAUXCMD
-\DIFdel{The comoving distances
-}\DIFdelend \DIFaddbegin \DIFadd{various distance formulas. Comoving distances
+First let us recall various distance formulas. Comoving distances
 involve integrals of the type
-}\begin{equation}\DIFadd{
+\begin{equation}
 \int \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
-%DIF > \raise.5ex\hbox{.}
-}\end{equation}
-\DIFadd{Specifically, the comoving distance $D_S$ }\DIFaddend from observer to \DIFdelbegin \DIFdel{lens,
-}\DIFdelend \DIFaddbegin \DIFadd{source,
-$D_{LS}$ }\DIFaddend from lens to source, and \DIFaddbegin \DIFadd{$D_L$ }\DIFaddend from observer to \DIFdelbegin \DIFdel{source are
-given as follows:
-}\DIFdelend \DIFaddbegin \DIFadd{lens are
+%\raise.5ex\hbox{.}
+\end{equation}
+Specifically, the comoving distance $D_S$ from observer to source,
+$D_{LS}$ from lens to source, and $D_L$ from observer to lens are
 given by the above integral, with limits as follows.
-}\DIFaddend \begin{equation}
+\begin{equation}
 \begin{aligned}
 &D_S    &                                &\int_0^{z_S} \\
 \noalign{\medskip}
@@ -1151,30 +1106,26 @@ given by the above integral, with limits as follows.
 \end{aligned}
 \end{equation}
 Angular-diameter distances $d$ can be related to comoving distances
-$D$ by \DIFdelbegin \DIFdel{:
-}\DIFdelend \DIFaddbegin \DIFadd{scale factors, as follows.
-}\DIFaddend \begin{equation}
+$D$ by scale factors, as follows.
+\begin{equation}
 \begin{aligned}
 D_S &= (1+z_S) \, d_S \\
 D_{LS} &= \frac{1+z_S}{1+z_L} \, d_{LS} \\
 D_L &= (1+z_L) \, d_L
 \end{aligned}
 \end{equation}
-\DIFdelbegin \DIFdel{Angular-diameter }\DIFdelend \DIFaddbegin \DIFadd{Consequently, angular-diameter }\DIFaddend distances are always smaller than
-comoving distances.  \DIFaddbegin \DIFadd{Moreover, while comoving distances can be simply
+Consequently, angular-diameter distances are always smaller than
+comoving distances.  Moreover, while comoving distances can be simply
 added, angular distances cannot:
-}\begin{equation}\DIFadd{
+\begin{equation}
 d_S \neq d_L + d_{LS}
-}\end{equation}
-\DIFaddend 
+\end{equation}
 
 Locations on the lens plane in angular coordinates on the sky, are
 expressed as
 \begin{equation}
 (x,y) = d_L (\theta_x,\theta_y)
-\DIFdelbegin %DIFDELCMD < \,%%%
-\DIFdel{.
-}\DIFdelend \end{equation}
+\end{equation}
 
 The $A$ areas (with the implicit
 constant factor that makes them time delays) and the $\kappa$ density are related to physical arrival
@@ -1198,20 +1149,17 @@ t_{\rm geom} &= \frac{(1+z_L)^2}{2c} \frac{D_S}{D_L D_{LS}}
 We can now compare with equations (2.1) to (2.6)
 from \cite{1986ApJ...310..568B}.
 %% comparison to be explicited
-\DIFaddbegin 
 
-\section{\DIFadd{Miscellaneous}}
+\section{Miscellaneous}
 
-\DIFadd{Maybe discard \figref{ER_all_models}, since the essential information is there in \figref{ER_per_sim}.
-}
+Maybe discard \figref{ER_all_models}, since the essential information is there in \figref{ER_per_sim}.
 
 \begin{figure}[htbp]
   \centering
     \includegraphics[width=0.80\textwidth]{fig/eR_1.png}
-  \caption{\ERf \DIFaddFL{for all models with estimated errors in blue squares, }\ERg \DIFaddFL{of simulation in red crosses}}
+  \caption{\ERf for all models with estimated errors in blue squares, \ERg of simulation in red crosses}
   \label{fig:ER_all_models}
 \end{figure}
-\DIFaddend 
 
 
 \newpage

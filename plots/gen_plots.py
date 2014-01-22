@@ -97,7 +97,7 @@ write_to_tex_folder = True
 ext = 'pdf'
 
 # realtive to plots dir
-outdir = 'figs'
+outdir = 'figs_new'
 
 simdir = 'sim'
 moddir = 'mod'
@@ -616,7 +616,9 @@ def draw_sim(asw, sim):
     lev = np.linspace(0,10,41)
     pc = panel.contour(x,y,kappa,lev)
     panel.clabel(pc, inline=1, fontsize=10)
-    pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
+    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
+    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
+    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
 
 
     fig = pl.figure()
@@ -644,7 +646,9 @@ def draw_sim(asw, sim):
     panel.scatter(rad,sum)
     panel.set_xlabel('radius [pixels]')
     panel.set_ylabel('average interior \textkappa [1]')
-    pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
+    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
+    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
+    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
     
     
     fig = pl.figure()
@@ -653,7 +657,9 @@ def draw_sim(asw, sim):
     lo,hi = np.amin(arriv), np.amax(arriv)
     lev = np.linspace(lo,lo+.2*(hi-lo),100)
     panel.contour(x,y,arriv,lev)
-    pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
+    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
+    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
+    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
 
     #restore stdout
     sys.stdout = old_stdout
@@ -815,13 +821,29 @@ def draw_mod(mid, elem, data, sims):
   pl.ylabel(r'mean convergance [1]')  
   
   pl.xlim([0,np.max(elem['x'])])
+
+  ax = pl.gca()
+  pl.text(0.95, 0.95,elem['name'],
+    horizontalalignment='right',
+    verticalalignment='top',
+    fontsize=14,
+    transform = ax.transAxes)
+
   
   if show:
     #print 'show'
     pl.show()
   else:
-    imgname = ('kappa_encl.%s'%ext)
-    pl.savefig(os.path.join(save_fig_path, imgname))
+    #imgname = ('kappa_encl.%s'%ext)
+    #pl.savefig(os.path.join(save_fig_path, imgname))
+    
+    # new style direct image names \figs_new\mod\001234_kappa_encl.ext
+    # save as png and pdf anyways
+    imgname1 = ('_kappa_encl.%s'%'png')
+    imgname2 = ('_kappa_encl.%s'%'pdf')
+    imgname = ('_kappa_encl.%s'%'pdf')
+    pl.savefig(os.path.join(save_fig_path + imgname1))
+    pl.savefig(os.path.join(save_fig_path + imgname2))
     pass
   
   

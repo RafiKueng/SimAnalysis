@@ -49,3 +49,4 @@ Backup[ ]of[ ]*.numbers/
 
 # texnic center temp settings
 *.tps
+msdiff.tex

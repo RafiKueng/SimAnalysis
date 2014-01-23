@@ -24,6 +24,10 @@ main:
 	pdflatex ms
 	pdflatex ms
     
-update: main diff
+update: gitupdate main diff
 	cp ms.pdf ~/public_html/data/ms.pdf
 	cp msdiff.pdf ~/public_html/data/msdiff.pdf
+
+gitupdate:
+	git checkout master
+	git pull origin master

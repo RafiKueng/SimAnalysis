@@ -437,15 +437,15 @@ that the odd image theorem is taken care of.%TODO \needcite
 
 In the second modeling step, once the user has sketched a proposed
 spaghetti configuration, \spl sends the input to its server-side
-modeling engine, called GLASS.  The task of GLASS is to find a mass
-distribution $\kappa(x,y)$ that exactly reproduces the locations of
-the maximum, minima and saddle points. Now, this criterion by itself
-is extremely under-determined --- there are infinitely many mass
-distributions that will reproduce a given set of maxima, minima and
-saddle points, but typically they (a)~produce lots of extra images,
-and (b)~look very unlike galaxies.  Additional assumptions (a prior)
-are necessary.  GLASS uses a prior based on suggestions by
-\cite{1997MNRAS.292..148S}.
+modeling engine, called GLASS \citep{2014arXiv1401.7990C}.  The task
+of GLASS is to find a mass distribution $\kappa(x,y)$ that exactly
+reproduces the locations of the maximum, minima and saddle
+points. Now, this criterion by itself is extremely under-determined
+--- there are infinitely many mass distributions that will reproduce a
+given set of maxima, minima and saddle points, but typically they
+(a)~produce lots of extra images, and (b)~look very unlike galaxies.
+Additional assumptions (a prior) are necessary.  GLASS uses a prior
+based on suggestions by \cite{1997MNRAS.292..148S}.
 \begin{enumerate}
 \item The mass distribution is built out of non-negative tiles of
   mass.  (Sometimes these tiles are called mass pixels, but we should
@@ -767,7 +767,7 @@ models in some detail.
   }
 
   \caption[result 7025 (ASW0000h2m)]{Another model for the lens
-    appearing in \figref{fig:7022}.  The image parities in this case
+    appearing in \figref{7022}.  The image parities in this case
     were incorrectly identified, resulting in a rather poor model, but
     the estimated Einstein radius is not bad. (See Section
     \ref{sec:example_models} for details.)}

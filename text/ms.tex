@@ -18,7 +18,7 @@
 \def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
-\newcommand{\sw}{SpaceWarps\xspace}
+\newcommand{\sw}{Spacewarps\xspace}
 
 % shortcut for einstein radius (Text Greek Full Math)
 \newcommand{\ER}{Einstein radius\xspace} % text
@@ -56,10 +56,10 @@
 \usepackage{setspace}    % remove this pgk for final compile!! 
 \usepackage{color}    % well... color...
 
-\newcommand{\todo}[2][red]{%
-\textcolor{#1}{\textbullet}%
-\marginpar{\colorbox{#1}{\parbox{\marginparwidth}{%
-\setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{#2}}}}}}
+%\newcommand{\todo}[2][red]{%
+%\textcolor{#1}{\textbullet}%
+%\marginpar{\colorbox{#1}{\parbox{\marginparwidth}{%
+%\setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{#2}}}}}}
 
 \newcommand{\needfig}[1][]{%
 \colorbox{yellow}{\parbox{0.5\textwidth}{%
@@ -129,19 +129,17 @@ In all, the results could be comparable to that of a professional.
 \section{Introduction}
 
 
-Galaxies and clusters of galaxies are considered to be the largest structures in the known Universe. When one questions their formation,  the present picture suggests that gravitational instabilities  (observable as fluctuations of the microwave background) 
- \todo[red]{not too sure of the relevance of this statement} 
- - caused a collapse into gravitationally bound structures. 
- \todo[yellow]{clarification needed: are they becoming gravitationally bound structures, or are they collapsing into objects that are already gravitationally bound? I know it is most probably the later, but it is a bit ambiguous}   
+Galaxies and clusters of galaxies are considered to be the largest structures in the known Universe. When one questions their formation,  the present picture suggests that gravitational instabilities  (observable as fluctuations of the microwave background) %TODO \todo[red]{not too sure of the relevance of this statement} 
+ - caused a collapse into gravitationally bound structures. %TODO\todo[yellow]{clarification needed: are they becoming gravitationally bound structures, or are they collapsing into objects that are already gravitationally bound? I know it is most probably the later, but it is a bit ambiguous}   
 The initial collapse would have been dominated by dark matter, but once deep wells had appeared in the gravitational potential, gas would have started falling into those wells. 
-\todo[red]{not too sure of this wording}
+%TODO \todo[red]{not too sure of this wording}
 Through atomic processes,
-\todo[yellow]{perhaps we need to clarify those processes or are they generally know?}
+%TODO \todo[yellow]{perhaps we need to clarify those processes or are they generally know?}
  the gravitational potential energy of this gas would of been radiated away, leading to the formation of the largest stars. 
-\todo[red]{or perhaps just stars?}
+%TODO \todo[red]{or perhaps just stars?}
 In turn, galaxies and clusters of galaxies would form, all the time merging and changing their form.
 This rough outline is now well established, but in order to satisfy our understanding of this process, there are many puzzles  that remain to be solved. For progress to be made, we need to extend our knowledge of dark matter. Gravitational lensing has proven as a particularly attractive way of studying dark matter as it is only dependant on mass.
-\todo[yellow]{silly question, but shouldn't we briefly explain why it is only dependant on mass? or should everyone already reading this paper know that? or is it explained later?}
+%TODO \todo[yellow]{silly question, but shouldn't we briefly explain why it is only dependant on mass? or should everyone already reading this paper know that? or is it explained later?}
 
 
 There are many manifestations of gravitational lensing in astrophysics,
@@ -170,8 +168,8 @@ model them in more sophisticated ways.
 \begin{figure}[h]
 \centering
 \includegraphics[width=.7\hsize]{fig/lenssky}
-\caption{Sky distribution of 398 published lenses considered secure as
-  of September 2013 (from the Masterlens catalog at the University of
+\caption{Sky distribution of 423 published lenses considered secure as
+  of January 2014 (from the Masterlens catalog at the University of
   Utah, maintained by Joel Brownstein and Leonidas Moustakas.) The map
   is in Hammer-Aitoff projection, with North up and $\rm RA=0$ in the
   middle.  The empty swathes to the left and right of center are the
@@ -234,7 +232,7 @@ The purpose of this study was to provide a means to model a large number of grav
 We suggest, that volunteers will be as successful as professionals with modeling if provided with an easy to use tool with visual feedback (What you see is what you get, WYSIWYG) and a minimal set of instructions.
 Volunteers will then crowd work (using buzz word here ;) ) / work collaborative on modeling lenses from several sources / groups at a central place.
 Since this is an iterative learning process, the more involved volunteers will quickly gain knowledge that can be passed down to new volunteers.
-That creates a social structure that scales well with the number of volunteers, as other projects\needcite have already shown.
+That creates a social structure that scales well with the number of volunteers, as other projects have already shown. %TODO \needcite
 Finding people working as volunteers has been shown to be successful last but not least by \sw and the whole galaxy zoo project.
 To test the people's abilities, we investigated the performance of a few volunteers modeling a set of simulated lenses.
 We tested the ability to correctly identify lensed images and reproduce similar mass map of the lens.
@@ -435,7 +433,7 @@ mouse.  Human intuition is required to (a)~identify lensed images and
 separate them from other background light sources, and (b)~classify
 and order images according to arrival time.  But the computer helps by
 allowing only valid lensing configurations to be entered, and ensuring
-that the odd image theorem\needcite is taken care of.
+that the odd image theorem is taken care of.%TODO \needcite
 
 In the second modeling step, once the user has sketched a proposed
 spaghetti configuration, \spl sends the input to its server-side
@@ -495,8 +493,6 @@ Forum discussion then prunes the tree, focusing attention on one or a
 few models.
 
 \section{A lens modeling challenge} \label{sec:mod_challenge}
-
-% \subsection{\sw} \label{sec:SpaceWarps} some words about \sw
 
 Interested volunteers from the \sw forum were initially introduced to
 \spl through a video tutorial and by videocon.  After this
@@ -572,8 +568,10 @@ models in some detail.
     \label{fig:6941_atime}
     \includegraphics[width=0.45\textwidth]{fig/006941_arr_time}
   }
-  \caption[result 6941 (ASW000102p)]{Sim ASW000102p and a model.  A
-    simple configuration; the model input is shown in the top panel of
+  \caption[result 6941 (ASW000102p)]{Model results for a simple
+    simulated lens.  (The label ASW000102p in the lower-left panel is
+    the \sw identifier for the sky patch where this sim was placed.)
+    The model input is shown in the top panel of
     Figure~\ref{fig:input-spag}.  For details of the individual panels
     here, see section \ref{sec:example_models}.}
   \label{fig:6941}
@@ -605,8 +603,8 @@ models in some detail.
     \label{fig:6975_atime}
     \includegraphics[width=0.45\textwidth]{fig/006975_arr_time}
   }
-  \caption[result 6975 (ASW000195x)]{Sim ASW000195x and a
-    model.}
+  \caption[result 6975 (ASW000195x)]{A model for a sim with some mass
+    substructure. (See Section \ref{sec:example_models} for details.)}
   \label{fig:6975}
 \end{figure}
   
@@ -636,7 +634,9 @@ models in some detail.
     \label{fig:6937_atime}
     \includegraphics[width=0.45\textwidth]{fig/006937_arr_time}
   }
-  \caption[result 6937 (ASW0000vqg)]{Sim ASW0000vqg and a model.}
+  \caption[result 6937 (ASW0000vqg)]{A sim with substructure,
+    resulting in a poor mass model. (See Section
+    \ref{sec:example_models} for details.)}
   \label{fig:6937}
 \end{figure}
 
@@ -667,7 +667,8 @@ models in some detail.
     \includegraphics[width=0.45\textwidth]{fig/006990_arr_time}
   }
 
-  \caption[result 6990 (ASW0004oux)]{Sim ASW0004oux and a model.}
+  \caption[result 6990 (ASW0004oux)]{Model of a four-image
+    system. (See Section \ref{sec:example_models} for details.)}
   \label{fig:6990}
 \end{figure}
 
@@ -698,7 +699,8 @@ models in some detail.
     \includegraphics[width=0.45\textwidth]{fig/006915_arr_time}
   }
 
-  \caption[result 6915 (ASW0001hpf)]{Sim ASW0001hpf and a model. Inclined quad.}
+  \caption[result 6915 (ASW0001hpf)]{Model of another four-image
+    system. (See Section \ref{sec:example_models} for details.)}
   \label{fig:6915}
 \end{figure}
 
@@ -730,9 +732,10 @@ models in some detail.
     \includegraphics[width=0.45\textwidth]{fig/007022_arr_time}
   }
 
-  \caption[result 7022 (ASW0000h2m)]{Sim ASW0000h2m and a model.  The
+  \caption[result 7022 (ASW0000h2m)]{A further four-image system. The
     model input appears in the middle panel of Figure
-    \ref{fig:input-spag}.}
+    \ref{fig:input-spag}. (See Section \ref{sec:example_models} for
+    details.)}
   \label{fig:7022}
 \end{figure}
   
@@ -763,7 +766,11 @@ models in some detail.
     \includegraphics[width=0.45\textwidth]{fig/007025_arr_time}
   }
 
-  \caption[result 7025 (ASW0000h2m)]{Sim ASW0000h2m and another model.  The image parities in this case were incorrectly identified.}
+  \caption[result 7025 (ASW0000h2m)]{Another model for the lens
+    appearing in \figref{fig:7022}.  The image parities in this case
+    were incorrectly identified, resulting in a rather poor model, but
+    the estimated Einstein radius is not bad. (See Section
+    \ref{sec:example_models} for details.)}
   \label{fig:7025}
 \end{figure}
   
@@ -794,9 +801,10 @@ models in some detail.
     \label{fig:6919_atime}
     \includegraphics[width=0.45\textwidth]{fig/006919_arr_time}
   }
-  \caption[result 6919 (ASW0002z6f)]{Sim ASW0002z6f and a model.  The
-    model input appears in the bottom panel of Figure
-    \ref{fig:input-spag}. An incipient quad}
+  \caption[result 6919 (ASW0002z6f)]{A sim on the border case of
+    double vs quad; modelled as a quad.  The model input appears in
+    the bottom panel of Figure \ref{fig:input-spag}. (See Section
+    \ref{sec:example_models} for details.)}
   \label{fig:6919}
 \end{figure}
 
@@ -994,7 +1002,7 @@ This figure shows that this technique of estimating the error using the ensemble
              {fig/007024_kappa_encl}}
   \subfigure{\includegraphics[width=0.45\textwidth]
              {fig/007021_kappa_encl}} \\
-  \caption{Enclosed mass \kenc for models of \asw{0h2m} with incorrect image identifications. \figref{7022} shows a model (by an expert) with the correct identifications, while \figref{7025} shows a model with error E06 (parities rotated by $\pi/2$).  Shown here are the \kenc results for two models with error E06 and one model (bottom) with error E05 (parities rotated by $\pi$).}
+  \caption{Enclosed mass \kenc from three models of a system with incorrect image identifications. \figref{7022} shows a model (by an expert) with the correct identifications, while \figref{7025} shows a model with error E06 (parities rotated by $\pi/2$).  Shown here are the \kenc results for two models with error E06 and one model (bottom) with error E05 (parities rotated by $\pi$).}
 \label{fig:kapenc_compare_faulty}
 \end{figure}
 
@@ -1082,6 +1090,11 @@ collaborative work.
   like structure while placing the points, and in identifying the
   correct ordering of the points in nearly-symmetric configurations.
 \end{itemize}
+
+\section{Acknowledgments}
+
+We thank the Swiss Society for Astrophysics and Astronomy and the
+Swiss Academy of Sciences.
 
 \clearpage
 

@@ -6,7 +6,7 @@
 # make BEFORE=other-file.tex
 BEFORE=ms-before.tex
 
-all: diff
+all: main
 
 clean:
 	rm -f *.aux *.log *.bbl *.blg *~

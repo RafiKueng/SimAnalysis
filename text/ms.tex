@@ -1,4 +1,4 @@
-\documentclass[12pt,preprint]{aastex}
+\documentclass[usenatbib,onecolumn]{mn2e}
 
 \usepackage{amsmath}
 \usepackage{xspace}     % fixes spaces after custom commands
@@ -12,8 +12,16 @@
   .png,.PNG,%
   .jpg,.mps,.jpeg,.jbig2,.jb2,.JPG,.JPEG,.JBIG2,.JB2}
 
-%\usepackage{longtable}   % those two to generate the 2 ol table
-%\usepackage{multicol}
+\newcommand{\apj}{ApJ}
+\newcommand{\apjs}{ApJS}
+\newcommand{\apjl}{ApJL}
+\newcommand{\aap}{A{\&}A}
+\newcommand{\aaps}{A{\&}AS}
+\newcommand{\mnras}{MNRAS}
+\newcommand{\aj}{AJ}
+\newcommand{\araa}{ARAA}
+\newcommand{\pasp}{PASP}
+\newcommand{\pasj}{PASJ}
 
 \def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
@@ -83,31 +91,32 @@
 \begin{document}
 
 \title{Lens Modeling in \sw}
-\author{Rafael Kueng,\altaffilmark{1}
-Phil Marshall,\altaffilmark{2}
-Anupreeta More,\altaffilmark{3}
-Aprajita Verma,\altaffilmark{4}
-Amit Kapadia,\altaffilmark{5}
-Elisabeth Baeten,\altaffilmark{6}
-Claude Cornen,\altaffilmark{6}
-Christine McMillan,\altaffilmark{6}
-Julianne Wilcox,\altaffilmark{6}
-Jonas Odermatt,\altaffilmark{7}
-Jonathan Coles,\altaffilmark{8}
-Surhud More\altaffilmark{3}
-and Prasenjit Saha\altaffilmark{1}
-}
-\altaffiltext{1}{Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland}
-\altaffiltext{2}{Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA}
-\altaffiltext{3}{Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan}
-\altaffiltext{4}{Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK}
-\altaffiltext{5}{Adler Planetarium, 1300 S. Lake Shore Drive,
-  Chicago, IL 60605, USA}
-\altaffiltext{6}{Spacewarps}
-\altaffiltext{7}{Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland}
-\altaffiltext{8}{Exascale
-  Research Computing Lab, Versailles Saint-Quentin-en-Yvelines
-  University, 55 Avenue des Etats Unis, 78000, Versailles, France}
+
+\author[Kueng et al]{Rafael Kueng,$^{1}$
+Phil Marshall,$^{2}$
+Anupreeta More,$^{3}$
+Aprajita Verma,$^{4}$
+Amit Kapadia,$^{5}$
+\newauthor
+Elisabeth Baeten,$^{6}$
+Claude Cornen,$^{6}$
+Christine McMillan,$^{6}$
+Julianne Wilcox,$^{6}$
+\newauthor
+Jonas Odermatt,$^{7}$
+Jonathan Coles,$^{8}$
+Surhud More$^{3}$
+and Prasenjit Saha$^{1}$ \\
+$^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland\\
+$^{2}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
+$^{3}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
+$^{4}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
+$^{5}$Adler Planetarium, 1300 S. Lake Shore Drive, Chicago, IL 60605, USA\\
+$^{6}$Spacewarps\\
+$^{7}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
+$^{8}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France}
+
+\maketitle
 
 \begin{abstract}
 In the initial phase of \sw (SW1), volunteers were invited to search the CFHTLS sky survey to look for gravitational lenses.
@@ -121,11 +130,11 @@ In most cases, the volunteers were found to correctly identify the image paritie
 % Einstein radius +~20%
  along with a mean convergence that was well constrained within the image region;
 In all, the results could be comparable to that of a professional.
-
-
 \end{abstract}
 
-\keywords{}
+\begin{keywords}
+\end{keywords}
+
 \section{Introduction}
 
 
@@ -165,7 +174,7 @@ lensed quasars to infer the Hubble time
 The trend is clear: researchers want to find many more lenses and
 model them in more sophisticated ways.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=.7\hsize]{fig/lenssky}
 \caption{Sky distribution of 423 published lenses considered secure as
@@ -1184,8 +1193,12 @@ Maybe discard \figref{ER_all_models}, since the essential information is there i
 
 \newpage
 
-\bibliographystyle{apj}
+\bibliographystyle{mn2e}
 \bibliography{bib/ms}
 
 \end{document}
+
+
+
+
 

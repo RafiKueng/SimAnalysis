@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScappleDocument Version="1.1" ID="A0277CE3-852E-4DA7-8E64-2691532E9036">
+    <Notes>
+        <Note ID="0" FontSize="21.0" Position="386.0,244.0" Width="282.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>0.0 0.0 0.0</TextColor>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>0.936478 0.888415 0.791505</Fill>
+            </Appearance>
+            <String>Compare sims with models</String>
+            <ConnectedNoteIDs>1-2, 9, 12, 21</ConnectedNoteIDs>
+            <PointsToNoteIDs>9, 12, 21</PointsToNoteIDs>
+            <Formatting>
+                <FormatRange Bold="Yes">0,24</FormatRange>
+            </Formatting>
+        </Note>
+        <Note ID="1" FontSize="16.0" Position="566.0,15.0" Width="134.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <TextColor>0.0 0.0 0.0</TextColor>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>0.936478 0.888415 0.791505</Fill>
+            </Appearance>
+            <String>Spacewarps sims</String>
+            <ConnectedNoteIDs>0, 2</ConnectedNoteIDs>
+            <PointsToNoteIDs>0, 2</PointsToNoteIDs>
+        </Note>
+        <Note ID="2" FontSize="16.0" Position="306.0,103.0" Width="167.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>0.936478 0.888415 0.791505</Fill>
+            </Appearance>
+            <String>SpaghettiLens models</String>
+            <ConnectedNoteIDs>0-1, 5, 11</ConnectedNoteIDs>
+            <PointsToNoteIDs>0, 5, 20</PointsToNoteIDs>
+        </Note>
+        <Note ID="5" FontSize="16.0" Position="52.0,177.0" Width="226.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Square">0.0 0.0 0.0</Border>
+                <Fill>0.903924 0.24079 0.158033</Fill>
+            </Appearance>
+            <String>Synthetic images (very crude)</String>
+            <ConnectedNoteIDs>2, 7</ConnectedNoteIDs>
+            <PointsToNoteIDs>7</PointsToNoteIDs>
+        </Note>
+        <Note ID="7" FontSize="16.0" Position="24.0,297.0" Width="222.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Cloud">0.0 0.0 0.0</Border>
+                <Fill>0.898467 0.753081 0.980571</Fill>
+            </Appearance>
+            <String>Need source-profile modelling</String>
+            <ConnectedNoteIDs>5</ConnectedNoteIDs>
+        </Note>
+        <Note ID="9" FontSize="16.0" Position="658.0,354.0" Width="216.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Square">0.0 0.0 0.0</Border>
+                <Fill>1.0 0.945947 0.372139</Fill>
+            </Appearance>
+            <String>Test Einstein-radius recovery (reasonable but biased high)</String>
+            <ConnectedNoteIDs>0, 10</ConnectedNoteIDs>
+            <PointsToNoteIDs>10</PointsToNoteIDs>
+        </Note>
+        <Note ID="10" FontSize="16.0" Position="963.0,581.0" Width="232.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Cloud">0.0 0.0 0.0</Border>
+                <Fill>0.898467 0.753081 0.980571</Fill>
+            </Appearance>
+            <String>Need hires central region in SL</String>
+            <ConnectedNoteIDs>9</ConnectedNoteIDs>
+        </Note>
+        <Note ID="11" FontSize="16.0" Position="29.0,21.0" Width="147.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>0.936478 0.888415 0.791505</Fill>
+            </Appearance>
+            <String>Arrival-time surface</String>
+            <ConnectedNoteIDs>2</ConnectedNoteIDs>
+            <PointsToNoteIDs>2</PointsToNoteIDs>
+        </Note>
+        <Note ID="12" FontSize="16.0" Position="373.0,361.0" Width="181.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Square">0.0 0.0 0.0</Border>
+                <Fill>1.0 0.945947 0.372139</Fill>
+            </Appearance>
+            <String>Test image identification</String>
+            <ConnectedNoteIDs>0, 13-14, 16-17</ConnectedNoteIDs>
+            <PointsToNoteIDs>13-14, 16-17</PointsToNoteIDs>
+        </Note>
+        <Note ID="13" FontSize="12.0" Position="32.0,482.0" Width="207.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>0.589264 0.791944 0.380854</Fill>
+            </Appearance>
+            <String>Image + counterimage systems (ok)</String>
+            <ConnectedNoteIDs>12</ConnectedNoteIDs>
+        </Note>
+        <Note ID="14" FontSize="12.0" Position="260.0,485.0" Width="185.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>0.589264 0.791944 0.380854</Fill>
+            </Appearance>
+            <String>Arc + counterimage systems (ok)</String>
+            <ConnectedNoteIDs>12</ConnectedNoteIDs>
+        </Note>
+        <Note ID="16" FontSize="12.0" Position="473.0,480.0" Width="162.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>1.0 0.945947 0.372139</Fill>
+            </Appearance>
+            <String>Image + counterarc systems (some problems)</String>
+            <ConnectedNoteIDs>12, 18</ConnectedNoteIDs>
+            <PointsToNoteIDs>18</PointsToNoteIDs>
+        </Note>
+        <Note ID="17" FontSize="12.0" Position="677.0,482.0" Width="100.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1">0.0 0.0 0.0</Border>
+                <Fill>1.0 0.945947 0.372139</Fill>
+            </Appearance>
+            <String>Ringlike systems (some problems)</String>
+            <ConnectedNoteIDs>12, 18</ConnectedNoteIDs>
+            <PointsToNoteIDs>18</PointsToNoteIDs>
+        </Note>
+        <Note ID="18" FontSize="16.0" Position="539.0,607.0" Width="177.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Cloud">0.0 0.0 0.0</Border>
+                <Fill>0.898467 0.753081 0.980571</Fill>
+            </Appearance>
+            <String>Need improved tutorials</String>
+            <ConnectedNoteIDs>16-17</ConnectedNoteIDs>
+        </Note>
+        <Note ID="19" FontSize="16.0" Position="1041.0,463.0" Width="237.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Cloud">0.0 0.0 0.0</Border>
+                <Fill>0.898467 0.753081 0.980571</Fill>
+            </Appearance>
+            <String>Need to quantify shape recovery</String>
+            <ConnectedNoteIDs>21</ConnectedNoteIDs>
+        </Note>
+        <Note ID="21" FontSize="16.0" Position="1003.0,358.0" Width="146.0" Shadow="Yes">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1" Style="Square">0.0 0.0 0.0</Border>
+                <Fill>0.903924 0.24079 0.158033</Fill>
+            </Appearance>
+            <String>Shape recovery (visual check only)</String>
+            <ConnectedNoteIDs>0, 19</ConnectedNoteIDs>
+            <PointsToNoteIDs>19</PointsToNoteIDs>
+        </Note>
+    </Notes>
+    <BackgroundShapes></BackgroundShapes>
+    <AutoFit>1-2, 7, 12, 14, 18-19</AutoFit>
+    <NoteStyles>
+        <Style Name="Blue Bubble" ID="B937B526-1E4A-4165-B801-1DCC905B5E7F" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.48192 0.56859 0.746105</BorderColor>
+            <FillColor>0.84276 0.869545 0.920025</FillColor>
+        </Style>
+        <Style Name="Brown Bubble" ID="053B80D7-AC68-4601-A794-3B5D921284CA" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.276263 0.163061 0.183011</BorderColor>
+            <FillColor>0.936478 0.888415 0.791505</FillColor>
+        </Style>
+        <Style Name="Green Bubble" ID="3579E239-0B6E-49DB-A983-95CDF07B7AD3" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.379419 0.585156 0.377674</BorderColor>
+            <FillColor>0.803071 0.87311 0.807427</FillColor>
+        </Style>
+        <Style Name="Pink Bubble" ID="BB4686CA-91A9-4E64-9917-4D30D844ED85" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.709029 0.404223 0.536972</BorderColor>
+            <FillColor>0.904708 0.81671 0.8607</FillColor>
+        </Style>
+        <Style Name="Red Text" ID="0301C46F-645F-4E9C-B7A4-6B174AF74F33" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectFade="No">
+            <TextColor>1.0 0.0 0.0</TextColor>
+        </Style>
+        <Style Name="Title Text" ID="C7CE3A41-B0FC-44DE-9C4A-9AFA60380DC1" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectFade="No">
+            <FontSize>28.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+        <Style Name="Yellow Bubble" ID="AD8ADFE8-5CB8-468B-9569-8D87DF21CF72" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectFade="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.76666 0.763368 0.422516</BorderColor>
+            <FillColor>0.911922 0.894883 0.662948</FillColor>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>0.999105 0.98361 0.936551</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+        <DefaultTextColor>0.0 0.0 0.0</DefaultTextColor>
+    </UISettings>
+    <PrintSettings PaperSize="595.0,842.0" LeftMargin="72.0" RightMargin="72.0" TopMargin="90.0" BottomMargin="90.0" PaperType="iso-a4" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>

@@ -96,8 +96,10 @@ write_to_tex_folder = True
 #ext = 'png'
 ext = 'pdf'
 
+figsize=(10,10)
+
 # realtive to plots dir
-outdir = 'figs_new'
+outdir = 'figs_new2'
 
 simdir = 'sim'
 moddir = 'mod'
@@ -126,7 +128,7 @@ sys.path.append(os.path.join(pardir, 'systems'))
 import gen_kappa_encl_plots as spg
 import many
 
-debug = False
+debug = True
 
 
 
@@ -579,7 +581,7 @@ def get_sim_adv_data(asw):
 def draw_sim(asw, sim):
   
     path = os.path.join(simdir, asw)
-#    try:
+#    try: 
 #      path = os.path.join(simdir, asw)
 #      #os.makedirs(path)
 #    except OSError as e:
@@ -589,6 +591,10 @@ def draw_sim(asw, sim):
     filenames = ['arriv', 'kappa', 'm_encl']
     
     print '> drawing sim %s'%asw,    
+    
+    path = os.path.join(simdir, asw)
+    if not os.path.isdir(path):
+      os.makedirs(path)  
     
     #prevent submodules prints..
     old_stdout = sys.stdout
@@ -610,18 +616,30 @@ def draw_sim(asw, sim):
     kappa,arriv = many.grids(asw,x,y)
 
 
-    fig = pl.figure()
+    #
+    # KAPPA - MASS MAP
+    #
+    fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
-    lev = np.linspace(0,10,41)
-    pc = panel.contour(x,y,kappa,lev)
-    panel.clabel(pc, inline=1, fontsize=10)
+    
+    #lev = np.linspace(0,10,41)
+    #pc = panel.contour(x,y,kappa,lev, colors=0.8)
+    
+    pc = panel.contour(x+.25,y+.25,np.log(kappa),colors=0.9)
+    
+    #panel.clabel(pc, inline=1, fontsize=10)
+    panel.pcolormesh(x,y,np.sqrt(kappa), edgecolors="None", cmap='bone', shading="flat")
+    
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
 
-
-    fig = pl.figure()
+    
+    #
+    # KAPPA ENCLOSED
+    #
+    fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     rad = np.linspace(0,R,20)[1:]
     radq = rad*rad
@@ -651,16 +669,29 @@ def draw_sim(asw, sim):
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
     
     
-    fig = pl.figure()
+    #
+    # ARRIVAL TIME CONTOUR PLOT
+    #
+    fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
     lo,hi = np.amin(arriv), np.amax(arriv)
-    lev = np.linspace(lo,lo+.2*(hi-lo),100)
-    panel.contour(x,y,arriv,lev)
+    lev = np.linspace(lo,lo+.2*(hi-lo),20)
+    
+    mpl.rcParams['contour.negative_linestyle'] = 'solid'
+    panel.contour(x,y,arriv,lev, colors='m')
+    
+    # hide axis
+    panel.axes.get_xaxis().set_ticks([])
+    panel.axes.get_yaxis().set_ticks([])
+    
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
 
+    
+    
+    
     #restore stdout
     sys.stdout = old_stdout
     sys.stderr = old_stderr
@@ -729,7 +760,7 @@ def draw_mod(mid, elem, data, sims):
     
     
   pl.ioff()
-  pl.figure()
+  pl.figure(figsize=figsize)
   #panel = fig.add_subplot(1,1,1)
   
   x  = elem['x']
@@ -855,7 +886,8 @@ def plotAllRE():
   '''plots the final big scatter plot with all rE'''
   print '> drawing EinsteinR plots',
 
-  plots = [True, True, True, True]
+  #plots = [True, True, True, True, True]
+  plots = [0, 0, 0, 0, True]
   #plots = [0, 0, 0, True]
   
   import gen_table as tab
@@ -912,7 +944,7 @@ def plotAllRE():
   ac = np.array(ac, dtype=bool)
   
   if plots[0]:
-    pl.figure()
+    pl.figure(figsize=figsize)
     #paint accepted
     pl.errorbar(xi[ac], re[ac], [ep[ac], em[ac]], marker='s', mfc='blue', ls='' ,ecolor='blue')
     #paint rejected
@@ -928,7 +960,7 @@ def plotAllRE():
     #pl.show()
   
   if plots[1]:  
-    pl.figure()
+    pl.figure(figsize=figsize)
     pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
     pl.plot(xi, xi*0+1, '-r')
     
@@ -937,7 +969,7 @@ def plotAllRE():
     #pl.show()
   
   if plots[2]:
-    pl.figure()
+    pl.figure(figsize=figsize)
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       try:
@@ -965,7 +997,7 @@ def plotAllRE():
     #pl.show()
     
   if plots[3]:
-    pl.figure()
+    pl.figure(figsize=figsize)
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       try:
@@ -995,6 +1027,55 @@ def plotAllRE():
     pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
 
     pl.savefig(os.path.join(path, 'eR_4.'+ext))
+    print '.',
+    #pl.show()
+
+  if plots[4]:
+    fig = pl.figure()
+    ax = fig.add_subplot(1,1,1)
+    for i, dat in enumerate(spg.data):
+      simn = dat['name']    
+      try:
+        lu[simn]
+      except KeyError:
+        continue
+      if dat['user']=='psaha':
+        style = 'rs'
+      elif not tab.all_mods[str(dat['id'])]['acc']:
+        style = 'g+'
+      else:
+        style = 'bx'
+      #xofs = 0.15 if dat['user']=='psaha' else -0.15
+      #ax.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
+      ax.plot(sims[simn], dat['rE_mean'], style)
+      
+    lbls = [key for key, val in spg.sims.items()]
+    for i, item in enumerate(spg.sims.items()):
+      key, val = item
+    
+    ax.plot([1, 100], [1,100], '--m')
+    ax.plot([1, 100], [1.25,125], '--m')
+    
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    
+    from matplotlib.ticker import LogFormatter, ScalarFormatter
+    
+    #ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    ax.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+    ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    
+    #pl.xticks(range(i+1), lbls, rotation=90)
+    #pl.yticks(np.linspace(0,2,(2/0.25)+1))
+    #pl.grid(axis='y')
+    #pl.gcf().subplots_adjust(bottom=0.25)
+    pl.xlim([4, 25])
+    pl.ylim([1, 40])
+    pl.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
+    pl.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')
+
+    
+    pl.savefig(os.path.join(path, 'eR_5.'+ext))
     print '.',
     #pl.show()
     

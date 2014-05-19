@@ -626,10 +626,26 @@ def draw_sim(asw, sim):
     #lev = np.linspace(0,10,41)
     #pc = panel.contour(x,y,kappa,lev, colors=0.8)
     
-    pc = panel.contour(x+.25,y+.25,np.log(kappa),colors=0.9)
+    pc = panel.contour(x+.25,y+.25,np.sqrt(kappa),colors=0.9) #correctiong pixel offset of pcolormesh
     
     #panel.clabel(pc, inline=1, fontsize=10)
     panel.pcolormesh(x,y,np.sqrt(kappa), edgecolors="None", cmap='bone', shading="flat")
+    
+    panel.tick_params(
+        axis='both',       # changes apply to the x- and y-axis
+        which='both',      # both major and minor ticks are affected
+        bottom='off',      # ticks along the bottom edge are off
+        top='off',         # ticks along the top edge are off
+        left='off',        # ticks along the bottom edge are off
+        right='off',       # ticks along the top edge are off
+        labelbottom='off',
+        labeltop='off',
+        labelleft='off',
+        labelright='off',
+        )
+        
+    panel.set_xlim([-R,R])
+    panel.set_ylim([-R,R])
     
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
@@ -1029,7 +1045,9 @@ def plotAllRE():
     pl.savefig(os.path.join(path, 'eR_4.'+ext))
     print '.',
     #pl.show()
-
+  
+  mod_err = getModelError()
+  
   if plots[4]:
     fig = pl.figure()
     ax = fig.add_subplot(1,1,1)
@@ -1039,12 +1057,16 @@ def plotAllRE():
         lu[simn]
       except KeyError:
         continue
+      style = 'bo'
       if dat['user']=='psaha':
         style = 'rs'
       elif not tab.all_mods[str(dat['id'])]['acc']:
         style = 'g+'
+    
+      elif mod_err[dat['id']]['anyerr']:
+        style = 'cD'
       else:
-        style = 'bx'
+        style = 'bo'
       #xofs = 0.15 if dat['user']=='psaha' else -0.15
       #ax.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
       ax.plot(sims[simn], dat['rE_mean'], style)
@@ -1064,6 +1086,8 @@ def plotAllRE():
     #ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
     ax.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
     ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    ax.yaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+    ax.yaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
     
     #pl.xticks(range(i+1), lbls, rotation=90)
     #pl.yticks(np.linspace(0,2,(2/0.25)+1))
@@ -1082,6 +1106,34 @@ def plotAllRE():
   print ' ... DONE'
 
 
+def getModelError():
+    #print 'getting error data'
+    import csv
+    
+    err_path = os.path.abspath(os.path.join(pardir, 'spaghetti/data/mod_chal/overview.csv'))
+    #err_data = np.loadtxt(err_path, delimiter = ',')
+    #print 'errpath:', err_path
+    err_data = {}
+    with open(err_path, 'r') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=',')
+        for row in csvreader:
+            try:
+                #print row[1], row[20], 
+                modnr=int(row[1])
+                err5 = (str(row[20]) == 'x')
+                err6 = (str(row[21]) == 'x')
+                err_data[modnr] = {
+                    'anyerr': err5 or err6,
+                    'err5'  : err5,
+                    'err6'  : err6,
+                }
+                #print modnr, err5, err6, err5 or err6
+            except StandardError as e:
+                #print e
+                pass
+    return err_data
+    
+  
 #if __name__ == "__main__":
 #  run()
   

@@ -75,7 +75,9 @@ write_to_tex_folder = False
 #image extension (png or pdf)
 exts = ['png', 'pdf']
 
-figsize=(10,10) 
+figsize   = (10,10) 
+figsizeER = (10,8)
+figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
 outdir = 'figs_new2'
@@ -100,6 +102,7 @@ sel_mod = [
     6975,
     6990,
     7020,
+    7021,
     7022,
     7024,
     7025,
@@ -656,7 +659,7 @@ def get_mod_adv_data(mid):
     im = Image.open(os.path.join(path, iname))
     w,h = im.size
     b = (w-h)/2
-    im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas2[j]))
+    im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas[j]))
     print '  -',saveas2[j]
   
 
@@ -926,8 +929,8 @@ def draw_mod(mid, elem, data, sims):
     
     
   pl.ioff()
-  pl.figure(figsize=figsize)
-  #panel = fig.add_subplot(1,1,1)
+  fig = pl.figure(figsize=figsizeKE)
+  ax = fig.add_subplot(1,1,1)
   
   x  = elem['x']
   #y  = elem['y']
@@ -1026,6 +1029,7 @@ def draw_mod(mid, elem, data, sims):
     fontsize=14,
     transform = ax.transAxes)
 
+  #ax.set_yscale('log')
   
   if show:
     #print 'show'
@@ -1110,7 +1114,7 @@ def plotAllRE():
   ac = np.array(ac, dtype=bool)
   
   if ERplots[0]:
-    pl.figure(figsize=figsize)
+    pl.figure(figsize=figsizeER)
     #paint accepted
     pl.errorbar(xi[ac], re[ac], [ep[ac], em[ac]], marker='s', mfc='blue', ls='' ,ecolor='blue')
     #paint rejected
@@ -1127,7 +1131,7 @@ def plotAllRE():
     #pl.show()
   
   if ERplots[1]:  
-    pl.figure(figsize=figsize)
+    pl.figure(figsize=figsizeER)
     pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
     pl.plot(xi, xi*0+1, '-r')
     
@@ -1137,7 +1141,7 @@ def plotAllRE():
     #pl.show()
   
   if ERplots[2]:
-    pl.figure(figsize=figsize)
+    pl.figure(figsize=figsizeER)
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       try:
@@ -1166,7 +1170,7 @@ def plotAllRE():
     #pl.show()
     
   if ERplots[3]:
-    pl.figure(figsize=figsize)
+    pl.figure(figsize=figsizeER)
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       try:
@@ -1203,7 +1207,7 @@ def plotAllRE():
   mod_err = getModelError()
   
   if ERplots[4]:
-    fig = pl.figure()
+    fig = pl.figure(figsize=figsizeER)
     ax = fig.add_subplot(1,1,1)
     
     draw_later = []

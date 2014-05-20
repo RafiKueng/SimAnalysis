@@ -67,9 +67,9 @@ from numpy import pi
 import matplotlib as mpl
 
 
-debug = True
+debug = False
 # set to false to do a dry run in /plots/[outdir]
-write_to_tex_folder = not debug
+write_to_tex_folder = False
 
 
 #image extension (png or pdf)
@@ -93,16 +93,16 @@ sel_sim = [
 
 #select models to produce pots for (using sel_mod_plots())
 sel_mod = [
-    '006915',
-    '006919',
-    '006937',
-    '006941',
-    '006975',
-    '006990',
-    '007020',
-    '007022',
-    '007024',
-    '007025',
+    6915,
+    6919,
+    6937,
+    6941,
+    6975,
+    6990,
+    7020,
+    7022,
+    7024,
+    7025,
 ]
 
 #enable ER plots to produce
@@ -137,13 +137,15 @@ mpl.rc('font', family='serif')
 # END SETTINGS
 #############################################################
 
-
-
+pardir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+sys.path.append(os.path.join(pardir, 'spaghetti'))
+sys.path.append(os.path.join(pardir, 'systems'))
 
 import matplotlib.pylab as pl
 import gen_kappa_encl_plots as spg
 import many
 # import after, to be sure mpl.rc changes are valid
+
 
 # subdirs, this should be fixed..
 simdir = 'sim'
@@ -158,7 +160,6 @@ simdir = os.path.abspath(os.path.join(outdir, simdir))
 moddir = os.path.abspath(os.path.join(outdir, moddir))
 resdir = os.path.abspath(os.path.join(outdir, resdir))
 
-pardir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
 if write_to_tex_folder:
   resdir = os.path.abspath(os.path.join(pardir, texdir))
@@ -168,8 +169,6 @@ if write_to_tex_folder:
   
 
   
-sys.path.append(os.path.join(pardir, 'spaghetti'))
-sys.path.append(os.path.join(pardir, 'systems'))
 
 
 
@@ -183,6 +182,11 @@ def test():
     break
 
 
+def plot_sel():
+# only plot selected plots, no tex output
+  sel_sim_plots()
+  sel_mod_plots()
+  plotAllRE()
 
 def run():
   all_sim_plots()
@@ -212,9 +216,13 @@ def all_sim_plots():
 def sel_sim_plots():
   print '\nSIMS'
   print '============================================='  
+  iii=0
   for asw in many.sim:
     if not asw in sel_sim:
         continue
+    else:
+        iii=iii+1
+        print iii,'/',len(sel_sim)
     path = os.path.join(simdir, asw)
     if not os.path.isdir(path):
       os.makedirs(path)    
@@ -249,12 +257,17 @@ def all_mod_plots():
 def sel_mod_plots():
   print '\nMODS'
   print '============================================='  
+  iii=0
   for idd, elem in enumerate(spg.data):
     
     mid = elem['id']
     
     if not mid in sel_mod:
+      print mid
       continue
+    else:
+        iii=iii+1
+        print iii,'/',len(sel_mod)
 
     path = os.path.join(moddir, '%06i'%mid)
     if not os.path.isdir(path):
@@ -605,14 +618,15 @@ def get_mod_adv_data(mid):
   ext = 'png' # server only serves png files...
   
   imgs = ['img1', 'img2', 'img3']
-  saveas = ['spaghetti', 'mass', 'arr_time']
+  saveas_ = ['spaghetti', 'mass', 'arr_time']
 
   #append eextension
   imgs = [_+'.%s'%ext for _ in imgs]
-  saveas = [_+'.%s'%ext for _ in saveas]
-
-  path = os.path.join(moddir, '%06i'%mid)
+  saveas = ['%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
+  saveas2 = ['%06i_%s_cut.%s'%(mid, _, ext) for _ in saveas_]
   
+  #path = os.path.join(moddir, '%06i'%mid)
+  path = os.path.join(moddir)
 
   for k, img in enumerate(imgs):
     r = rq.get(baseurl+img, stream=True)
@@ -626,7 +640,7 @@ def get_mod_adv_data(mid):
   # get input image
   r = rq.get('http://mite.physik.uzh.ch/result/%06i/input.png'%mid, stream=True)
   if r.status_code == 200:
-    with open(os.path.join(path, 'input.png'), 'wb') as f:
+    with open(os.path.join(path, '%06i_%s.%s'%(mid, 'input', ext)), 'wb') as f:
       for chunk in r.iter_content(1024):
         f.write(chunk)
   else:
@@ -635,6 +649,16 @@ def get_mod_adv_data(mid):
   print '...DONE.'
   for f in saveas: print '  - %s'%f
   print '  - input.png'
+  
+  # cut images
+  from PIL import Image
+  for j, iname in enumerate(saveas):
+    im = Image.open(os.path.join(path, iname))
+    w,h = im.size
+    b = (w-h)/2
+    im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas2[j]))
+    print '  -',saveas2[j]
+  
 
 
 def get_sim_adv_data(asw):
@@ -719,6 +743,7 @@ def draw_sim(asw, sim):
     # KAPPA - MASS MAP
     #
     print '::: plot mass map'
+    mpl.rcParams['contour.negative_linestyle'] = 'solid'
     fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
@@ -744,7 +769,7 @@ def draw_sim(asw, sim):
     
     n_contours=15
     
-    pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors=0.9) 
+    pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
     
     #panel.clabel(pc, inline=1, fontsize=10)
     panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")

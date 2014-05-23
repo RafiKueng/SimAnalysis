@@ -1,6 +1,8 @@
-from numpy import sqrt
-from numpy import zeros, amax, amin
 import numpy as np
+from matplotlib import cm
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.axes3d import get_test_data
+
 
 def Mask(c):
     
@@ -49,7 +51,7 @@ def Laplace(m):
         kd = (average + konstant)*mas
         k.append(kd)
     
-        if  amax(k[h] - k[h-1]) <= z and amin(k[h] - k[h-1]) >= -1*z:
+        if  np.amax(k[h] - k[h-1]) <= z and np.amin(k[h] - k[h-1]) >= -1*z:
             r = 0                
         else:
             r = z + 1
@@ -93,40 +95,56 @@ def Maskb(c):
                 
     return a    
     
-    
-ma = zeros((100,100), float)
 
-ma[45: 52, 45: 52] = 30
-ma[45: 50, 30: 70] = 10
+spag = 2
+
+ma = np.zeros((100,100), float)
+levs = [1620]
+dt = 55
+if spag==1:
+    ma[45: 52, 45: 52] = 25
+    levs = [1211]
+if spag==2:
+    ma[45: 50, 30: 70] = 10
+
+
         
 h = Phermat(ma)
-# h = Maskb(h)  # remove corners
+
+side = h[0,50]
+for i in range(len(h)):
+    for j in range(len(h)):
+        dh = h[i,j] - side
+        if dh > 0:
+            h[i,j] = side
+        
 
 
-
-import numpy as np
-from matplotlib import cm
-from mpl_toolkits.mplot3d.axes3d import get_test_data
-import matplotlib.pyplot as plt
-
-# Twice as wide as it is tall.
 fig = plt.figure()
-
-#---- First subplot
 ax = fig.add_subplot(1, 1, 1, projection='3d')  # 3D
-#ax.set_zlim(1500,3000)##################
 ax.axis('off')
 
-X = np.arange(0, 100, 1)
-Y = np.arange(0, 100, 1)
+X = np.arange(100)
+Y = np.arange(100)
 X, Y = np.meshgrid(X, Y)
 
-plt.axis('equal')
+ax.axis('equal')
 
-surf = plt.contour(X, Y, h, 75,rstride=1, cstride=1, cmap=cm.gist_rainbow)
-     #   linewidth=0.1, antialiased=False)
+lo = np.amin(h)
+hi = np.amax(h)
 
-#---- Second subplot
+while True:
+    v = levs[0]-dt
+    if v < lo:
+        break
+    levs = [v] + levs
+while True:
+    v = levs[-1]+dt
+    if v+2*dt > hi:
+        break
+    levs = levs + [v]
+
+surf = plt.contour(X, Y, h, levs, cmap=cm.gist_rainbow)
 
 plt.show()
 

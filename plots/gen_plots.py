@@ -60,12 +60,59 @@ import os
 import shutil
 
 import requests as rq
+import csv
 
 import numpy as np
+from numpy import pi
 import matplotlib as mpl
 
-mpl.rc('text', usetex=True)
-mpl.rc('font', family='serif')
+
+debug = False
+# set to false to do a dry run in /plots/[outdir]
+write_to_tex_folder = False
+
+
+#image extension (png or pdf)
+exts = ['png', 'pdf']
+
+figsize   = (10,10) 
+figsizeER = (10,8)
+figsizeKE = (10,8)
+
+# realtive to plots dir, incase of debug
+outdir = 'figs_new2'
+
+#select sims to produce plots for (using sel_sim_plots())
+sel_sim = [
+    'ASW000102p',
+    'ASW000195x',
+    'ASW0000vqg',
+    'ASW0004oux',
+    'ASW0001hpf',
+    'ASW0000h2m',
+    'ASW0002z6f',
+]
+
+#select models to produce pots for (using sel_mod_plots())
+sel_mod = [
+    6915,
+    6919,
+    6937,
+    6941,
+    6975,
+    6990,
+    7020,
+    7021,
+    7022,
+    7024,
+    7025,
+]
+
+#enable ER plots to produce
+ERplots = [True, True, True, True, True]
+if debug: ERplots = [0, True, 0, 0, True]
+
+
 
 params = {
 # see http://matplotlib.org/users/customizing.html
@@ -86,47 +133,45 @@ params = {
   }
 mpl.rcParams.update(params)
 
-import matplotlib.pylab as pl
+mpl.rc('text', usetex=True)
+mpl.rc('font', family='serif')
 
-from numpy import pi
-
-# set to false to do a dry run in /plots/res
-write_to_tex_folder = True
-#image extension (png or pdf)
-#ext = 'png'
-ext = 'pdf'
-
-# realtive to plots dir
-outdir = 'figs_new'
-
-simdir = 'sim'
-moddir = 'mod'
-
-resdir = 'res'
-# relative to root of git repro
-texdir = 'text/fig/sims'
-
-
+#############################################################
+# END SETTINGS
+#############################################################
 
 pardir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+sys.path.append(os.path.join(pardir, 'spaghetti'))
+sys.path.append(os.path.join(pardir, 'systems'))
+
+import matplotlib.pylab as pl
+import gen_kappa_encl_plots as spg
+import many
+# import after, to be sure mpl.rc changes are valid
+
+
+# subdirs, this should be fixed..
+simdir = 'sim'
+moddir = 'mod'
+resdir = 'res'
+texdir = 'text/fig/_new' # relative to root of git repro, using _new prefix, so i still have to copy paste the files
+
+
 
 outdir = os.path.abspath(os.path.join(os.path.dirname(__file__), outdir))
 simdir = os.path.abspath(os.path.join(outdir, simdir))
 moddir = os.path.abspath(os.path.join(outdir, moddir))
+resdir = os.path.abspath(os.path.join(outdir, resdir))
+
 
 if write_to_tex_folder:
   resdir = os.path.abspath(os.path.join(pardir, texdir))
-else:
-  resdir = os.path.abspath(os.path.join(outdir, resdir))
+  simdir = resdir
+  moddir = resdir
+  outdir = resdir
+  
 
-
-sys.path.append(os.path.join(pardir, 'spaghetti'))
-sys.path.append(os.path.join(pardir, 'systems'))
-
-import gen_kappa_encl_plots as spg
-import many
-
-debug = False
+  
 
 
 
@@ -140,6 +185,11 @@ def test():
     break
 
 
+def plot_sel():
+# only plot selected plots, no tex output
+  sel_sim_plots()
+  sel_mod_plots()
+  plotAllRE()
 
 def run():
   all_sim_plots()
@@ -162,7 +212,28 @@ def all_sim_plots():
     get_sim_adv_data(asw)
     draw_sim(asw, many.sim)
     if debug: break
-  
+
+#==============================================================================
+#   generate only selected sim plots
+#==============================================================================
+def sel_sim_plots():
+  print '\nSIMS'
+  print '============================================='  
+  iii=0
+  for asw in many.sim:
+    if not asw in sel_sim:
+        continue
+    else:
+        iii=iii+1
+        print iii,'/',len(sel_sim)
+    path = os.path.join(simdir, asw)
+    if not os.path.isdir(path):
+      os.makedirs(path)    
+    
+    get_sim_adv_data(asw)
+    draw_sim(asw, many.sim)
+    #if debug: break    
+
 #==============================================================================
 #   # generate models plots
 #==============================================================================
@@ -181,7 +252,34 @@ def all_mod_plots():
     draw_mod(mid, elem, spg.data, spg.sims)
 
     if debug: break
-  
+
+    
+#==============================================================================
+#   # generate only used models plots
+#==============================================================================
+def sel_mod_plots():
+  print '\nMODS'
+  print '============================================='  
+  iii=0
+  for idd, elem in enumerate(spg.data):
+    
+    mid = elem['id']
+    
+    if not mid in sel_mod:
+      print mid
+      continue
+    else:
+        iii=iii+1
+        print iii,'/',len(sel_mod)
+
+    path = os.path.join(moddir, '%06i'%mid)
+    if not os.path.isdir(path):
+      os.makedirs(path)    
+
+    get_mod_adv_data(mid) #download plots generated on server with glass
+    draw_mod(mid, elem, spg.data, spg.sims)
+
+    #if debug: break
   
   
 #==============================================================================
@@ -411,7 +509,7 @@ def create_alt_tex(mid, asw):
   print '...DONE.'
   print '  - %04i_alt.tex'%mid
 
-import csv
+
 def create_csv():
   '''creates an overview in csv format over results and models'''
 
@@ -445,7 +543,12 @@ def copy_model_files(mid):
   imgpath = os.path.join(moddir, '%06i'%mid)
 
   imgs = os.listdir(imgpath)
-  imgs = [_ for _ in imgs if _.endswith('.%s'%ext)]
+  filt_imgs = []
+  for i, ext in enumerate(exts):
+    filt_imgs[i] = [_ for _ in imgs if _.endswith('.%s'%ext)]
+  imgs = []
+  for fis in filt_imgs:
+    imgs.extend(fis)
   #imgs = ['']
   
   for img in imgs:
@@ -474,16 +577,20 @@ def copy_sim_files(asw):
     print ' ... FAILED'
     print '!! sim not found:', asw, imgpath
     return False
+
+  copied=[]
   for f in files:
-    if f.endswith('.%s'%ext):
-      try:
-        shutil.copy2(os.path.join(imgpath,f), figpath)
-      except:
-        print '!! file not found:', os.path.join(imgpath,f)
-      print '.',
+    for ext in exts:
+      if f.endswith('.%s'%ext):
+        try:
+          shutil.copy2(os.path.join(imgpath,f), figpath)
+          copied.append(f)
+        except:
+          print '!! file not found:', os.path.join(imgpath,f)
+        print '.',
 
   print ' ...DONE.'
-  for f in files: print '  - %s'%f
+  for f in copied: print '  - %s'%f
   return True
     
 
@@ -511,15 +618,18 @@ def get_mod_adv_data(mid):
   
   baseurl = 'http://mite.physik.uzh.ch/script_output/gen_plots_for_paper/%06i/' %mid
   
+  ext = 'png' # server only serves png files...
+  
   imgs = ['img1', 'img2', 'img3']
-  saveas = ['spaghetti', 'mass', 'arr_time']
+  saveas_ = ['spaghetti', 'mass', 'arr_time']
 
   #append eextension
   imgs = [_+'.%s'%ext for _ in imgs]
-  saveas = [_+'.%s'%ext for _ in saveas]
-
-  path = os.path.join(moddir, '%06i'%mid)
+  saveas = ['%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
+  saveas2 = ['%06i_%s_cut.%s'%(mid, _, ext) for _ in saveas_]
   
+  #path = os.path.join(moddir, '%06i'%mid)
+  path = os.path.join(moddir)
 
   for k, img in enumerate(imgs):
     r = rq.get(baseurl+img, stream=True)
@@ -533,7 +643,7 @@ def get_mod_adv_data(mid):
   # get input image
   r = rq.get('http://mite.physik.uzh.ch/result/%06i/input.png'%mid, stream=True)
   if r.status_code == 200:
-    with open(os.path.join(path, 'input.png'), 'wb') as f:
+    with open(os.path.join(path, '%06i_%s.%s'%(mid, 'input', ext)), 'wb') as f:
       for chunk in r.iter_content(1024):
         f.write(chunk)
   else:
@@ -542,6 +652,16 @@ def get_mod_adv_data(mid):
   print '...DONE.'
   for f in saveas: print '  - %s'%f
   print '  - input.png'
+  
+  # cut images
+  from PIL import Image
+  for j, iname in enumerate(saveas):
+    im = Image.open(os.path.join(path, iname))
+    w,h = im.size
+    b = (w-h)/2
+    im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas[j]))
+    print '  -',saveas2[j]
+  
 
 
 def get_sim_adv_data(asw):
@@ -570,6 +690,7 @@ def get_sim_adv_data(asw):
       print '!! file on spacewarps not found'        
     
   else:
+    print '!!! ERROR WHILE FETCHING DATA'
     pass
 
   print '...DONE.'
@@ -579,7 +700,7 @@ def get_sim_adv_data(asw):
 def draw_sim(asw, sim):
   
     path = os.path.join(simdir, asw)
-#    try:
+#    try: 
 #      path = os.path.join(simdir, asw)
 #      #os.makedirs(path)
 #    except OSError as e:
@@ -590,15 +711,26 @@ def draw_sim(asw, sim):
     
     print '> drawing sim %s'%asw,    
     
+    path = os.path.join(simdir, asw)
+    if not os.path.isdir(path):
+      os.makedirs(path)  
+    
     #prevent submodules prints..
-    old_stdout = sys.stdout
-    old_stderr = sys.stderr
-    devnull = open(os.devnull, 'w')
-    sys.stdout = devnull
-    #sys.stderr = devnull
+    if not debug:
+        old_stdout = sys.stdout
+        old_stderr = sys.stderr
+        devnull = open(os.devnull, 'w')
+        sys.stdout = devnull
+        #sys.stderr = devnull
       
     print asw
-    N,R = 100,50
+    
+    if debug:
+        N,R = 20,50   #used to be 100
+        print "!! using lowres grid since debug is on"
+    else:
+        N,R = 50,50   #used to be 100
+    
     if sim[asw][0] == 'quasar':
         flag,R = 'Q',20
     if sim[asw][0] == 'galaxy':
@@ -610,18 +742,69 @@ def draw_sim(asw, sim):
     kappa,arriv = many.grids(asw,x,y)
 
 
-    fig = pl.figure()
+    #
+    # KAPPA - MASS MAP
+    #
+    print '::: plot mass map'
+    mpl.rcParams['contour.negative_linestyle'] = 'solid'
+    fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
-    lev = np.linspace(0,10,41)
-    pc = panel.contour(x,y,kappa,lev)
-    panel.clabel(pc, inline=1, fontsize=10)
+    
+    #lev = np.linspace(0,10,41)
+    #pc = panel.contour(x,y,kappa,lev, colors=0.8)
+
+    eps = 0.1 #small offset to prevent div/0 in log()
+    
+    # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
+    # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
+    d=2.*R/(N-1)
+    x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
+    y_cm=1.*x_cm
+    
+    # cut border of 0 pixels, delete rrr rows on each side
+    rr=2
+    kappa_cut = kappa[rr:-rr,rr:-rr]
+    x_cut=x[rr:-rr] #original x,y will be used later
+    y_cut=y[rr:-rr] 
+    x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
+    y_cm=y_cm[rr:-rr]
+    
+    n_contours=15
+    
+    pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+    
+    #panel.clabel(pc, inline=1, fontsize=10)
+    panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
+    
+    panel.tick_params(
+        axis='both',       # changes apply to the x- and y-axis
+        which='both',      # both major and minor ticks are affected
+        bottom='off',      # ticks along the bottom edge are off
+        top='off',         # ticks along the top edge are off
+        left='off',        # ticks along the bottom edge are off
+        right='off',       # ticks along the top edge are off
+        labelbottom='off',
+        labeltop='off',
+        labelleft='off',
+        labelright='off'
+        )
+        
+    #panel.set_xlim([-R,R])
+    #panel.set_ylim([-R,R])
+    
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
-    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
-    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
+    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
+    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
+    for ext in exts:
+      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],ext)))
+    print '::: \\ done'
 
-
-    fig = pl.figure()
+    
+    #
+    # KAPPA ENCLOSED
+    #
+    fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     rad = np.linspace(0,R,20)[1:]
     radq = rad*rad
@@ -647,26 +830,45 @@ def draw_sim(asw, sim):
     panel.set_xlabel('radius [pixels]')
     panel.set_ylabel('average interior \textkappa [1]')
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
-    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
-    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
+    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
+    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
+    for ext in exts:
+      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],ext)))
     
-    
-    fig = pl.figure()
-    panel = fig.add_subplot(1,1,1)
+
+    #
+    # ARRIVAL TIME CONTOUR PLOT
+    #
+    fig = pl.figure(figsize=figsize, )
+    #ax = fig.add_subplot(1, 1, 1, projection='3d', axisbg=bgcol)  # 3D
+
+    panel = fig.add_subplot(1,1,1, axisbg='0.25')
     panel.set_aspect('equal')
     lo,hi = np.amin(arriv), np.amax(arriv)
-    lev = np.linspace(lo,lo+.2*(hi-lo),100)
-    panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=5)
+    lev = np.linspace(lo,lo+.2*(hi-lo),30)
+    
+    mpl.rcParams['contour.negative_linestyle'] = 'solid'
+    panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+    
+    # hide axis
+    panel.axes.get_xaxis().set_ticks([])
+    panel.axes.get_yaxis().set_ticks([])
+    
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
-    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
-    pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
+    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
+    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
+    for ext in exts:
+      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],ext)))
 
-    #restore stdout
-    sys.stdout = old_stdout
-    sys.stderr = old_stderr
+    
+    
+    if not debug:
+        #restore stdout
+        sys.stdout = old_stdout
+        sys.stderr = old_stderr
     
     print '...DONE.'
-    for f in filenames: print '  - %s'%(f+'.'+ext)
+    for f in filenames: print '  - %s'%(f+'.'+repr(exts))
 
 
 def draw_mod(mid, elem, data, sims):
@@ -729,8 +931,8 @@ def draw_mod(mid, elem, data, sims):
     
     
   pl.ioff()
-  pl.figure()
-  #panel = fig.add_subplot(1,1,1)
+  fig = pl.figure(figsize=figsizeKE)
+  ax = fig.add_subplot(1,1,1)
   
   x  = elem['x']
   #y  = elem['y']
@@ -829,6 +1031,7 @@ def draw_mod(mid, elem, data, sims):
     fontsize=14,
     transform = ax.transAxes)
 
+  #ax.set_yscale('log')
   
   if show:
     #print 'show'
@@ -839,30 +1042,31 @@ def draw_mod(mid, elem, data, sims):
     
     # new style direct image names \figs_new\mod\001234_kappa_encl.ext
     # save as png and pdf anyways
-    imgname1 = ('_kappa_encl.%s'%'png')
-    imgname2 = ('_kappa_encl.%s'%'pdf')
-    imgname = ('_kappa_encl.%s'%'pdf')
-    pl.savefig(os.path.join(save_fig_path + imgname1))
-    pl.savefig(os.path.join(save_fig_path + imgname2))
+    imgname = ('_kappa_encl.%s'%repr(exts)) #only for debug message print on screen
+
+    for ext in exts:
+      imgname1 = ('_kappa_encl.%s'%ext)
+      pl.savefig(os.path.join(save_fig_path + imgname1))
     pass
   
   
   print ' ... DONE.'
   print '  - %s' % imgname
 
+  
+  
 tmp={}
 def plotAllRE():
   '''plots the final big scatter plot with all rE'''
   print '> drawing EinsteinR plots',
 
-  plots = [True, True, True, True]
-  #plots = [0, 0, 0, True]
-  
   import gen_table as tab
 
   tab.read()  
   
   path = resdir
+  if not os.path.isdir(path):
+    os.makedirs(path)    
 
   spg.genREData() # genreate the data
 
@@ -911,8 +1115,8 @@ def plotAllRE():
 
   ac = np.array(ac, dtype=bool)
   
-  if plots[0]:
-    pl.figure()
+  if ERplots[0]:
+    pl.figure(figsize=figsizeER)
     #paint accepted
     pl.errorbar(xi[ac], re[ac], [ep[ac], em[ac]], marker='s', mfc='blue', ls='' ,ecolor='blue')
     #paint rejected
@@ -923,21 +1127,23 @@ def plotAllRE():
     pl.xlabel('model id')
     pl.ylabel(r'Einstrin radius $\Theta_\text{E}$ [pixel]')
     
-    pl.savefig(os.path.join(path, 'eR_1.'+ext))
+    for ext in exts:
+      pl.savefig(os.path.join(path, 'eR_1.'+ext))
     print '.',
     #pl.show()
   
-  if plots[1]:  
-    pl.figure()
+  if ERplots[1]:  
+    pl.figure(figsize=figsizeER)
     pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
     pl.plot(xi, xi*0+1, '-r')
     
-    pl.savefig(os.path.join(path, 'eR_2.'+ext))
+    for ext in exts:
+      pl.savefig(os.path.join(path, 'eR_2.'+ext))
     print '.',
     #pl.show()
   
-  if plots[2]:
-    pl.figure()
+  if ERplots[2]:
+    pl.figure(figsize=figsizeER)
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       try:
@@ -960,12 +1166,13 @@ def plotAllRE():
     pl.xlim([-.5, i+0.5])
     pl.ylabel(r'Einstein Radius $\Theta_{\text{E}}$')
 
-    pl.savefig(os.path.join(path, 'eR_3.'+ext))
+    for ext in exts:
+      pl.savefig(os.path.join(path, 'eR_3.'+ext))
     print '.',
     #pl.show()
     
-  if plots[3]:
-    pl.figure()
+  if ERplots[3]:
+    pl.figure(figsize=figsizeER)
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       try:
@@ -994,13 +1201,118 @@ def plotAllRE():
     pl.xlabel('Simulation id')
     pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
 
-    pl.savefig(os.path.join(path, 'eR_4.'+ext))
+    for ext in exts:
+      pl.savefig(os.path.join(path, 'eR_4.'+ext))
+    print '.',
+    #pl.show()
+  
+  mod_err = getModelError()
+  
+  if ERplots[4]:
+    fig = pl.figure(figsize=figsizeER)
+    ax = fig.add_subplot(1,1,1)
+    
+    draw_later = []
+    draw_later2 = []
+    
+    for i, dat in enumerate(spg.data):
+      simn = dat['name']    
+      skip = False
+      try:
+        lu[simn]
+      except KeyError:
+        continue
+      style = 'wo'
+      if dat['user']=='psaha':
+        style = 'bo'
+        #skip=True
+        draw_later.append([sims[simn], dat['rE_mean']])
+      elif not tab.all_mods[str(dat['id'])]['acc']:
+        style = 'g+'
+    
+      elif mod_err[dat['id']]['anyerr']:
+        style = 'bx'
+        draw_later2.append([sims[simn], dat['rE_mean']])
+      else:
+        style = 'wo'
+      #xofs = 0.15 if dat['user']=='psaha' else -0.15
+      #ax.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
+      ax.plot(sims[simn], dat['rE_mean'], style, markersize=4)
+    
+    ddd = 0.5
+    for d in draw_later:
+      #pass
+      ax.plot(d[0], d[1], 'co', markersize=4)
+      #ax.arrow(d[0]+ddd, d[1]-ddd, -ddd, ddd, fc="k", ec="k", head_width=0.3, head_length=0.2, length_includes_head=True, zorder=1000)
+
+    for d in draw_later2:
+      ax.plot(d[0], d[1], 'bx', markersize=4)
+    
+      
+    lbls = [key for key, val in spg.sims.items()]
+    for i, item in enumerate(spg.sims.items()):
+      key, val = item
+    
+    ax.plot([1, 100], [1,100], 'm:')
+    #ax.plot([1, 100], [2,200], 'm')
+    
+    ax.set_xscale('log')
+    ax.set_yscale('log')
+    
+    from matplotlib.ticker import LogFormatter, ScalarFormatter
+    
+    #ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    ax.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+    ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    ax.yaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+    ax.yaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    
+    #pl.xticks(range(i+1), lbls, rotation=90)
+    #pl.yticks(np.linspace(0,2,(2/0.25)+1))
+    #pl.grid(axis='y')
+    #pl.gcf().subplots_adjust(bottom=0.25)
+    pl.xlim([4, 25])
+    pl.ylim([1, 40])
+    pl.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
+    pl.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')
+
+    
+    for ext in exts:
+      pl.savefig(os.path.join(path, 'eR_5.'+ext))
     print '.',
     #pl.show()
     
   print ' ... DONE'
 
 
+def getModelError():
+    #print 'getting error data'
+    import csv
+    
+    err_path = os.path.abspath(os.path.join(pardir, 'spaghetti/data/mod_chal/overview.csv'))
+    #err_data = np.loadtxt(err_path, delimiter = ',')
+    #print 'errpath:', err_path
+    err_data = {}
+    with open(err_path, 'r') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=',')
+        for row in csvreader:
+            try:
+                #print row[1], row[20], 
+                modnr=int(row[1])
+                err5 = (str(row[20]) == 'x')
+                err6 = (str(row[21]) == 'x')
+                err_data[modnr] = {
+                    'anyerr': err5 or err6,
+                    'err5'  : err5,
+                    'err6'  : err6,
+                }
+                #print modnr, err5, err6, err5 or err6
+            except StandardError as e:
+                #print e
+                pass
+    return err_data
+    
+  
 #if __name__ == "__main__":
 #  run()
   

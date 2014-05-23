@@ -96,7 +96,7 @@ def Maskb(c):
     return a    
     
 
-spag = 2
+spag = 1
 
 ma = np.zeros((100,100), float)
 levs = [1620]
@@ -119,7 +119,7 @@ for i in range(len(h)):
             h[i,j] = side
         
 
-bgcol = '0.25'
+bgcol = '0.5'
 
 fig = plt.figure(facecolor=bgcol)
 ax = fig.add_subplot(1, 1, 1, projection='3d', axisbg=bgcol)  # 3D
@@ -145,7 +145,7 @@ while True:
         break
     levs = levs + [v]
 
-surf = plt.contour(X, Y, h, levs, cmap=cm.gist_rainbow, linewidths=5)
+surf = plt.contour(X, Y, h, levs, cmap=cm.gist_rainbow)
 
 plt.show()
 

@@ -656,7 +656,7 @@ def draw_sim(asw, sim):
     panel.set_aspect('equal')
     lo,hi = np.amin(arriv), np.amax(arriv)
     lev = np.linspace(lo,lo+.2*(hi-lo),100)
-    panel.contour(x,y,arriv,lev)
+    panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=5)
     #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
     pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))

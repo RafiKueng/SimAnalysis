@@ -96,7 +96,7 @@ def Maskb(c):
     return a    
     
 
-spag = 2
+spag = 1
 
 ma = np.zeros((100,100), float)
 levs = [1620]

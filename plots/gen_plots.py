@@ -839,14 +839,16 @@ def draw_sim(asw, sim):
     #
     # ARRIVAL TIME CONTOUR PLOT
     #
+
     fig = pl.figure(figsize=figsize)
-    panel = fig.add_subplot(1,1,1)
+    panel = fig.add_subplot(1,1,1, axisbg='0.25')
     panel.set_aspect('equal')
     lo,hi = np.amin(arriv), np.amax(arriv)
-    lev = np.linspace(lo,lo+.2*(hi-lo),20)
+    lev = np.linspace(lo,lo+.2*(hi-lo),30)
     
     mpl.rcParams['contour.negative_linestyle'] = 'solid'
-    panel.contour(x,y,arriv,lev, colors='m')
+    panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+
     
     # hide axis
     panel.axes.get_xaxis().set_ticks([])

@@ -58,6 +58,10 @@
 %degrees
 \newcommand{\dgr}{^{\circ}}
 
+%more abbrevs
+\newcommand{\tgeom}{t_{\rm geom}}
+\newcommand{\tgrav}{t_{\rm grav}}
+
 
 % todo annotations on side in red. easy to search for at the end
 % !!! REMOVE THIS LINES FOR FINAL COMPILE
@@ -274,6 +278,15 @@ principle.  The key to this approach is an abstract construct called
 the {\em arrival-time surface.}  This surface cannot itself be
 observed, but several observable quantities can be derived from it.
 
+\begin{equation} \label{eq:tgeom}
+\tgeom(x,y) \propto x^2 + y^2 \,.
+\end{equation}
+
+\begin{equation} \label{eq:tgrav}
+\tgrav = \langle \tgrav^{\textstyle\circ} \rangle
+         + (1+z_L) \frac{2G}{c^3} M_{\textstyle\bullet}
+\end{equation}
+
 Consider a gravitational lens.  As in most astrophysical lensing, this
 lens is `thin' along the line of sight, and effectively lies on a
 plane.  Let $x,y$ be coordinates on this plane.  These coordinates
@@ -301,9 +314,12 @@ The rest of the arrival-time surface is just an imaginary surface.
 
 \begin{figure}
 \centering
-\includegraphics[width=1.1\linewidth]{fig/arriv1}
-\includegraphics[width=1.1\linewidth]{fig/arriv2}
-\includegraphics[width=1.1\linewidth]{fig/arriv3}
+%\includegraphics[height=.3\vsize]{fig/arriv_0}
+%\includegraphics[height=.3\vsize]{fig/arriv_1}
+%\includegraphics[height=.3\vsize]{fig/arriv_2}
+\includegraphics[width=\columnwidth]{fig/arriv_0}
+\includegraphics[width=\columnwidth]{fig/arriv_1}
+\includegraphics[width=\columnwidth]{fig/arriv_2}
 \caption{Arrival-time surfaces, with contour levels of equal arrival
   time.  The upper surface is with no lens.  The middle surface is
   when a circular lensing mass (offset from the source) is added; a
@@ -319,7 +335,7 @@ warping of space by a gravitational field introduces a further time
 delay $A_{\rm grav}$.  The arrival time of the light ray, compared to
 what it would have been with no lensing, is
 \begin{equation} \label{eq:Aarriv}
-\hbox{arrival time} = A_{\rm geom} + A_{\rm grav} \,.
+\hbox{arrival time} = t_{\rm geom} + t_{\rm grav} \,.
 \end{equation}
 We can also express $A_{\rm grav}$ as an area, with the same implicit
 constant factor that makes it a time.  The expression, however, is
@@ -1044,6 +1060,55 @@ Swiss Academy of Sciences.
 \appendix
 
 \section{More on Lensing Theory} \label{sec:more-theory}
+
+Recall \cite{1986ApJ...310..568B} and specifically their
+equations (2.1) to (2.6).  We can rewrite those as
+
+
+
+\begin{equation}
+\begin{aligned}
+t_{\rm geom} &= \frac{(1+z_L)}{2c} \frac{d_S}{d_L d_{LS}}
+\left[ (x-s_x)^2 + (y-s_y)^2 \right] \\
+\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
+\end{aligned}
+\end{equation}
+
+
+\begin{equation}
+\kappa(x,y) = \frac{4\pi G}{c^2} \frac{d_L d_{LS}}{d_S}
+               \times \Sigma(x,y)
+\end{equation}
+
+Locations on the lens plane in angular coordinates on the sky, are
+expressed as
+\begin{equation}
+(x,y) = d_L (\theta_x,\theta_y)
+\end{equation}
+where
+\begin{equation}
+d_{LS} = \frac{c}{H_0}\,\frac1{1+z_S} \,
+\int_{z_L}^{z_S} \!\! \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
+%\raise.5ex\hbox{.}
+\end{equation}
+and similarly $d_S$ and $d_{LS}$.
+\begin{equation}
+d_S \neq d_L + d_{LS}
+\end{equation}
+
+Letting the source be offset at $(s_x,s_y)$ rather than at the
+origin, we have
+
+\begin{equation}
+\begin{aligned}
+\tgrav(x,y) &=
+\frac14 \Big[ \tgrav(x+\Delta,y) + \tgrav(x-\Delta,y) + {}\\
+&\kern24pt    \tgrav(x,y+\Delta) + \tgrav(x,y-\Delta) \Big] \\
+&+ (1+z_L)\frac{2G}{c^3} \, \pi\Delta^2 \, \Sigma(x,y)
+\end{aligned}
+\end{equation}
+
+
 
 In \secref{Fermat}, for the sake of a more intuitive
 explanation, we suppressed some constant factors in

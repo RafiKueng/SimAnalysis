@@ -173,6 +173,34 @@ if write_to_tex_folder:
 
   
 
+#manual scaling factors
+
+scales = {}
+scales['ASW000102p'] = {}
+scales['ASW000102p'][6941] = {
+#    Map radius           = 0.1851 [arcsec] Distance to center of outer pixel.
+#    Map Extent           = 0.1929 [arcsec] Distance to outer edge of outer pixel.
+#    top_level_cell_size  = 0.0154 [arcsec]
+#    Map radius           = 1.1168 [kpc]    H0inv=13.7
+#    Map Extent           = 1.1633 [kpc]    H0inv=13.7
+    'map_r'           : {'arcsec':0.1851, 'kpc': 1.1168},
+    'map_e'           : {'arcsec':0.1929, 'kpc': 1.1633},
+}
+  
+scales['ASW000195x'] = {}
+scales['ASW000195x'][6975] = {
+    # Pixel radius         = 12
+    # Map radius           = 0.4118 [arcsec] Distance to center of outer pixel.
+    # Map Extent           = 0.4290 [arcsec] Distance to outer edge of outer pixel.
+    # top_level_cell_size  = 0.0343 [arcsec]
+    # Map radius           = 2.1836 [kpc]    H0inv=13.7
+    # Map Extent           = 2.2746 [kpc]    H0inv=13.7
+    # top_level_cell       = 0.1820 [kpc]    H0inv=13.7
+    'map_r'           : {'arcsec':0.4118, 'kpc': 2.1836},
+    'map_e'           : {'arcsec':0.4290, 'kpc': 2.2746},
+}
+  
+  
 
 
 def test():

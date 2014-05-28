@@ -4,6 +4,18 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.axes3d import get_test_data
 
 
+
+exts = ['png', 'pdf']
+fname = 'arriv_'
+savepath = ''
+savepath = '../text/fig/'
+figs = [0,0,0]
+elevs = [  70,  73,  75]
+azims = [-134,-147,-141]
+bgcol = '0.25'
+fccol = 'white'
+
+
 def Mask(c):
     
     a = 0*c
@@ -95,57 +107,62 @@ def Maskb(c):
                 
     return a    
     
+for ii in range(3):
 
-spag = 0
+    spag = ii
 
-ma = np.zeros((100,100), float)
-levs = [1620]
-dt = 55
-if spag==1:
-    ma[45: 52, 45: 52] = 25
-    levs = [1211]
-if spag==2:
-    ma[45: 50, 30: 70] = 10
+    ma = np.zeros((100,100), float)
+    levs = [1620]
+    dt = 55
+    if spag==1:
+        ma[45: 52, 45: 52] = 25
+        levs = [1211]
+    if spag==2:
+        ma[45: 50, 30: 70] = 10
 
 
-        
-h = Phermat(ma)
+            
+    h = Phermat(ma)
 
-side = h[0,50]
-for i in range(len(h)):
-    for j in range(len(h)):
-        dh = h[i,j] - side
-        if dh > 0:
-            h[i,j] = side
-        
+    side = h[0,50]
+    for i in range(len(h)):
+        for j in range(len(h)):
+            dh = h[i,j] - side
+            if dh > 0:
+                h[i,j] = side
+     
+    fig = plt.figure(facecolor=fccol)
+    figs[ii]=fig
+    ax = fig.add_subplot(1, 1, 1, projection='3d', axisbg=bgcol)  # 3D
+    ax.axis('off')
 
-bgcol = '0.5'
+    X = np.arange(100)
+    Y = np.arange(100)
+    X, Y = np.meshgrid(X, Y)
 
-fig = plt.figure(facecolor=bgcol)
-ax = fig.add_subplot(1, 1, 1, projection='3d', axisbg=bgcol)  # 3D
-ax.axis('off')
+    ax.axis('equal')
 
-X = np.arange(100)
-Y = np.arange(100)
-X, Y = np.meshgrid(X, Y)
+    lo = np.amin(h)
+    hi = np.amax(h)
 
-ax.axis('equal')
+    while True:
+        v = levs[0]-dt
+        if v < lo:
+            break
+        levs = [v] + levs
+    while True:
+        v = levs[-1]+dt
+        if v+2*dt > hi:
+            break
+        levs = levs + [v]
 
-lo = np.amin(h)
-hi = np.amax(h)
+    surf = plt.contour(X, Y, h, levs, cmap=cm.gist_rainbow, linewidths=4)
 
-while True:
-    v = levs[0]-dt
-    if v < lo:
-        break
-    levs = [v] + levs
-while True:
-    v = levs[-1]+dt
-    if v+2*dt > hi:
-        break
-    levs = levs + [v]
+    
+    ax.azim = azims[ii]
+    ax.elev = elevs[ii]
+    plt.tight_layout()
 
-surf = plt.contour(X, Y, h, levs, cmap=cm.gist_rainbow)
-
-plt.show()
-
+    #plt.show()
+    for ext in exts:
+        plt.savefig(savepath+fname+'%i.'%ii+ext, facecolor=fccol)

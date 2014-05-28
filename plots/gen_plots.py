@@ -67,7 +67,7 @@ from numpy import pi
 import matplotlib as mpl
 
 
-debug = False
+debug = True
 # set to false to do a dry run in /plots/[outdir]
 write_to_tex_folder = False
 
@@ -174,6 +174,12 @@ if write_to_tex_folder:
   
 
 #manual scaling factors
+
+do_scale = True #should i do the scaling?
+
+distance_factor = 0.428           # 
+div_scale_factors = 440./500*100  # 
+spacewarps_pixsize = 0.185
 
 scales = {}
 scales['ASW000102p'] = {}
@@ -753,8 +759,10 @@ def draw_sim(asw, sim):
       
     print asw
     
+    
     if debug:
-        N,R = 20,50   #used to be 100
+        N = 50
+        #,R = 20,50   #used to be 100
         print "!! using lowres grid since debug is on"
     else:
         N,R = 200,50   #used to be 100
@@ -765,6 +773,13 @@ def draw_sim(asw, sim):
         flag,R = 'G',20
     if sim[asw][0] == 'cluster':
         flag,R = 'C',50
+
+    map_ext=scales['ASW000195x'][6975]['map_e']['arcsec']
+    R = map_ext * div_scale_factors
+
+    print map_ext
+    print R
+
     x = np.linspace(-R,R,N)
     y = 1*x
     kappa,arriv = many.grids(asw,x,y)
@@ -774,7 +789,7 @@ def draw_sim(asw, sim):
     # KAPPA - MASS MAP
     #
     print '::: plot mass map'
-    mpl.rcParams['contour.negative_linestyle'] = 'solid'
+    mpl.rcParams['contour.negative_linestyle'] = 'dashed'
     fig = pl.figure(figsize=figsize)
     panel = fig.add_subplot(1,1,1)
     panel.set_aspect('equal')
@@ -802,7 +817,7 @@ def draw_sim(asw, sim):
     
     pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
     
-    #panel.clabel(pc, inline=1, fontsize=10)
+    panel.clabel(pc, inline=1, fontsize=10)
     panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
     
     panel.tick_params(

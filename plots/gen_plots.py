@@ -67,13 +67,20 @@ from numpy import pi
 import matplotlib as mpl
 
 
-debug = True
+debug = False
+
 # set to false to do a dry run in /plots/[outdir]
 write_to_tex_folder = False
 
+#timeintensive dl of online data. only neeeds to be done once
+fetch_onlinedata = False
+
+# do which plots of sims?
+simplots = {'arriv': True, 'kappa':False, 'kappaenc':False}
 
 #image extension (png or pdf)
-exts = ['png', 'pdf']
+#exts = ['png', 'pdf']
+exts = ['png']
 
 figsize   = (10,10) 
 figsizeER = (10,8)
@@ -210,268 +217,63 @@ scales['ASW000195x'][6975] = {
 # copy paste output from systems/many2.py and manualy select appropriate
 levels = {
 
-    'ASW0003ctp':[
-        #-133.355884, # 0, canc
-        #-133.530815, # 1, canc
-        #-133.656518, # 2, canc
-        -134.139655, # 3, sad
-        #-135.319034, # 4, canc
-        #-136.248083, # 5, canc
-        -119.105579, # 6, sad
-        #-136.671924, # 7, min
-        #-86.289553, # 8, max
-    ],
-
-    'ASW0002b6m':[
-        -20.746521, # 0, sad
-        -5.391439, # 1, sad
-        #-23.708994, # 2, min
-        #0.692739, # 3, max
-    ],
-
     'ASW0001hpf':[
-        #-16.172469, # 0, canc
-        -16.143323, # 1, sad
-        #-16.383107, # 2, canc
-        -14.334284, # 3, sad
-        #-16.588624, # 4, min
-        #-19.760933, # 5, min
-        #-0.701649, # 6, max
+        #-16.142110, # 0, canc
+        -16.141714, # 1, sad
+        #-16.361394, # 2, sad
+        -14.334876, # 3, sad
+        #-16.592044, # 4, min
+        #-19.762615, # 5, min
+        #-0.101102, # 6, max
     ],
 
     'ASW0002z6f':[
-        -162.465616, # 0, sad
-        -172.311363, # 1, sad
-        #-184.196774, # 2, min
-        #-118.222475, # 3, max
-    ],
-
-    'ASW00023pg':[
-        -12.607508, # 0, sad
-        -15.495950, # 1, sad
-        #-15.730405, # 2, min
-        #-19.617966, # 3, min
-        #-15.735959, # 4, canc
-        #-0.635783, # 5, max
+        -162.471264, # 0, sad
+        #-172.294899, # 1, sad
+        #-184.197987, # 2, min
+        #-116.410651, # 3, max
     ],
 
     'ASW0000vqg':[
-        -187.406447, # 0, sad
-        -238.217018, # 1, sad
-        #-276.132054, # 2, min
-        #-223.175595, # 3, max
+        #-190.133668, # 0, sad
+        #345.775218, # 1, sad
+        -238.205802, # 2, sad
+        #-276.154188, # 3, min
+        #-221.944628, # 4, max
     ],
 
     'ASW000102p':[
-        -21.964731, # 0, sad
-        #-60.053395, # 1, min
-        #1.171020, # 2, max
-    ],
-
-    'ASW0000w54':[
-        -6.377834, # 0, sad
-        -22.944835, # 1, sad
-        -22.956189, # 2, sad
-        #-22.962631, # 3, min
-        #-22.962026, # 4, canc
-        #-22.926512, # 5, min
-        #0.591361, # 6, max
-    ],
-
-    'ASW00054e9':[
-        #-20.431863, # 0, canc
-        #-20.505938, # 1, canc
-        -20.542846, # 2, sad
-        -3.433072, # 3, sad
-        #-20.634942, # 4, canc
-        #-20.656487, # 5, min
-        #1.032257, # 6, max
-    ],
-
-    'ASW0000bl0':[
-        -40.138397, # 0, sad
-        #-146.121728, # 1, min
-        #-22.177938, # 2, max
-    ],
-
-    'ASW00013ml':[
-        -156.205157, # 0, sad
-        #-155.990275, # 1, canc
-        #-155.823806, # 2, canc
-        -134.003732, # 3, sad
-        #-173.374973, # 4, min
-        #-96.635370, # 5, max
-    ],
-
-    'ASW0000bsh':[
-        #-303.710653, # 0, canc
-        #-304.484395, # 1, canc
-        -305.074727, # 2, sad
-        -259.748732, # 3, sad
-        #-307.287218, # 4, canc
-        #-307.266703, # 5, min
-        #-212.795605, # 6, max
-    ],
-
-    'ASW0000r8n':[
-        -19.222619, # 0, sad
-        #-19.219978, # 1, canc
-        -14.941855, # 2, sad
-        #-19.223895, # 3, min
-        #-24.519387, # 4, min
-        #-0.603454, # 5, max
-    ],
-
-    'ASW00019rw':[
-        -26.268642, # 0, sad
-        -32.498043, # 1, sad
-        -32.042815, # 2, sad
-        -31.697574, # 3, sad
-        #-32.748896, # 4, min
-        #-33.983748, # 5, min
-        #-0.961236, # 6, max
-    ],
-
-    'ASW0001a2m':[
-        -31.957765, # 0, sad
-        -40.580173, # 1, sad
-        #-39.743983, # 2, canc
-        -39.613876, # 3, sad
-        -39.661113, # 4, sad
-        #-39.582953, # 5, canc
-        #-41.428466, # 6, min
-        #-40.899006, # 7, min
-        #-1.081885, # 8, max
+        -21.963930, # 0, sad
+        #-60.054127, # 1, min
+        #1.977912, # 2, max
     ],
 
     'ASW000195x':[
-        -682.198107, # 0, sad
-        #-812.914480, # 1, min
-        #-645.211358, # 2, max
-    ],
-
-    'ASW0000e28':[
-        0.570978, # 0, sad
-        #-50.823319, # 1, min
-        #5.509261, # 2, max
-    ],
-
-    'ASW0002jo0':[
-        -28.409651, # 0, sad
-        #-28.390311, # 1, canc
-        #-28.376538, # 2, canc
-        #-28.343014, # 3, canc
-        #-28.315551, # 4, canc
-        -28.339029, # 5, sad
-        #-28.406296, # 6, min
-        #-49.629769, # 7, min
-        #-0.346508, # 8, max
-    ],
-
-    'ASW0004nfh':[
-        #-976.319056, # 0, canc
-        #-976.150213, # 1, canc
-        -976.041795, # 2, sad
-        -975.882496, # 3, sad
-        #-975.750842, # 4, canc
-        #-975.296883, # 5, canc
-        #-975.027130, # 6, canc
-        #-974.453092, # 7, canc
-        -939.519512, # 8, sad
-        #-976.602482, # 9, canc
-        #-976.547748, # 10, min
-        #-976.024561, # 11, canc
-        #-976.023143, # 12, canc
-        #-975.998441, # 13, min
-        #-854.862115, # 14, max
-    ],
-
-    'ASW00004k0':[
-        -1.474704, # 0, sad
-        #-43.552200, # 1, min
-        #4.453400, # 2, max
+        -682.197488, # 0, sad
+        #-812.917806, # 1, min
+        #-643.822578, # 2, max
     ],
 
     'ASW0004oux':[
-        -174.986688, # 0, sad
-        -159.094016, # 1, sad
-        #-177.866342, # 2, min
-        #-178.542658, # 3, min
-        #-127.207771, # 4, max
-    ],
-
-    'ASW0001sym':[
-        -203.854589, # 0, sad
-        -208.126695, # 1, sad
-        #-237.967413, # 2, min
-        #-187.086839, # 3, max
-    ],
-
-    'ASW0001a8c':[
-        -16.592980, # 0, sad
-        -14.961521, # 1, sad
-        #-17.717360, # 2, min
-        #-23.391763, # 3, min
-        #-0.695546, # 4, max
-    ],
-
-    'ASW00031ve':[
-        #-96.797173, # 0, canc
-        -96.640008, # 1, sad
-        #-95.252762, # 2, canc
-        #-94.696616, # 3, canc
-        #-93.939353, # 4, canc
-        -93.954681, # 5, sad
-        #-96.961365, # 6, canc
-        #-97.021904, # 7, min
-        #-106.279146, # 8, min
-        #-43.333147, # 9, max
-    ],
-
-    'ASW0000ar2':[
-        -9.116375, # 0, sad
-        #-31.626870, # 1, min
-        #0.870901, # 2, max
-    ],
-
-    'ASW0001gve':[
-        -16.580207, # 0, sad
-        -16.807178, # 1, sad
-        -16.135799, # 2, sad
-        -16.618888, # 3, sad
-        #-21.877510, # 4, min
-        #-17.010164, # 5, min
-        #-0.747243, # 6, max
-    ],
-
-    'ASW0000kad':[
-        -83.289522, # 0, sad
-        #-353.998806, # 1, min
-        #-69.923065, # 2, max
-    ],
-
-    'ASW0001d74':[
-        #-113.140889, # 0, canc
-        -113.086966, # 1, sad
-        -115.581900, # 2, sad
-        -87.604892, # 3, sad
-        #-114.002798, # 4, min
-        #-114.075329, # 5, canc
-        #-118.341716, # 6, min
-        #-37.757102, # 7, max
+        -174.988464, # 0, sad
+        -159.098235, # 1, sad
+        #-177.867092, # 2, min
+        #-178.550062, # 3, min
+        #-125.416518, # 4, max
     ],
 
     'ASW0000h2m':[
-        -44.049916, # 0, sad
-        #-44.056225, # 1, canc
-        #-44.091276, # 2, canc
-        -46.236860, # 3, sad
-        -44.450746, # 4, sad
-        -39.369401, # 5, sad
-        #-44.815726, # 6, canc
-        #-44.838179, # 7, min
-        #-48.080166, # 8, min
-        #-1.229844, # 9, max
+        #-44.048133, # 0, sad
+        #-44.044997, # 1, canc
+        -44.044446, # 2, canc
+        #-44.046207, # 3, canc
+        #-44.049515, # 4, canc
+        #-44.452050, # 5, sad
+        #-48.079721, # 6, sad
+        -39.369070, # 7, sad
+        #-44.839509, # 8, min
+        #-48.080767, # 9, min
+        #-0.206511, # 10, max
     ],
 
 
@@ -970,6 +772,10 @@ def get_mod_adv_data(mid):
 def get_sim_adv_data(asw):
   """gets some online data"""
   print '> getting sims data online', 
+  
+  if not fetch_onlinedata:
+    print "SKIPPING (check fetch_onlinedata)"
+    return
 
   path = os.path.join(simdir, asw)
 
@@ -1057,125 +863,128 @@ def draw_sim(asw, sim):
     #
     # KAPPA - MASS MAP
     #
-    print '::: plot mass map'
-    mpl.rcParams['contour.negative_linestyle'] = 'dashed'
-    fig = pl.figure(figsize=figsize)
-    panel = fig.add_subplot(1,1,1)
-    panel.set_aspect('equal')
-    
-    #lev = np.linspace(0,10,41)
-    #pc = panel.contour(x,y,kappa,lev, colors=0.8)
-
-    eps = 0.1 #small offset to prevent div/0 in log()
-    
-    # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
-    # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
-    d=2.*R/(N-1)
-    x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
-    y_cm=1.*x_cm
-    
-    # cut border of 0 pixels, delete rrr rows on each side
-    rr=2
-    kappa_cut = kappa[rr:-rr,rr:-rr]
-    x_cut=x[rr:-rr] #original x,y will be used later
-    y_cut=y[rr:-rr] 
-    x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
-    y_cm=y_cm[rr:-rr]
-    
-    n_contours=15
-    
-    pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
-    
-    #panel.clabel(pc, inline=1, fontsize=10)
-    panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
-    
-    panel.tick_params(
-        axis='both',       # changes apply to the x- and y-axis
-        which='both',      # both major and minor ticks are affected
-        bottom='off',      # ticks along the bottom edge are off
-        top='off',         # ticks along the top edge are off
-        left='off',        # ticks along the bottom edge are off
-        right='off',       # ticks along the top edge are off
-        labelbottom='off',
-        labeltop='off',
-        labelleft='off',
-        labelright='off'
-        )
+    if simplots['kappa']:
+        print '::: plot mass map'
+        mpl.rcParams['contour.negative_linestyle'] = 'dashed'
+        fig = pl.figure(figsize=figsize)
+        panel = fig.add_subplot(1,1,1)
+        panel.set_aspect('equal')
         
-    #panel.set_xlim([-R,R])
-    #panel.set_ylim([-R,R])
-    
-    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
-    for ext in exts:
-      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],ext)))
-    print '::: \\ done'
+        #lev = np.linspace(0,10,41)
+        #pc = panel.contour(x,y,kappa,lev, colors=0.8)
+
+        eps = 0.1 #small offset to prevent div/0 in log()
+        
+        # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
+        # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
+        d=2.*R/(N-1)
+        x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
+        y_cm=1.*x_cm
+        
+        # cut border of 0 pixels, delete rrr rows on each side
+        rr=2
+        kappa_cut = kappa[rr:-rr,rr:-rr]
+        x_cut=x[rr:-rr] #original x,y will be used later
+        y_cut=y[rr:-rr] 
+        x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
+        y_cm=y_cm[rr:-rr]
+        
+        n_contours=15
+        
+        pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+        
+        #panel.clabel(pc, inline=1, fontsize=10)
+        panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
+        
+        panel.tick_params(
+            axis='both',       # changes apply to the x- and y-axis
+            which='both',      # both major and minor ticks are affected
+            bottom='off',      # ticks along the bottom edge are off
+            top='off',         # ticks along the top edge are off
+            left='off',        # ticks along the bottom edge are off
+            right='off',       # ticks along the top edge are off
+            labelbottom='off',
+            labeltop='off',
+            labelleft='off',
+            labelright='off'
+            )
+            
+        #panel.set_xlim([-R,R])
+        #panel.set_ylim([-R,R])
+        
+        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
+        for ext in exts:
+          p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
+          pl.savefig(p)
+          print '  - %s'%p
 
     
     #
     # KAPPA ENCLOSED
     #
-    fig = pl.figure(figsize=figsize)
-    panel = fig.add_subplot(1,1,1)
-    rad = np.linspace(0,R,20)[1:]
-    radq = rad*rad
-    sum = 0*rad
-    for i in range(len(x)):
-        for j in range(len(y)):
-            rsq = x[i]**2 + y[j]**2
-            for k in range(len(rad)):
-                if rsq < radq[k]:
-                    sum[k] += kappa[j,i]
-    dx = x[1]-x[0]
-    for k in range(len(rad)):
-        sum[k] *= dx*dx/(pi*radq[k])
-    fil = open(os.path.join(path, asw+'.txt'),'w')
-    for k in range(len(rad)):
-        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-    fil.close()
-    fil = open(os.path.join(simdir, asw+'.txt'),'w')
-    for k in range(len(rad)):
-        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-    fil.close()
-    panel.scatter(rad,sum)
-    panel.set_xlabel('radius [pixels]')
-    panel.set_ylabel('average interior \textkappa [1]')
-    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
-    for ext in exts:
-      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],ext)))
-    
+    if simplots['kappaenc']:
+        fig = pl.figure(figsize=figsize)
+        panel = fig.add_subplot(1,1,1)
+        rad = np.linspace(0,R,20)[1:]
+        radq = rad*rad
+        sum = 0*rad
+        for i in range(len(x)):
+            for j in range(len(y)):
+                rsq = x[i]**2 + y[j]**2
+                for k in range(len(rad)):
+                    if rsq < radq[k]:
+                        sum[k] += kappa[j,i]
+        dx = x[1]-x[0]
+        for k in range(len(rad)):
+            sum[k] *= dx*dx/(pi*radq[k])
+        fil = open(os.path.join(path, asw+'.txt'),'w')
+        for k in range(len(rad)):
+            fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+        fil.close()
+        fil = open(os.path.join(simdir, asw+'.txt'),'w')
+        for k in range(len(rad)):
+            fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+        fil.close()
+        panel.scatter(rad,sum)
+        panel.set_xlabel('radius [pixels]')
+        panel.set_ylabel('average interior \textkappa [1]')
+        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
+        for ext in exts:
+          p = os.path.join(path + '_%s.%s'%(filenames[2],ext))
+          pl.savefig(p)
+          print '  - %s'%p
 
     #
     # ARRIVAL TIME CONTOUR PLOT
     #
+    if simplots['arriv']:
+        fig = pl.figure(figsize=figsize)
+        panel = fig.add_subplot(1,1,1, axisbg='white')
+        panel.set_aspect('equal')
+        lo,hi = np.amin(arriv), np.amax(arriv)
+        lev = np.linspace(lo,lo+.2*(hi-lo),30)
+        
+        mpl.rcParams['contour.negative_linestyle'] = 'solid'
+        #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+        panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
+        panel.contour(x,y,arriv,levels[asw], colors='black', linewidths=4)
 
-    fig = pl.figure(figsize=figsize)
-    panel = fig.add_subplot(1,1,1, axisbg='0.25')
-    panel.set_aspect('equal')
-    lo,hi = np.amin(arriv), np.amax(arriv)
-    lev = np.linspace(lo,lo+.2*(hi-lo),30)
-    
-    mpl.rcParams['contour.negative_linestyle'] = 'solid'
-    #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
-    panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
-    
-    lev = levels[asw]
-    panel.contour(x,y,arriv,lev, colors='black', linewidths=4)
-
-    
-    # hide axis
-    panel.axes.get_xaxis().set_ticks([])
-    panel.axes.get_yaxis().set_ticks([])
-    
-    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
-    for ext in exts:
-      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],ext)))
-
+        
+        # hide axis
+        panel.axes.get_xaxis().set_ticks([])
+        panel.axes.get_yaxis().set_ticks([])
+        
+        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
+        for ext in exts:
+          p = os.path.join(path + '_%s.%s'%(filenames[0],ext))
+          pl.savefig(p)
+          print '  - %s'%p
     
     
     if not debug:
@@ -1184,7 +993,7 @@ def draw_sim(asw, sim):
         sys.stderr = old_stderr
     
     print '...DONE.'
-    for f in filenames: print '  - %s'%(f+'.'+repr(exts))
+    #for f in filenames: print '  - %s'%(f+'.'+repr(exts))
 
 
 def draw_mod(mid, elem, data, sims):

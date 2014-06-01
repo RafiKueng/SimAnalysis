@@ -92,7 +92,7 @@ def grids(asw,x,y):
 
 def draw(asw):
     print "\n    '%s':["%asw
-    N,R = 200,50
+    N,R = 1000,50
     if sim[asw][0] == 'quasar':
         flag,R = 'Q',20
     if sim[asw][0] == 'galaxy':
@@ -424,10 +424,19 @@ def filter_types(ids, types, s1, s2, thres=10):
       
   
         
-  
+sel_sim = [
+    'ASW000102p',
+    'ASW000195x',
+    'ASW0000vqg',
+    'ASW0004oux',
+    'ASW0001hpf',
+    'ASW0000h2m',
+    'ASW0002z6f',
+]
     
 folder = 'figs3/'
 for asw in sim:
+    if asw not in sel_sim: continue
     #print asw
     #if not asw.endswith('0kad'): continue
     draw(asw)

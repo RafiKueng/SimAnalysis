@@ -67,7 +67,7 @@ from numpy import pi
 import matplotlib as mpl
 
 
-debug = True
+debug = False
 # set to false to do a dry run in /plots/[outdir]
 write_to_tex_folder = False
 
@@ -817,7 +817,7 @@ def draw_sim(asw, sim):
     
     pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
     
-    panel.clabel(pc, inline=1, fontsize=10)
+    #panel.clabel(pc, inline=1, fontsize=10)
     panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
     
     panel.tick_params(

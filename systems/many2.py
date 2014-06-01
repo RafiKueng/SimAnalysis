@@ -37,9 +37,9 @@ def shear(xs,x,y):
 def poten_gal(gal,x,y):
     z = zeros((len(y),len(x)))
     re,ell,ell_pa = float(gal[1]), float(gal[2]), float(gal[3])
-    print 'Einstein radius',re
-    print 'ellipticity',ell
-    print 'pos ang',ell_pa
+    #print 'Einstein radius',re
+    #print 'ellipticity',ell
+    #print 'pos ang',ell_pa
     for i in range(len(x)):
         for j in range(len(y)):
             z[j,i] = poten_SIE(x[i],y[j],re,ell,ell_pa)
@@ -51,7 +51,7 @@ def poten_clus(clus,zsrc,x,y):
     rsc = float(clus[0][2])
     zlens = float(clus[1][3])
     fudge = dratio(zlens,zsrc)
-    print 'kaps,rsc',kaps,rsc
+    #print 'kaps,rsc',kaps,rsc
     for i in range(len(x)):
         for j in range(len(y)):
             z[j,i] = fudge * poten_NFW(x[i],y[j],kaps,rsc)
@@ -61,11 +61,11 @@ def poten_clus(clus,zsrc,x,y):
         zlens = float(gal[3])
         fudge = dratio(zlens,zsrc)
         sig = float(gal[4])
-        print 'sigma', sig
+        #print 'sigma', sig
         ell,pa = float(gal[5]),float(gal[6])
         reinst = 4*pi*(sig/3e5)**2 * 206265/.186 * fudge
-        print 'pos',gx,gy
-        print 'reinst,ell,pa',reinst,ell,pa
+        #print 'pos',gx,gy
+        #print 'reinst,ell,pa',reinst,ell,pa
         for i in range(len(x)):
             for j in range(len(y)):
                 z[j,i] += poten_SIE(x[i]-gx,y[j]-gy,reinst,ell,pa)
@@ -91,8 +91,8 @@ def grids(asw,x,y):
     return (kappa,basic-poten)
 
 def draw(asw):
-    print asw
-    N,R = 100,50
+    print "\n    '%s':["%asw
+    N,R = 200,50
     if sim[asw][0] == 'quasar':
         flag,R = 'Q',20
     if sim[asw][0] == 'galaxy':
@@ -102,15 +102,15 @@ def draw(asw):
     x = linspace(-R,R,N)
     y = 1*x
     kappa,arriv = grids(asw,x,y)
-    fig = figure()
-    panel = fig.add_subplot(1,1,1)
-    panel.set_aspect('equal')
+    #fig = figure()
+    #panel = fig.add_subplot(1,1,1)
+    #panel.set_aspect('equal')
     lev = linspace(0,10,41)
-    pc = panel.contour(x,y,kappa,lev)
-    panel.clabel(pc, inline=1, fontsize=10)
-    savefig(folder+asw+flag+'_kappa.png')
-    fig = figure()
-    panel = fig.add_subplot(1,1,1)
+    #pc = panel.contour(x,y,kappa,lev)
+    #panel.clabel(pc, inline=1, fontsize=10)
+    #savefig(folder+asw+flag+'_kappa.png')
+    #fig = figure()
+    #panel = fig.add_subplot(1,1,1)
     rad = linspace(0,R,20)[1:]
     radq = rad*rad
     sum = 0*rad
@@ -123,14 +123,14 @@ def draw(asw):
     dx = x[1]-x[0]
     for k in range(len(rad)):
         sum[k] *= dx*dx/(pi*radq[k])
-    fil = open('figs/'+asw+'.txt','w')
-    for k in range(len(rad)):
-        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-    fil.close()
-    panel.scatter(rad,sum)
-    panel.set_xlabel('radius in pixels')
-    panel.set_ylabel('average interior $\kappa$')
-    savefig(folder+asw+flag+'_menc.png')
+    #fil = open('figs/'+asw+'.txt','w')
+    #for k in range(len(rad)):
+    #    fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+    #fil.close()
+    #panel.scatter(rad,sum)
+    #panel.set_xlabel('radius in pixels')
+    #panel.set_ylabel('average interior $\kappa$')
+    #savefig(folder+asw+flag+'_menc.png')
     
     
     #arriv = upsample(x,y,arriv, upsample=10)
@@ -174,9 +174,11 @@ def draw(asw):
     for i, xx in enumerate(xids):
       yy=yids[i]
       t=types[i]
-      print i, xx, yy, t, typestr[t], s1[i], s2[i]
+      #print i, xx, yy, t, typestr[t], s1[i], s2[i], arriv[xx,yy]
+      print "        %f, # %i, %s" % (arriv[xx,yy], i, typestr[t])
       
       pnttype[xx,yy]=t
+    print "    ],"
     
     #return mask
     if False:
@@ -193,15 +195,16 @@ def draw(asw):
       show()
       #savefig(folder+asw+flag+'_derr.png')
 
-    fig = figure()
-    panel = fig.add_subplot(1,1,1)
-    panel.imshow(np.log(z1),origin='lower',interpolation='nearest', cmap='binary')
-    cmap1 = mpl.colors.LinearSegmentedColormap.from_list('my_cmap',['black','blue','yellow', 'red', 'green', 'magenta'],6)    
-    cmap1._init()
-    cmap1._lut[:,-1] = np.array([0,1,1,1,1,1,1,1,1])
-    panel.imshow(pnttype,origin='lower',interpolation='nearest', cmap=cmap1, vmin=-2, vmax=+3)
-    os.mkdir(os.path.join(folder,asw))
-    savefig(os.path.join(folder,asw,'extr_points.png'))
+    if False:
+        fig = figure()
+        panel = fig.add_subplot(1,1,1)
+        panel.imshow(np.log(z1),origin='lower',interpolation='nearest', cmap='binary')
+        cmap1 = mpl.colors.LinearSegmentedColormap.from_list('my_cmap',['black','blue','yellow', 'red', 'green', 'magenta'],6)    
+        cmap1._init()
+        cmap1._lut[:,-1] = np.array([0,1,1,1,1,1,1,1,1])
+        panel.imshow(pnttype,origin='lower',interpolation='nearest', cmap=cmap1, vmin=-2, vmax=+3)
+        os.mkdir(os.path.join(folder,asw))
+        savefig(os.path.join(folder,asw,'extr_points.png'))
 
 
     '''
@@ -215,16 +218,17 @@ def draw(asw):
     savefig(folder+asw+flag+'_derr.png')
       ''' 
     
-    fig = figure()
-    panel = fig.add_subplot(1,1,1)
-    panel.set_aspect('equal')
-    lo,hi = amin(arriv), amax(arriv)
-    lev = linspace(lo,lo+.2*(hi-lo),100)
-    panel.contour(x,y,arriv,lev)
-    savefig(folder+asw+flag+'_arriv.png')
+    if False:
+        fig = figure()
+        panel = fig.add_subplot(1,1,1)
+        panel.set_aspect('equal')
+        lo,hi = amin(arriv), amax(arriv)
+        lev = linspace(lo,lo+.2*(hi-lo),100)
+        panel.contour(x,y,arriv,lev)
+        savefig(folder+asw+flag+'_arriv.png')
     
     
-    if True:
+    if False:
       fig = figure()
       panel = fig.add_subplot(1,1,1)
       panel.set_aspect('equal')
@@ -422,9 +426,9 @@ def filter_types(ids, types, s1, s2, thres=10):
         
   
     
-folder = 'figs2/'
+folder = 'figs3/'
 for asw in sim:
-    print asw
+    #print asw
     #if not asw.endswith('0kad'): continue
     draw(asw)
     #break

@@ -67,7 +67,7 @@ from numpy import pi
 import matplotlib as mpl
 
 
-debug = False
+debug = True
 # set to false to do a dry run in /plots/[outdir]
 write_to_tex_folder = False
 
@@ -80,7 +80,7 @@ figsizeER = (10,8)
 figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
-outdir = 'figs_new2'
+outdir = 'figs_new3'
 
 #select sims to produce plots for (using sel_sim_plots())
 sel_sim = [
@@ -206,7 +206,11 @@ scales['ASW000195x'][6975] = {
     'map_e'           : {'arcsec':0.4290, 'kpc': 2.2746},
 }
   
+
   
+levels = {
+    'ASW000195x': [-682.16]
+}
 
 
 def test():
@@ -890,7 +894,11 @@ def draw_sim(asw, sim):
     lev = np.linspace(lo,lo+.2*(hi-lo),30)
     
     mpl.rcParams['contour.negative_linestyle'] = 'solid'
-    panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+    #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+    panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
+    
+    lev = levels[asw]
+    panel.contour(x,y,arriv,lev, colors='black', linewidths=4)
 
     
     # hide axis
@@ -1356,7 +1364,8 @@ def getModelError():
     return err_data
     
   
-#if __name__ == "__main__":
-#  run()
+if __name__ == "__main__":
+  #sel_sim_plots()
+  pass
   
   

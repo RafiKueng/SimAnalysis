@@ -175,7 +175,7 @@ def draw(asw):
       yy=yids[i]
       t=types[i]
       #print i, xx, yy, t, typestr[t], s1[i], s2[i], arriv[xx,yy]
-      print "        %f, # %i, %s" % (arriv[xx,yy], i, typestr[t])
+      print "        %s%f, # %i, %s" % ("#" if typestr[t]!="sad" else "", arriv[xx,yy], i, typestr[t])
       
       pnttype[xx,yy]=t
     print "    ],"

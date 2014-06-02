@@ -287,6 +287,15 @@ observed, but several observable quantities can be derived from it.
          + (1+z_L) \frac{2G}{c^3} M_{\textstyle\bullet}
 \end{equation}
 
+\begin{equation} \label{eq:kappa}
+\kappa(x,y) \propto \Sigma(x,y) \,.
+\end{equation}
+
+Incidentally, $\kappa$ has a second meaning, as well as
+being a dimensionless form of the projected density: it also
+measures how a bundle of light rays is brought together by
+gravitational lensing, and is called the {\em convergence}.
+
 Consider a gravitational lens.  As in most astrophysical lensing, this
 lens is `thin' along the line of sight, and effectively lies on a
 plane.  Let $x,y$ be coordinates on this plane.  These coordinates
@@ -357,10 +366,7 @@ Note that $A_{\rm grav}(x,y)$ is not given explicitly in terms of
 $\kappa(x,y)$, but as a differential equation that must be solved.
 Equations of the type \eqref{eq:Poisson} are, however, well known (as
 Poisson's equation in two dimensions), and there are techniques for
-solving them.  Incidentally, $\kappa$ has a second meaning, as well as
-being a dimensionless form of the projected density: it also
-measures how a bundle of light rays is brought together by
-gravitational lensing, and is called the {\em convergence}.
+solving them.  
 
 What is the effect of mass on the arrival-time surface?  If the mass
 distribution $\kappa(x,y)$ is circular, $A_{\rm grav}(x,y)$ will have
@@ -1059,54 +1065,78 @@ Swiss Academy of Sciences.
 
 \appendix
 
-\section{More on Lensing Theory} \label{sec:more-theory}
+\section{Relation to standard lensing formalism} \label{sec:more-theory}
 
-Recall \cite{1986ApJ...310..568B} and specifically their
-equations (2.1) to (2.6).  We can rewrite those as
+The presentation of the arrival-time surface in \secref{Fermat}
+omitted details, for the sake of a more intuitive explanation.
+Specifically, the geometric time delay $t_{\rm geom}$ and the
+convergence $\kappa$ were left as proportionalities (equations
+\ref{eq:tgeom} and \ref{eq:kappa}), and the gravitational time delay
+$t_{\rm grav}$ was given in an implicit form (equation
+\ref{eq:tgrav}).  We now fill in the details.
 
-
-
-\begin{equation}
+The original formulation of the arrival-time surface appears in
+equations (2.1) to (2.6) of \cite{1986ApJ...310..568B}.  Their
+equations can be rearranged as follows.
+\begin{equation} \label{cfBN86}
 \begin{aligned}
 t_{\rm geom} &= \frac{(1+z_L)}{2c} \frac{d_S}{d_L d_{LS}}
 \left[ (x-s_x)^2 + (y-s_y)^2 \right] \\
-\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
+\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y) \\
+\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{d_L d_{LS}}{d_S}
+               \times \Sigma(x,y)
 \end{aligned}
 \end{equation}
-
-
-\begin{equation}
-\kappa(x,y) = \frac{4\pi G}{c^2} \frac{d_L d_{LS}}{d_S}
-               \times \Sigma(x,y)
-\end{equation}
-
-Locations on the lens plane in angular coordinates on the sky, are
-expressed as
-\begin{equation}
-(x,y) = d_L (\theta_x,\theta_y)
-\end{equation}
-where
+We symbols $d_L,d_S$ and $d_{LS}$ are angular-diameter distances,
+respectively from observer to lens, observer to source, and lens to
+source.  In the concordance cosmology, we have
 \begin{equation}
 d_{LS} = \frac{c}{H_0}\,\frac1{1+z_S} \,
 \int_{z_L}^{z_S} \!\! \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
 %\raise.5ex\hbox{.}
 \end{equation}
-and similarly $d_S$ and $d_{LS}$.
+and similarly $d_S$ and $d_{LS}$.  We have replaced angular positions
+on the sky with positions on the lens plane as
 \begin{equation}
-d_S \neq d_L + d_{LS}
+(x,y) = d_L (\theta_x,\theta_y) \,.
 \end{equation}
 
-Letting the source be offset at $(s_x,s_y)$ rather than at the
-origin, we have
+The first line of equation \eqref{cfBN86} is $t_{\rm geom}$ from
+equation \eqref{eq:tgeom} with the proportionality filled in, and with
+the source offset at $(s_x,s_y)$ rather than at the origin.
 
-\begin{equation}
+The last line of equation \eqref{cfBN86} fills in the proportionality
+factor in equation \eqref{eq:kappa} for the convergence (or
+dimensionless surface density) $\kappa$.
+
+The middle line of equation \eqref{cfBN86}, though very different in
+form to the expression \eqref{eq:tgrav} for the gravitational time
+delay, is in fact equivalent.  This can be shown by considering a
+multipole expansions for the solution of the latter equation.  Another
+way to see the equivalence is to write a discrete version of
+\eqref{eq:tgrav}.  Introducing a small distance $\Delta$, we write
+\begin{equation} \label{eq:relax}
 \begin{aligned}
 \tgrav(x,y) &=
 \frac14 \Big[ \tgrav(x+\Delta,y) + \tgrav(x-\Delta,y) + {}\\
 &\kern24pt    \tgrav(x,y+\Delta) + \tgrav(x,y-\Delta) \Big] \\
-&+ (1+z_L)\frac{2G}{c^3} \, \pi\Delta^2 \, \Sigma(x,y)
+&+ (1+z_L)\frac{2G}{c^3} \, \pi\Delta^2 \, \Sigma(x,y) \,.
 \end{aligned}
 \end{equation}
+The circular average $\langle \tgrav^{\textstyle\circ} \rangle$ has
+been replaced by the average over four neighbouring points, and the
+enclosed mass $M_{\textstyle\bullet}$ has been replaced by
+$\pi\Delta^2\,\Sigma(x,y)$.  Now let us read equation \eqref{eq:relax}
+as an iterative formula for $t_{\rm grav}(x,y)$.  It is then
+recognisable as a formula for solving the two-dimensional Poisson
+equation from \eqref{cfBN86} by relaxation.
+
+\newpage
+
+\bibliographystyle{mn2e}
+\bibliography{bib/ms}
+
+\end{document}
 
 
 
@@ -1189,13 +1219,6 @@ Maybe discard \figref{ER_all_models}, since the essential information is there i
   \label{fig:ER_all_models}
 \end{figure}
 
-
-\newpage
-
-\bibliographystyle{mn2e}
-\bibliography{bib/ms}
-
-\end{document}
 
 
 

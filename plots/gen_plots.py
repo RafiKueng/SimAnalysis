@@ -76,7 +76,7 @@ write_to_tex_folder = False
 fetch_onlinedata = False
 
 # do which plots of sims?
-simplots = {'arriv': True, 'kappa':False, 'kappaenc':False}
+simplots = {'arriv': True, 'kappa':True, 'kappaenc':False}
 
 #image extension (png or pdf)
 #exts = ['png', 'pdf']

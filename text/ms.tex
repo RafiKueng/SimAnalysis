@@ -1,3 +1,4 @@
+% \documentclass[usenatbib,onecolumn]{mn2e}
 \documentclass[usenatbib]{mn2e}
 
 \usepackage{amsmath}
@@ -88,11 +89,16 @@
 
 % \\\ END OF REMOVAL SECION
 
+\newlength{\myplotswidth}
+\setlength{\myplotswidth}{0.4\linewidth}
 
 \newcommand{\hr}{\vspace{5mm}\noindent\rule{0.8\textwidth}{0.4pt}\vspace{5mm}}
 
 
 \begin{document}
+
+
+
 
 \title{Lens Modeling in \sw}
 
@@ -180,7 +186,7 @@ model them in more sophisticated ways.
 
 \begin{figure}
 \centering
-\includegraphics[width=.7\hsize]{fig/lenssky}
+\includegraphics[width=0.9\hsize]{fig/lenssky}
 \caption{Sky distribution of 423 published lenses considered secure as
   of January 2014 (from the Masterlens catalog at the University of
   Utah, maintained by Joel Brownstein and Leonidas Moustakas.) The map
@@ -281,6 +287,15 @@ observed, but several observable quantities can be derived from it.
          + (1+z_L) \frac{2G}{c^3} M_{\textstyle\bullet}
 \end{equation}
 
+\begin{equation} \label{eq:kappa}
+\kappa(x,y) \propto \Sigma(x,y) \,.
+\end{equation}
+
+Incidentally, $\kappa$ has a second meaning, as well as
+being a dimensionless form of the projected density: it also
+measures how a bundle of light rays is brought together by
+gravitational lensing, and is called the {\em convergence}.
+
 Consider a gravitational lens.  As in most astrophysical lensing, this
 lens is `thin' along the line of sight, and effectively lies on a
 plane.  Let $x,y$ be coordinates on this plane.  These coordinates
@@ -351,10 +366,7 @@ Note that $A_{\rm grav}(x,y)$ is not given explicitly in terms of
 $\kappa(x,y)$, but as a differential equation that must be solved.
 Equations of the type \eqref{eq:Poisson} are, however, well known (as
 Poisson's equation in two dimensions), and there are techniques for
-solving them.  Incidentally, $\kappa$ has a second meaning, as well as
-being a dimensionless form of the projected density: it also
-measures how a bundle of light rays is brought together by
-gravitational lensing, and is called the {\em convergence}.
+solving them.  
 
 What is the effect of mass on the arrival-time surface?  If the mass
 distribution $\kappa(x,y)$ is circular, $A_{\rm grav}(x,y)$ will have
@@ -408,11 +420,11 @@ program.
 
 \begin{figure}
   \centering
-  \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.9\hsize]
              {fig/006941_input}} \\
-  \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.9\hsize]
              {fig/007022_input}} \\
-  \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.9\hsize]
              {fig/006919_input}}
   \caption{Examples of Spaghetti input.  The models from these appear
     later in Figures \ref{fig:6941}, \ref{fig:7022} and \ref{fig:6919}.
@@ -567,32 +579,53 @@ The modelers proposed a total of 129 models for the 29 sims in the
 challenge.  Figures \ref{fig:6941} to \ref{fig:6919} show eight of
 models in some detail.
 
+% Rafi's original one-coumn design:
+%
+% \begin{figure}
+%   \centering
+%   \subfigure[real mass distribution]{
+%     \label{fig:6941_sim_mass}
+%     \includegraphics[width=0.45\textwidth]{fig/ASW000102p_kappa}
+%   }
+%   \subfigure[real arrival-time surface]{
+%     \label{fig:6941_sim_arr}
+%     \includegraphics[width=0.45\textwidth]{fig/ASW000102p_arriv}
+%   }
+%   \subfigure[model mass distribution]{
+%     \label{fig:6941_mass}
+%     \includegraphics[width=0.45\textwidth]{fig/006941_mass}
+%   }
+%   \subfigure[model arrival-time surface]{
+%     \label{fig:6941_cont}
+%     \includegraphics[width=0.45\textwidth]{fig/006941_spaghetti}
+%   }
+%   \subfigure[real vs model enclosed mass]{
+%     \label{fig:6941_kappa}
+%     \includegraphics[width=0.45\textwidth]{fig/006941_kappa_encl}
+%   }
+%   \subfigure[model lensed image]{
+%     \label{fig:6941_atime}
+%     \includegraphics[width=0.45\textwidth]{fig/006941_arr_time}
+%   }
+%   \caption[result 6941 (ASW000102p)]{Model results for a simple
+%     simulated lens.  (The label ASW000102p in the lower-left panel is
+%     the \sw identifier for the sky patch where this sim was placed.)
+%     The model input is shown in the top panel of
+%     Figure~\ref{fig:input-spag}.  For details of the individual panels
+%     here, see section \ref{sec:example_models}.}
+%   \label{fig:6941}
+% \end{figure}
+
+% Rafik's two row design
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:6941_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW000102p_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:6941_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW000102p_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:6941_mass}
-    \includegraphics[width=0.45\textwidth]{fig/006941_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:6941_cont}
-    \includegraphics[width=0.45\textwidth]{fig/006941_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:6941_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/006941_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:6941_atime}
-    \includegraphics[width=0.45\textwidth]{fig/006941_arr_time}
-  }
+  \includegraphics[width=\myplotswidth]{fig/006941_input}
+  \includegraphics[width=\myplotswidth]{fig/006941_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW000102p_arriv} 
+  \includegraphics[width=\myplotswidth]{fig/006941_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW000102p_kappa}
+  \includegraphics[width=\myplotswidth]{fig/006941_mass}
+
   \caption[result 6941 (ASW000102p)]{Model results for a simple
     simulated lens.  (The label ASW000102p in the lower-left panel is
     the \sw identifier for the sky patch where this sim was placed.)
@@ -601,33 +634,17 @@ models in some detail.
     here, see section \ref{sec:example_models}.}
   \label{fig:6941}
 \end{figure}
-  
+
+
+% Convert all to Phil's scheme:
 \begin{figure}
-  \centering
-  \subfigure[real mass distribution]{
-    \label{fig:6975_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW000195x_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:6975_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW000195x_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:6975_mass}
-    \includegraphics[width=0.45\textwidth]{fig/006975_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:6975_cont}
-    \includegraphics[width=0.45\textwidth]{fig/006975_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:6975_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/006975_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:6975_atime}
-    \includegraphics[width=0.45\textwidth]{fig/006975_arr_time}
-  }
+  \includegraphics[width=\myplotswidth]{fig/006975_input}
+  \includegraphics[width=\myplotswidth]{fig/006975_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW000195x_arriv.png}
+  \includegraphics[width=\myplotswidth]{fig/006975_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW000195x_kappa.png}
+  \includegraphics[width=\myplotswidth]{fig/006975_mass}
+
   \caption[result 6975 (ASW000195x)]{A model for a sim with some mass
     substructure. (See Section \ref{sec:example_models} for details.)}
   \label{fig:6975}
@@ -635,127 +652,77 @@ models in some detail.
   
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:6937_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0000vqg_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:6937_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0000vqg_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:6937_mass}
-    \includegraphics[width=0.45\textwidth]{fig/006937_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:6937_cont}
-    \includegraphics[width=0.45\textwidth]{fig/006937_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:6937_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/006937_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:6937_atime}
-    \includegraphics[width=0.45\textwidth]{fig/006937_arr_time}
-  }
+
+  \includegraphics[width=\myplotswidth]{fig/006937_input}
+  \includegraphics[width=\myplotswidth]{fig/006937_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0000vqg_arriv}
+  \includegraphics[width=\myplotswidth]{fig/006937_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0000vqg_kappa}
+  \includegraphics[width=\myplotswidth]{fig/006937_mass}
+
   \caption[result 6937 (ASW0000vqg)]{A sim with substructure,
     resulting in a poor mass model. (See Section
     \ref{sec:example_models} for details.)}
   \label{fig:6937}
 \end{figure}
 
+
+  %\includegraphics[width=\myplotswidth]{fig/00_input}
+  %\includegraphics[width=\myplotswidth]{fig/00_arr_time} \\
+  %\includegraphics[width=\myplotswidth]{fig/ASW000_arriv}
+  %\includegraphics[width=\myplotswidth]{fig/00_spaghetti} \\
+  %\includegraphics[width=\myplotswidth]{fig/ASW000_kappa}
+  %\includegraphics[width=\myplotswidth]{fig/00_mass}
+
+
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:6990_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0004oux_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:6990_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0004oux_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:6990_mass}
-    \includegraphics[width=0.45\textwidth]{fig/006990_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:6990_cont}
-    \includegraphics[width=0.45\textwidth]{fig/006990_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:6990_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/006990_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:6990_atime}
-    \includegraphics[width=0.45\textwidth]{fig/006990_arr_time}
-  }
+  
+  \includegraphics[width=\myplotswidth]{fig/006990_input}
+  \includegraphics[width=\myplotswidth]{fig/006990_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0004oux_arriv}
+  \includegraphics[width=\myplotswidth]{fig/006990_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0004oux_kappa}
+  \includegraphics[width=\myplotswidth]{fig/006990_mass}
 
   \caption[result 6990 (ASW0004oux)]{Model of a four-image
     system. (See Section \ref{sec:example_models} for details.)}
   \label{fig:6990}
 \end{figure}
 
+
+
+
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:6915_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0001hpf_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:6915_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0001hpf_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:6915_mass}
-    \includegraphics[width=0.45\textwidth]{fig/006915_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:6915_cont}
-    \includegraphics[width=0.45\textwidth]{fig/006915_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:6915_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/006915_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:6915_atime}
-    \includegraphics[width=0.45\textwidth]{fig/006915_arr_time}
-  }
+
+  \includegraphics[width=\myplotswidth]{fig/006915_input}
+  \includegraphics[width=\myplotswidth]{fig/006915_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_arriv}
+  \includegraphics[width=\myplotswidth]{fig/006915_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_kappa}
+  \includegraphics[width=\myplotswidth]{fig/006915_mass}
 
   \caption[result 6915 (ASW0001hpf)]{Model of another four-image
     system. (See Section \ref{sec:example_models} for details.)}
   \label{fig:6915}
 \end{figure}
 
-  
+
+
+
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:7022_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0000h2m_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:7022_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0000h2m_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:7022_mass}
-    \includegraphics[width=0.45\textwidth]{fig/007022_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:7022_cont}
-    \includegraphics[width=0.45\textwidth]{fig/007022_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:7022_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/007022_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:7022_atime}
-    \includegraphics[width=0.45\textwidth]{fig/007022_arr_time}
-  }
+
+
+  \includegraphics[width=\myplotswidth]{fig/007022_input}
+  \includegraphics[width=\myplotswidth]{fig/007022_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_arriv}
+  \includegraphics[width=\myplotswidth]{fig/007022_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_kappa}
+  \includegraphics[width=\myplotswidth]{fig/007022_mass}
+
+
 
   \caption[result 7022 (ASW0000h2m)]{A further four-image system. The
     model input appears in the middle panel of Figure
@@ -763,33 +730,19 @@ models in some detail.
     details.)}
   \label{fig:7022}
 \end{figure}
-  
+
+
+
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:7025_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0000h2m_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:7025_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0000h2m_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:7025_mass}
-    \includegraphics[width=0.45\textwidth]{fig/007025_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:7025_cont}
-    \includegraphics[width=0.45\textwidth]{fig/007025_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:7025_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/007025_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:7025_atime}
-    \includegraphics[width=0.45\textwidth]{fig/007025_arr_time}
-  }
+
+  \includegraphics[width=\myplotswidth]{fig/007025_input}
+  \includegraphics[width=\myplotswidth]{fig/007025_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_arriv}
+  \includegraphics[width=\myplotswidth]{fig/007025_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_kappa}
+  \includegraphics[width=\myplotswidth]{fig/007025_mass}
+
 
   \caption[result 7025 (ASW0000h2m)]{Another model for the lens
     appearing in \figref{7022}.  The image parities in this case
@@ -798,34 +751,21 @@ models in some detail.
     \ref{sec:example_models} for details.)}
   \label{fig:7025}
 \end{figure}
-  
+
+
+
 
 \begin{figure}
   \centering
-  \subfigure[real mass distribution]{
-    \label{fig:6919_sim_mass}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0002z6f_kappa}
-  }
-  \subfigure[real arrival-time surface]{
-    \label{fig:6919_sim_arr}
-    \includegraphics[width=0.45\textwidth]{fig/ASW0002z6f_arriv}
-  }
-  \subfigure[model mass distribution]{
-    \label{fig:6919_mass}
-    \includegraphics[width=0.45\textwidth]{fig/006919_mass}
-  }
-  \subfigure[model arrival-time surface]{
-    \label{fig:6919_cont}
-    \includegraphics[width=0.45\textwidth]{fig/006919_spaghetti}
-  }
-  \subfigure[real vs model enclosed mass]{
-    \label{fig:6919_kappa}
-    \includegraphics[width=0.45\textwidth]{fig/006919_kappa_encl}
-  }
-  \subfigure[model lensed image]{
-    \label{fig:6919_atime}
-    \includegraphics[width=0.45\textwidth]{fig/006919_arr_time}
-  }
+
+  \includegraphics[width=\myplotswidth]{fig/006919_input}
+  \includegraphics[width=\myplotswidth]{fig/006919_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0002z6f_arriv}
+  \includegraphics[width=\myplotswidth]{fig/006919_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0002z6f_kappa}
+  \includegraphics[width=\myplotswidth]{fig/006919_mass}
+
+
   \caption[result 6919 (ASW0002z6f)]{A sim on the border case of
     double vs quad; modelled as a quad.  The model input appears in
     the bottom panel of Figure \ref{fig:input-spag}. (See Section
@@ -1012,20 +952,20 @@ To estimate the errors, the extremal models are used to estimate a lower and upp
 These results can be seen in \figref{ER_per_sim}.
 This figure shows that this technique of estimating the error using the ensemble of all models underestimates the error significantly and should be improved for further analysis.
 
-\begin{figure}[htbp]
+\begin{figure*}
   \centering
-    \includegraphics[width=0.80\textwidth]{fig/eR_4}
+    \includegraphics[width=0.90\linewidth]{fig/eR_5}
   \caption{Relative \ERf / \ERg[, sim] for models by volunteers (blue cross), models made by an expert (red cross with offset), including rejected models (green squares); binned per sim.}
   \label{fig:ER_per_sim}
-\end{figure}
+\end{figure*}
 
 \begin{figure}
   \centering
-  \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.9\linewidth]
              {fig/007020_kappa_encl}}
-  \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.9\linewidth]
              {fig/007024_kappa_encl}}
-  \subfigure{\includegraphics[width=0.45\textwidth]
+  \subfigure{\includegraphics[width=0.9\linewidth]
              {fig/007021_kappa_encl}} \\
   \caption{Enclosed mass \kenc from three models of a system with incorrect image identifications. \figref{7022} shows a model (by an expert) with the correct identifications, while \figref{7025} shows a model with error E06 (parities rotated by $\pi/2$).  Shown here are the \kenc results for two models with error E06 and one model (bottom) with error E05 (parities rotated by $\pi$).}
 \label{fig:kapenc_compare_faulty}
@@ -1125,54 +1065,78 @@ Swiss Academy of Sciences.
 
 \appendix
 
-\section{More on Lensing Theory} \label{sec:more-theory}
+\section{Relation to standard lensing formalism} \label{sec:more-theory}
 
-Recall \cite{1986ApJ...310..568B} and specifically their
-equations (2.1) to (2.6).  We can rewrite those as
+The presentation of the arrival-time surface in \secref{Fermat}
+omitted details, for the sake of a more intuitive explanation.
+Specifically, the geometric time delay $t_{\rm geom}$ and the
+convergence $\kappa$ were left as proportionalities (equations
+\ref{eq:tgeom} and \ref{eq:kappa}), and the gravitational time delay
+$t_{\rm grav}$ was given in an implicit form (equation
+\ref{eq:tgrav}).  We now fill in the details.
 
-
-
-\begin{equation}
+The original formulation of the arrival-time surface appears in
+equations (2.1) to (2.6) of \cite{1986ApJ...310..568B}.  Their
+equations can be rearranged as follows.
+\begin{equation} \label{cfBN86}
 \begin{aligned}
 t_{\rm geom} &= \frac{(1+z_L)}{2c} \frac{d_S}{d_L d_{LS}}
 \left[ (x-s_x)^2 + (y-s_y)^2 \right] \\
-\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
+\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y) \\
+\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{d_L d_{LS}}{d_S}
+               \times \Sigma(x,y)
 \end{aligned}
 \end{equation}
-
-
-\begin{equation}
-\kappa(x,y) = \frac{4\pi G}{c^2} \frac{d_L d_{LS}}{d_S}
-               \times \Sigma(x,y)
-\end{equation}
-
-Locations on the lens plane in angular coordinates on the sky, are
-expressed as
-\begin{equation}
-(x,y) = d_L (\theta_x,\theta_y)
-\end{equation}
-where
+We symbols $d_L,d_S$ and $d_{LS}$ are angular-diameter distances,
+respectively from observer to lens, observer to source, and lens to
+source.  In the concordance cosmology, we have
 \begin{equation}
 d_{LS} = \frac{c}{H_0}\,\frac1{1+z_S} \,
 \int_{z_L}^{z_S} \!\! \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
 %\raise.5ex\hbox{.}
 \end{equation}
-and similarly $d_S$ and $d_{LS}$.
+and similarly $d_S$ and $d_{LS}$.  We have replaced angular positions
+on the sky with positions on the lens plane as
 \begin{equation}
-d_S \neq d_L + d_{LS}
+(x,y) = d_L (\theta_x,\theta_y) \,.
 \end{equation}
 
-Letting the source be offset at $(s_x,s_y)$ rather than at the
-origin, we have
+The first line of equation \eqref{cfBN86} is $t_{\rm geom}$ from
+equation \eqref{eq:tgeom} with the proportionality filled in, and with
+the source offset at $(s_x,s_y)$ rather than at the origin.
 
-\begin{equation}
+The last line of equation \eqref{cfBN86} fills in the proportionality
+factor in equation \eqref{eq:kappa} for the convergence (or
+dimensionless surface density) $\kappa$.
+
+The middle line of equation \eqref{cfBN86}, though very different in
+form to the expression \eqref{eq:tgrav} for the gravitational time
+delay, is in fact equivalent.  This can be shown by considering a
+multipole expansions for the solution of the latter equation.  Another
+way to see the equivalence is to write a discrete version of
+\eqref{eq:tgrav}.  Introducing a small distance $\Delta$, we write
+\begin{equation} \label{eq:relax}
 \begin{aligned}
 \tgrav(x,y) &=
 \frac14 \Big[ \tgrav(x+\Delta,y) + \tgrav(x-\Delta,y) + {}\\
 &\kern24pt    \tgrav(x,y+\Delta) + \tgrav(x,y-\Delta) \Big] \\
-&+ (1+z_L)\frac{2G}{c^3} \, \pi\Delta^2 \, \Sigma(x,y)
+&+ (1+z_L)\frac{2G}{c^3} \, \pi\Delta^2 \, \Sigma(x,y) \,.
 \end{aligned}
 \end{equation}
+The circular average $\langle \tgrav^{\textstyle\circ} \rangle$ has
+been replaced by the average over four neighbouring points, and the
+enclosed mass $M_{\textstyle\bullet}$ has been replaced by
+$\pi\Delta^2\,\Sigma(x,y)$.  Now let us read equation \eqref{eq:relax}
+as an iterative formula for $t_{\rm grav}(x,y)$.  It is then
+recognisable as a formula for solving the two-dimensional Poisson
+equation from \eqref{cfBN86} by relaxation.
+
+\newpage
+
+\bibliographystyle{mn2e}
+\bibliography{bib/ms}
+
+\end{document}
 
 
 
@@ -1250,18 +1214,11 @@ Maybe discard \figref{ER_all_models}, since the essential information is there i
 
 \begin{figure}[htbp]
   \centering
-    \includegraphics[width=0.80\textwidth]{fig/eR_1}
+    \includegraphics[width=0.90\linewidth]{fig/eR_1}
   \caption{\ERf for all models with estimated errors in blue squares, \ERg of simulation in red crosses}
   \label{fig:ER_all_models}
 \end{figure}
 
-
-\newpage
-
-\bibliographystyle{mn2e}
-\bibliography{bib/ms}
-
-\end{document}
 
 
 

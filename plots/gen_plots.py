@@ -68,19 +68,26 @@ import matplotlib as mpl
 
 
 debug = False
+
 # set to false to do a dry run in /plots/[outdir]
 write_to_tex_folder = False
 
+#timeintensive dl of online data. only neeeds to be done once
+fetch_onlinedata = False
+
+# do which plots of sims?
+simplots = {'arriv': True, 'kappa':True, 'kappaenc':False}
 
 #image extension (png or pdf)
-exts = ['png', 'pdf']
+#exts = ['png', 'pdf']
+exts = ['png']
 
 figsize   = (10,10) 
 figsizeER = (10,8)
 figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
-outdir = 'figs_new2'
+outdir = 'figs_new3'
 
 #select sims to produce plots for (using sel_sim_plots())
 sel_sim = [
@@ -173,6 +180,104 @@ if write_to_tex_folder:
 
   
 
+#manual scaling factors
+
+do_scale = True #should i do the scaling?
+
+distance_factor = 0.428           # 
+div_scale_factors = 440./500*100  # 
+spacewarps_pixsize = 0.185
+
+scales = {}
+scales['ASW000102p'] = {}
+scales['ASW000102p'][6941] = {
+#    Map radius           = 0.1851 [arcsec] Distance to center of outer pixel.
+#    Map Extent           = 0.1929 [arcsec] Distance to outer edge of outer pixel.
+#    top_level_cell_size  = 0.0154 [arcsec]
+#    Map radius           = 1.1168 [kpc]    H0inv=13.7
+#    Map Extent           = 1.1633 [kpc]    H0inv=13.7
+    'map_r'           : {'arcsec':0.1851, 'kpc': 1.1168},
+    'map_e'           : {'arcsec':0.1929, 'kpc': 1.1633},
+}
+  
+scales['ASW000195x'] = {}
+scales['ASW000195x'][6975] = {
+    # Pixel radius         = 12
+    # Map radius           = 0.4118 [arcsec] Distance to center of outer pixel.
+    # Map Extent           = 0.4290 [arcsec] Distance to outer edge of outer pixel.
+    # top_level_cell_size  = 0.0343 [arcsec]
+    # Map radius           = 2.1836 [kpc]    H0inv=13.7
+    # Map Extent           = 2.2746 [kpc]    H0inv=13.7
+    # top_level_cell       = 0.1820 [kpc]    H0inv=13.7
+    'map_r'           : {'arcsec':0.4118, 'kpc': 2.1836},
+    'map_e'           : {'arcsec':0.4290, 'kpc': 2.2746},
+}
+  
+
+# copy paste output from systems/many2.py and manualy select appropriate
+levels = {
+
+    'ASW0001hpf':[
+        #-16.142110, # 0, canc
+        -16.141714, # 1, sad
+        #-16.361394, # 2, sad
+        -14.334876, # 3, sad
+        #-16.592044, # 4, min
+        #-19.762615, # 5, min
+        #-0.101102, # 6, max
+    ],
+
+    'ASW0002z6f':[
+        -162.471264, # 0, sad
+        #-172.294899, # 1, sad
+        #-184.197987, # 2, min
+        #-116.410651, # 3, max
+    ],
+
+    'ASW0000vqg':[
+        #-190.133668, # 0, sad
+        #345.775218, # 1, sad
+        -238.205802, # 2, sad
+        #-276.154188, # 3, min
+        #-221.944628, # 4, max
+    ],
+
+    'ASW000102p':[
+        -21.963930, # 0, sad
+        #-60.054127, # 1, min
+        #1.977912, # 2, max
+    ],
+
+    'ASW000195x':[
+        -682.197488, # 0, sad
+        #-812.917806, # 1, min
+        #-643.822578, # 2, max
+    ],
+
+    'ASW0004oux':[
+        -174.988464, # 0, sad
+        -159.098235, # 1, sad
+        #-177.867092, # 2, min
+        #-178.550062, # 3, min
+        #-125.416518, # 4, max
+    ],
+
+    'ASW0000h2m':[
+        #-44.048133, # 0, sad
+        #-44.044997, # 1, canc
+        -44.044446, # 2, canc
+        #-44.046207, # 3, canc
+        #-44.049515, # 4, canc
+        #-44.452050, # 5, sad
+        #-48.079721, # 6, sad
+        -39.369070, # 7, sad
+        #-44.839509, # 8, min
+        #-48.080767, # 9, min
+        #-0.206511, # 10, max
+    ],
+
+
+}
 
 
 def test():
@@ -667,6 +772,10 @@ def get_mod_adv_data(mid):
 def get_sim_adv_data(asw):
   """gets some online data"""
   print '> getting sims data online', 
+  
+  if not fetch_onlinedata:
+    print "SKIPPING (check fetch_onlinedata)"
+    return
 
   path = os.path.join(simdir, asw)
 
@@ -725,11 +834,13 @@ def draw_sim(asw, sim):
       
     print asw
     
+    
     if debug:
-        N,R = 20,50   #used to be 100
+        N = 50
+        #,R = 20,50   #used to be 100
         print "!! using lowres grid since debug is on"
     else:
-        N,R = 50,50   #used to be 100
+        N,R = 200,50   #used to be 100
     
     if sim[asw][0] == 'quasar':
         flag,R = 'Q',20
@@ -737,6 +848,13 @@ def draw_sim(asw, sim):
         flag,R = 'G',20
     if sim[asw][0] == 'cluster':
         flag,R = 'C',50
+
+    map_ext=scales['ASW000195x'][6975]['map_e']['arcsec']
+    R = map_ext * div_scale_factors
+
+    print map_ext
+    print R
+
     x = np.linspace(-R,R,N)
     y = 1*x
     kappa,arriv = many.grids(asw,x,y)
@@ -745,121 +863,128 @@ def draw_sim(asw, sim):
     #
     # KAPPA - MASS MAP
     #
-    print '::: plot mass map'
-    mpl.rcParams['contour.negative_linestyle'] = 'solid'
-    fig = pl.figure(figsize=figsize)
-    panel = fig.add_subplot(1,1,1)
-    panel.set_aspect('equal')
-    
-    #lev = np.linspace(0,10,41)
-    #pc = panel.contour(x,y,kappa,lev, colors=0.8)
-
-    eps = 0.1 #small offset to prevent div/0 in log()
-    
-    # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
-    # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
-    d=2.*R/(N-1)
-    x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
-    y_cm=1.*x_cm
-    
-    # cut border of 0 pixels, delete rrr rows on each side
-    rr=2
-    kappa_cut = kappa[rr:-rr,rr:-rr]
-    x_cut=x[rr:-rr] #original x,y will be used later
-    y_cut=y[rr:-rr] 
-    x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
-    y_cm=y_cm[rr:-rr]
-    
-    n_contours=15
-    
-    pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
-    
-    #panel.clabel(pc, inline=1, fontsize=10)
-    panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
-    
-    panel.tick_params(
-        axis='both',       # changes apply to the x- and y-axis
-        which='both',      # both major and minor ticks are affected
-        bottom='off',      # ticks along the bottom edge are off
-        top='off',         # ticks along the top edge are off
-        left='off',        # ticks along the bottom edge are off
-        right='off',       # ticks along the top edge are off
-        labelbottom='off',
-        labeltop='off',
-        labelleft='off',
-        labelright='off'
-        )
+    if simplots['kappa']:
+        print '::: plot mass map'
+        mpl.rcParams['contour.negative_linestyle'] = 'dashed'
+        fig = pl.figure(figsize=figsize)
+        panel = fig.add_subplot(1,1,1)
+        panel.set_aspect('equal')
         
-    #panel.set_xlim([-R,R])
-    #panel.set_ylim([-R,R])
-    
-    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
-    for ext in exts:
-      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],ext)))
-    print '::: \\ done'
+        #lev = np.linspace(0,10,41)
+        #pc = panel.contour(x,y,kappa,lev, colors=0.8)
+
+        eps = 0.1 #small offset to prevent div/0 in log()
+        
+        # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
+        # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
+        d=2.*R/(N-1)
+        x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
+        y_cm=1.*x_cm
+        
+        # cut border of 0 pixels, delete rrr rows on each side
+        rr=2
+        kappa_cut = kappa[rr:-rr,rr:-rr]
+        x_cut=x[rr:-rr] #original x,y will be used later
+        y_cut=y[rr:-rr] 
+        x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
+        y_cm=y_cm[rr:-rr]
+        
+        n_contours=15
+        
+        pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+        
+        #panel.clabel(pc, inline=1, fontsize=10)
+        panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
+        
+        panel.tick_params(
+            axis='both',       # changes apply to the x- and y-axis
+            which='both',      # both major and minor ticks are affected
+            bottom='off',      # ticks along the bottom edge are off
+            top='off',         # ticks along the top edge are off
+            left='off',        # ticks along the bottom edge are off
+            right='off',       # ticks along the top edge are off
+            labelbottom='off',
+            labeltop='off',
+            labelleft='off',
+            labelright='off'
+            )
+            
+        #panel.set_xlim([-R,R])
+        #panel.set_ylim([-R,R])
+        
+        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
+        for ext in exts:
+          p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
+          pl.savefig(p)
+          print '  - %s'%p
 
     
     #
     # KAPPA ENCLOSED
     #
-    fig = pl.figure(figsize=figsize)
-    panel = fig.add_subplot(1,1,1)
-    rad = np.linspace(0,R,20)[1:]
-    radq = rad*rad
-    sum = 0*rad
-    for i in range(len(x)):
-        for j in range(len(y)):
-            rsq = x[i]**2 + y[j]**2
-            for k in range(len(rad)):
-                if rsq < radq[k]:
-                    sum[k] += kappa[j,i]
-    dx = x[1]-x[0]
-    for k in range(len(rad)):
-        sum[k] *= dx*dx/(pi*radq[k])
-    fil = open(os.path.join(path, asw+'.txt'),'w')
-    for k in range(len(rad)):
-        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-    fil.close()
-    fil = open(os.path.join(simdir, asw+'.txt'),'w')
-    for k in range(len(rad)):
-        fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-    fil.close()
-    panel.scatter(rad,sum)
-    panel.set_xlabel('radius [pixels]')
-    panel.set_ylabel('average interior \textkappa [1]')
-    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
-    for ext in exts:
-      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],ext)))
-    
+    if simplots['kappaenc']:
+        fig = pl.figure(figsize=figsize)
+        panel = fig.add_subplot(1,1,1)
+        rad = np.linspace(0,R,20)[1:]
+        radq = rad*rad
+        sum = 0*rad
+        for i in range(len(x)):
+            for j in range(len(y)):
+                rsq = x[i]**2 + y[j]**2
+                for k in range(len(rad)):
+                    if rsq < radq[k]:
+                        sum[k] += kappa[j,i]
+        dx = x[1]-x[0]
+        for k in range(len(rad)):
+            sum[k] *= dx*dx/(pi*radq[k])
+        fil = open(os.path.join(path, asw+'.txt'),'w')
+        for k in range(len(rad)):
+            fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+        fil.close()
+        fil = open(os.path.join(simdir, asw+'.txt'),'w')
+        for k in range(len(rad)):
+            fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+        fil.close()
+        panel.scatter(rad,sum)
+        panel.set_xlabel('radius [pixels]')
+        panel.set_ylabel('average interior \textkappa [1]')
+        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
+        for ext in exts:
+          p = os.path.join(path + '_%s.%s'%(filenames[2],ext))
+          pl.savefig(p)
+          print '  - %s'%p
 
     #
     # ARRIVAL TIME CONTOUR PLOT
     #
-    fig = pl.figure(figsize=figsize, )
-    #ax = fig.add_subplot(1, 1, 1, projection='3d', axisbg=bgcol)  # 3D
+    if simplots['arriv']:
+        fig = pl.figure(figsize=figsize)
+        panel = fig.add_subplot(1,1,1, axisbg='white')
+        panel.set_aspect('equal')
+        lo,hi = np.amin(arriv), np.amax(arriv)
+        lev = np.linspace(lo,lo+.2*(hi-lo),30)
+        
+        mpl.rcParams['contour.negative_linestyle'] = 'solid'
+        #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+        panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
+        panel.contour(x,y,arriv,levels[asw], colors='black', linewidths=4)
 
-    panel = fig.add_subplot(1,1,1, axisbg='0.25')
-    panel.set_aspect('equal')
-    lo,hi = np.amin(arriv), np.amax(arriv)
-    lev = np.linspace(lo,lo+.2*(hi-lo),30)
-    
-    mpl.rcParams['contour.negative_linestyle'] = 'solid'
-    panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
-    
-    # hide axis
-    panel.axes.get_xaxis().set_ticks([])
-    panel.axes.get_yaxis().set_ticks([])
-    
-    #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
-    #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
-    for ext in exts:
-      pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],ext)))
-
+        
+        # hide axis
+        panel.axes.get_xaxis().set_ticks([])
+        panel.axes.get_yaxis().set_ticks([])
+        
+        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
+        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
+        for ext in exts:
+          p = os.path.join(path + '_%s.%s'%(filenames[0],ext))
+          pl.savefig(p)
+          print '  - %s'%p
     
     
     if not debug:
@@ -868,7 +993,7 @@ def draw_sim(asw, sim):
         sys.stderr = old_stderr
     
     print '...DONE.'
-    for f in filenames: print '  - %s'%(f+'.'+repr(exts))
+    #for f in filenames: print '  - %s'%(f+'.'+repr(exts))
 
 
 def draw_mod(mid, elem, data, sims):
@@ -1313,7 +1438,8 @@ def getModelError():
     return err_data
     
   
-#if __name__ == "__main__":
-#  run()
+if __name__ == "__main__":
+  #sel_sim_plots()
+  pass
   
   

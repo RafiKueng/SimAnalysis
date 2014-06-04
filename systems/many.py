@@ -45,7 +45,7 @@ def poten_clus(clus,zsrc,x,y):
     rsc = float(clus[0][2])
     zlens = float(clus[1][3])
     fudge = dratio(zlens,zsrc)
-    print 'kaps,rsc',kaps,rsc
+    print 'kaps,rsc,fudge',kaps,rsc,fudge
     for i in range(len(x)):
         for j in range(len(y)):
             z[j,i] = fudge * poten_NFW(x[i],y[j],kaps,rsc)

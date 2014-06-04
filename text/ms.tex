@@ -4,6 +4,7 @@
 \usepackage{amsmath}
 \usepackage{xspace}     % fixes spaces after custom commands
 \usepackage{float}      % exact placement of figures (using \begin{figure}[H])
+\usepackage[section,below]{placeins}   % gives a \FloatBarrier to force all floats to appear
 \usepackage{subfigure}  % does what it says
 
 \usepackage{graphicx}
@@ -413,24 +414,27 @@ point is not itself plotted, but we can tell by the other contours where
 the X would be.  These self-crossing contours will play a special role
 in the following.
 
+\FloatBarrier
 \subsection{\spl} \label{sec:SpaghettiLens}
 
 \spl implements the ideas of the arrival-time surface into a modeling
 program.
 
-\begin{figure}
-  \centering
-  \subfigure{\includegraphics[width=0.9\hsize]
-             {fig/006941_input}} \\
-  \subfigure{\includegraphics[width=0.9\hsize]
-             {fig/007022_input}} \\
-  \subfigure{\includegraphics[width=0.9\hsize]
-             {fig/006919_input}}
-  \caption{Examples of Spaghetti input.  The models from these appear
-    later in Figures \ref{fig:6941}, \ref{fig:7022} and \ref{fig:6919}.
-  }
-  \label{fig:input-spag}
-\end{figure}
+%\begin{figure}
+  %\centering
+  %
+  %\includegraphics[width=0.8\hsize]{fig/006941_input} \\
+  %
+  %\includegraphics[width=0.8\hsize]{fig/007022_input} \\
+  %
+  %\includegraphics[width=0.8\hsize]{fig/006919_input}
+%
+  %\caption{Examples of Spaghetti input.  The models from these appear
+    %later in Figures \ref{fig:6941}, \ref{fig:7022} and \ref{fig:6919}.
+  %}
+  %\label{fig:input-spag}
+%\end{figure}
+
 
 The first modeling step with \spl is for the user to call up the \sw
 of interest, and make an educated guess for the topography of the
@@ -621,9 +625,10 @@ models in some detail.
   \centering
   \includegraphics[width=\myplotswidth]{fig/006941_input}
   \includegraphics[width=\myplotswidth]{fig/006941_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW000102p_arriv} 
+  \vskip-20pt
+  \includegraphics[width=\myplotswidth]{fig/ASW000102p_006941_arriv} 
   \includegraphics[width=\myplotswidth]{fig/006941_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW000102p_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW000102p_006941_kappa}
   \includegraphics[width=\myplotswidth]{fig/006941_mass}
 
   \caption[result 6941 (ASW000102p)]{Model results for a simple
@@ -638,11 +643,12 @@ models in some detail.
 
 % Convert all to Phil's scheme:
 \begin{figure}
+  \centering
   \includegraphics[width=\myplotswidth]{fig/006975_input}
   \includegraphics[width=\myplotswidth]{fig/006975_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW000195x_arriv.png}
+  \includegraphics[width=\myplotswidth]{fig/ASW000195x_006975_arriv.png}
   \includegraphics[width=\myplotswidth]{fig/006975_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW000195x_kappa.png}
+  \includegraphics[width=\myplotswidth]{fig/ASW000195x_006975_kappa.png}
   \includegraphics[width=\myplotswidth]{fig/006975_mass}
 
   \caption[result 6975 (ASW000195x)]{A model for a sim with some mass
@@ -655,9 +661,9 @@ models in some detail.
 
   \includegraphics[width=\myplotswidth]{fig/006937_input}
   \includegraphics[width=\myplotswidth]{fig/006937_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0000vqg_arriv}
+  \includegraphics[width=\myplotswidth]{fig/ASW0000vqg_006937_arriv}
   \includegraphics[width=\myplotswidth]{fig/006937_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0000vqg_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW0000vqg_006937_kappa}
   \includegraphics[width=\myplotswidth]{fig/006937_mass}
 
   \caption[result 6937 (ASW0000vqg)]{A sim with substructure,
@@ -680,9 +686,9 @@ models in some detail.
   
   \includegraphics[width=\myplotswidth]{fig/006990_input}
   \includegraphics[width=\myplotswidth]{fig/006990_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0004oux_arriv}
+  \includegraphics[width=\myplotswidth]{fig/ASW0004oux_006990_arriv}
   \includegraphics[width=\myplotswidth]{fig/006990_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0004oux_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW0004oux_006990_kappa}
   \includegraphics[width=\myplotswidth]{fig/006990_mass}
 
   \caption[result 6990 (ASW0004oux)]{Model of a four-image
@@ -698,9 +704,9 @@ models in some detail.
 
   \includegraphics[width=\myplotswidth]{fig/006915_input}
   \includegraphics[width=\myplotswidth]{fig/006915_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_arriv}
+  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_006915_arriv}
   \includegraphics[width=\myplotswidth]{fig/006915_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_006915_kappa}
   \includegraphics[width=\myplotswidth]{fig/006915_mass}
 
   \caption[result 6915 (ASW0001hpf)]{Model of another four-image
@@ -717,9 +723,9 @@ models in some detail.
 
   \includegraphics[width=\myplotswidth]{fig/007022_input}
   \includegraphics[width=\myplotswidth]{fig/007022_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_arriv}
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_007022_arriv}
   \includegraphics[width=\myplotswidth]{fig/007022_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_007022_kappa}
   \includegraphics[width=\myplotswidth]{fig/007022_mass}
 
 
@@ -738,9 +744,9 @@ models in some detail.
 
   \includegraphics[width=\myplotswidth]{fig/007025_input}
   \includegraphics[width=\myplotswidth]{fig/007025_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_arriv}
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_007025_arriv}
   \includegraphics[width=\myplotswidth]{fig/007025_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW0000h2m_007025_kappa}
   \includegraphics[width=\myplotswidth]{fig/007025_mass}
 
 
@@ -760,9 +766,9 @@ models in some detail.
 
   \includegraphics[width=\myplotswidth]{fig/006919_input}
   \includegraphics[width=\myplotswidth]{fig/006919_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0002z6f_arriv}
+  \includegraphics[width=\myplotswidth]{fig/ASW0002z6f_006919_arriv}
   \includegraphics[width=\myplotswidth]{fig/006919_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0002z6f_kappa}
+  \includegraphics[width=\myplotswidth]{fig/ASW0002z6f_006919_kappa}
   \includegraphics[width=\myplotswidth]{fig/006919_mass}
 
 
@@ -962,12 +968,14 @@ This figure shows that this technique of estimating the error using the ensemble
 \begin{figure}
   \centering
   \subfigure{\includegraphics[width=0.9\linewidth]
-             {fig/007020_kappa_encl}}
+             {fig/007022_kappa_encl}}
   \subfigure{\includegraphics[width=0.9\linewidth]
-             {fig/007024_kappa_encl}}
+             {fig/007025_kappa_encl}}
   \subfigure{\includegraphics[width=0.9\linewidth]
              {fig/007021_kappa_encl}} \\
-  \caption{Enclosed mass \kenc from three models of a system with incorrect image identifications. \figref{7022} shows a model (by an expert) with the correct identifications, while \figref{7025} shows a model with error E06 (parities rotated by $\pi/2$).  Shown here are the \kenc results for two models with error E06 and one model (bottom) with error E05 (parities rotated by $\pi$).}
+  \caption{
+  %Enclosed mass \kenc from three models of a system with incorrect image identifications. \figref{7022} shows a model (by an expert) with the correct identifications, while \figref{7025} shows a model with error E06 (parities rotated by $\pi/2$).  Shown here are the \kenc results for two models with error E06 and one model (bottom) with error E05 (parities rotated by $\pi$).
+  }
 \label{fig:kapenc_compare_faulty}
 \end{figure}
 

@@ -214,6 +214,7 @@ scales['ASW000195x'][6975] = {
 }
 
 
+scales['ASW0001hpf'] = {}
 scales['ASW0001hpf'][6915] = {
     # Map radius           = 0.1213 [arcsec] Distance to center of outer pixel.
     # Map Extent           = 0.1264 [arcsec] Distance to outer edge of outer pixel.
@@ -225,7 +226,8 @@ scales['ASW0001hpf'][6915] = {
     'map_e'           : {'arcsec':0.1264, 'kpc': 0.7623},
 }
 
-scales['ASW0002y6f'][6919] = {
+scales['ASW0002z6f'] = {}
+scales['ASW0002z6f'][6919] = {
     # Map radius           = 0.3153 [arcsec] Distance to center of outer pixel.
     # Map Extent           = 0.3284 [arcsec] Distance to outer edge of outer pixel.
     # top_level_cell_size  = 0.0263 [arcsec]
@@ -235,6 +237,8 @@ scales['ASW0002y6f'][6919] = {
     'map_r'           : {'arcsec':0.3153, 'kpc':1.9018 },
     'map_e'           : {'arcsec':0.3284, 'kpc':1.9810 },
 }
+
+scales['ASW0000vqg'] = {}
 scales['ASW0000vqg'][6937] = {
     # Map radius           = 0.2163 [arcsec] Distance to center of outer pixel.
     # Map Extent           = 0.2253 [arcsec] Distance to outer edge of outer pixel.
@@ -245,6 +249,8 @@ scales['ASW0000vqg'][6937] = {
     'map_r'           : {'arcsec':0.2163, 'kpc':0.7024 },
     'map_e'           : {'arcsec':0.2253, 'kpc':0.7316 },
 }
+
+scales['ASW000102p'] = {}
 scales['ASW000102p'][6941] = {
     # Map radius           = 0.1851 [arcsec] Distance to center of outer pixel.
     # Map Extent           = 0.1929 [arcsec] Distance to outer edge of outer pixel.
@@ -255,6 +261,8 @@ scales['ASW000102p'][6941] = {
     'map_r'           : {'arcsec':0.1851, 'kpc':1.1168 },
     'map_e'           : {'arcsec':0.1929, 'kpc':1.1633 },
 }
+
+scales['ASW000195x'] = {}
 scales['ASW000195x'][6975] = {
     # Pixel radius         = 12
     # Map radius           = 0.4118 [arcsec] Distance to center of outer pixel.
@@ -271,6 +279,8 @@ scales['ASW000195x'][6975] = {
     'map_r'           : {'arcsec':0.4118, 'kpc':2.1836 },
     'map_e'           : {'arcsec':0.4290, 'kpc':2.2746 },
 }
+
+scales['ASW0004oux'] = {}
 scales['ASW0004oux'][6990] = {
     # Pixel radius         = 12
     # Map radius           = 0.2618 [arcsec] Distance to center of outer pixel.
@@ -287,6 +297,10 @@ scales['ASW0004oux'][6990] = {
     'map_r'           : {'arcsec':0.2618, 'kpc':1.5794 },
     'map_e'           : {'arcsec':0.2727, 'kpc':1.6452 },
 }
+
+
+scales['ASW0000h2m'] = {}
+'''
 scales['ASW0000h2m'][7020] = {
     # Pixel radius         = 12
     # Map radius           = 0.1868 [arcsec] Distance to center of outer pixel.
@@ -303,6 +317,8 @@ scales['ASW0000h2m'][7020] = {
     'map_r'           : {'arcsec':0.1868, 'kpc':1.1266 },
     'map_e'           : {'arcsec':0.1946, 'kpc':1.1735 },
 }
+'''
+'''
 scales['ASW0000h2m'][7021] = {
     # Pixel radius         = 12
     # Map radius           = 0.1993 [arcsec] Distance to center of outer pixel.
@@ -317,6 +333,7 @@ scales['ASW0000h2m'][7021] = {
     'map_r'           : {'arcsec':0.1993, 'kpc':1.2022 },
     'map_e'           : {'arcsec':0.2076, 'kpc':1.2523 },
 }
+'''
 scales['ASW0000h2m'][7022] = {
     # Pixel radius         = 12
     # Map radius           = 0.1895 [arcsec] Distance to center of outer pixel.
@@ -332,6 +349,7 @@ scales['ASW0000h2m'][7022] = {
     'map_r'           : {'arcsec':0.1895, 'kpc':1.1427 },
     'map_e'           : {'arcsec':0.1973, 'kpc':1.1904 },
 }
+'''
 scales['ASW0000h2m'][7024] = {
     # Pixel radius         = 12
     # Map radius           = 0.2149 [arcsec] Distance to center of outer pixel.
@@ -347,7 +365,8 @@ scales['ASW0000h2m'][7024] = {
     'map_r'           : {'arcsec':0.2149, 'kpc':1.2962 },
     'map_e'           : {'arcsec':0.2238, 'kpc':1.3502 },
 }
-scales['ASW000h2m'][7025] = {
+'''
+scales['ASW0000h2m'][7025] = {
     # Pixel radius         = 12
     # Map radius           = 0.2135 [arcsec] Distance to center of outer pixel.
     # Map Extent           = 0.2224 [arcsec] Distance to outer edge of outer pixel.
@@ -875,6 +894,10 @@ def get_mod_adv_data(mid):
   """gets the better plots produced by script"""
   print '> getting model data online', 
   
+  if not fetch_onlinedata:
+    print "SKIPPING (check fetch_onlinedata)"
+    return
+  
   baseurl = 'http://mite.physik.uzh.ch/script_output/gen_plots_for_paper/%06i/' %mid
   
   ext = 'png' # server only serves png files...
@@ -974,9 +997,9 @@ def draw_sim(asw, sim):
     
     print '> drawing sim %s'%asw,    
     
-    path = os.path.join(simdir, asw)
-    if not os.path.isdir(path):
-      os.makedirs(path)  
+    #path = os.path.join(simdir, asw)
+    #if not os.path.isdir(path):
+    #  os.makedirs(path)  
     
     #prevent submodules prints..
     if not debug:
@@ -1004,142 +1027,150 @@ def draw_sim(asw, sim):
         flag,R = 'C',50
 
     # for the moment, just use some random dict entry from scales[asw]
-    map_ext=scales[asw].itervalues().next()['map_e']['arcsec']
-    R = map_ext * div_scale_factors
-
-    print map_ext
-    print R
-
-    x = np.linspace(-R,R,N)
-    y = 1*x
-    kappa,arriv = many.grids(asw,x,y)
-
-
-    #
-    # KAPPA - MASS MAP
-    #
-    if simplots['kappa']:
-        print '::: plot mass map'
-        mpl.rcParams['contour.negative_linestyle'] = 'dashed'
-        fig = pl.figure(figsize=figsize)
-        panel = fig.add_subplot(1,1,1)
-        panel.set_aspect('equal')
-        
-        #lev = np.linspace(0,10,41)
-        #pc = panel.contour(x,y,kappa,lev, colors=0.8)
-
-        eps = 0.1 #small offset to prevent div/0 in log()
-        
-        # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
-        # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
-        d=2.*R/(N-1)
-        x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
-        y_cm=1.*x_cm
-        
-        # cut border of 0 pixels, delete rrr rows on each side
-        rr=2
-        kappa_cut = kappa[rr:-rr,rr:-rr]
-        x_cut=x[rr:-rr] #original x,y will be used later
-        y_cut=y[rr:-rr] 
-        x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
-        y_cm=y_cm[rr:-rr]
-        
-        n_contours=15
-        
-        pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
-        
-        #panel.clabel(pc, inline=1, fontsize=10)
-        panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
-        
-        panel.tick_params(
-            axis='both',       # changes apply to the x- and y-axis
-            which='both',      # both major and minor ticks are affected
-            bottom='off',      # ticks along the bottom edge are off
-            top='off',         # ticks along the top edge are off
-            left='off',        # ticks along the bottom edge are off
-            right='off',       # ticks along the top edge are off
-            labelbottom='off',
-            labeltop='off',
-            labelleft='off',
-            labelright='off'
-            )
-            
-        #panel.set_xlim([-R,R])
-        #panel.set_ylim([-R,R])
-        
-        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
-        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
-        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
-        for ext in exts:
-          p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
-          pl.savefig(p)
-          print '  - %s'%p
-
+    #map_ext=scales[asw].itervalues().next()['map_e']['arcsec']
+    #R = map_ext * div_scale_factors
     
-    #
-    # KAPPA ENCLOSED
-    #
-    if simplots['kappaenc']:
-        fig = pl.figure(figsize=figsize)
-        panel = fig.add_subplot(1,1,1)
-        rad = np.linspace(0,R,20)[1:]
-        radq = rad*rad
-        sum = 0*rad
-        for i in range(len(x)):
-            for j in range(len(y)):
-                rsq = x[i]**2 + y[j]**2
-                for k in range(len(rad)):
-                    if rsq < radq[k]:
-                        sum[k] += kappa[j,i]
-        dx = x[1]-x[0]
-        for k in range(len(rad)):
-            sum[k] *= dx*dx/(pi*radq[k])
-        fil = open(os.path.join(path, asw+'.txt'),'w')
-        for k in range(len(rad)):
-            fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-        fil.close()
-        fil = open(os.path.join(simdir, asw+'.txt'),'w')
-        for k in range(len(rad)):
-            fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
-        fil.close()
-        panel.scatter(rad,sum)
-        panel.set_xlabel('radius [pixels]')
-        panel.set_ylabel('average interior \textkappa [1]')
-        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
-        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
-        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
-        for ext in exts:
-          p = os.path.join(path + '_%s.%s'%(filenames[2],ext))
-          pl.savefig(p)
-          print '  - %s'%p
+    for modid in scales[asw].keys():
+    
+        path = os.path.join(simdir, '%s_%06i' % (asw, modid))
+        print "   making plots for %s with scales from %06i" % (asw, modid)
+    
+        map_ext=scales[asw][modid]['map_e']['arcsec']
+        R = map_ext * div_scale_factors
 
-    #
-    # ARRIVAL TIME CONTOUR PLOT
-    #
-    if simplots['arriv']:
-        fig = pl.figure(figsize=figsize)
-        panel = fig.add_subplot(1,1,1, axisbg='white')
-        panel.set_aspect('equal')
-        lo,hi = np.amin(arriv), np.amax(arriv)
-        lev = np.linspace(lo,lo+.2*(hi-lo),30)
-        
-        mpl.rcParams['contour.negative_linestyle'] = 'solid'
-        #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
-        panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
-        panel.contour(x,y,arriv,levels[asw], colors='black', linewidths=4)
+        print map_ext
+        print R
+
+        x = np.linspace(-R,R,N)
+        y = 1*x
+        kappa,arriv = many.grids(asw,x,y)
+
+
+        #
+        # KAPPA - MASS MAP
+        #
+        if simplots['kappa']:
+            print '::: plot mass map'
+            mpl.rcParams['contour.negative_linestyle'] = 'dashed'
+            fig = pl.figure(figsize=figsize)
+            panel = fig.add_subplot(1,1,1)
+            panel.set_aspect('equal')
+            
+            #lev = np.linspace(0,10,41)
+            #pc = panel.contour(x,y,kappa,lev, colors=0.8)
+
+            eps = 0.1 #small offset to prevent div/0 in log()
+            
+            # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
+            # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
+            d=2.*R/(N-1)
+            x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
+            y_cm=1.*x_cm
+            
+            # cut border of 0 pixels, delete rrr rows on each side
+            rr=2
+            kappa_cut = kappa[rr:-rr,rr:-rr]
+            x_cut=x[rr:-rr] #original x,y will be used later
+            y_cut=y[rr:-rr] 
+            x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
+            y_cm=y_cm[rr:-rr]
+            
+            n_contours=15
+            
+            pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+            
+            #panel.clabel(pc, inline=1, fontsize=10)
+            panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
+            
+            panel.tick_params(
+                axis='both',       # changes apply to the x- and y-axis
+                which='both',      # both major and minor ticks are affected
+                bottom='off',      # ticks along the bottom edge are off
+                top='off',         # ticks along the top edge are off
+                left='off',        # ticks along the bottom edge are off
+                right='off',       # ticks along the top edge are off
+                labelbottom='off',
+                labeltop='off',
+                labelleft='off',
+                labelright='off'
+                )
+                
+            #panel.set_xlim([-R,R])
+            #panel.set_ylim([-R,R])
+            
+            #pl.savefig(os.path.join(path, '%s.%s'%(filenames[1],ext)))
+            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'pdf')))
+            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
+            for ext in exts:
+              p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
+              pl.savefig(p)
+              print '  - %s'%p
 
         
-        # hide axis
-        panel.axes.get_xaxis().set_ticks([])
-        panel.axes.get_yaxis().set_ticks([])
-        
-        #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
-        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
-        #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
-        for ext in exts:
-          p = os.path.join(path + '_%s.%s'%(filenames[0],ext))
-          pl.savefig(p)
-          print '  - %s'%p
+        #
+        # KAPPA ENCLOSED
+        #
+        if simplots['kappaenc']:
+            fig = pl.figure(figsize=figsize)
+            panel = fig.add_subplot(1,1,1)
+            rad = np.linspace(0,R,20)[1:]
+            radq = rad*rad
+            sum = 0*rad
+            for i in range(len(x)):
+                for j in range(len(y)):
+                    rsq = x[i]**2 + y[j]**2
+                    for k in range(len(rad)):
+                        if rsq < radq[k]:
+                            sum[k] += kappa[j,i]
+            dx = x[1]-x[0]
+            for k in range(len(rad)):
+                sum[k] *= dx*dx/(pi*radq[k])
+            fil = open(os.path.join(path, asw+'.txt'),'w')
+            for k in range(len(rad)):
+                fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+            fil.close()
+            fil = open(os.path.join(simdir, asw+'.txt'),'w')
+            for k in range(len(rad)):
+                fil.write('%9.2e %9.2e\n' % (rad[k],sum[k]))
+            fil.close()
+            panel.scatter(rad,sum)
+            panel.set_xlabel('radius [pixels]')
+            panel.set_ylabel('average interior \textkappa [1]')
+            #pl.savefig(os.path.join(path, '%s.%s'%(filenames[2],ext)))
+            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'png')))
+            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
+            for ext in exts:
+              p = os.path.join(path + '_%s.%s'%(filenames[2],ext))
+              pl.savefig(p)
+              print '  - %s'%p
+
+        #
+        # ARRIVAL TIME CONTOUR PLOT
+        #
+        if simplots['arriv']:
+            fig = pl.figure(figsize=figsize)
+            panel = fig.add_subplot(1,1,1, axisbg='white')
+            panel.set_aspect('equal')
+            lo,hi = np.amin(arriv), np.amax(arriv)
+            lev = np.linspace(lo,lo+.2*(hi-lo),30)
+            
+            mpl.rcParams['contour.negative_linestyle'] = 'solid'
+            #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
+            panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
+            panel.contour(x,y,arriv,levels[asw], colors='black', linewidths=4)
+
+            
+            # hide axis
+            #panel.axes.get_xaxis().set_ticks([])
+            #panel.axes.get_yaxis().set_ticks([])
+            
+            #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
+            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
+            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
+            for ext in exts:
+              p = os.path.join(path + '_%s.%s'%(filenames[0],ext))
+              pl.savefig(p)
+              print '  - %s'%p
     
     
     if not debug:
@@ -1249,7 +1280,7 @@ def draw_mod(mid, elem, data, sims):
   pl.plot([0,np.max(elem['x'])], [1,1], ':m')  
   
   #titles etc
-  #pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
+  pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
   #pl.title('by: %s - pixrad: %i - nModels: %i' % (r'\verb|%s|'%elem['user'], elem['pxR'], elem['nMod']), fontsize=14)
   
 
@@ -1311,7 +1342,7 @@ def draw_mod(mid, elem, data, sims):
     fontsize=14,
     transform = ax.transAxes)
 
-  #ax.set_yscale('log')
+  ax.set_yscale('log')
   
   if show:
     #print 'show'

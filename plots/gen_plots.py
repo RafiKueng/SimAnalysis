@@ -76,7 +76,7 @@ write_to_tex_folder = False
 fetch_onlinedata = False
 
 # do which plots of sims?
-simplots = {'arriv': True, 'kappa':False, 'kappaenc':False}
+simplots = {'arriv': True, 'kappa':True, 'kappaenc':False}
 
 #image extension (png or pdf)
 #exts = ['png', 'pdf']
@@ -891,7 +891,7 @@ def draw_sim(asw, sim):
         
         n_contours=15
         
-        pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+        pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9', linewidths=2)
         
         #panel.clabel(pc, inline=1, fontsize=10)
         panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")

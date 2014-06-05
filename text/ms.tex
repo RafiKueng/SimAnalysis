@@ -62,6 +62,8 @@
 %more abbrevs
 \newcommand{\tgeom}{t_{\rm geom}}
 \newcommand{\tgrav}{t_{\rm grav}}
+\newcommand{\subcirc}{{\lower.33ex\hbox{$\circ$}}}
+\newcommand{\subbullet}{{\lower.33ex\hbox{$\bullet$}}}
 
 
 % todo annotations on side in red. easy to search for at the end
@@ -280,13 +282,21 @@ the {\em arrival-time surface.}  This surface cannot itself be
 observed, but several observable quantities can be derived from it.
 
 \begin{equation} \label{eq:tgeom}
-\tgeom(x,y) \propto x^2 + y^2 \,.
+\tgeom(x,y) \propto (x-x_s)^2 + (y-s_y)^2 \,.
 \end{equation}
 
+The gravitational time delay can be expressed in an implicit form: the
+value of $\tgrav$ through $(x,y)$ equals its average value on the
+circumference of a small circle centred at $(x,y)$, plus a constant
+times the mass within that circle.  The proportionality constant is
+$2G/c^3$ times the cosmological expansion factor $(1+z_L)$. Thus
 \begin{equation} \label{eq:tgrav}
-\tgrav = \langle \tgrav^{\textstyle\circ} \rangle
-         + (1+z_L) \frac{2G}{c^3} M_{\textstyle\bullet}
+\tgrav(x,y) = \left\langle \tgrav(x_\subcirc,y_\subcirc) \right\rangle
+              + (1+z_L) \frac{2G}{c^3} M(x_\subbullet,y_\subbullet) \,.
 \end{equation}
+We have used $(x_\subcirc,y_\subcirc)$ to denote the circumference of
+a circle, and $(x_\subbullet,y_\subbullet)$ to indicate the integrated
+mass within the circle.
 
 \begin{equation} \label{eq:kappa}
 \kappa(x,y) \propto \Sigma(x,y) \,.

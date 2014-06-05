@@ -410,13 +410,15 @@ To estimate the performance of the volunteers and the quality of the generated m
 The first analysis tested the correct identification and ordering of lensed images.
 The second one compared the mass distribution of the lens $\kappa(x, y)$ of the generated models to the mass distribution of the simulations.
 
+A challenge set of 29 was selected, representing the different image
+morphologies among the spacewarps sims.  Modellers then contributed
+129 models for these sims (at least for each sim).  Models were
+collecting in the same forum used to model real candidate lenses, and
+under the same conditions --- modellers were free to consult and
+refine each other's models, but had no information on how the sims
+were generated.
 
 \subsection{The simulated lenses} \label{sec:sims}
-
-For the sake of blind testing, the information in this section was
-revealed neither to RK, while choosing the challenge set of 29 sims,
-nor to the modelers (volunteers EB, CC, CM, JO, JW and `expert
-modeler' PS) until the modeling stage was done.
 
 The sims were produced using {\tt gravlens}
 \citep{2001astro.ph..2341K,2001astro.ph..2340K} using the CFHTLS survey data
@@ -441,52 +443,19 @@ lenses follow equations (33--35) of that work, with core radius set to
 zero.  The NFW lens is in equations (48) and (50), while shear is the
 $\gamma$ term in equation (76).
 
+The information in this section was not revealed to the person
+choosing the challenge set (RK) or to the modellers (EB, CC, CM, PS,
+JO and JW) until the modeling stage was done.
+
 \subsection{Some example models} \label{sec:example_models}
+
+The community of modellers proposed a total of 129 models for the 29 sims in the challenge. Typically XX models were produced per simulation, with XX systems having only XX models (corresponding tot he most simplest simulations) to XX having XX models (a complex and contrversial lens system). In the following we discuss eight example lenses in detail with individual notes per system and corresponding plots are shown in figures 4-11 (or whatever compact version you end up making). These eight examples were chosen on the basis of …??
 
 The modelers proposed a total of 129 models for the 29 sims in the
 challenge.  Figures \ref{fig:6941} to \ref{fig:6919} show eight of
 models in some detail.
 
-% Rafi's original one-coumn design:
-%
-% \begin{figure}
-%   \centering
-%   \subfigure[real mass distribution]{
-%     \label{fig:6941_sim_mass}
-%     \includegraphics[width=0.45\textwidth]{fig/ASW000102p_kappa}
-%   }
-%   \subfigure[real arrival-time surface]{
-%     \label{fig:6941_sim_arr}
-%     \includegraphics[width=0.45\textwidth]{fig/ASW000102p_arriv}
-%   }
-%   \subfigure[model mass distribution]{
-%     \label{fig:6941_mass}
-%     \includegraphics[width=0.45\textwidth]{fig/006941_mass}
-%   }
-%   \subfigure[model arrival-time surface]{
-%     \label{fig:6941_cont}
-%     \includegraphics[width=0.45\textwidth]{fig/006941_spaghetti}
-%   }
-%   \subfigure[real vs model enclosed mass]{
-%     \label{fig:6941_kappa}
-%     \includegraphics[width=0.45\textwidth]{fig/006941_kappa_encl}
-%   }
-%   \subfigure[model lensed image]{
-%     \label{fig:6941_atime}
-%     \includegraphics[width=0.45\textwidth]{fig/006941_arr_time}
-%   }
-%   \caption[result 6941 (ASW000102p)]{Model results for a simple
-%     simulated lens.  (The label ASW000102p in the lower-left panel is
-%     the \sw identifier for the sky patch where this sim was placed.)
-%     The model input is shown in the top panel of
-%     Figure~\ref{fig:input-spag}.  For details of the individual panels
-%     here, see section \ref{sec:example_models}.}
-%   \label{fig:6941}
-% \end{figure}
-
-% Rafik's two row design
-
-\newpage
+\vfill\penalty-2000
 
 \begin{figure}
   \centering
@@ -592,9 +561,6 @@ models in some detail.
   \label{fig:6937}
 \end{figure}
 
-
-
-
 \begin{figure}
   \centering
 
@@ -628,9 +594,7 @@ models in some detail.
   \label{fig:7022}
 \end{figure}
 
-
-
-\newpage
+\vfill\penalty-2000
 
 Figure \ref{fig:6941} shows a simple example.  The top two panels show
 contours of convergence $\kappa(x,y)$, and of the arrival-time for a
@@ -673,40 +637,15 @@ mean enclosed $\kappa$ (not plotted) with unity.
 of minimum and saddle point is correct, but the estimated Einstein
 radius is a little too high.
 
-Figure \ref{fig:6975} shows a lens with substructure in the form of a
-smaller secondary galaxy.  The galaxies in such group or cluster sims
-were, in fact, based on galaxies visible in the images --- but the
-modelers were not told in advance whether this was the case.  The
-model does not include any substructure, but otherwise is not bad.
-The minimum and saddle point are correct, and the Einstein radius is
-only a little underestimated.
-
-Figure \ref{fig:6937} shows a case where substructure leads to a
-poor model.
+Figure \ref{fig:6915} shows another quad.  This kind of configuration
+arises when the mass is elongated and the source is displaced at an
+angle to the elongation.
 
 Figure \ref{fig:6990} shows an example of an arc that has split into
 three images.  This kind of configuration, with a counter-image close
 to the lensing galaxy and a more distant arc/triplet on the other
 side, generically arises from an elongated mass distribution when the
 source is displaced along the elongated direction.
-
-Figure \ref{fig:6915} shows another quad.  This kind of configuration
-arises when the mass is elongated and the source is displaced at an
-angle to the elongation.
-
-Figure \ref{fig:6975} shows a fairly symmetric quad.  The minima and
-saddle points are correctly identified, and the orientation of the
-ellipticity of the mass distribution is correctly reproduced.  The
-Einstein radius is somewhat overestimated.  Figure \ref{fig:7022}
-shows another model of the same system.  In this one, the
-identification of the minima and saddle points was incorrect, and mass
-distribution comes out elongated East-West instead of North-South.
-The mass distribution also appears somewhat jagged and the
-saddle-point contours are not as clean as in the previous examples;
-these are often indicators of a problem with the model.  The enclosed
-mass is, however, none the worse --- the reason is probably that in a
-relatively symmetrical image configuration, the Einstein radius is quite
-well constrained by the images in a fairly model-independent way.
 
 To conclude this set of examples, Figure \ref{fig:6919} shows another
 type of quad.  Actually, in this case the brightest part of the source
@@ -721,4 +660,34 @@ difference: the long arc is closer to the galaxy, as if the arc and
 counter-image have swapped roles.  This configuration arises if the
 source displacement is perpendicular to the long axis of the lensing
 mass.
+
+
+Figure \ref{fig:6975} shows a lens with substructure in the form of a
+smaller secondary galaxy.  The galaxies in such group or cluster sims
+were, in fact, based on galaxies visible in the images --- but the
+modelers were not told in advance whether this was the case.  The
+model does not include any substructure, but otherwise is not bad.
+The minimum and saddle point are correct, and the Einstein radius is
+only a little underestimated.
+
+Figure \ref{fig:6937} shows a case where substructure leads to a
+poor model.
+
+
+Figure \ref{fig:7022} shows another model of the same system.  In this
+one, the identification of the minima and saddle points was incorrect,
+and mass distribution comes out elongated East-West instead of
+North-South.  The mass distribution also appears somewhat jagged and
+the saddle-point contours are not as clean as in the previous
+examples; these are often indicators of a problem with the model.  The
+enclosed mass is, however, none the worse --- the reason is probably
+that in a relatively symmetrical image configuration, the Einstein
+radius is quite well constrained by the images in a fairly
+model-independent way.
+
+
+Figure \ref{fig:6975} shows a fairly symmetric quad.  The minima and
+saddle points are correctly identified, and the orientation of the
+ellipticity of the mass distribution is correctly reproduced.  The
+Einstein radius is somewhat overestimated.  
 

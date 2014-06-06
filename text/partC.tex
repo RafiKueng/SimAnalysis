@@ -44,11 +44,16 @@ The last line of equation \eqref{cfBN86} fills in the proportionality
 factor in equation \eqref{eq:kappa} for the convergence (or
 dimensionless surface density) $\kappa$.
 
-The middle line of equation \eqref{cfBN86}, though very different in
-form to the expression \eqref{eq:tgrav} for the gravitational time
-delay, is in fact equivalent.  This can be shown by considering a
-multipole expansions for the solution of the latter equation.  Another
-way to see the equivalence is to write a discrete version of
+The middle line of equation \eqref{cfBN86} is a Poisson equation for
+the gravitational time delay, and is equivalent to the implicit
+expression \eqref{eq:tgrav}.  One way to verify the equivalence is to
+consider the small circle in equation \eqref{eq:tgrav} as a region
+where $\Sigma$ is constant, and approximate $\tgrav$ by its Taylor
+expansion to $O(x^2,y^2)$.  Substituting in equations \eqref{cfBN86}
+gives the Taylor coefficients in terms of $\Sigma$, and result
+satisfies the expression \eqref{eq:tgrav}.  Alternatively, we can
+proceed with a discrete form of the Poission equation \eqref{cfBN86}.
+Discretising on a grid with spacing $\Delta$, we have
 \eqref{eq:tgrav}.  Introducing a small distance $\Delta$, we write
 \begin{equation} \label{eq:relax}
 \begin{aligned}
@@ -58,14 +63,14 @@ way to see the equivalence is to write a discrete version of
 &+ (1+z_L)\frac{2G}{c^3} \, \pi\Delta^2 \, \Sigma(x,y) \,.
 \end{aligned}
 \end{equation}
-The circular average
-$\left\langle \tgrav(x_\subcirc,y_\subcirc) \right\rangle$ has
-been replaced by the average over four neighbouring points, and the
-enclosed mass $M(x_\subbullet,y_\subbullet)$ has been replaced by
-$\pi\Delta^2\,\Sigma(x,y)$.  Now let us read equation \eqref{eq:relax}
-as an iterative formula for $t_{\rm grav}(x,y)$.  It is then
-recognisable as a formula for solving the two-dimensional Poisson
-equation from \eqref{cfBN86} by relaxation.
+This is recognisable as a formula for solving the two-dimensional
+Poisson equation from \eqref{cfBN86} by relaxation.  Let us now
+replace the average over four neighbouring points by the circular
+average $\left\langle \tgrav(x_\subcirc,y_\subcirc) \right\rangle$ and
+replace $\pi\Delta^2\,\Sigma(x,y)$ by the enclosed mass
+$M(x_\subbullet,y_\subbullet)$.  These replacements are valid in the
+limit of a small grid.  The result is the implicit
+equation \eqref{eq:tgrav}.
 
 \newpage
 

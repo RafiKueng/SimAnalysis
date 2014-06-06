@@ -126,9 +126,6 @@ Finding people working as volunteers has been shown to be successful last but no
 To test the people's abilities, we investigated the performance of a few volunteers modeling a set of simulated lenses.
 We tested the ability to correctly identify lensed images and reproduce similar mass map of the lens.
 
-
-\section{A lens modeling program}
-
 It is well known that making a scientific contribution is a central
 motivation cited by citizen-science volunteers.  So for a lens
 modeler in a citizen-science project, nobody wants that it should
@@ -138,6 +135,11 @@ are also essential qualities.  Also desirable is that the user is
 encouraged/challenged to go deeper and wider into the subject.
 Yet another aspect is enabling small incremental contributions
 by different people.  \spl tries to address all of these.
+
+\section{A lens modeling program}
+
+\spl is an extension of the GLASS framework for modelling lenses
+\citep{2014arXiv1401.7990C}, and introduces two main innovations.
 
 \subsection{Fermat's Principle and ``spaghetti'' contours} \label{sec:Fermat}
 
@@ -282,17 +284,23 @@ surface tends to be highly curved near the maximum.  Hence maximum tend
 to be demagnified.  In practice, maxima of the arrival time are nearly
 always too faint to see. The minima and saddle points dominate.
 
-In the lensed examples in \figref{arriv}, the maximum in each
-case is evident, but how can we distinguish the minima from the saddle
-points?  The key is to examine the contours of equal arrival time.
-Contour curves loop around a minimum or a maximum, but near a saddle
-point, the contours do not loop around, instead they approach and then
-pull away.  The contour curve precisely level with a saddle point
-forms an X at the saddle point.  In \figref{arriv}, one such X
-is evident.  In other cases the X contour passing through the saddle
-point is not itself plotted, but we can tell by the other contours where
-the X would be.  These self-crossing contours will play a special role
-in the following.
+In the lensed examples in \figref{arriv}, the maximum in each case is
+evident, but how can we distinguish the minima from the saddle points?
+The key is to examine the contours of equal arrival time.  Contour
+curves loop around a minimum or a maximum, but near a saddle point,
+the contours do not loop around, instead they approach and then pull
+away.  The contour curve precisely level with a saddle point forms an
+X at the saddle point.  In \figref{arriv}, one such X is evident.  In
+other cases the X contour passing through the saddle point is not
+itself plotted, but we can tell by the other contours where the X
+would be.  These self-crossing contours will play a special role in
+the following.
+
+Although the arrival-time contours represent an abstract quantity that
+is not directly observable, the contour map may actually resemble the
+appearance of the lensed arcs.  The resemblance is due to a
+serendipitous computer-graphical effect \citep{2001AJ....122..585S}.
+
 
 \FloatBarrier
 \subsection{\spl} \label{sec:SpaghettiLens}
@@ -381,9 +389,9 @@ In the third modeling step, having generated a model ensemble, \spl
 post-processes it to present results and diagnostics to the user for
 inspection. This takes the form of three figures.
 \begin{enumerate}
-\item A gray scale plus contour map of the mass distribution.
-\item A contour map of the arrival-time surface.
 \item A synthetic image of the lensed features.
+\item A contour map of the arrival-time surface.
+\item A gray scale plus contour map of the mass distribution.
 \end{enumerate}
 After examining this feedback, the user can archive the results for
 discussion, or modify their input and try again, or discard the
@@ -449,13 +457,20 @@ JO and JW) until the modeling stage was done.
 
 \subsection{Some example models} \label{sec:example_models}
 
-The community of modellers proposed a total of 129 models for the 29 sims in the challenge. Typically XX models were produced per simulation, with XX systems having only XX models (corresponding tot he most simplest simulations) to XX having XX models (a complex and contrversial lens system). In the following we discuss eight example lenses in detail with individual notes per system and corresponding plots are shown in figures 4-11 (or whatever compact version you end up making). These eight examples were chosen on the basis of …??
+The modellers proposed a total of 129 models for the 29 sims in the
+challenge. Typically XX models were produced per simulation, with XX
+systems having only XX models (corresponding tot he most simplest
+simulations) to XX having XX models (a complex and contrversial lens
+system). In the following we discuss eight example lenses in detail
+with individual notes per system and corresponding plots are shown in
+figures 4-11 (or whatever compact version you end up making). These
+eight examples were chosen on the basis of …??
 
 The modelers proposed a total of 129 models for the 29 sims in the
 challenge.  Figures \ref{fig:6941} to \ref{fig:6919} show eight of
 models in some detail.
 
-\vfill\penalty-2000
+\FloatBarrier
 
 \begin{figure}
   \centering
@@ -468,7 +483,7 @@ models in some detail.
   \includegraphics[width=\myplotswidth]{fig/006941_mass}
   \caption[result 6941 (ASW000102p)]{A simulated lens that mimics a
     lensed quasar, and model results.  The left panels derive from the
-    simulation, and the right panels are \sl output.  Details of
+    simulation, and the right panels are \spl output.  Details of
     individual panels are in \ref{sec:example_models}.}
 
   \label{fig:6941}
@@ -594,48 +609,38 @@ models in some detail.
   \label{fig:7022}
 \end{figure}
 
-\vfill\penalty-2000
+\FloatBarrier
 
-Figure \ref{fig:6941} shows a simple example.  The top two panels show
-contours of convergence $\kappa(x,y)$, and of the arrival-time for a
-point source at the brightest point of the sim
-source.\footnote{Although the arrival-time contours represent an
-  abstract quantity that is not directly observable, the contour map
-  may actually resemble the appearance of the lensed arcs.  The
-  resemblance is due to a serendipitous computer-graphical effect
-  \citep{2001AJ....122..585S}.} The spatial scale is in pixels.  The
-information in these two panels was, of course, kept secret during the
-modeling challenge.  The panels in the middle row and at the lower
-right are the results that \spl returns to the modeler, in order for
-them to assess the model.  These derive from the mean of an ensemble
-of 200 models generated by \spl.  The model mass distribution (left mid) is
-returned as a contour map superimposed on an intensity map. A fairly
+Figures \ref{fig:6941}--\ref{fig:7022} show details of eight models.
+The first four of these show the most common image morphologies, the
+other four explain some problem cases.  Each of the figures has the
+following layout.
+$$ \begin{matrix}
+\hbox{marked-up image} \qquad &\hbox{model synthetic image} \\
+t(x,y)                        &\hbox{model } t(x,y) \\
+\kappa(x,y)                   &\hbox{model } \kappa(x,y)
+\end{matrix} $$
+The marked-up image is a zoom of the lensed image on Spacewarps,
+marked up with one or more spaghetti contours; this is the modeller's
+input to \spl.  The three panels on the right show the graphical
+output returned to the modeller by \spl, listed as (i), (ii), (iii) in
+\S\ref{sec:SpaghettiLens}).  These derive from the mean of an ensemble
+of 200 models generated by \spl.  To generate the synthetic image,
+\spl assumes a simple conical source profile.  The user can change the
+contrast level on the image, which (though it is not saved) amounts to
+adjusting the width of the cone.  These synthetic images are still
+very crude and not useful for assessing models.  The best indicator of
+whether the modelling was successful is the arrival-time surface
+$t(x,y)$, shown as contour maps. Contours passing through saddle
+points are shown in black: these are the model versions of the
+spaghetti sketch provided by the user.  The model $\kappa(x,y)$ is
+shown as a contour map superimposed on an intensity map. A fairly
 smooth mass distribution, as here, is a good sign.  An irregular or
-checkboard pattern in the mass map usually indicates a bad model.  The
-models arrival-time contours are shown in the right middle panel.
-  The special contour passing through a
-saddle point is shown in black: this is the model version of the
-spaghetti sketch provided by the user.  Also provided is a synthetic
-image of the lensed source in the bottom right panel.
-  For this, \spl assumes a simple conical
-source profile.  The user can change the contrast level on the image,
-which (though it is not saved) amounts to adjusting the width of
-the cone.  Finally, to the lower left of the figure, we have a
-comparison of the input and recovered mass profiles.  The panel shows
-a average $\kappa$ within a given radius, as a function of radius.
-The red curve is the true value, and where it crosses unity (dotted
-horizontal line) is the notional Einstein radius $\Theta_{\text{E, sim}}$.
-  The two blue curves
-are the minimal and maximal mean enclosed $\kappa$ from the internal
-ensemble in \spl.  The region between the blue curves is shaded
-between the radii of the innermost and the outermost images --- this
-is the confidence region from the modeling.  As we see, the shaded
-blue is slightly above the red curve. 
-The Einstein Radius $\Theta_\text{E}$ of the model is estimated crossing the
-mean enclosed $\kappa$ (not plotted) with unity.
-  In summary: the identification
-of minimum and saddle point is correct, but the estimated Einstein
-radius is a little too high.
+checkboard pattern in the mass map usually indicates a bad model.
+
+Figure \ref{fig:6941} shows a simple example.  In summary: the
+identification of minimum and saddle point is correct, but the
+estimated Einstein radius is a little too high.
 
 Figure \ref{fig:6915} shows another quad.  This kind of configuration
 arises when the mass is elongated and the source is displaced at an
@@ -691,3 +696,29 @@ saddle points are correctly identified, and the orientation of the
 ellipticity of the mass distribution is correctly reproduced.  The
 Einstein radius is somewhat overestimated.  
 
+Figure \ref{fig:kapenc_compare_faulty} shows a comparison of input and
+recovered mass profiles.  The panel shows a average $\kappa$ within a
+given radius, as a function of radius.  The red curve is the true
+value, and where it crosses unity (dotted horizontal line) is the
+notional Einstein radius $\Theta_{\text{E, sim}}$.  The two blue
+curves are the minimal and maximal mean enclosed $\kappa$ from the
+internal ensemble in \spl.  The region between the blue curves is
+shaded between the radii of the innermost and the outermost images ---
+this is the confidence region from the modeling.  As we see, the
+shaded blue is slightly above the red curve.  The Einstein Radius
+$\Theta_\text{E}$ of the model is estimated crossing the mean enclosed
+$\kappa$ (not plotted) with unity.
+
+
+The panel shows
+a average $\kappa$ within a given radius, as a function of radius.
+The red curve is the true value, and where it crosses unity (dotted
+horizontal line) is the notional Einstein radius $\Theta_{\text{E, sim}}$.
+  The two blue curves
+are the minimal and maximal mean enclosed $\kappa$ from the internal
+ensemble in \spl.  The region between the blue curves is shaded
+between the radii of the innermost and the outermost images --- this
+is the confidence region from the modeling.  As we see, the shaded
+blue is slightly above the red curve. 
+The Einstein Radius $\Theta_\text{E}$ of the model is estimated crossing the
+mean enclosed $\kappa$ (not plotted) with unity.

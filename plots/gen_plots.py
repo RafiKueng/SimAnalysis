@@ -1300,6 +1300,10 @@ def draw_mod(mid, elem, data, sims):
   mmax = np.max([np.max(elem['err_p']), np.max(sims[name]['y'])])
   ofs = max(round(mmax*0.5), 2) 
   rE_pos = max(round(mmax*0.75), 3) # there to draw the einsteinradius text
+  
+  yvals_extr = np.logspace(np.log10(3.5),np.log10(1),8)
+  ypos_theta = np.logspace(np.log10(7),np.log10(5),4)
+  
   # text offsets and properties
   t_dx = 0.0
   t_dy = 0.1
@@ -1338,12 +1342,16 @@ def draw_mod(mid, elem, data, sims):
     if   p['t']=='min': c='c'
     elif p['t']=='max': c='r'
     elif p['t']=='sad': c='g'
-    pl.plot([p['d'], p['d']], [0,ofs-t_dt*jj], c+':')
-    pl.text(p['d']+t_dx, ofs-t_dt*jj+t_dy, p['t'], **t_props)
+    #pl.plot([p['d'], p['d']], [0.01,ofs-t_dt*jj], c+':')
+    #pl.text(p['d']+t_dx, ofs-t_dt*jj+t_dy, p['t'], **t_props)
+    
+    # new placement in logscales
+    pl.plot([p['d'], p['d']], [0.01,yvals_extr[jj]], c+':')
+    pl.text(p['d']+t_dx, yvals_extr[jj], p['t'], **t_props)
 
   # plot simulation parameter data
   pl.plot(sims[name]['x'], sims[name]['y'], 'r')
-  pl.plot([0,np.max(elem['x'])], [1,1], ':m')  
+  pl.plot([0.01,np.max(elem['x'])], [1,1], ':m')  
   
   #titles etc
   pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
@@ -1371,8 +1379,12 @@ def draw_mod(mid, elem, data, sims):
     #a2_re_min = np.array([rE_min, rE_min, rE_min])
     #a2_re_max = np.array([rE_max, rE_max, rE_max])
 
-    pl.plot(a_re_mean, [0,rE_pos], '--', color=(0,0.5,0))
-    pl.text(rE_mean+t_dx, rE_pos+t_dy, r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **t_props)
+    #pl.plot(a_re_mean, [0.001,rE_pos], '--', color=(0,0.5,0))
+    #pl.text(rE_mean+t_dx, rE_pos+t_dy, r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **t_props)
+    
+    #new placement due to logscale
+    pl.plot(a_re_mean, [0.001,ypos_theta[2]], '--', color=(0,0.5,0))
+    pl.text(rE_mean+t_dx, ypos_theta[2], r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **t_props)
     #pl.plot(a_re_min, [0,rE_pos-0.25], ':b')
     #pl.plot(a_re_max, [0,rE_pos-0.25], ':b')
 
@@ -1390,8 +1402,11 @@ def draw_mod(mid, elem, data, sims):
     
     #cy = np.array([cy,cy]).transpose()
     
-    pl.plot(a_re_data, [0,rE_pos+t_dt], '--r')
-    pl.text(rE_data+t_dx, rE_pos+t_dt+t_dy, r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
+    #pl.plot(a_re_data, [0.001,rE_pos+t_dt], '--r')
+    #pl.text(rE_data+t_dx, rE_pos+t_dt+t_dy, r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
+    # new placement due to log scale
+    pl.plot(a_re_data, [0.001,ypos_theta[0]], '--r')
+    pl.text(rE_data+t_dx, ypos_theta[0], r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
     
 
   
@@ -1400,13 +1415,14 @@ def draw_mod(mid, elem, data, sims):
   pl.ylabel(r'mean convergance [1]')  
   
   pl.xlim([0,np.max(elem['x'])])
+  pl.ylim([0.4,10])
 
-  ax = pl.gca()
-  pl.text(0.95, 0.95,elem['name'],
-    horizontalalignment='right',
-    verticalalignment='top',
-    fontsize=14,
-    transform = ax.transAxes)
+  #ax = pl.gca()
+  #pl.text(0.95, 0.95,elem['name'],
+  #  horizontalalignment='right',
+  #  verticalalignment='top',
+  #  fontsize=14,
+  #  transform = ax.transAxes)
 
   ax.set_yscale('log')
   
@@ -1630,7 +1646,7 @@ def plotAllRE():
     for i, item in enumerate(spg.sims.items()):
       key, val = item
     
-    ax.plot([1, 100], [1,100], 'm:')
+    ax.plot([0.1, 100], [0.1,100], 'm:')
     #ax.plot([1, 100], [2,200], 'm')
     
     ax.set_xscale('log')

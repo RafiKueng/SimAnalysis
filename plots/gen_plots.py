@@ -66,6 +66,7 @@ import numpy as np
 from numpy import pi
 import matplotlib as mpl
 
+import PIL
 
 debug = False
 
@@ -73,7 +74,7 @@ debug = False
 write_to_tex_folder = False
 
 #timeintensive dl of online data. only neeeds to be done once
-fetch_onlinedata = False
+fetch_onlinedata = True
 
 # do which plots of sims?
 simplots = {'arriv': True, 'kappa':True, 'kappaenc':False}
@@ -87,7 +88,7 @@ figsizeER = (10,8)
 figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
-outdir = 'figs_new3'
+outdir = 'figs_new4'
 
 #select sims to produce plots for (using sel_sim_plots())
 sel_sim = [
@@ -559,6 +560,32 @@ def sel_mod_plots():
 
     #if debug: break
   
+
+#==============================================================================
+#   
+# fetch online only used models plots
+#==============================================================================
+def fetch_sel_mod():
+  print '\nMODS (fetching only)'
+  print '============================================='  
+  iii=0
+  for idd, elem in enumerate(spg.data):
+    
+    mid = elem['id']
+    
+    if not mid in sel_mod:
+      print mid
+      continue
+    else:
+        iii=iii+1
+        print iii,'/',len(sel_mod)
+
+    path = os.path.join(moddir, '%06i'%mid)
+    if not os.path.isdir(path):
+      os.makedirs(path)    
+
+    get_mod_adv_data(mid) #download plots generated on server with glass
+  
   
 #==============================================================================
 #   # create tex folder / files for easy include
@@ -874,20 +901,35 @@ def copy_sim_files(asw):
 
 def get_mod_def_data(mid):
   """gets the deault data directly from mite web"""
+  '''
   baseurl = 'http://mite.physik.uzh.ch/result/%06i/' %mid
   
   imgs = ['img2.png', 'img3.png']
   saveas = ['mass.png', 'arr_time.png']
+  
+  # box to cut
+  x=71
+  y=61
+  dd=477
+
+  box_mod = (x,y,x+dd,y+dd)
 
   path = os.path.join(moddir, '%06i'%mid)
 
   for k, img in enumerate(imgs):
     r = rq.get(baseurl+img, stream=True)
     if r.status_code == 200:
-      with open(os.path.join(path, saveas[k]), 'wb') as f:
+      with open(os.path.join(path, 'tmp.png'), 'wb') as f:
         for chunk in r.iter_content(1024):
           f.write(chunk)
           
+      with open(os.path.join(path, 'tmp.png'), 'rb') as f:
+        oimg = PIL.Image.open()
+        nimg = oimg.crop(box_mod)
+        nimg.save(os.path.join(path, saveas[k]))
+    
+  os.remove(os.path.join(path, 'tmp.png'))
+  '''        
 
 
 def get_mod_adv_data(mid):
@@ -905,10 +947,18 @@ def get_mod_adv_data(mid):
   imgs = ['img1', 'img2', 'img3']
   saveas_ = ['spaghetti', 'mass', 'arr_time']
 
+  # box to cut
+  x=171
+  y=61
+  dd=477
+  box_mod = (x,y,x+dd,y+dd)
+
   #append eextension
   imgs = [_+'.%s'%ext for _ in imgs]
-  saveas = ['%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
-  saveas2 = ['%06i_%s_cut.%s'%(mid, _, ext) for _ in saveas_]
+  saveas = ['org_%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
+  saveas2 = ['square_%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
+  saveas3 = ['clear_%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
+  saveas3 = ['%06i_%s.%s'%(mid, _, ext) for _ in saveas_]
   
   #path = os.path.join(moddir, '%06i'%mid)
   path = os.path.join(moddir)
@@ -919,9 +969,22 @@ def get_mod_adv_data(mid):
       with open(os.path.join(path, saveas[k]), 'wb') as f:
         for chunk in r.iter_content(1024):
           f.write(chunk)
+          
+      # this cuts away any border
+      with open(os.path.join(path, saveas[k]), 'rb') as f:
+        oimg = PIL.Image.open(f)
+        nimg = oimg.crop(box_mod)
+        nimg.save(os.path.join(path, saveas3[k]))
+
     else:
       print '!! file', baseurl, img, 'not found'
-  
+
+  try:
+    os.remove(os.path.join(path, 'tmp.png'))
+  except:
+    pass
+
+      
   # get input image
   r = rq.get('http://mite.physik.uzh.ch/result/%06i/input.png'%mid, stream=True)
   if r.status_code == 200:
@@ -935,13 +998,13 @@ def get_mod_adv_data(mid):
   for f in saveas: print '  - %s'%f
   print '  - input.png'
   
-  # cut images
+  # cut images to square borders
   from PIL import Image
   for j, iname in enumerate(saveas):
     im = Image.open(os.path.join(path, iname))
     w,h = im.size
     b = (w-h)/2
-    im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas[j]))
+    im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas2[j]))
     print '  -',saveas2[j]
   
 
@@ -1103,10 +1166,12 @@ def draw_sim(asw, sim):
             #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
             for ext in exts:
               p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
-              pl.savefig(p)
+              pl.savefig(p, bbox_inches='tight', pad_inches=0)
               print '  - %s'%p
 
-        
+            pl.clf() #close current figure
+            
+            
         #
         # KAPPA ENCLOSED
         #
@@ -1143,7 +1208,9 @@ def draw_sim(asw, sim):
               p = os.path.join(path + '_%s.%s'%(filenames[2],ext))
               pl.savefig(p)
               print '  - %s'%p
-
+            
+            pl.clf() #close current figure
+            
         #
         # ARRIVAL TIME CONTOUR PLOT
         #
@@ -1161,16 +1228,15 @@ def draw_sim(asw, sim):
 
             
             # hide axis
-            #panel.axes.get_xaxis().set_ticks([])
-            #panel.axes.get_yaxis().set_ticks([])
+            panel.axes.get_xaxis().set_ticks([])
+            panel.axes.get_yaxis().set_ticks([])
             
-            #pl.savefig(os.path.join(path, '%s.%s'%(filenames[0],ext)))
-            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'pdf')))
-            #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[0],'png')))
             for ext in exts:
               p = os.path.join(path + '_%s.%s'%(filenames[0],ext))
-              pl.savefig(p)
+              pl.savefig(p, bbox_inches='tight', pad_inches=0)
               print '  - %s'%p
+          
+            pl.clf() #close current figure
     
     
     if not debug:

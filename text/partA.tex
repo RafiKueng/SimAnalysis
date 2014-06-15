@@ -17,42 +17,50 @@ In all, the results could be comparable to that of a professional.
 
 \section{Introduction}
 
+The first discoveries of gravitational lenses, in each case a galaxy
+lensing a background quasar into multiple images
+\citep{1979Natur.279..381W,1980Natur.285..641W}, brought in their wake
+the first work on lens modelling
+\citep{1981ApJ...244..723Y,1981ApJ...244..736Y}.  For one of the
+lenses, mass modelling predicted that one of the lensed quasar images
+seen would split further into two at higher resolution, which was
+crucial in subsequently confirming that the object is indeed an
+example of lensing.  It had long been expected that galaxies must
+sometimes cause lensed images \citep{1937ApJ....86..217Z}, and it even
+been argued that the phenomenon could help measure cosmological
+parameters \citep{1964MNRAS.128..307R,1966MNRAS.132..101R}.  But
+apparently nobody was expecting that lenses would need detailed
+modelling.  In hindsight, the reason is not difficult to understand.
+The scale of image separations is set by the angular Einstein radius
+\begin{equation}
+\sim \left(\frac{4GM}{c^2 D_L}\right)^{1/2}
+\simeq 0.1'' \left(\frac{M}{M_\odot}\right)^{1/2}
+             \left(\frac{D_L}{\rm pc}\right)^{-1/2}
+\end{equation}
+where $D_L$ is the distance to the lens, and $M$ its mass.  For
+stellar-mass lenses, the image separation is much larger than the size
+of the lensing mass, so lenses are well approximated by point masses.
+In galaxy lenses, the image separation is comparable to the size of
+the galaxy; typically the lensed images are seen through the galaxy
+halo.  Consequently, the lensed images depend on the detailed mass
+distribution of the lensing galaxy.  Once observations of the lensed
+images became available, the need to model the lensing-mass
+distribution in detail became obvious.
 
-Galaxies and clusters of galaxies are considered to be the largest structures in the known Universe. When one questions their formation,  the present picture suggests that gravitational instabilities  (observable as fluctuations of the microwave background) %TODO \todo[red]{not too sure of the relevance of this statement} 
- - caused a collapse into gravitationally bound structures. %TODO\todo[yellow]{clarification needed: are they becoming gravitationally bound structures, or are they collapsing into objects that are already gravitationally bound? I know it is most probably the later, but it is a bit ambiguous}   
-The initial collapse would have been dominated by dark matter, but once deep wells had appeared in the gravitational potential, gas would have started falling into those wells. 
-%TODO \todo[red]{not too sure of this wording}
-Through atomic processes,
-%TODO \todo[yellow]{perhaps we need to clarify those processes or are they generally know?}
- the gravitational potential energy of this gas would of been radiated away, leading to the formation of the largest stars. 
-%TODO \todo[red]{or perhaps just stars?}
-In turn, galaxies and clusters of galaxies would form, all the time merging and changing their form.
-This rough outline is now well established, but in order to satisfy our understanding of this process, there are many puzzles  that remain to be solved. For progress to be made, we need to extend our knowledge of dark matter. Gravitational lensing has proven as a particularly attractive way of studying dark matter as it is only dependant on mass.
-%TODO \todo[yellow]{silly question, but shouldn't we briefly explain why it is only dependant on mass? or should everyone already reading this paper know that? or is it explained later?}
+Nowadays, detailed modelling of the mass distribution is part of any
+research using multiply-imaging lenses.  Many works combine multiple
+lenses with different mass ranges and other properties.  The largest
+single study so far used 58 lenses \citep{2009ApJ...703L..51K} to
+uncover the distribution of dark matter around galaxies.
+\cite{2011ApJ...740...97L} combined lens models of 21 galaxies with
+models of their stellar populations, to study the relation between
+stars and dark matter in galaxies.  \cite{2014MNRAS.437..600S}
+modelled 18 time-delay lenses together to infer cosmological
+parameters.  But lens modelling has remained a separate process from
+lens discovery.
 
 
-There are many manifestations of gravitational lensing in astrophysics,
-but the most spectacular are multiple images.  Gravitational lensing
-depends on the sky-projection mass density, and this fact has a
-counter-intuitive consequence: nearby galaxies do not produce multiple
-images, because their projected density is not high enough, but beyond
-100~Mpc or so, most galaxies are potential lenses.  Even so, for a
-potential lens to really act as a lens, a background source in the close-by
-region is required.  So, in practice galaxies are very rarely observed
-as lens.  The same tendency applies to clusters of galaxies, but since
-clusters are bigger, they are more likely lens-like.
 
-In lensing galaxies, the observable features usually involve a single
-object multiply imaged.  It is therefore desirable to have large
-numbers of lenses, and this is the strategy researchers are following.  The
-largest single study so far uses 58 lenses \citep{2009ApJ...703L..51K}.
-Other studies have compared lens models in more detail with stellar
-mass \citep{2011ApJ...740...97L} or used time-delay information from
-lensed quasars to infer the Hubble time
-\citep{2008ApJ...679...17C,2010ApJ...712.1378P}.
-
-The trend is clear: researchers want to find many more lenses and
-model them in more sophisticated ways.
 
 The question now arises: can lenses be found and modeled
 automatically in large surveys?  Work using software robots

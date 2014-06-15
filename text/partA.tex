@@ -42,52 +42,59 @@ stellar-mass lenses, the image separation is much larger than the size
 of the lensing mass, so lenses are well approximated by point masses.
 In galaxy lenses, the image separation is comparable to the size of
 the galaxy; typically the lensed images are seen through the galaxy
-halo.  Consequently, the lensed images depend on the detailed mass
+halo.  Hence the lensed images depend on the detailed mass
 distribution of the lensing galaxy.  Once observations of the lensed
-images became available, the need to model the lensing-mass
-distribution in detail became obvious.
+images became available, it was obvious that mass modelling was
+needed.
 
-Nowadays, detailed modelling of the mass distribution is part of any
-research using multiply-imaging lenses.  Many works combine multiple
-lenses with different mass ranges and other properties.  The largest
-single study so far used 58 lenses \citep{2009ApJ...703L..51K} to
-uncover the distribution of dark matter around galaxies.
+Since that early days, more than 400 secure lenses have been found
+(see Figure \ref{fig:masterlens}) and detailed modelling of the mass
+distribution is part of any research using multiply-imaging lenses.
+But so far no modelling study has used anything approaching 400
+lenses.  The largest single one \citep{2009ApJ...703L..51K} used 58
+lenses to uncover the distribution of dark matter around galaxies.
 \cite{2011ApJ...740...97L} combined lens models of 21 galaxies with
-models of their stellar populations, to study the relation between
+models of their stellar populations, to infer the relation between
 stars and dark matter in galaxies.  \cite{2014MNRAS.437..600S}
 modelled 18 time-delay lenses together to infer cosmological
-parameters.  But lens modelling has remained a separate process from
-lens discovery.
+parameters.
 
+\begin{figure}
+\centering
+\includegraphics[width=\hsize]{fig/lenssky}
+\caption{Sky distribution of 423 published lenses considered secure
+  (from the Masterlens catalog at the University of Utah, maintained
+  by Joel Brownstein and Leonidas Moustakas.) The map is in
+  Hammer-Aitoff projection, with North up and $\rm RA=0$ in the
+  middle. The empty swathes to the left and right of center are the
+  Milky Way. {\em Should we drop this figure?  It's not relevant to
+    modelling, but as there seems to be no publicly available summary
+    of all known lenses, it does help set context.}}
+\label{fig:masterlens}
+\end{figure}
 
+Integrating modelling into the lens discovery process would be a great
+advantage.  In this paper, we develop a technique towards this goal,
+working with the \sw lens search (Marshall et al, in prep, More et al,
+in prep).  \sw is a citizen science project\footnote{\tt
+  http://www.spacewarps.org} in which volunteers are presented
+sky-survey images and invited to identify lens candidates.  Simulated
+lenses are mixed in with the data, both to help train volunteers on
+what to look for, and to estimate completeness and purity.  The
+motivation for \sw is to enable volunteers, some of whom had
+previously serendipitously identified lens candidates on earlier
+citizen-science surveys, to make discoveries missed in automatic
+searches by software robots.  Robots are very good with clean lensing
+system in uncrowded fields with high signal-to-noise, but in general
+test situations \citep{2009ApJ...694..924M} robots miss lenses (low
+completeness) or contaminate the results with non-lenses (low purity).
 
-
-The question now arises: can lenses be found and modeled
-automatically in large surveys?  Work using software robots
-\citep{2009ApJ...694..924M} gives some interesting and unexpected
-results.  In clean lensing system in uncrowded fields with high
-signal-to-noise, the robots do very well.  In most situations,
-however, robots miss lenses (low completeness) or contaminate the
-results with non-lenses (low purity).  Robots can be made to
-prioritize completeness or purity, but they cannot deliver both.
-
-In response to the lessons learned from automated lens searches, the
-{\em Spacewarps\/} project\footnote{\tt http://www.spacewarps.org}
- has been launched.  {\em Spacewarps\/} is
-part of the {\em Zooniverse\/} family of citizen-science
-projects,\footnote{\tt http://www.zooniverse.org} where members of the
-public are invited to analyze different kinds of scientific data which
-are too difficult for robots and too large for specialists.  In {\em
- Spacewarps\/} itself, survey sky images are presented for volunteers to identify lens candidates.  The first tranche of survey data, introduced from May 2013, is an area of $\sim172$ square
-degrees (or a quarter of a percent of the sky) from the Canada-France-Hawaii Telescope Legacy Survey.
- The survey is divided into patches of $440\times 440$ pixels, each of
-which is seen by ten volunteers.  Simulated lenses are mixed in with
-the data, both to help train volunteers on what to look for, and to
-estimate completeness and purity.
-These data had previously been analyzed by robots \cite{Gavazzi2012, More2012ApJ}.  
-  A list of candidates is being
-processed, but intermediate results show some very good candidates, as
-well as re-discoveries of candidates previously found robotically.
+The first tranche of survey data, introduced from May 2013, is an area
+of $\sim172$ square degrees (or a quarter of a percent of the sky)
+from the Canada-France-Hawaii Telescope Legacy Survey.  The survey is
+divided into patches of $440\times 440$ pixels, each of which is seen
+by ten volunteers.  These data had previously been analyzed by robots
+\cite{Gavazzi2012, More2012ApJ}.
 
 These encouraging results now raise the question: could modeling of
 the lenses also be done by volunteers?  Modeling is a much more

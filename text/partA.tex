@@ -47,64 +47,81 @@ distribution of the lensing galaxy.  Once observations of the lensed
 images became available, it was obvious that mass modelling was
 needed.
 
-Since that early days, more than 400 secure lenses have been found
-(see Figure \ref{fig:masterlens}) and detailed modelling of the mass
-distribution is part of any research using multiply-imaging lenses.
-But so far no modelling study has used anything approaching 400
-lenses.  The largest single one \citep{2009ApJ...703L..51K} used 58
-lenses to uncover the distribution of dark matter around galaxies.
+Since those first discoveries, more than 400 secure lenses are now
+known (see Figure \ref{fig:masterlens}).  Modelling of the mass
+distribution is part of any research using lenses, but so far no
+modelling study has spanned all known lenses.  The largest single one
+\citep{2009ApJ...703L..51K} models 58 lenses to infer the distribution
+of dark matter around galaxies.  In other work,
 \cite{2011ApJ...740...97L} combined lens models of 21 galaxies with
-models of their stellar populations, to infer the relation between
-stars and dark matter in galaxies.  \cite{2014MNRAS.437..600S}
-modelled 18 time-delay lenses together to infer cosmological
-parameters.
+models of their stellar populations, to find the relation between
+stars and dark matter, and \cite{2014MNRAS.437..600S} modelled 18
+time-delay lenses together to infer cosmological parameters.
 
 \begin{figure}
 \centering
 \includegraphics[width=\hsize]{fig/lenssky}
 \caption{Sky distribution of 423 published lenses considered secure
   (from the Masterlens catalog at the University of Utah, maintained
-  by Joel Brownstein and Leonidas Moustakas.) The map is in
+  by Joel Brownstein and Leonidas Moustakas).  The map is in
   Hammer-Aitoff projection, with North up and $\rm RA=0$ in the
-  middle. The empty swathes to the left and right of center are the
+  middle. The empty swathes to the left and right of centre are the
   Milky Way. {\em Should we drop this figure?  It's not relevant to
     modelling, but as there seems to be no publicly available summary
     of all known lenses, it does help set context.}}
 \label{fig:masterlens}
 \end{figure}
 
-Integrating modelling into the lens discovery process would be a great
-advantage.  In this paper, we develop a technique towards this goal,
-working with the \sw lens search (Marshall et al, in prep, More et al,
-in prep).  \sw is a citizen science project\footnote{\tt
+Surveys now under way aim to increase the inventory of lenses another
+ten or a hundred fold.  Among these is \sw (Marshall et al, in prep,
+More et al, in prep).  \sw is a citizen science project\footnote{\tt
   http://www.spacewarps.org} in which volunteers are presented
 sky-survey images and invited to identify lens candidates.  Simulated
 lenses are mixed in with the data, both to help train volunteers on
-what to look for, and to estimate completeness and purity.  The
-motivation for \sw is to enable volunteers, some of whom had
-previously serendipitously identified lens candidates on earlier
+what to look for, and to provide measures of the effectiveness of the
+search.  The motivation for \sw is to enable volunteers, some of whom
+had previously serendipitously identified lens candidates on earlier
 citizen-science surveys, to make discoveries missed in automatic
 searches by software robots.  Robots are very good with clean lensing
 system in uncrowded fields with high signal-to-noise, but in general
 test situations \citep{2009ApJ...694..924M} robots miss lenses (low
 completeness) or contaminate the results with non-lenses (low purity).
+\sw introduced its first tranche of survey data, in May 2013.  The
+Canada-France-Hawaii Telescope Legacy Survey (CFHTLS), covering
+$\simeq172$ square degrees (0.4\% of the sky) was divided into tiles
+of $80''\times80''$ ($440\times 440$ pixels).  Each such tile was
+shown to ten volunteers.  Despite the rarity of detectable lenses
+($<10^{-3}$ per tile), the \sw collective soon found lens candidates,
+both rediscoveries already known from robots \citep{Gavazzi2012,
+  More2012ApJ} and possible new lenses.
 
-The first tranche of survey data, introduced from May 2013, is an area
-of $\sim172$ square degrees (or a quarter of a percent of the sky)
-from the Canada-France-Hawaii Telescope Legacy Survey.  The survey is
-divided into patches of $440\times 440$ pixels, each of which is seen
-by ten volunteers.  These data had previously been analyzed by robots
-\cite{Gavazzi2012, More2012ApJ}.
+The encouraging early results prompted the question: could modeling of
+the lenses also be done by volunteers?  There are several software
+packages available for lens modelling \citep[for a review,
+  see][]{2013NewAR..57....1L} and work has been done on generic
+interfaces \citep{2014A&C.....5...28L}, lens modelling has remained
+the domain of specialists.  An early proposal for what became \sw had
+included a prototype lens modelling tool \citep{2010AAS...21543527N},
+but the learning curve for modelling was subsequently considered too
+long to attract potential volunteers.  On the other hand, some {\em
+  Spacewarps\/} volunteers were quite experienced from earlier
+projects, having spent a thousand hours or more with data, and very
+interested in more demanding projects.  The interests of
+citizen-science communities are just beginning to be studied
+\citep[e.g.,][]{2013AEdRv..12a0106J}, but it is clear that some
+volunteers welcome open-ended challenges, and sometimes these have led
+to new scientific results: one example is the discovery of an
+exceptional extra-solar planet \citep{2013ApJ...768..127S}; another is
+the development of new algorithms for protein folding
+\citep{Khatib22112011}.
 
-These encouraging results now raise the question: could modeling of
-the lenses also be done by volunteers?  Modeling is a much more
-difficult task than searching for lens candidates, as it requires some
-expert knowledge.  Nonetheless, a panel of the {\em Spacewarps\/}
-volunteers is quite experienced from earlier projects, having spent a
-thousand hours or more with data.  Some of these experienced
-volunteers are very interested in more demanding projects.  This also
-is a general trend \citep[cf.][]{Khatib22112011}.  The present project
-then suggests itself.
+A characteristic of strong gravitational lensing is that lensed images
+do not look much like the source, and still less do they resemble the
+mass distribution.  Modellers develop an intuition for image
+configurations, and it is necessary to do so before one can begin to
+model lenses.  Indeed, the modelling section of
+\cite{1981ApJ...244..723Y} can be read as researchers developing
+lens-modellers' intuition for the first time.
 
 The purpose of this study was to provide a means to model a large number of gravitational lenses by showing that gravitational lens modeling can be learned / done by volunteers.
 We suggest, that volunteers will be as successful as professionals with modeling if provided with an easy to use tool with visual feedback (What you see is what you get, WYSIWYG) and a minimal set of instructions.

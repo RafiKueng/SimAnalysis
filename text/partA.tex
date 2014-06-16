@@ -96,15 +96,12 @@ both rediscoveries already known from robots \citep{Gavazzi2012,
   More2012ApJ} and possible new lenses.
 
 The encouraging early results prompted the question: could modeling of
-the lenses also be done by volunteers?  There are several software
-packages available for lens modelling \citep[for a review,
-  see][]{2013NewAR..57....1L} and work has been done on generic
-interfaces \citep{2014A&C.....5...28L}, lens modelling has remained
-the domain of specialists.  An early proposal for what became \sw had
-included a prototype lens modelling tool \citep{2010AAS...21543527N},
-but the learning curve for modelling was subsequently considered too
-long to attract potential volunteers.  On the other hand, some {\em
-  Spacewarps\/} volunteers were quite experienced from earlier
+the lenses also be done by volunteers?  An early proposal for what
+became \sw included a prototype lens modelling tool
+\citep{2010AAS...21543527N}.  There are several software tools for
+lensing modelling available, and work has been done on generic
+interfaces \citep{2013NewAR..57....1L,2014A&C.....5...28L}.  Moreover,
+some {\em Spacewarps\/} volunteers are quite experienced from earlier
 projects, having spent a thousand hours or more with data, and very
 interested in more demanding projects.  The interests of
 citizen-science communities are just beginning to be studied
@@ -113,15 +110,40 @@ volunteers welcome open-ended challenges, and sometimes these have led
 to new scientific results: one example is the discovery of an
 exceptional extra-solar planet \citep{2013ApJ...768..127S}; another is
 the development of new algorithms for protein folding
-\citep{Khatib22112011}.
+\citep{Khatib22112011}.  All these are grounds for optimism.  There
+is, however, a basic difficulty in strong gravitational lensing.
+Lensed images do not look much like their source, and still less do
+they resemble the lensing-mass distribution.  To model a lens, one
+needs to either do a lot of random guessing, or have a good intuition
+for what works.
 
-A characteristic of strong gravitational lensing is that lensed images
-do not look much like the source, and still less do they resemble the
-mass distribution.  Modellers develop an intuition for image
-configurations, and it is necessary to do so before one can begin to
-model lenses.  Indeed, the modelling section of
-\cite{1981ApJ...244..723Y} can be read as researchers developing
-lens-modellers' intuition for the first time.
+In this paper, we propose a way around the difficulty, and report on a
+modelling test on \sw using simulated lenses.  There are three aspects
+to this work, covered in the following three sections.
+
+In section \secref{Fermat} we introduces a theoretical innovation,
+which we call a ``spaghetti diagram''.  This is a cartoon-like markup
+of a lensed system, which implicitly encodes the basis of a mass
+model.  A spaghetti diagram is basically the saddle-point contours
+originally introduced to gravitational lensing by
+\cite{1986ApJ...310..568B} as a way of classifying lensed images.
+They are sometimes shown as part of the output of lens models
+\citep[for
+  example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.  In
+the present work, however, spaghetti diagrams are the {\em input\/}
+through which the modeller tells the program what to do.
+
+In section \secref{SpaghettiLens} we describe the \spl program, which
+implements everything.  \spl is an extension of the GLASS framework
+for modelling lenses \citep{2014arXiv1401.7990C}.  \spl is designed to
+be friendly to the forum style of citizen-science projects, without
+sacrificing any features of GLASS.  The program is invoked online, and
+the modelling history is logged in a transparent way, enabling forum
+discussions and incremental improvement by different people.
+Moreover, any result can be revisited and post-processed if desired.
+These features are of general interest for citizen-science projects,
+but somewhat outside the scope of the present paper.
+
 
 The purpose of this study was to provide a means to model a large number of gravitational lenses by showing that gravitational lens modeling can be learned / done by volunteers.
 We suggest, that volunteers will be as successful as professionals with modeling if provided with an easy to use tool with visual feedback (What you see is what you get, WYSIWYG) and a minimal set of instructions.
@@ -141,33 +163,12 @@ are also essential qualities.  Also desirable is that the user is
 encouraged/challenged to go deeper and wider into the subject.
   \spl tries to address all of these.
 
-\section{A lens modeling program}
-
-\spl is an extension of the GLASS framework for modelling lenses
-\citep{2014arXiv1401.7990C}, with two innovations.
-\begin{itemize}
-\item \spl is friendly to the forum style of citizen-science projects,
-  without sacrificing any features of GLASS.  The program is invoked
-  online, and the modelling history is logged in a transparent way,
-  enabling forum discussions and incremental improvement by different
-  people.  Moreover, any result can be revisited and post-processed if
-  desired.  These features are of general interest for citizen-science
-  projects, but somewhat outside the scope of the present paper.
-\item The innovation specific to lens modelling is the use of
-  ``spaghetti diagrams'' or saddle-point contours.  These were
-  originally introduced to gravitational lensing by
-  \cite{1986ApJ...310..568B} as a way of classifying lensed images,
-  and are sometimes shown as part of the output of lens models
-  \citep[for
-    example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.
-  In \spl, however, spaghetti diagrams are the {\em input\/} through
-  which the modeller tells the program what to do.
-\end{itemize}
+\section{Fermat's principle and spaghetti diagrams} \label{sec:Fermat}
 
 We now explain spaghetti diagrams and then outline what \spl does with
 them.
 
-\subsection{Fermat's Principle} \label{sec:Fermat}
+\subsection{Geometrical and gravitational time delays} 
 
 Let us recall the formulation of gravitational lensing by
 \cite{1986ApJ...310..568B} in terms of Fermat's principle .  Consider
@@ -240,7 +241,7 @@ the Appendix~\ref{more-theory}.
 \end{figure}
 
 
-\subsection{``Spaghetti'' diagrams} \label{sec:arriv}
+\subsection{Arrival-time contours} \label{sec:arriv}
 
 The full function $t(x,y)$, also known as the arrival-time surface,
 applies to virtual photons.  In other words, it is an abstract
@@ -284,7 +285,7 @@ tends to be highly curved near the maximum.  Hence maximum tend to be
 demagnified.  In practice, maxima of the arrival time are nearly
 always too faint to see. The minima and saddle points dominate.
 
-\subsection{\spl} \label{sec:SpaghettiLens}
+\section{A lens-modelling program} \label{sec:SpaghettiLens}
 
 \spl implements the ideas of the arrival-time surface into a modeling
 program.

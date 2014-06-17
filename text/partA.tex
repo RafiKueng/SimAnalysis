@@ -277,8 +277,12 @@ always too faint to see. The minima and saddle points dominate.
 
 \section{A lens-modelling program} \label{sec:SpaghettiLens}
 
-\spl implements the ideas of the arrival-time surface into a modeling
-program.
+Modelling with \spl involves three stages, markup of the image,
+followed by intensive numerics in the background, followed by review
+of diagnostics and possible discussion.  We now describe each of
+these, at a conceptual level, without implementation details.
+
+\subsection{Image markup}
 
 The first modeling step with \spl is for the user to call up the \sw
 of interest, and make an educated guess for the topography of the
@@ -319,6 +323,8 @@ and order images according to arrival time.  But the computer helps by
 allowing only valid lensing configurations to be entered, and ensuring
 that the odd image theorem is taken care of.
 
+\subsection{Numerics}
+
 In the second modeling step, once the user has sketched a proposed
 spaghetti configuration, \spl sends the input to its server-side
 modeling engine, called GLASS \citep{2014arXiv1401.7990C}.  The task
@@ -355,6 +361,8 @@ improves upon earlier techniques \citep{2000AJ....119..439W,Saha2004}.
 Typically, ensembles of 200 models are used.  That is to say, what we
 call a \spl model is really the mean of an ensemble of 200 models, and
 its estimated uncertainty is the range covered by the whole ensemble.
+
+\subsection{Diagnostics}
 
 In the third modeling step, having generated a model ensemble, \spl
 post-processes it to present results and diagnostics to the user for

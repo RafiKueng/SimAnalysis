@@ -17,21 +17,21 @@ In all, the results could be comparable to that of a professional.
 
 \section{Introduction}
 
-The first discoveries of gravitational lenses, in each case a galaxy
-lensing a background quasar into multiple images
-\citep{1979Natur.279..381W,1980Natur.285..641W}, brought in their wake
-the first work on lens modelling
-\citep{1981ApJ...244..723Y,1981ApJ...244..736Y}.  For one of the
-lenses, mass modelling predicted that one of the lensed quasar images
-seen would split further into two at higher resolution, which was
-crucial in subsequently confirming that the object is indeed an
-example of lensing.  It had long been expected that galaxies must
-sometimes cause lensed images \citep{1937ApJ....86..217Z}, and it even
-been argued that the phenomenon could help measure cosmological
-parameters \citep{1964MNRAS.128..307R,1966MNRAS.132..101R}.  But
-apparently nobody was expecting that lenses would need detailed
-modelling.  In hindsight, the reason is not difficult to understand.
-The scale of image separations is set by the angular Einstein radius
+The first two discoveries of gravitational lenses
+\citep{1979Natur.279..381W,1980Natur.285..641W}, where a galaxy images
+a background quasar into two (four), brought in their wake the first
+work on lens modelling
+\citep{1981ApJ...244..723Y,1981ApJ...244..736Y}.  For the second lens
+(PG1115+080), mass models scored an early success with the prediction
+that one of the lensed images seen would split further into two at
+higher resolution.  That galaxies must sometimes cause had long been
+expected \citep{1937ApJ....86..217Z}, and it had even been argued that
+the phenomenon could help measure cosmological parameters
+\citep{1964MNRAS.128..307R,1966MNRAS.132..101R}.  But apparently
+nobody was expecting that lenses would need detailed modelling.
+The first observations, however, immediately stimulated models.
+The reason for that lies in the image separation. Recall that image
+separations are of order the angular Einstein radius
 \begin{equation}
 \sim \left(\frac{4GM}{c^2 D_L}\right)^{1/2}
 \simeq 0.1'' \left(\frac{M}{M_\odot}\right)^{1/2}
@@ -43,14 +43,12 @@ of the lensing mass, so lenses are well approximated by point masses.
 In galaxy lenses, the image separation is comparable to the size of
 the galaxy; typically the lensed images are seen through the galaxy
 halo.  Hence the lensed images depend on the detailed mass
-distribution of the lensing galaxy.  Once observations of the lensed
-images became available, it was obvious that mass modelling was
-needed.
+distribution of the lensing galaxy.  Galaxy lenses demand modelling.
 
-Since those first discoveries, more than 400 secure lenses are now
-known (see Figure \ref{fig:masterlens}).  Modelling of the mass
-distribution is part of any research using lenses, but so far no
-modelling study has spanned all known lenses.  The largest single one
+Since the early discoveries, more than 400 secure lenses are now known
+(see Figure \ref{fig:masterlens}).  Modelling of the mass distribution
+is part of any research using lenses, but so far no modelling study
+has spanned all known lenses.  The largest single one
 \citep{2009ApJ...703L..51K} models 58 lenses to infer the distribution
 of dark matter around galaxies.  In other work,
 \cite{2011ApJ...740...97L} combined lens models of 21 galaxies with
@@ -86,111 +84,104 @@ searches by software robots.  Robots are very good with clean lensing
 system in uncrowded fields with high signal-to-noise, but in general
 test situations \citep{2009ApJ...694..924M} robots miss lenses (low
 completeness) or contaminate the results with non-lenses (low purity).
-\sw introduced its first tranche of survey data, in May 2013.  The
+\sw introduced its first tranche of survey data, in May 2013, from the
 Canada-France-Hawaii Telescope Legacy Survey (CFHTLS), covering
 $\simeq172$ square degrees (0.4\% of the sky) was divided into tiles
-of $80''\times80''$ ($440\times 440$ pixels).  Each such tile was
-shown to ten volunteers.  Despite the rarity of detectable lenses
+of $\simeq 80''\times80''$ ($440\times 440$ pixels).  Each such tile
+was shown to ten volunteers.  Despite the rarity of detectable lenses
 ($<10^{-3}$ per tile), the \sw collective soon found lens candidates,
 both rediscoveries already known from robots \citep{Gavazzi2012,
   More2012ApJ} and possible new lenses.
 
 The encouraging early results prompted the question: could modeling of
-the lenses also be done by volunteers?  An early proposal for what
-became \sw included a prototype lens modelling tool
-\citep{2010AAS...21543527N}.  There are several software tools for
-lensing modelling available, and work has been done on generic
-interfaces \citep{2013NewAR..57....1L,2014A&C.....5...28L}.  Moreover,
-some {\em Spacewarps\/} volunteers are quite experienced from earlier
-projects, having spent a thousand hours or more with data, and very
-interested in more demanding projects.  The interests of
-citizen-science communities are just beginning to be studied
-\citep[e.g.,][]{2013AEdRv..12a0106J}, but it is clear that some
-volunteers welcome open-ended challenges, and sometimes these have led
-to new scientific results: one example is the discovery of an
-exceptional extra-solar planet \citep{2013ApJ...768..127S}; another is
-the development of new algorithms for protein folding
-\citep{Khatib22112011}.  All these are grounds for optimism.  There
-is, however, a basic difficulty in strong gravitational lensing.
-Lensed images do not look much like their source, and still less do
-they resemble the lensing-mass distribution.  To model a lens, one
-needs to either do a lot of random guessing, or have a good intuition
-for what works.
+the lenses also be done by volunteers?  There are several software
+tools for lensing modelling available, and work has been done on
+generic interfaces \citep{2013NewAR..57....1L,2014A&C.....5...28L}.
+Some early designs for \sw included a prototype lens modelling tool
+\citep{2010AAS...21543527N}.  Moreover, some {\em Spacewarps\/}
+volunteers are quite experienced from earlier projects, having spent a
+thousand hours or more with data, and are very interested in more
+demanding projects.  The interests of citizen-science communities are
+just beginning to be studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but
+it is clear that some volunteers welcome open-ended challenges, and
+sometimes these have led to new scientific results: one example is the
+discovery of an exceptional extra-solar planet
+\citep{2013ApJ...768..127S}; another is the development of new
+algorithms for protein folding \citep{Khatib22112011}.  All these are
+grounds for optimism.  There is, however, a basic difficulty in strong
+gravitational lensing.  Lensed images do not look much like their
+source, and still less do they resemble the lensing-mass distribution.
+To model a lens, one needs to either do a lot of random guessing, or
+have a good intuition for what works.
 
 In this paper, we propose a way around the difficulty, and report on a
-modelling test on \sw using simulated lenses.  There are three aspects
-to this work, covered in the following three sections.
+modelling test on \sw using simulated lenses.  The three following
+sections are devoted to the concept, the implementation, and tests
+respectively.
 
-In section \secref{Fermat} we introduces a theoretical innovation,
-which we call a ``spaghetti diagram''.  This is a cartoon-like markup
-of a lensed system, which implicitly encodes the basis of a mass
-model.  A spaghetti diagram is basically the saddle-point contours
-originally introduced to gravitational lensing by
-\cite{1986ApJ...310..568B} as a way of classifying lensed images.
-They are sometimes shown as part of the output of lens models
-\citep[for
+In \secref{Fermat} we introduce a markup system for lensed images,
+which we call a ``spaghetti diagram''.  A spaghetti diagram resembles
+the visible image system, in a cartoon-like way, and at the same time
+it encodes the basis of a mass model.  This supplies an intuitive link
+between the image system and the mass distribution, which look
+frustratingly different from each other.  Spaghetti diagrams are
+essentially the saddle-point contours originally introduced to
+gravitational lensing by \cite{1986ApJ...310..568B} as a way of
+classifying lensed images.  They are sometimes shown as part of the
+output of lens models \citep[for
   example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.  In
 the present work, however, spaghetti diagrams are the {\em input\/}
 through which the modeller tells the program what to do.
 
-In section \secref{SpaghettiLens} we describe the \spl program, which
+In \secref{SpaghettiLens} we describe the \spl program, which
 implements everything.  \spl is an extension of the GLASS framework
-for modelling lenses \citep{2014arXiv1401.7990C}.  \spl is designed to
-be friendly to the forum style of citizen-science projects, without
-sacrificing any features of GLASS.  The program is invoked online, and
-the modelling history is logged in a transparent way, enabling forum
+for modelling lenses \citep{2014arXiv1401.7990C}.  We will not go into
+software details in this paper, concentrating instead on lens
+modelling per se, but we remark that \spl is designed to be friendly
+to the forum style of citizen-science projects, without sacrificing
+any features of GLASS.  The program is invoked online, and the
+modelling history is logged in a transparent way, enabling forum
 discussions and incremental improvement by different people.
 Moreover, any result can be revisited and post-processed if desired.
-These features are of general interest for citizen-science projects,
-but somewhat outside the scope of the present paper.
 
+In \secref{mod_challenge} we describe a modelling challenge where a
+diverse sample of 29 simulated lenses was modelled multiple times
+using \spl.  The models are then examined in two ways.  One was
+whether the spaghetti diagram was correct.  The other was the recovery
+of the Einstein radius.  In addition, we show some visual comparisons
+of actual and recovered lens shape and radial profile, and identify
+some areas to improve, but do not compute statistics on these aspects.
+Profile and shape recovery with GLASS has been studied in more detail
+in \citep{2014arXiv1401.7990C}.
 
-The purpose of this study was to provide a means to model a large number of gravitational lenses by showing that gravitational lens modeling can be learned / done by volunteers.
-We suggest, that volunteers will be as successful as professionals with modeling if provided with an easy to use tool with visual feedback (What you see is what you get, WYSIWYG) and a minimal set of instructions.
-Volunteers will then crowd work (using buzz word here ;) ) / work collaborative on modeling lenses from several sources / groups at a central place.
-Since this is an iterative learning process, the more involved volunteers will quickly gain knowledge that can be passed down to new volunteers.
-That creates a social structure that scales well with the number of volunteers, as other projects have already shown. %TODO \needcite
-Finding people working as volunteers has been shown to be successful last but not least by \sw and the whole galaxy zoo project.
-To test the people's abilities, we investigated the performance of a few volunteers modeling a set of simulated lenses.
-We tested the ability to correctly identify lensed images and reproduce similar mass map of the lens.
-
-It is well known that making a scientific contribution is a central
-motivation cited by citizen-science volunteers.  So for a lens
-modeler in a citizen-science project, nobody wants that it should
-sacrifice scientific usefulness in order to be fun to use.  That said,
-being aesthetically pleasing and having a short initial learning curve
-are also essential qualities.  Also desirable is that the user is
-encouraged/challenged to go deeper and wider into the subject.
-  \spl tries to address all of these.
+\secref{todo} concludes, with the general outlook and next steps.
 
 \section{Fermat's principle and spaghetti diagrams} \label{sec:Fermat}
-
-We now explain spaghetti diagrams and then outline what \spl does with
-them.
 
 \subsection{Geometrical and gravitational time delays} 
 
 Let us recall the formulation of gravitational lensing by
-\cite{1986ApJ...310..568B} in terms of Fermat's principle .  Consider
-a lens at some redshift $z_L$ and let $(x,y)$ be planar coordinates at
+\cite{1986ApJ...310..568B} in terms of Fermat's principle.  Consider a
+lens at some redshift $z_L$ and let $(x,y)$ be planar coordinates at
 the lens, transverse to the line of sight.  Let $\Sigma(x,y)$ be the
-mass per unit area, projecting along the line of sight.  This surface
-density is often given in a dimensional form
+mass per unit area, i.e., density projected along the line of sight.
+This surface density is often given in a dimensionless form
 \begin{equation} \label{eq:kappa}
-\kappa(x,y) \propto \Sigma(x,y) \,.
+\kappa(x,y) \propto \Sigma(x,y)
 \end{equation}
-Consider also a more distant light source, at redshift $z_S$, behind
-point $(x_s,y_s)$ on the lens.
+called the convergence.  And let there be light, in the form of a more
+distant source, at redshift $z_S$, behind point $(x_s,y_s)$ on the
+lens.
 
-Now imagine a virtual photon coming from the source to some $(x,y)$ on
-the lens, then changing direction and coming to the observer.  Such a
-direction change would increase the light travel time compared to
+We now imagine a virtual photon flying from the source to some $(x,y)$
+on the lens, then changing direction and coming to the observer.  Such
+a direction change would increase the light travel time compared to
 coming through $(x_s,y_s)$.  The increased light travel time from the
 geometry of deflection would be
 \begin{equation} \label{eq:tgeom}
 \tgeom(x,y) \propto (x-x_s)^2 + (y-s_y)^2 \,.
 \end{equation}
-assuming it is small compared to the total light travel time.
+assuming the delay is small compared to the total light travel time.
 
 An additional delay of the photon comes from travelling through the
 curved spacetime at the lens, and can be related to the mass
@@ -216,7 +207,7 @@ that make $t(x,y)$ extremal, that is, having a minimum, maximum or
 saddle point (Fermat's principle).
 
 The proportionality factors in \eqref{eq:kappa} and \eqref{eq:tgeom}
-depend on the redshifts and cosmological parameters and are given in
+depend on the redshifts and cosmological parameters, and are given in
 the Appendix~\ref{more-theory}.
 
 \begin{figure}
@@ -246,13 +237,13 @@ the Appendix~\ref{more-theory}.
 The full function $t(x,y)$, also known as the arrival-time surface,
 applies to virtual photons.  In other words, it is an abstract
 construct and not itself observable.  But observable image positions
-can be derived from the arrival-time surface, so visualising it is
-useful.  Figure~\figref{arriv} does so.  In this figure, a maximum,
-where present, is easy to see.  To locate mimima and saddle-points,
-however, one needs to examine the contours of equal arrival time.  A
-saddle point is characterised by a contour crossing itself, forming
-an~X.  Mimima, on the other hand, have contours looping around them,
-as do maxima.
+can be derived from the arrival-time surface, so visualising the
+surface is useful.  \figref{arriv} does so.  In this figure, a
+maximum, if present, is easy to see.  To locate mimima and
+saddle-points, however, one needs to examine the contours of equal
+arrival time.  A saddle point is characterised by a contour crossing
+itself, forming an~X.  Mimima, on the other hand, have contours
+looping around them, as do maxima.
 
 The saddle-point contours which form an X are especially interesting,
 because they set the overall topography of the arrival-time surface.
@@ -265,7 +256,6 @@ in effect the mass distribution is also automatically specified.  In
 other words, a simple sketch of saddle-point contours along with
 locations of minima and maxima ---which we call a spaghetti diagram---
 is implicitly already an approximation to a lens-mass distribution.
-This idea is the basis of \spl.
 
 The preceding assumes a point source.  To get an idea of what an
 extended source would do, let us imagine moving the original source
@@ -295,9 +285,8 @@ of interest, and make an educated guess for the topography of the
 arrival-time surface --- specifically, the locations of the maxima,
 minima and saddle points that correspond to images of the brightest
 part of the source.  Input is given by tracing a proposal for the
-saddle-point contours.  \Figref{input-spag} shows some example
-inputs --- and incidentally also indicates the origin of the name
-\spl.
+saddle-point contours.  Examples appear in Figures \ref{fig:6941} to
+\ref{fig:7022} below (upper-left panel in each case).
 
 \spl, as implemented so far, assumes that the lens is dominated by a
 single galaxy, and that the center of that galaxy is the sole maximum.
@@ -328,7 +317,7 @@ mouse.  Human intuition is required to (a)~identify lensed images and
 separate them from other background light sources, and (b)~classify
 and order images according to arrival time.  But the computer helps by
 allowing only valid lensing configurations to be entered, and ensuring
-that the odd image theorem is taken care of.%TODO \needcite
+that the odd image theorem is taken care of.
 
 In the second modeling step, once the user has sketched a proposed
 spaghetti configuration, \spl sends the input to its server-side

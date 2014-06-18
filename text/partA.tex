@@ -280,17 +280,42 @@ always too faint to see. The minima and saddle points dominate.
 Modelling with \spl involves three stages, markup of the image,
 followed by intensive numerics in the background, followed by review
 of diagnostics and possible discussion.  We now describe each of
-these, at a conceptual level, without implementation details.
+these, but do not go into implementation details.
 
 \subsection{Image markup}
 
-The first modeling step with \spl is for the user to call up the \sw
+One begins by going to the \spl page and entering the number of a \sw
+image tile.  \spl then presents it, along with zoom and pan options
+and a markup tool.  The human modeller then has to make an educated
+guess for the topography of the arrival-time surface, and input the
+locations time-ordering of the maxima, minima, and saddle-points.  The
+markup tool allows this information to be entered without the user
+having to think explicitly about image parities or time ordering, by
+tracing saddle-point contours (which the collaboration soon named
+``spaghetti'', leading to the name of the program).
+
+Examples appear in the upper-left panels of Figures \ref{fig:6941} to
+\ref{fig:7022}.
+
+
+  It
+also allows only valid lensing configurations to be entered, including 
+
+ensuring that the odd image theorem is taken care of.
+
+1986ApJ...310..568B
+
+
+The modeller begins by going to the \spl page, and entering the \sw name 
+
+The modeller proceeds by modeling step with \spl is for the user to call up the \sw
 of interest, and make an educated guess for the topography of the
-arrival-time surface --- specifically, the locations of the maxima,
+arrival-time surface, specifically, the locations of the maxima,
 minima and saddle points that correspond to images of the brightest
 part of the source.  Input is given by tracing a proposal for the
-saddle-point contours.  Examples appear in Figures \ref{fig:6941} to
-\ref{fig:7022} below (upper-left panel in each case).
+saddle-point contours.  
+
+
 
 \spl, as implemented so far, assumes that the lens is dominated by a
 single galaxy, and that the center of that galaxy is the sole maximum.
@@ -319,9 +344,7 @@ just to help mark up the image as maximum, minima and saddle points.
 As the figure suggests, the marking up can be done very easily with a
 mouse.  Human intuition is required to (a)~identify lensed images and
 separate them from other background light sources, and (b)~classify
-and order images according to arrival time.  But the computer helps by
-allowing only valid lensing configurations to be entered, and ensuring
-that the odd image theorem is taken care of.
+and order images according to arrival time.  
 
 \subsection{Numerics}
 

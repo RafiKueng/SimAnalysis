@@ -285,80 +285,46 @@ these, but do not go into implementation details.
 \subsection{Image markup}
 
 One begins by going to the \spl page and entering the number of a \sw
-image tile.  \spl then presents it, along with zoom and pan options
-and a markup tool.  The human modeller then has to make an educated
-guess for the topography of the arrival-time surface, and input the
-locations time-ordering of the maxima, minima, and saddle-points.  The
-markup tool allows this information to be entered without the user
-having to think explicitly about image parities or time ordering, by
-tracing saddle-point contours (which the collaboration soon named
-``spaghetti'', leading to the name of the program).
+image tile.  \spl presents the image, along with zoom and pan options
+and a markup tool to construct a spaghetti diagram.  The human
+modeller now has to make an educated guess for the topography of the
+arrival-time surface, and input the locations time-ordering of the
+maxima, minima, and saddle-points.  The markup tool \citep[which is
+  inspired by Figure~6 of][and is like that figure made interactive
+  and overlaid on data]{1986ApJ...310..568B} lets the modeller enter
+the information by sketching saddle-point contours.  Examples can be
+seen in the upper-left panels of Figures \ref{fig:6941} to
+\ref{fig:7022}.  The loops in the markup tool were the origin of the
+``spaghetti'' metaphor.
 
-Examples appear in the upper-left panels of Figures \ref{fig:6941} to
-\ref{fig:7022}.
+The exact placement of the loops in a spaghetti diagram has no
+significance, only the connections, and the heirarchy of which loop is
+inside which matters.  The loops are there simply to help modeller's
+intuition.  The user does not need to think explicitly the image
+parities (though the markup tool provides this information using
+colour codes) or about time-ordering, or worry about the odd-image
+theorem.  The markup tool allows only valid lensing configurations to
+be entered.
 
-
-  It
-also allows only valid lensing configurations to be entered, including 
-
-ensuring that the odd image theorem is taken care of.
-
-1986ApJ...310..568B
-
-
-The modeller begins by going to the \spl page, and entering the \sw name 
-
-The modeller proceeds by modeling step with \spl is for the user to call up the \sw
-of interest, and make an educated guess for the topography of the
-arrival-time surface, specifically, the locations of the maxima,
-minima and saddle points that correspond to images of the brightest
-part of the source.  Input is given by tracing a proposal for the
-saddle-point contours.  
-
-
-
-\spl, as implemented so far, assumes that the lens is dominated by a
-single galaxy, and that the center of that galaxy is the sole maximum.
-Once the maximum has been identified, we wish to characterize the rest
-of the arrival-time surface in relation to it.  From geometry, any
-surface that has a central maximum and goes high at the edges must
-have a lima\c con-like contour, meaning a two-looped curve with one
-loop inside the other.  The maximum lies within the inner loop, a
-minimum lies between the two loops, and a saddle point lies at the
-self-intersection of the contour.  The top panel of
-\figref{input-spag} shows an example: red marks a suggested
-maximum, green a saddle point, and blue a minimum.  (The small pink
-dots are just help sketch the proposed contour.)  The middle and lower
-panels of \figref{input-spag} show a more complex situation.
-The minimum has split into three images: two new minima with a saddle
-point in between.  In this situation the contour through the new
-saddle point forms a figure of eight, its two loops enclosing the two
-new minima.  The configuration of a lima\c con, possibly with a figure
-of eight inside, suffices to give a preliminary description of the
-arrival-time surface for nearly all cases where the lens is dominated
-by one galaxy, and the source is a single small object.
-
-The exact placement of the pink spaghetti loops shown in
-\Figref{input-spag} has no significance.  Their utility is
-just to help mark up the image as maximum, minima and saddle points.
-As the figure suggests, the marking up can be done very easily with a
-mouse.  Human intuition is required to (a)~identify lensed images and
-separate them from other background light sources, and (b)~classify
-and order images according to arrival time.  
+As implemented so far, \spl assumes that the lens is dominated by a
+single galaxy.  Only one maximum is permitted, and it is taken as the
+centre of the main lensing galaxy.  The user can, however, mark
+additional minor galaxies.  The latter are modelled as point
+masses.
 
 \subsection{Numerics}
 
-In the second modeling step, once the user has sketched a proposed
-spaghetti configuration, \spl sends the input to its server-side
-modeling engine, called GLASS \citep{2014arXiv1401.7990C}.  The task
-of GLASS is to find a mass distribution $\kappa(x,y)$ that exactly
-reproduces the locations of the maximum, minima and saddle
-points. Now, this criterion by itself is extremely under-determined
---- there are infinitely many mass distributions that will reproduce a
-given set of maxima, minima and saddle points, but typically they
-(a)~produce lots of extra images, and (b)~look very unlike galaxies.
-Additional assumptions (a prior) are necessary.  GLASS uses a prior
-based on suggestions by \cite{1997MNRAS.292..148S}.
+Having sketched a spaghetti diagram, the user orders a model, and \spl
+sends the input to GLASS, which runs server-side as it is
+compute-intensive.  The task of GLASS is to find a mass distribution
+$\kappa(x,y)$ that exactly reproduces the given locations of the
+maximum, minima and saddle points. Now, this criterion by itself is
+extremely under-determined --- there are infinitely many mass
+distributions that will reproduce a given set of maxima, minima and
+saddle points, but typically they (a)~produce lots of extra images,
+and (b)~look very unlike galaxies.  Additional assumptions (a prior)
+are necessary.  GLASS uses the following prior
+\citep[cf]{1997MNRAS.292..148S,2008ApJ...679...17C}.
 \begin{enumerate}
 \item The mass distribution is built out of non-negative tiles of
   mass.  (Sometimes these tiles are called mass pixels, but we should
@@ -379,17 +345,16 @@ based on suggestions by \cite{1997MNRAS.292..148S}.
 There are still infinitely many models that satisfy both data and
 prior constraints, but now they are more credible as galaxy lenses.
 It is then possible to generate an ensemble of models.  The sampling
-technique used by GLASS is described in \citep{Lubini2012}, and
-improves upon earlier techniques \citep{2000AJ....119..439W,Saha2004}.
+technique used by GLASS is described in \citep{Lubini2012}.
 Typically, ensembles of 200 models are used.  That is to say, what we
 call a \spl model is really the mean of an ensemble of 200 models, and
 its estimated uncertainty is the range covered by the whole ensemble.
 
 \subsection{Diagnostics}
 
-In the third modeling step, having generated a model ensemble, \spl
-post-processes it to present results and diagnostics to the user for
-inspection. This takes the form of three figures.
+After the model ensemble has been generated, \spl post-processes it to
+present results and diagnostics to the user for inspection. This takes
+the form of three figures.
 \begin{enumerate}
 \item A synthetic image of the lensed features.
 \item A contour map of the arrival-time surface.
@@ -399,13 +364,13 @@ After examining this feedback, the user can archive the results for
 discussion, or modify their input and try again, or discard the
 attempt altogether.
 
-The fourth modeling step is discussion among modelers and iteration on
-the model.  Any archived model can be revised by another user: they
-can modify the spaghetti configuration slightly or drastically, or
-change options like the size of the mass tiles.  Particularly
-interesting lens candidates lead to trees of models in this way.
-Forum discussion then prunes the tree, focusing attention on one or a
-few models.\footnote{See ``Collaborative gravitational lens
+After archiving, there can be discussion among modellers and revision
+of the model.  Any archived model can be revised by any user: they can
+modify the spaghetti configuration slightly or drastically, or change
+options like the size of the mass tiles.  Particularly interesting
+lens candidates lead to trees of models in this way.  Forum discussion
+then prunes the tree, focusing attention on one or a few
+models.\footnote{See ``Collaborative gravitational lens
   modelling\dots'' in {\tt http://letters.zooniverse.org} for an
   example.}
 

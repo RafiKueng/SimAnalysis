@@ -108,8 +108,13 @@ This figure shows that this technique of estimating the error using the ensemble
 \label{fig:kapenc_compare_faulty}
 \end{figure}
 
-\Figref{ER_per_sim} shows that the calculated \ERf of the models tend to be too high.
-The overshoot varies from around 0.2 to 0.4 for good models.
+\Figref{ER_per_sim} shows that the calculated \ERf of the models tend
+to be too high.  The overshoot varies from around 0.2 to 0.4 for good
+models.  Discounting the models which were flagged by the users as
+poor, \ERf{E,rec} is overestimated.  The mean and standard deviation
+of the overestimate are 25\% and 20\%.  The models by an expert also
+show a similar bias, having mean and standard deviation of the
+overestimate being 20\% and 8\%.
 One of the reasons for this is that it is hard to get the center of the lens on spot.
 An offset leads to a flatter mass profile for the model compared to the simulation.
 

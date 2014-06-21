@@ -138,11 +138,9 @@ implements everything.  \spl is an extension of the GLASS framework
 for modelling lenses \citep{2014arXiv1401.7990C}.  We will not go into
 software details in this paper, concentrating instead on lens
 modelling per se, but we remark that \spl is designed to be friendly
-to the forum style of citizen-science projects, without sacrificing
-any features of GLASS.  The program is invoked online, and the
-modelling history is logged in a transparent way, enabling forum
-discussions and incremental improvement by different people.
-Moreover, any result can be revisited and post-processed if desired.
+to the forum style of citizen-science projects, and enable incremental
+model refinement by different people, without sacrificing any features
+of GLASS.
 
 In \secref{mod_challenge} we describe a modelling challenge where a
 diverse sample of 29 simulated lenses was modelled multiple times
@@ -158,14 +156,17 @@ in \citep{2014arXiv1401.7990C}.
 
 \section{Fermat's principle and spaghetti diagrams} \label{sec:Fermat}
 
+We now explain the lensing theory relevant to \spl, following the
+formulation of gravitational lensing in terms of Fermat's principle by
+\cite{1986ApJ...310..568B}.
+
 \subsection{Geometrical and gravitational time delays} 
 
-Let us recall the formulation of gravitational lensing by
-\cite{1986ApJ...310..568B} in terms of Fermat's principle.  Consider a
-lens at some redshift $z_L$ and let $(x,y)$ be planar coordinates at
-the lens, transverse to the line of sight.  Let $\Sigma(x,y)$ be the
-mass per unit area, i.e., density projected along the line of sight.
-This surface density is often given in a dimensionless form
+Consider a lens at some redshift $z_L$ and let $(x,y)$ be planar
+coordinates at the lens, transverse to the line of sight.  Let
+$\Sigma(x,y)$ be the mass per unit area, i.e., density projected along
+the line of sight.  This surface density is often given in a
+dimensionless form
 \begin{equation} \label{eq:kappa}
 \kappa(x,y) \propto \Sigma(x,y)
 \end{equation}
@@ -184,12 +185,14 @@ geometry of deflection would be
 assuming the delay is small compared to the total light travel time.
 
 An additional delay of the photon comes from travelling through the
-curved spacetime at the lens, and can be related to the mass
-distribution of the lens by an implicit relation, as follows.  The
-value of $\tgrav$ through $(x,y)$ equals its average value on the
+curved spacetime at the lens.  This gravitational time delay $\tgrav$
+is related to the mass distribution of the lens.  The relation is
+generally written as a two-dimensional Poisson equation, but an
+alternative expression, avoiding calculus, is as follows.  The value
+of $\tgrav$ through $(x,y)$ equals its average value on the
 circumference of a small circle centred at $(x,y)$, plus a constant
-times the mass within that circle.  The proportionality constant is
-$2G/c^3$ times the cosmological expansion factor $(1+z_L)$. Thus
+times the mass within that circle.  The constant is $2G/c^3$ times the
+cosmological expansion factor $(1+z_L)$. Thus
 \begin{equation} \label{eq:tgrav}
 \tgrav(x,y) = \left\langle \tgrav(x_\subcirc,y_\subcirc) \right\rangle
               + (1+z_L) \frac{2G}{c^3} M(x_\subbullet,y_\subbullet) \,.
@@ -230,7 +233,6 @@ the Appendix~\ref{more-theory}.
   contours associated with the saddle points.}
 \label{fig:arriv}
 \end{figure}
-
 
 \subsection{Arrival-time contours} \label{sec:arriv}
 
@@ -277,10 +279,25 @@ always too faint to see. The minima and saddle points dominate.
 
 \section{A lens-modelling program} \label{sec:SpaghettiLens}
 
+\spl is not part of \sw, but it makes use of the \sw infrastructure,
+in particular, the image database and the forum.  The forum is
+essential essential for initial contact with interested members of the
+\sw community.  Lens modelling from \sw works, in practice, in the
+usual style of medium-sized astronomical collaborations, with
+videoconferencing and in-person meetings where possible, but is
+reported in summary on modelling threads on the forum, and anyone
+interested is welcome to join at any time.  Another aspect of \sw (and
+the Zooniverse family of projects in general) that \spl adopts, is to
+keep all user interaction in a web browser, with intensive computing
+done on a server.  Several interesting design and implementation
+issues arise from these considerations, but we will not go into them
+in this paper, concentrating instead on aspects specific to lens
+modelling.
+
 Modelling with \spl involves three stages, markup of the image,
 followed by intensive numerics in the background, followed by review
 of diagnostics and possible discussion.  We now describe each of
-these, but do not go into implementation details.
+these.
 
 \subsection{Image markup}
 
@@ -387,17 +404,11 @@ focusing attention on the most interesting models.\footnote{See
   ``Collaborative gravitational lens modelling\dots'' in {\tt
     http://letters.zooniverse.org} for an example.}
 
+
+
 \section{A lens modelling challenge} \label{sec:mod_challenge}
 
-
-
-Once an early version of \spl
-
-Through the SW discusison forum (TALK), we asked active members of the Space Warps Citizen community for interest in modelling lens systems. XX interested users volunteered to perform modelling and were introduce
-
-Interested volunteers from the \sw forum were initially introduced to
-\spl through a video tutorial and by videocon.  After this
-introductory stage, a modeling challenge was presented.  This
+After an introductory stage, a modeling challenge was presented.  This
 consisted of 29 simulated lenses (sims) covering a range of lensing
 configurations.
 

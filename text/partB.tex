@@ -108,8 +108,13 @@ This figure shows that this technique of estimating the error using the ensemble
 \label{fig:kapenc_compare_faulty}
 \end{figure}
 
-\Figref{ER_per_sim} shows that the calculated \ERf of the models tend to be too high.
-The overshoot varies from around 0.2 to 0.4 for good models.
+\Figref{ER_per_sim} shows that the calculated \ERf of the models tend
+to be too high.  The overshoot varies from around 0.2 to 0.4 for good
+models.  Discounting the models which were flagged by the users as
+poor, \ERf{E,rec} is overestimated.  The mean and standard deviation
+of the overestimate are 25\% and 20\%.  The models by an expert also
+show a similar bias, having mean and standard deviation of the
+overestimate being 20\% and 8\%.
 One of the reasons for this is that it is hard to get the center of the lens on spot.
 An offset leads to a flatter mass profile for the model compared to the simulation.
 
@@ -148,12 +153,13 @@ Second, \spl needs some enhancements.
   reproduced exactly. For generating a synthetic image, a conical
   source profile is assumed. Fitting for the source profile to
   optimize resemblance to the observed lensed image after the lens
-  model has been generated, is algorithmically straightforward and
-  planned to be implemented.  This would alleviate another problem
-  with \spl, which is that there is no numerical figure of merit, and
-  assessment of a model is a judgment call based on the synthetic
-  image, and on whether the mass distribution and the arrival-time
-  surface show suspect features.
+  model has been generated, is algorithmically straightforward
+  \citep[cf.][]{2003ApJ...590..673W,2006MNRAS.371..983S} and planned
+  to be implemented.  This would alleviate another problem with \spl,
+  which is that there is no numerical figure of merit, and assessment
+  of a model is a judgment call based on the synthetic image, and on
+  whether the mass distribution and the arrival-time surface show
+  suspect features.
 \item \spl has a tendency to somewhat overestimate the Einstein radius
   (evident from Figure \ref{fig:ER_per_sim}), and it is also apparent
   that the models tend to be too shallow.  This possible explanation
@@ -193,10 +199,18 @@ collaborative work.
   correct ordering of the points in nearly-symmetric configurations.
 \end{itemize}
 
+The \spl program was developed by Kueng, with design suggestions from
+Coles, Cornen and Saha, and feedback from all co-authors.  The
+simulations were created by A.~More, in consultation with Marshall,
+S.~More and Verma.  Modelling was done by Baeten, Cornen, McMillan,
+Odermatt, Saha and Wilcox, with post-modelling analysis by Kueng and
+Saha.  All authors participated in writing and editing the manuscript.
+
 \section{Acknowledgments}
 
 We thank the Swiss Society for Astrophysics and Astronomy and the
-Swiss Academy of Sciences.
+Swiss Academy of Sciences. AV is supported by a research fellowship
+from the Leverhulme Trust.
 
 \clearpage
 

@@ -1607,7 +1607,8 @@ def plotAllRE():
     
     draw_later = []
     draw_later2 = []
-    
+    flag = ''    
+    new_data = []
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       skip = False
@@ -1620,18 +1621,25 @@ def plotAllRE():
         style = 'bo'
         #skip=True
         draw_later.append([sims[simn], dat['rE_mean']])
+        flag = "expert"
       elif not tab.all_mods[str(dat['id'])]['acc']:
         style = 'g+'
-    
+        flag = "rejected"
       elif mod_err[dat['id']]['anyerr']:
         style = 'bx'
         draw_later2.append([sims[simn], dat['rE_mean']])
+        flag = "imgrecon wrong"
       else:
         style = 'wo'
+        flag = "good"
       #xofs = 0.15 if dat['user']=='psaha' else -0.15
       #ax.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
       ax.plot(sims[simn], dat['rE_mean'], style, markersize=4)
+      new_data.append((sims[simn], dat['rE_mean'], flag))
     
+    with open("new_data.csv", "w") as f:
+        for d in new_data:
+            f.write("%f,%f,%s\n" % d)
     ddd = 0.5
     for d in draw_later:
       #pass
@@ -1674,6 +1682,8 @@ def plotAllRE():
       pl.savefig(os.path.join(path, 'eR_5.'+ext))
     print '.',
     #pl.show()
+    
+
     
   print ' ... DONE'
 

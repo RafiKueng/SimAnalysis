@@ -8,7 +8,7 @@
 \usepackage{subfigure}  % does what it says
 
 \usepackage{graphicx}
-% prefere pdf over png (better quality, lossless compression)
+% prefer pdf over png (better quality, lossless compression)
 \DeclareGraphicsExtensions{%
   .pdf,.PDF,%
   .png,.PNG,%
@@ -24,6 +24,8 @@
 \newcommand{\araa}{ARAA}
 \newcommand{\pasp}{PASP}
 \newcommand{\pasj}{PASJ}
+\newcommand{\nat}{Nature}
+\newcommand{\nar}{New Astr Rev}
 
 \def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
@@ -109,25 +111,25 @@
 Phil Marshall,$^{2}$
 Anupreeta More,$^{3}$
 Aprajita Verma,$^{4}$
-Amit Kapadia,$^{5}$
 \newauthor
-Elisabeth Baeten,$^{6}$
-Claude Cornen,$^{6}$
-Christine McMillan,$^{6}$
-Julianne Wilcox,$^{6}$
+Elisabeth Baeten,$^{5}$
+Claude Cornen,$^{5}$
+Christine McMillan,$^{5}$
+Julianne Wilcox,$^{5}$
 \newauthor
-Jonas Odermatt,$^{7}$
-Jonathan Coles,$^{8}$
+Jonas Odermatt,$^{6}$
+Jonathan Coles,$^{7}$
 Surhud More$^{3}$
 and Prasenjit Saha$^{1}$ \\
 $^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland\\
 $^{2}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
 $^{3}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
 $^{4}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
-$^{5}$Adler Planetarium, 1300 S. Lake Shore Drive, Chicago, IL 60605, USA\\
-$^{6}$Spacewarps\\
-$^{7}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
-$^{8}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France}
+$^{5}$Spacewarps\\
+$^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
+$^{7}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France}
+%$^{8}$Adler Planetarium, 1300 S. Lake Shore Drive, Chicago, IL 60605, USA\\
+
 
 \maketitle
 
@@ -141,90 +143,4 @@ $^{8}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55
 \bibliography{bib/ms}
 
 \end{document}
-
-
-
-In \secref{Fermat}, for the sake of a more intuitive
-explanation, we suppressed some constant factors in
-equations \eqref{eq:Ageom}, \eqref{eq:Aarriv} and \eqref{eq:Poisson}.
-Here we fill in the details.
-
-First let us recall various distance formulas. Comoving distances
-involve integrals of the type
-\begin{equation}
-\int \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
-%\raise.5ex\hbox{.}
-\end{equation}
-Specifically, the comoving distance $D_S$ from observer to source,
-$D_{LS}$ from lens to source, and $D_L$ from observer to lens are
-given by the above integral, with limits as follows.
-\begin{equation}
-\begin{aligned}
-&D_S    &                                &\int_0^{z_S} \\
-\noalign{\medskip}
-&D_{LS} & = \frac c{H_0} \ \times \quad  &\int_{z_L}^{z_S} \\
-\noalign{\medskip}
-&D_L    &                                &\int_0^{z_L}
-\end{aligned}
-\end{equation}
-Angular-diameter distances $d$ can be related to comoving distances
-$D$ by scale factors, as follows.
-\begin{equation}
-\begin{aligned}
-D_S &= (1+z_S) \, d_S \\
-D_{LS} &= \frac{1+z_S}{1+z_L} \, d_{LS} \\
-D_L &= (1+z_L) \, d_L
-\end{aligned}
-\end{equation}
-Consequently, angular-diameter distances are always smaller than
-comoving distances.  Moreover, while comoving distances can be simply
-added, angular distances cannot:
-\begin{equation}
-d_S \neq d_L + d_{LS}
-\end{equation}
-
-Locations on the lens plane in angular coordinates on the sky, are
-expressed as
-\begin{equation}
-(x,y) = d_L (\theta_x,\theta_y)
-\end{equation}
-
-The $A$ areas (with the implicit
-constant factor that makes them time delays) and the $\kappa$ density are related to physical arrival
-time $t$ and density $\Sigma$ as
-\begin{equation}
-\begin{aligned}
-A           &= \frac{c}{(1+z_L)^2} \frac{D_L D_{LS}}{D_S} \times t \\
-\kappa(x,y) &= \frac{4\pi G}{c^2} \frac{D_L D_{LS}}{D_S}
-               \times \Sigma(x,y)
-\end{aligned}
-\end{equation}
-Letting the source be offset at $(s_x,s_y)$ rather than at the
-origin, we have
-\begin{equation}
-\begin{aligned}
-t_{\rm geom} &= \frac{(1+z_L)^2}{2c} \frac{D_S}{D_L D_{LS}}
-\left( (x-s_x)^2 + (y-s_y)^2 \right) \\
-\nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y)
-\end{aligned}
-\end{equation}
-We can now compare with equations (2.1) to (2.6)
-from \cite{1986ApJ...310..568B}.
-%% comparison to be explicited
-
-\section{Miscellaneous}
-
-Maybe discard \figref{ER_all_models}, since the essential information is there in \figref{ER_per_sim}.
-
-\begin{figure}[htbp]
-  \centering
-    \includegraphics[width=0.90\linewidth]{fig/eR_1}
-  \caption{\ERf for all models with estimated errors in blue squares, \ERg of simulation in red crosses}
-  \label{fig:ER_all_models}
-\end{figure}
-
-
-
-
-
 

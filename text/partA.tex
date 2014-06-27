@@ -625,7 +625,6 @@ improved versions here.
 
 \FloatBarrier
 
-
 In these figures, the scales and alignments in the six panels are not
 completely consistent: the three panels on the right exactly the same
 coordinates; the middle-left and lower-left panels are consistent with
@@ -636,64 +635,81 @@ markup.  For qualitative features, which is all that
 Figures~\ref{fig:6941}--\ref{fig:7022} try to convey, the slightly
 varying scales and alignments are harmless.
 
-Figure \ref{fig:6941} shows the simplest case, with two clear images
-produced by a nearly-circular lens.  The centre of the lensing galaxy
-is a maximum, the image nearer to the galaxy is a saddle point, and
-image further away is a minimum, and these were correctly identified.
-  It shows wide arcs, almost a ring.
+Let us now consider these cases in turn.
 
-Figure \ref{fig:6915} shows another quad.  This kind of configuration
-arises when the mass is elongated and the source is displaced at an
-angle to the elongation.
+\begin{itemize}
 
-Figure \ref{fig:6990} shows an example of an arc that has split into
-three images.  This kind of configuration, with a counter-image close
-to the lensing galaxy and a more distant arc/triplet on the other
-side, generically arises from an elongated mass distribution when the
-source is displaced along the elongated direction.
+\item Figure \ref{fig:6941} shows the simplest case, with two clear
+  images produced by a nearly-circular lens.  The centre of the
+  lensing galaxy is a maximum, the image nearer to the galaxy is a
+  saddle point, and image further away is a minimum, and these were
+  correctly identified.
 
-To conclude this set of examples, Figure \ref{fig:6919} shows another
-type of quad.  Actually, in this case the brightest part of the source
-is only doubly imaged, but the source extends into a region that
-produces four images.  We can also see from the real arrival-time
-surface that a point source is a double on the verge of splitting into
-a quad.  The modeler interpreted the system as a quad.  The appearance
-is similar to an arc and counter-image such as discussed
-with Figure \ref{fig:6990} above.  But there is an important
-difference: the long arc is closer to the galaxy, as if the arc and
-counter-image have swapped roles.  This configuration arises if the
-source displacement is perpendicular to the long axis of the lensing
-mass.
+\item Figure \ref{fig:6990} shows an example of an arc that has split
+  into three images.  This kind of configuration, with a counter-image
+  close to the lensing galaxy and a more distant arc/triplet on the
+  other side, generically arises from an elongated mass distribution
+  when the source is displaced along the elongated direction.
 
+\item Figure \ref{fig:6919} shows another example of an arc plus
+  counter-image, but (in contrast to Figure \ref{fig:6990}) the arc is
+  closer to the lens than the counter-image. This configuration arises
+  if the source displacement is perpendicular to the long axis of the
+  lensing mass.  Comparing the two panels in the middle row, we see
+  that the modeller interpreted arc as consisting of three images,
+  whereas the sim shows a single saddle point associated with the arc.
+  But the identification is not really erroneous --- we just need to
+  take into account that the source is extended.  In fact, in the sim
+  the brightest part of the source is only doubly imaged, but the
+  source extends into a region that produces four images.  In the
+  $t(x,y)$ of the sim, the hairpin-bending contours are typical of
+  double on the verge of splitting into a quad.
 
-Figure \ref{fig:6975} shows a lens with substructure in the form of a
-smaller secondary galaxy.  The galaxies in such group or cluster sims
-were, in fact, based on galaxies visible in the images --- but the
-modelers were not told in advance whether this was the case.  The
-model does not include any substructure, but otherwise is not bad.
-The minimum and saddle point are correct, and the Einstein radius is
-only a little underestimated.
+\item Figure \ref{fig:6915} shows another quad.  This kind of
+  configuration arises when the mass is elongated and the source is
+  displaced at an angle to the elongation.  The minima and saddle
+  points are correctly identified, and the orientation of the
+  ellipticity of the mass distribution is correctly reproduced.
 
-Figure \ref{fig:6937} shows a case where substructure leads to a
-poor model.
+\item Figure \ref{fig:6975} shows a lens with substructure in the form
+  of a smaller secondary galaxy.  The galaxies in such group or
+  cluster sims were based on galaxies visible in the images, but the
+  modelers were not told in advance whether this was the case.  The
+  minimum and saddle point are correctly identified.  The mass
+  distribution misses the substructure, but overall appears
+  reasonable.
 
+\item Figure \ref{fig:7025} shows a quad.  In this one, the
+  identification of the minima and saddle points was incorrect, and
+  mass distribution comes out elongated East-West instead of
+  North-South.  The mass distribution also appears somewhat jagged and
+  the saddle-point contours are not as clean as in the previous
+  examples; these are often indicators of a problem with the model.
+  The enclosed mass is, however, none the worse --- the reason is
+  probably that in a relatively symmetrical image configuration, the
+  Einstein radius is quite well constrained by the images in a fairly
+  model-independent way.
 
-Figure \ref{fig:7022} shows another model of the same system.  In this
-one, the identification of the minima and saddle points was incorrect,
-and mass distribution comes out elongated East-West instead of
-North-South.  The mass distribution also appears somewhat jagged and
-the saddle-point contours are not as clean as in the previous
-examples; these are often indicators of a problem with the model.  The
-enclosed mass is, however, none the worse --- the reason is probably
-that in a relatively symmetrical image configuration, the Einstein
-radius is quite well constrained by the images in a fairly
-model-independent way.
+\item Figure \ref{fig:7022} shows another model of the same system.
 
+\end{itemize}
 
-Figure \ref{fig:6975} shows a fairly symmetric quad.  The minima and
-saddle points are correctly identified, and the orientation of the
-ellipticity of the mass distribution is correctly reproduced.  The
-Einstein radius is somewhat overestimated.  
+\begin{figure}
+  \centering
+  \subfigure{\includegraphics[width=0.8\linewidth]
+             {fig/007025_kappa_encl}}
+  \subfigure{\includegraphics[width=0.8\linewidth]
+             {fig/007022_kappa_encl}}
+  \subfigure{\includegraphics[width=0.8\linewidth]
+             {fig/007021_kappa_encl}} \\
+  \caption{Enclosed mass \kenc from three models of the same system.
+    The upper panel corresponds to the model shown in \figref{7025},
+    with the image-parities incorrect by a quarter-turn.  The middle
+    corresponds to \figref{7022}, where the image parities were
+    correct.  The lower panel corresponds to another model, where the
+    image parities were incorrect by a half-turn.}
+\label{fig:kapenc_compare_faulty}
+\end{figure}
 
 Figure \ref{fig:kapenc_compare_faulty} shows a comparison of input and
 recovered mass profiles.  The panel shows a average $\kappa$ within a
@@ -708,16 +724,15 @@ shaded blue is slightly above the red curve.  The Einstein Radius
 $\Theta_\text{E}$ of the model is estimated crossing the mean enclosed
 $\kappa$ (not plotted) with unity.
 
+The panel shows a average $\kappa$ within a given radius, as a
+function of radius.  The red curve is the true value, and where it
+crosses unity (dotted horizontal line) is the notional Einstein radius
+$\Theta_{\text{E, sim}}$.  The two blue curves are the minimal and
+maximal mean enclosed $\kappa$ from the internal ensemble in \spl.
+The region between the blue curves is shaded between the radii of the
+innermost and the outermost images --- this is the confidence region
+from the modeling.  As we see, the shaded blue is slightly above the
+red curve.  The Einstein Radius $\Theta_\text{E}$ of the model is
+estimated crossing the mean enclosed $\kappa$ (not plotted) with
+unity. \citep[see, e.g.,][]{2002LNP...608....1C}.
 
-The panel shows
-a average $\kappa$ within a given radius, as a function of radius.
-The red curve is the true value, and where it crosses unity (dotted
-horizontal line) is the notional Einstein radius $\Theta_{\text{E, sim}}$.
-  The two blue curves
-are the minimal and maximal mean enclosed $\kappa$ from the internal
-ensemble in \spl.  The region between the blue curves is shaded
-between the radii of the innermost and the outermost images --- this
-is the confidence region from the modeling.  As we see, the shaded
-blue is slightly above the red curve. 
-The Einstein Radius $\Theta_\text{E}$ of the model is estimated crossing the
-mean enclosed $\kappa$ (not plotted) with unity. \citep[see, e.g.,][]{2002LNP...608....1C}.

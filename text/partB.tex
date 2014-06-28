@@ -1,18 +1,50 @@
 \subsection{Test of image identification} \label{sec:tests.t1}
 
-A first manual evaluation tested the volunteers ability to reconstruct the arrival time surface given a survey image containing a sim.
-This task consists of two parts.
-First to correctly identify and locate the lensed images.
-Second the correct ordering for the identified lensed images in respect of the arrival time.
+The first post-modelling test was a qualitative comparison of the
+original arrival-time surfaces and the input spaghetti diagrams given
+by the modeller.  This tested first, for correct identification and
+location of the lensed images, and second, the correct parities and
+ordering for the lensed images in respect of the arrival time.
 
-While we expected the identification of lensed images to be trivial, given the nature of the survey images and the success of \sw, we expect the correct ordering to be more difficult.
-This part tests the volunteers understandings of the theory of arrival time surfaces and the odd number theorem.
-While we can provide the volunteers with some general rules of thumb, ordering involves imagination and guessing and therefore training could improve results in a later stage.
+While we expected the identification of lensed images to be trivial,
+given the generally clean appearance of the sims in the test, we
+expected the parities and time-ordering to be more difficult.  While
+the \spl tutorials had provided some general rules of thumb, to be
+consistently correct with the time-ordering, a modeller needs to
+develop some intuition for arrival time surfaces.  This is an area
+where experience and tutorials training could improve results at a
+later stage, and correspondingly, feedback on the difficulties
+modellers encounter can help improve the tutorial materials.
 
-This first test was designed to give some feedback on the difficulties volunteers encounter, to further improve the tutorial materials.
+\tabref{stats} presents a summary of the test.  The evaluation was
+done manually, comparing the input to \spl with the actual
+arrival-time surface of the sim.  This amounts to comparing the
+upper-left and middle-left panels in each of
+Figures~\ref{fig:6941}--\ref{fig:7022}, and similaly the other 113
+models.
 
-The evaluation of the volunteers performance was done manually, comparing their input from \spl and the resulting reconstructed arrival time surface contour line plot (arrival plot) to the arrival plot generated using simulation parameters.
-% \Figref{output_compare} shows the setup used to evaluate the models.
+\begin{table}\centering\begin{tabular}{llcc}\hline
+     & Total & 119 \\
+\hline
+ R1: & images approximately on correct locations & 110 \\
+ R2: & images parities and time-ordering correct & 70 \\
+\hline
+ E01: & inaccurate image placement over an arc & 21 \\
+ E02: & swapped minimum and saddle in double  & 2 \\
+ E03: & identified two images of four & 5 \\
+ E04: & modelled a three-image arc as one image & 4 \\
+ E05: & swapped early and late saddles in a quad & 7 \\
+ E06: & swapped minima and saddles in quad & 38 \\
+ E07: & missed faint images & 1 \\
+ E08: & modelled one image as a three-image arc & 5 \\
+ E09: & identified two nearby images as one & 3 \\
+ E10: & proposed too many images & 1 \\
+\hline
+\end{tabular}
+\caption{Table of image-identification errors and the number of models
+  containing each.}
+\label{tab:stats}
+\end{table}
 
 The images of the system are considered to be identified correctly, if all the images have been identified and are approximated within $\pm0.05\cdot\text{imgage width}$.
 The parity is considered correct, if those identified points have the right ordering with respect to arrival time.
@@ -20,44 +52,8 @@ The parity is considered correct, if those identified points have the right orde
 Additionally, ten types of errors (labeled E01 -- E10, listed in \tabref{stats}) that occurred were identified.
 Each generated model could contain more than one error.
 
-\begin{table}\centering\begin{tabular}{llcc}\hline
- & & n & p \\
-\hline
- N: & Total number of models & 119 & 1.00\\
-\hline
- R1: & images approx. on right location & 110 & 0.92\\
- R2: & images with correct parity & 70 & 0.59\\
-\hline
- E01: & inaccurate in arc & 21 & 0.18\\
- E02: & wrong parity in 3 lens conf. & 2 & 0.02\\
- E03: & identified 3 of 5 imgs. & 5 & 0.04\\
- E04: & modeled arc with single img. & 4 & 0.03\\
- E05: & $\pi$ rotated parity & 7 & 0.06\\
- E06: & $\pi$/2 rotated parity & 38 & 0.32\\
- E07: & missed faint img. & 1 & 0.01\\
- E08: & too many imgs in arc. & 5 & 0.04\\
- E09: & missed double img & 3 & 0.03\\
- E10: & too many imgs. & 1 & 0.01\\
-\end{tabular}
-
-\caption{1. col: id of model; 2.col: places of imgs idendited
-  correctly; 3. col: more or less correct identification of extr
-  points. 4.col: exact identification of extremal points. 5.col:
-  type(s) of errors ocured....  1) inaccurate placement in an extended
-  arc; 2) wrongly identified sad and min in 3 image configuration; 3)
-  identified only 3 instead of 5 images; 4) tried to model an arc with
-  a min instead of min-sad-min; 5) PI-err (rotation by 180 degrees; in
-  5 image configuration, exchanged the ordering of the two saddle
-  points); 6) PI/2-err (rotation by 90 degree; sad-min-sad-min-sad);
-  7) missed faint image(s); 8) tried to model an arc with min-sad-min
-  instead of only min; 9) did identify two close by images as one; 10)
-  used 7 or more image to model a 5 image system. }
-
-\label{tab:stats}
-\end{table}
 
 
-\tabref{stats} presents a summary of this evaluation.
 We conclude that the volunteers are performing very well identifying and positioning images, with a performance of 92\% (R1, p=0.92).
 Most of the problems where due to unclear arc-like structures (E01, p=0.18; E04, p=0.03; E08, p=0.04).
 Critical errors like the failure to identify all five images in a five images system (E03, p=0.04) or to include too many images (E10, p=0.01) did almost never happen.
@@ -87,13 +83,6 @@ To estimate the errors, the extremal models are used to estimate a lower and upp
 These results can be seen in \figref{ER_per_sim}.
 This figure shows that this technique of estimating the error using the ensemble of all models underestimates the error significantly and should be improved for further analysis.
 
-\begin{figure*}
-  \centering
-    \includegraphics[width=0.90\linewidth]{fig/eR_5}
-  \caption{Relative \ERf / \ERg[, sim] for models by volunteers (blue cross), models made by an expert (red cross with offset), including rejected models (green squares); binned per sim.}
-  \label{fig:ER_per_sim}
-\end{figure*}
-
 \begin{figure}
   \centering
   \subfigure{\includegraphics[width=0.9\linewidth]
@@ -107,6 +96,15 @@ This figure shows that this technique of estimating the error using the ensemble
   }
 \label{fig:kapenc_compare_faulty}
 \end{figure}
+
+\begin{figure*}
+  \centering
+    \includegraphics[width=0.90\linewidth]{fig/eR_5}
+  \caption{Relative \ERf / \ERg[, sim] for models by volunteers (blue cross), models made by an expert (red cross with offset), including rejected models (green squares); binned per sim.}
+  \label{fig:ER_per_sim}
+\end{figure*}
+
+
 
 \Figref{ER_per_sim} shows that the calculated \ERf of the models tend
 to be too high.  The overshoot varies from around 0.2 to 0.4 for good

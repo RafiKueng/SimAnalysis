@@ -20,101 +20,151 @@ modellers encounter can help improve the tutorial materials.
 done manually, comparing the input to \spl with the actual
 arrival-time surface of the sim.  This amounts to comparing the
 upper-left and middle-left panels in each of
-Figures~\ref{fig:6941}--\ref{fig:7022}, and similaly the other 113
+Figures~\ref{fig:6941}--\ref{fig:7022}, and similarly the other 111
 models.
 
-\begin{table}\centering\begin{tabular}{llcc}\hline
-     & Total & 119 \\
+\begin{table}\centering\begin{tabular}{lr}\hline
+    Total & 119 \\
 \hline
- R1: & images approximately on correct locations & 110 \\
- R2: & images parities and time-ordering correct & 70 \\
+    errors in image locations  & 9 \\
+    errors in image parities or time ordering & 49 \\
 \hline
- E01: & inaccurate image placement over an arc & 21 \\
- E02: & swapped minimum and saddle in double  & 2 \\
- E03: & identified two images of four & 5 \\
- E04: & modelled a three-image arc as one image & 4 \\
- E05: & swapped early and late saddles in a quad & 7 \\
- E06: & swapped minima and saddles in quad & 38 \\
- E07: & missed faint images & 1 \\
- E08: & modelled one image as a three-image arc & 5 \\
- E09: & identified two nearby images as one & 3 \\
- E10: & proposed too many images & 1 \\
+    inaccurate image placement over an arc & 21 \\
+    identified two images of four & 5 \\
+    identified two nearby images as one & 3 \\
+    missed faint images & 1 \\
+    proposed too many images & 1 \\
+    modelled a three-image arc as one image & 4 \\
+    modelled one image as a three-image arc & 5 \\
+    swapped minimum and saddle in double  & 2 \\
+    swapped minima and saddles in quad & 38 \\
+    swapped early and late saddles in a quad & 7 \\
 \hline
 \end{tabular}
 \caption{Table of image-identification errors and the number of models
-  containing each.}
+  containing each.  A model can contain more than one type of error.}
 \label{tab:stats}
 \end{table}
 
-The images of the system are considered to be identified correctly, if all the images have been identified and are approximated within $\pm0.05\cdot\text{imgage width}$.
-The parity is considered correct, if those identified points have the right ordering with respect to arrival time.
+The images of the system are considered to have been located
+correctly, if all the images have been identified and are approximated
+within about 5\% of \spl frame used to draw the spaghetti diagram.
+That frame size is adjustable by the user, but in practice it is
+somewhat larger than the spaghetti diagram.  Such image-placement
+errors were found in only 9 models.  That does not include inaccurate
+image placement over an arc, which was considered a separate category
+of error.
 
-Additionally, ten types of errors (labeled E01 -- E10, listed in \tabref{stats}) that occurred were identified.
-Each generated model could contain more than one error.
+In addition to simple image-placement errors, ten types of errors were
+recognised and are listed in \tabref{stats}.  Most of the problems
+where due to unclear arc-like structures.  Critical errors like the
+failure to identify all five images in a five images system, or to
+include too many images, were rare.
 
+The assignment of the parity of the images was a more difficult task,
+and was successful in only 60\% of the cases.  The most common error
+was swapping of minima and saddle-points in a quad; \figref{7025}
+shows an example.  Another, less common, error was flipping the
+spaghetti diagram, this swapping the time-ordering of the two saddle
+points.
 
-
-We conclude that the volunteers are performing very well identifying and positioning images, with a performance of 92\% (R1, p=0.92).
-Most of the problems where due to unclear arc-like structures (E01, p=0.18; E04, p=0.03; E08, p=0.04).
-Critical errors like the failure to identify all five images in a five images system (E03, p=0.04) or to include too many images (E10, p=0.01) did almost never happen.
-From this we conclude that the introduction materials was adequate and the volunteers understand the basics of gravitational lensing.
-
-The assignment of the parity of the images was a more difficult task.
-In 59\% (R2, p=0.59, N=70) of the cases the volunteers succeeded to identify the right configuration.
-Most of the failures are due to E06 (N=38, p=32\%), followed by E05 (N=7, p=6\%).
-E06 describes a situation, where the minima and saddle points of a five image configuration were exchanged (rotated by $\pm90\dgr$), see \figref{7022} for an example.
-E05 describes a situation, where the ordering of the saddle points was wrong (rotation by $180\dgr$).
-While these errors occurred, we suspect they can be avoided with better training material and some examples for the obvious cases.
-For more challenging cases, like very symmetrical distribution of the lensed images (for example model 7022, \figref{7022}), those errors should still produce plausible results, as will be explained in the next section.
+Incorrect image parities and time orderings tended to produce
+poorer-looking models, such as the checkboard patterns in the mass map
+in \figref{7025}.  Interestingly, however, the enclosed-mass profiles
+were quite robust.  We will consider this aspect in the next section.
 
 \FloatBarrier
 
+\begin{figure}
+  \centering
+  \subfigure{\includegraphics[width=0.8\linewidth]
+             {fig/007025_kappa_encl}}
+  \subfigure{\includegraphics[width=0.8\linewidth]
+             {fig/007022_kappa_encl}}
+  \subfigure{\includegraphics[width=0.8\linewidth]
+             {fig/007021_kappa_encl}} \\
+  \caption{Mean $\kappa$ inside a circle around the lens centre, as a
+    function of the radius of the circle.  (See \secref{tests.t2} for
+    details.) The upper panel corresponds to the model shown in
+    \figref{7025}, in which the minima and saddle-points have been
+    incorrectly swapped.  The middle corresponds to \figref{7022},
+    where the image parities were correct.  The lower panel
+    corresponds to another model, where the image parities were
+    correct but the time-ordering was incorrect.}
+\label{fig:kapenc_compare_faulty}
+\end{figure}
+
 \subsection{Test of mass-profile recovery} \label{sec:tests.t2}
 
-The second test was to compare the mass distributions of the lens $\kappa(x, y)$ given by the sims and generated by the volunteers.
-To get a means of comparing the sims to the models, the total convergence\footnote{often called enclosed mass} $\kappa_{\text{encl}}(r)$ was calculated for both.
-The Einstein radius $\Theta_\text{E}$ is defined by $\kappa_{\text{encl}}(\Theta_\text{E})=1$ and gives a number that allows a rough comparison between a sim and a model.
-We also let an expert (PS) model three selected systems to compare the results from volunteers to those of a professional.
+The second test was to compare the mass distributions $\kappa(x,y)$ of
+the sims and of the \spl models.  A visual comparison is presented for
+the eight models in Figures~\ref{fig:6941}--\ref{fig:7022}, in the
+lower-left versus lower-right panels.  We will summarize the mass
+distributions drastically in a single number, the effective Einstein
+radius.  Other measures for comparison of free-form lensing mass
+distributions appear in \cite{2014arXiv1401.7990C}, but comparing
+Einstein radii is already useful.
 
+There is no standard way of defining the Einstein radius of a general
+non-circular lens.  We adopt the simple definition
+\begin{equation} \label{eq:effRE}
+ \langle\kappa\rangle_{\Theta_E} = 1,
+\end{equation}
+that is, the effective Einstein radius \ERf is such that the
+mean $\kappa$ is unity inside a circle of radius \ERf centred at
+the lens centre.
 
-To compare the enclosed mass profile and the Einstein radius of the simulation and the models, \kenc was calculated using the mass map \kap[x,y] generated in the modeling process.
-From the ensemble of models generated by one modeling process, the mean is taken as the resulting $\kappa(r)$ to calculate \ERg.
-To estimate the errors, the extremal models are used to estimate a lower and upper limit for \ERg.
-These results can be seen in \figref{ER_per_sim}.
-This figure shows that this technique of estimating the error using the ensemble of all models underestimates the error significantly and should be improved for further analysis.
+To illustrate, \figref{kapenc_compare_faulty} compares the circularly
+averaged mass profiles three different models of one particular lens;
+two of the models are shown in Figures~\ref{fig:7025} and
+\ref{fig:7022}. Each panel in \figref{kapenc_compare_faulty} shows the
+mean $\kappa$ within a circle of given radius.  The red curve is the
+correct profile for the sim.  The two blue curves are the minimal and
+maximal mean enclosed $\kappa$ from the internal ensemble in \spl.
+Radial locations of the images are marked, along with the image
+parities.  The region between the blue curves is shaded between the
+radii of the innermost and the outermost images: this is the
+confidence region from the modelling.  The definition (\ref{eq:effRE})
+for \ERf corresponds to crossing the dashed horizontal line at
+$10^0$: the red curve crosses the dashed line at the actual Einstein
+radius \ERf[,act]; the recovered Einstein radius
+\ERf[,rec] and its uncertainty are given by the blue curves
+crossing the dashed line.  We see that in all three panels, the blue
+curves are shallower than the red curve and \ERf[,rec] is
+more than \ERf[,act], by more than the model uncertainties.
+Now, steeper mass profiles tend to give wider image separations ---
+recall that the image separation for a circular isothermal lens is
+$2\Theta_E$, whereas for a point mass it is more \citep[see,
+  e.g.,][]{2002LNP...608....1C} --- so \ERf[,rec] being too
+high is really a consequence of the \spl models being too shallow for
+the sims.
 
 \begin{figure*}
   \centering
     \includegraphics[width=0.90\linewidth]{fig/eR_5}
-  \caption{Relative \ERf / \ERg[, sim] for models by volunteers (blue cross), models made by an expert (red cross with offset), including rejected models (green squares); binned per sim.}
+  \caption{Model-recovered versus actual Einstein radii \ERf[,rec] and
+    \ERf[,act].  Circles denote models where the image parities and
+    time-orderings were correct, with filled circles for models by an
+    expert.  Crosses mark models where the time-ordering was
+    incorrect.  Plus signs indicate models flagged by the modeller as
+    failures.}
   \label{fig:ER_per_sim}
 \end{figure*}
 
-
-
-\Figref{ER_per_sim} shows that the calculated \ERf of the models tend
-to be too high.  The overshoot varies from around 0.2 to 0.4 for good
-models.  Discounting the models which were flagged by the users as
-poor, \ERf{E,rec} is overestimated.  The mean and standard deviation
-of the overestimate are 25\% and 20\%.  The models by an expert also
-show a similar bias, having mean and standard deviation of the
-overestimate being 20\% and 8\%.
-One of the reasons for this is that it is hard to get the center of the lens on spot.
-An offset leads to a flatter mass profile for the model compared to the simulation.
-
-Comparing the models from volunteers and experts can be done in Figures \ref{fig:7022}, \ref{fig:7025} and \ref{fig:kapenc_compare_faulty}, where only the
-expert got the right configuration (\figref{7022}) but enclosed masses are all fairly similar.  In cases with nearly symmetric image configurations, like this example, it is more difficult to identify the image parities correctly.  Incorrect image-parity identification changes the orientation of the mass distribution \kap[x,y],
-but \kenc and thus the \ERf are not influenced that much.
-
-Two additional sims were modeled by an expert, \asw{1hpf} and \asw{0vqg}.
-Looking at the results for \ERg for those models in \figref{ER_per_sim}, we conclude that the performance of volunteers (blue crosses) and experts (red crosses, offset) is comparable.
-%Note that the models of \asw{0vqg} with \ERg[, rel] around 0.25 (6935 -- 6937) are failed models that show the attempts of a single user, that came finally up with model 6938 as final result.\todo{remove?}
+\Figref{ER_per_sim} shows that \ERf[,rec] of the models tend
+to be too high.  Discounting the models which were flagged by the
+users as poor, the mean and standard deviation of the overestimate are
+25\% and 20\%.  The models by an expert (PS) also show a similar bias,
+having mean and standard deviation of the overestimate being 20\% and
+8\%.  One of the reasons for this is that it is hard to get the center
+of the lens on spot.  An offset leads to a flatter mass profile for
+the model compared to the simulation.
 
 \section{Outlook} \label{sec:todo}
 
 The lens-modeling challenge indicates that the Spacewarps collective
 is good, not only for identifying lens candidates for follow-up, but
-modeling candidates as well.
+modelling candidates as well.
 
 There is, however, plenty of room for improvement.
 

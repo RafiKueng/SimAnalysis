@@ -32,7 +32,7 @@
 \newcommand{\sw}{Spacewarps\xspace}
 
 % shortcut for einstein radius (Text Greek Full Math)
-\newcommand{\ERf}[1][]{Einstein radius $\Theta_\text{E#1}$\xspace} % full output
+\newcommand{\ERf}[1][]{$\Theta_\text{E#1}$\xspace} % full output
 
 %\newcommand{\ER}{Einstein radius\xspace} % text
 %\newcommand{\ERg}[1][]{$\Theta_{\text{E#1}}$\xspace} % er in textmode with greek
@@ -252,8 +252,8 @@ the development of new algorithms for protein folding
 is, however, a basic difficulty in strong gravitational lensing.
 Lensed images do not look much like their source, and still less do
 they resemble the lensing-mass distribution.  To model a lens, one
-needs to either do a lot of random guessing, or have a good intuition
-for what works.
+needs either to do a lot of random guessing, or to have a good
+intuition for what works.
 
 In this paper, we propose a way around the difficulty, and report on a
 modelling test on \sw using simulated lenses.  The three following
@@ -293,7 +293,7 @@ some areas to improve, but do not compute statistics on these aspects.
 Profile and shape recovery with GLASS has been studied in more detail
 in \citep{2014arXiv1401.7990C}.
 
-\secref{todo} concludes, with the general outlook and next steps.
+\secref{todo} gives the general outlook and next steps.
 
 \section{Fermat's principle and spaghetti diagrams} \label{sec:Fermat}
 
@@ -344,7 +344,7 @@ mass within the circle.
 
 The light travel time of a virtual photon is therefore longer by
 \begin{equation}  \label{eq:tarriv}
-t(x,y) = t_{\rm geom} + t_{\rm grav} \,.
+t(x,y) = t_{\rm geom} + t_{\rm grav}
 \end{equation}
 than it would have been with no lens present.  Real photons take paths
 that make $t(x,y)$ extremal, that is, having a minimum, maximum or
@@ -352,7 +352,7 @@ saddle point (Fermat's principle).
 
 The proportionality factors in \eqref{eq:kappa} and \eqref{eq:tgeom}
 depend on the redshifts and cosmological parameters, and are given in
-the Appendix~\ref{more-theory}.
+Appendix~\ref{more-theory}.
 
 \begin{figure}
 \centering
@@ -395,10 +395,11 @@ localise the minima and maxima as well.  If more precise locations of
 the minima and maxima are added, the whole arrival-time surface is
 already approximately known.  Since the arrival-time surface has an
 exact relation to the lens-mass distribution and the source position,
-in effect the mass distribution is also automatically specified.  In
-other words, a simple sketch of saddle-point contours along with
-locations of minima and maxima ---which we call a spaghetti diagram---
-is implicitly already an approximation to a lens-mass distribution.
+in effect the mass distribution is also automatically approximately
+specified.  In other words, a simple sketch of saddle-point contours
+along with locations of minima and maxima ---which we call a
+``spaghetti diagram''--- is implicitly already an approximation to a
+lens-mass distribution.
 
 The preceding assumes a point source.  To get an idea of what an
 extended source would do, let us imagine moving the original source
@@ -425,15 +426,15 @@ in particular, the image database and the forum.  The forum is
 essential essential for initial contact with interested members of the
 \sw community.  Lens modelling from \sw works, in practice, in the
 usual style of medium-sized astronomical collaborations, with
-videoconferencing and in-person meetings where possible, but is
-reported in summary on modelling threads on the forum, and anyone
-interested is welcome to join at any time.  Another aspect of \sw (and
-the Zooniverse family of projects in general) that \spl adopts, is to
-keep all user interaction in a web browser, with intensive computing
-done on a server.  Several interesting design and implementation
-issues arise from these considerations, but we will not go into them
-in this paper, concentrating instead on aspects specific to lens
-modelling.
+video-conferencing and in-person meetings where possible. But
+preliminary results are immediately summarized on modelling threads on
+the forum, and anyone interested is welcome to join at any time.
+Another aspect of \sw (and of the Zooniverse family of projects in
+general) that \spl adopts, is to keep all user interaction in a web
+browser, with intensive computing done on a server.  Several
+interesting design and implementation issues arise from these
+considerations, but we will not go into them in this paper,
+concentrating instead on aspects specific to lens modelling.
 
 Modelling with \spl involves three stages, markup of the image,
 followed by intensive numerics in the background, followed by review
@@ -455,14 +456,13 @@ seen in the upper-left panels of Figures \ref{fig:6941} to
 \ref{fig:7022}.  The loops in the markup tool were the origin of the
 ``spaghetti'' metaphor.
 
-The exact placement of the loops in a spaghetti diagram has no
-significance, only the connections, and the heirarchy of which loop is
-inside which matters.  The loops are there simply to help modeller's
-intuition.  The user does not need to think explicitly the image
+The markup tool allows only valid lensing configurations to be
+entered.  The user does not need to think explicitly the image
 parities (though the markup tool provides this information using
 colour codes) or about time-ordering, or worry about the odd-image
-theorem.  The markup tool allows only valid lensing configurations to
-be entered.
+theorem.  The exact placement of the loops in a spaghetti diagram has
+no significance.  Only the heirarchy of which loop is inside which is
+relevant.  The loops are there simply to help modeller's intuition.
 
 As implemented so far, \spl assumes that the lens is dominated by a
 single galaxy.  Only one maximum is permitted, and it is taken as the
@@ -472,17 +472,18 @@ masses.
 
 \subsection{Numerics}
 
-Having sketched a spaghetti diagram, the user orders a model, and \spl
-sends the input to GLASS, which runs server-side as it is
-compute-intensive.  The task of GLASS is to find a mass distribution
-$\kappa(x,y)$ that exactly reproduces the given locations of the
-maximum, minima and saddle points. Now, this criterion by itself is
+Having sketched a spaghetti diagram, the user presses a button to
+initiate the next stage.  \spl then translates the spaghetti diagram
+into input for GLASS, and forwards this input.  The task of GLASS,
+which runs server-side as it is compute-intensive, is to find a mass
+distribution $\kappa(x,y)$ that exactly reproduces the given locations
+of the maximum, minima and saddle points. This criterion by itself is
 extremely under-determined --- there are infinitely many mass
 distributions that will reproduce a given set of maxima, minima and
 saddle points, but typically they (a)~produce lots of extra images,
 and (b)~look very unlike galaxies.  Additional assumptions (a prior)
 are necessary.  GLASS uses the following prior
-\citep[cf.]{1997MNRAS.292..148S,2008ApJ...679...17C}.
+\citep[cf.][]{1997MNRAS.292..148S,2008ApJ...679...17C}.
 \begin{enumerate}
 \item The mass distribution is built out of non-negative tiles of
   mass.  (Sometimes these tiles are called mass pixels, but we should
@@ -550,7 +551,7 @@ focusing attention on the most interesting models.\footnote{See
 We now describe a test of the lens-modelling system, under conditions
 that mimic as closely as possible the modelling of real lens
 discoveries.  The lenses to be modelled were the simulated lenses
-(known as ``sims'') already sprinkled onto the \sw images.  Once a
+(known as ``sims'') already sprinkled onto the \sw field.  Once a
 small user base had grown around \spl, a modelling challenge was
 announced through the \sw forum.  The challenge set consisted of 29
 sims, chosen to represent the different visual morphologies of \sw
@@ -561,14 +562,14 @@ refine each other's models, but had no information on how the sims
 were generated.
 
 Once the modelling was complete, the models were compared with the
-originals.  There were two main tests: a check of whether the the
+originals.  There were two main tests: a check of whether the
 spaghetti diagrams were correct for the lens in question, and a
 comparison of the effective Einstein radii of the sims and the models.
 
 \subsection{The simulated lenses} \label{sec:sims}
 
 The \sw sims are described in detail in More et al (in prep), but
-relevant here is that they were of three kinds, as follows.
+relevant here is that the sims were of three kinds, as follows.
 
 \begin{enumerate}
   \item Imitating lensed quasars: having a singular elliptical
@@ -640,22 +641,6 @@ improved versions here.
   \label{fig:6941}
 \end{figure}
 
-\begin{figure}
-  \centering
-
-  \includegraphics[width=\myplotswidth]{fig/006915_input}
-  \includegraphics[width=\myplotswidth]{fig/006915_arr_time} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_006915_arriv}
-  \includegraphics[width=\myplotswidth]{fig/006915_spaghetti} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_006915_kappa}
-  \includegraphics[width=\myplotswidth]{fig/006915_mass}
-
-  \caption[result 6915 (ASW0001hpf)]{A four-image configuration
-    typical of lensed quasars. (See \secref{example_models} for
-    details.)}
-  \label{fig:6915}
-\end{figure}
-
 
 \begin{figure}
   \centering
@@ -674,7 +659,6 @@ improved versions here.
 \end{figure}
 
 
-
 \begin{figure}
   \centering
 
@@ -691,6 +675,20 @@ improved versions here.
   \label{fig:6919}
 \end{figure}
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\myplotswidth]{fig/006915_input}
+  \includegraphics[width=\myplotswidth]{fig/006915_arr_time} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_006915_arriv}
+  \includegraphics[width=\myplotswidth]{fig/006915_spaghetti} \\
+  \includegraphics[width=\myplotswidth]{fig/ASW0001hpf_006915_kappa}
+  \includegraphics[width=\myplotswidth]{fig/006915_mass}
+
+  \caption[result 6915 (ASW0001hpf)]{A four-image configuration
+    typical of lensed quasars. (See \secref{example_models} for
+    details.)}
+  \label{fig:6915}
+\end{figure}
 
 
 \begin{figure}
@@ -758,7 +756,7 @@ improved versions here.
 \FloatBarrier
 
 In these figures, the scales and alignments in the six panels are not
-completely consistent: the three panels on the right exactly the same
+completely consistent: the three panels on the right have the same
 coordinates; the middle-left and lower-left panels are consistent with
 each other, but only approximately aligned with the right column,
 because the latter are affected by errors in mouse placements; the
@@ -774,28 +772,35 @@ Let us now consider these cases in turn.
 \item Figure \ref{fig:6941} shows the simplest case, with two clear
   images produced by a nearly-circular lens.  The centre of the
   lensing galaxy is a maximum, the image nearer to the galaxy is a
-  saddle point, and image further away is a minimum, and these were
-  correctly identified.
+  saddle point, and the image further away is a minimum.  All these
+  were correctly identified.  As note above, in
+  \secref{SpaghettiLens}, the precise shape of the loops in the
+  spaghetti diagrams is unimportant, only the implied image locations,
+  parities and time-ordering matters.
 
 \item Figure \ref{fig:6990} shows an example of an arc that has split
   into three images.  This kind of configuration, with a counter-image
   close to the lensing galaxy and a more distant arc/triplet on the
   other side, generically arises from an elongated mass distribution
-  when the source is displaced along the elongated direction.
+  when the source is displaced along the elongated direction.  The
+  spaghetti diagram in this case has another markup element, a grey
+  point and circle overlaid on a probable secondary lensing galaxy.
+  This is an instruction to \spl to allow a point mass at that
+  location, distinct from the main mass map.
 
 \item Figure \ref{fig:6919} shows another example of an arc plus
-  counter-image, but (in contrast to Figure \ref{fig:6990}) the arc is
-  closer to the lens than the counter-image. This configuration arises
-  if the source displacement is perpendicular to the long axis of the
-  lensing mass.  Comparing the two panels in the middle row, we see
-  that the modeller interpreted arc as consisting of three images,
-  whereas the sim shows a single saddle point associated with the arc.
-  But the identification is not really erroneous --- we just need to
-  take into account that the source is extended.  In fact, in the sim
-  the brightest part of the source is only doubly imaged, but the
-  source extends into a region that produces four images.  In the
-  $t(x,y)$ of the sim, the hairpin-bending contours are typical of
-  double on the verge of splitting into a quad.
+  counter-image, but (in contrast to \figref{6990}) the arc is closer
+  to the lens than the counter-image. This configuration arises if the
+  source displacement is perpendicular to the long axis of the lensing
+  mass.  Comparing the two panels in the middle row, we see that the
+  modeller interpreted arc as consisting of three images, whereas the
+  sim shows a single saddle point associated with the arc.  But the
+  identification is not really erroneous --- we just need to take into
+  account that the source is extended.  In fact, in the sim the
+  brightest part of the source is only doubly imaged, but the source
+  extends into a region that produces four images.  In the $t(x,y)$ of
+  the sim, the hairpin-bending contours are typical of double on the
+  verge of splitting into a quad.
 
 \item Figure \ref{fig:6915} shows another quad.  This kind of
   configuration arises when the mass is elongated and the source is
@@ -937,7 +942,7 @@ Einstein radii is already useful.
 There is no standard way of defining the Einstein radius of a general
 non-circular lens.  We adopt the simple definition
 \begin{equation} \label{eq:effRE}
- \langle\kappa\rangle_{\Theta_E} = 1,
+ \langle\kappa\rangle_{\Theta_{\rm E}} = 1,
 \end{equation}
 that is, the effective Einstein radius \ERf is such that the
 mean $\kappa$ is unity inside a circle of radius \ERf centred at
@@ -953,18 +958,17 @@ maximal mean enclosed $\kappa$ from the internal ensemble in \spl.
 Radial locations of the images are marked, along with the image
 parities.  The region between the blue curves is shaded between the
 radii of the innermost and the outermost images: this is the
-confidence region from the modelling.  The definition (\ref{eq:effRE})
-for \ERf corresponds to crossing the dashed horizontal line at
-$10^0$: the red curve crosses the dashed line at the actual Einstein
-radius \ERf[,act]; the recovered Einstein radius
-\ERf[,rec] and its uncertainty are given by the blue curves
-crossing the dashed line.  We see that in all three panels, the blue
-curves are shallower than the red curve and \ERf[,rec] is
-more than \ERf[,act], by more than the model uncertainties.
-Now, steeper mass profiles tend to give wider image separations ---
-recall that the image separation for a circular isothermal lens is
-$2\Theta_E$, whereas for a point mass it is more \citep[see,
-  e.g.,][]{2002LNP...608....1C} --- so \ERf[,rec] being too
+confidence region from the modelling.  The definition \eqref{eq:effRE}
+for \ERf corresponds to crossing the dashed horizontal line at $10^0$:
+the red curve crosses the dashed line at the actual Einstein radius
+\ERf[,act]; the recovered Einstein radius \ERf[,rec] and its
+uncertainty are given by the blue curves crossing the dashed line.  We
+see that in all three panels, the blue curves are shallower than the
+red curve and \ERf[,rec] is more than \ERf[,act], by more than the
+model uncertainties.  Now, steeper mass profiles tend to give wider
+image separations --- recall that the image separation for a circular
+isothermal lens is 2\ERf, whereas for a point mass it is more
+\citep[see, e.g.,][]{2002LNP...608....1C} --- so \ERf[,rec] being too
 high is really a consequence of the \spl models being too shallow for
 the sims.
 
@@ -991,24 +995,26 @@ the model compared to the simulation.
 
 \section{Outlook} \label{sec:todo}
 
-The lens-modeling challenge indicates that the Spacewarps collective
-is good, not only for identifying lens candidates for follow-up, but
-modelling candidates as well.
+This work has developed the concept of saddle-point contours in the
+travel time of virtual photons, originally introduced by
+\cite{1986ApJ...310..568B} for understanding image structure in strong
+gravitational lenses, into a technique for mass-mapping lenses.
+Despite being highly abstract, saddle-point contours look like
+schematic arcs, and hence lend themselves to an intuitive markup tool
+for lenses or lens candidates, which we call a spaghetti diagram.  At
+the same time, saddle-point contours encode information about possible
+mass distributions, which can be translated into input for an existing
+lens-modelling engine \citep[GLASS, by][]{2014arXiv1401.7990C}.
+
+\spl is an implementation of these ideas, enabling experienced but
+non-professional lens enthusiasts to model newly-discovered lens
+candidates from the \sw citizen-science platform.  The tests in this
+paper indicate that such modelling would be both feasible and
+scientifically interesting.
 
 There is, however, plenty of room for improvement.
 
-First, the particular modeling strategy implemented is not the only
-one possible.  \spl requires modelers to characterize the overall
-image structure in abstract terms based on Fermat's principle, and the
-placement of mass distributions is done by the computer.  In other
-modeling tools, the user puts down a trial mass distribution and has
-the machine refine it.  A few of these modeling programs have also
-been designed with citizen science in mind, and would be interesting
-in the Spacewarps environment.
-
-Second, \spl needs some enhancements.
-
-\begin{itemize}
+\begin{enumerate}
 \item Currently, \spl does not attempt to model the source shape; the
   user identifies the brightest points on the image, and these are
   taken as images of a point-like source, whose positions must be
@@ -1022,14 +1028,13 @@ Second, \spl needs some enhancements.
   of a model is a judgment call based on the synthetic image, and on
   whether the mass distribution and the arrival-time surface show
   suspect features.
-\item \spl has a tendency to somewhat overestimate the Einstein radius
-  (evident from Figure \ref{fig:ER_per_sim}), and it is also apparent
-  that the models tend to be too shallow.  This possible explanation
-  is that, while the sims are steeply peaked at the centre, the
-  pixellated mass model fixes a comparatively large area near the
-  central at constant density.  One way to solve this problem would be
-  to introduce smaller pixels in the central region, thus enabled a
-  steeper centre.
+\item \spl tends to overestimate the Einstein radius (evident from
+  Figure \ref{fig:ER_per_sim}), and it is also apparent that the
+  models tend to be too shallow.  The likely explanation is that while
+  the sims are steeply peaked at the centre, the pixellated mass model
+  fixes a comparatively large area near the central at constant
+  density.  One way to solve this problem would be to introduce
+  smaller pixels in the central region, thus enabled a steeper centre.
 \item Another limitation so far in \spl is that the lens is assumed to
   be dominated by one galaxy, which puts most galaxy-group lenses
   beyond the reach of the modeler. Since complicated group lenses are
@@ -1041,12 +1046,6 @@ Second, \spl needs some enhancements.
 \item At present, a single false-color composite is used as the data.
   An option could be added to use all available filters, individually
   or in combination, at the user wishes.
-\end{itemize}
-
-The third desirable avenue of improvement is to facilitate
-collaborative work.
-
-\begin{itemize}
 \item As mentioned above, the option of revising an already-archived
   model is already available.  Desired now are tools for comparing
   different models of a given system, both visually and through
@@ -1059,7 +1058,7 @@ collaborative work.
   prone to making errors in two situations: when in identifying an arc-
   like structure while placing the points, and in identifying the
   correct ordering of the points in nearly-symmetric configurations.
-\end{itemize}
+\end{enumerate}
 
 The \spl program was developed by Kueng, with design suggestions from
 Coles, Cornen and Saha, and feedback from all co-authors.  The

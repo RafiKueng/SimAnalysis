@@ -1122,7 +1122,7 @@ def draw_sim(asw, sim):
             #lev = np.linspace(0,10,41)
             #pc = panel.contour(x,y,kappa,lev, colors=0.8)
 
-            eps = 0.1 #small offset to prevent div/0 in log()
+            eps = 1e-15 #small offset to prevent div/0 in log()
             
             # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
             # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width

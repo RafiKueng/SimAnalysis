@@ -8,33 +8,80 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 import numpy as np
+np.set_printoptions(precision=3)
 
 
 def new_kappaplot(model, obj_index=0, **kwargs):
     """basically copied from glass plot.py, but heavily modified"""
-  
-    obj, data = model['obj,data'][obj_index]
-    if not data: return
+    kw = kwargs
 
-    with_contours   = kwargs.pop('with_contours', False)
-    only_contours   = kwargs.pop('only_contours', False)
-    label_contours  = kwargs.pop('label_contours', False)
-    clevels         = kwargs.pop('clevels', 30)
-    with_colorbar   = kwargs.pop('with_colorbar', False) # colorbar is nor working
-    vmin            = kwargs.pop('vmin', None)
-    vmax            = kwargs.pop('vmax', None)
-    subtract        = kwargs.pop('subtract', 0)
-    xlabel          = kwargs.pop('xlabel', r'arcsec')
-    ylabel          = kwargs.pop('ylabel', r'arcsec')
+    obj, data = model['obj,data'][obj_index]
+    if not data: return None
+
+    #with_contours   = kwargs.pop('with_contours', True)
+    #only_contours   = kwargs.pop('only_contours', False)
+    #label_contours  = kwargs.pop('label_contours', False)
+    #clevels         = kwargs.pop('clevels', 30)
+    #with_colorbar   = kwargs.pop('with_colorbar', False) # colorbar is nor working
+    #vmin            = kwargs.pop('vmin', None)
+    #vmax            = kwargs.pop('vmax', None)
+    #subtract        = kwargs.pop('subtract', 0)
+    #xlabel          = kwargs.pop('xlabel', r'arcsec')
+    #ylabel          = kwargs.pop('ylabel', r'arcsec')
+    
+    #sl scaling factors
+    rscale          = kw.pop('rscale', 440./500*100) # default Spacewarps -> SL -> glass scaling of radius
+    dist_fact       = kw.pop('dist_fact', 0.428)     # because measurement at different redshiffts (we had 0.5/1 hardcoded in beginning)
+    delta           = kw['contour'].pop('cldelta', 0.1) # contour level spacing in log space
+
+
+
+
+    # SET UP DATA
+
+    # fix the different scaling of glass and SL
+    R = obj.basis.mapextent
+    extent = np.array([-R,R,-R,R]) / rscale
+
+    # prepare data
+    grid = obj.basis._to_grid(data['kappa'],1)
+    grid *= dist_fact
+    grid = np.where(grid==0,np.nan,np.log10(grid))
+
+
+    ma = np.nanmax(grid)
+    mi = np.nanmin(grid)
+    ab = ma if ma>-mi else -mi
+    clev = np.arange(0,ab+1e-10,delta)
+    clevels = np.concatenate((-clev[:0:-1],clev))
+    
+    print "ma, mi, ab", ma, mi, ab
+    print "extent", extent
+    np.set_printoptions(precision=3)
+    print clevels
     
 
+    # PLOTTING
+
+    # setup
+    kw['contour'].setdefault('extent', extent)
+#    kw.setdefault('extend', 'both') # contour levels are automatically added to one or both ends of the range so that all data are included
+#    #kw.setdefault('interpolation', 'nearest')
+#    kw.setdefault('aspect', 'equal')
+#    kw.setdefault('origin', 'upper')
+#    #kw.setdefault('cmap', cm.bone)
+#    kw.setdefault('colors', 'k')
+#    kw.setdefault('antialiased', True)
+
+    # plot
+    fig = plt.figure(**kw['figure'])
+    ax = fig.add_subplot(1,1,1)
+    C = ax.contour(grid, levels=clevels, **kw['contour'])
+    ax.set_aspect('equal')
+    return fig
 
 
-    R = obj.basis.mapextent
-    kw = default_kw(R, kwargs)
-
-
-    grid = obj.basis._to_grid(data['kappa']-subtract,1)
+    '''
     if vmin is None:
         w = data['kappa'] != 0
         if not np.any(w):
@@ -47,7 +94,10 @@ def new_kappaplot(model, obj_index=0, **kwargs):
 
     if vmax is not None:
         kw.setdefault('vmax', vmax)
+    '''
 
+    
+    '''    
     grid = np.log10(grid.copy()) # + 1e-15)
 
     fig = plt.figure()
@@ -77,8 +127,8 @@ def new_kappaplot(model, obj_index=0, **kwargs):
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
+    '''
 
-    return fig
     
     
     

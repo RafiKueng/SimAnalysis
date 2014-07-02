@@ -68,6 +68,14 @@ import matplotlib as mpl
 
 import PIL
 
+import defaults
+
+
+defaults.set_mpl()
+args = defaults.args
+
+
+
 debug = False
 
 # set to false to do a dry run in /plots/[outdir]
@@ -122,27 +130,27 @@ if debug: ERplots = [0, True, 0, 0, True]
 
 
 
-params = {
-# see http://matplotlib.org/users/customizing.html
-#  'backend': 'ps',
-  'text.latex.preamble': [
-    r"\usepackage{amsmath}",
-    #r"\usepackage{textgreek}"
-    ],
-  'mathtext.default': 'regular',
-  'axes.labelsize': 14,
-  'text.fontsize': 14,
-  'legend.fontsize': 10,
-  'xtick.labelsize': 12,
-  'ytick.labelsize': 12,
-  'text.usetex': True,
-#  'figure.figsize': fig_size,
-#  'axes.unicode_minus': True
-  }
-mpl.rcParams.update(params)
-
-mpl.rc('text', usetex=True)
-mpl.rc('font', family='serif')
+#params = {
+## see http://matplotlib.org/users/customizing.html
+##  'backend': 'ps',
+#  'text.latex.preamble': [
+#    r"\usepackage{amsmath}",
+#    #r"\usepackage{textgreek}"
+#    ],
+#  'mathtext.default': 'regular',
+#  'axes.labelsize': 14,
+#  'text.fontsize': 14,
+#  'legend.fontsize': 10,
+#  'xtick.labelsize': 12,
+#  'ytick.labelsize': 12,
+#  'text.usetex': True,
+##  'figure.figsize': fig_size,
+##  'axes.unicode_minus': True
+#  }
+#mpl.rcParams.update(params)
+#
+#mpl.rc('text', usetex=True)
+#mpl.rc('font', family='serif')
 
 #############################################################
 # END SETTINGS

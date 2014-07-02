@@ -22,6 +22,19 @@ else:
     import plots
     reload(plots)
 
+
+sys.path.append(os.path.abspath("../plots"))
+
+if not 'defaults' in sys.modules:
+    import defaults
+else:
+    import defaults
+    reload(defaults)
+    
+from defaults import AttrDict
+defaults.set_mpl()
+
+
 np.set_printoptions(precision=3)
 
 try: # check if glass already loaded (in interactive mode)
@@ -30,58 +43,49 @@ except:
   glass_basis('glass.basis.pixels', solver=None)
   
 
-class AttrDict(dict):
-    def __init__(self, *args, **kwargs):
-        super(AttrDict, self).__init__(*args, **kwargs)
-        self.__dict__ = self  
+
+#class AttrDict(dict):
+#    def __init__(self, *args, **kwargs):
+#        super(AttrDict, self).__init__(*args, **kwargs)
+#        self.__dict__ = self  
+
   
-  
 
 
-figargs = AttrDict({
-    'figsize'   : (8,8),  # size in inches
-    'dpi'       : 80,       #
-    'facecolor' : 'w',
-    'edgecolor' : 'k',
-})
+#figargs = AttrDict({
+#    'figsize'   : (8,8),  # size in inches
+#    'dpi'       : 80,       #
+#    'facecolor' : 'w',
+#    'edgecolor' : 'k',
+#})
+#
+#contourargs = AttrDict({
+#    'extend'        : 'both', # contour levels are automatically added to one or both ends of the range so that all data are included
+#    'aspect'        : 'equal',
+#    'origin'        : 'upper',
+#    'colors'        : 'k',
+#    'antialiased'   : True,
+#    'cldelta'       : 0.05, # contour level spacing in log space
+#})
+#
+#savefigargs = AttrDict({
+#    'dpi'       : figargs.dpi
+#})
+#
+#
+#kw = AttrDict({'figure': figargs, 'contour': contourargs, 'savefig': savefigargs,})
 
-contourargs = AttrDict({
-    'extend'        : 'both', # contour levels are automatically added to one or both ends of the range so that all data are included
-    'aspect'        : 'equal',
-    'origin'        : 'upper',
-    'colors'        : 'k',
-    'antialiased'   : True,
-    'cldelta'       : 0.05, # contour level spacing in log space
-})
 
-savefigargs = AttrDict({
-    'dpi'       : figargs.dpi
-})
-
-
-kw = AttrDict({'figure': figargs, 'contour': contourargs, 'savefig': savefigargs,})
-
+args = defaults.args
 
 
 
 inppath = "states"
 outpath = "outp"
-outfn = "Image for %(fname)s.%(ext)s"
-exts = ["png",'pdf']
+outfn = "Image for %(name)s.%(ext)s"
+exts = args.pop('exts', ['png'])
 
-sel_mod = [
-    6915,
-    6919,
-    6937,
-    6941,
-    6975,
-    6990,
-    7020,
-    7021,
-    7022,
-    7024,
-    7025,
-]
+sel_mod = args.pop('sel_mods', None)
 
 
 files = [(os.path.splitext(_)) for _ in os.listdir(inppath) if not _.startswith('.')]
@@ -90,32 +94,36 @@ files = [(os.path.splitext(_)) for _ in os.listdir(inppath) if not _.startswith(
 print "starting.."
 
 for fn, fe in files: # filename fn, fileextension fe
-    kw.fname = fn
-    kw.fext  = fe 
-    ifpath = os.path.join(inppath,fn+fe)
+    args.file = AttrDict({
+        'name': fn,
+        'oext': fe,
+        'path': os.path.join(inppath,fn+fe)
+    })
+    #args.fname = fn
+    #args.fext  = fe 
       
     print " > working on %s" % fn
       
-    state = loadstate(ifpath)
+    state = loadstate(args.file.path)
     state.make_ensemble_average()
     
-    fig = plots.new_kappaplot(state.ensemble_average, **kw)
+    fig = plots.new_kappaplot(state.ensemble_average, **args)
     
     for ext in exts:
-        kw.ext = ext
-        ofpath = os.path.join(outpath,outfn%kw)
+        args.file.ext = ext
+        ofpath = os.path.join(outpath,outfn % args.file)
         #fig.savefig(ofpath, facecolor='black', edgecolor='none')
-        fig.savefig(ofpath, **kw.savefig)
+        fig.savefig(ofpath, **args.savefig)
     
         plt.close()
       
     print " \--- DONE"
-    #break
+    break
   
 
 
 def downloadstates():
-    
+    '''function to run once to fetch all the state files'''
     baseurl = 'http://mite.physik.uzh.ch/result/%(mod)06i/state.txt'
     savepath = './states'
     filename = '%(mod)06i.state'

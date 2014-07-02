@@ -4,15 +4,21 @@ Created on Thu Jun 26 16:40:04 2014
 
 @author: RafiK
 """
+import sys
+import os
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 import numpy as np
 np.set_printoptions(precision=3)
 
+sys.path.append(os.path.abspath("../plots"))
+from defaults import AttrDict
+
 
 def new_kappaplot(model, obj_index=0, **kwargs):
     """basically copied from glass plot.py, but heavily modified"""
+    print type(kwargs), kwargs    
     kw = kwargs
 
     obj, data = model['obj,data'][obj_index]

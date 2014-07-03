@@ -12,10 +12,11 @@ class AttrDict(dict):
         self.__dict__ = self
 
 
+# First programm specific values direclty in args
 args = AttrDict({
     'exts'      : ['png', 'pdf'],
     'sel_mods'  : [6915,6919,6937,6941,6975,6990,7020,7021,7022,7024,7025,],
-    'sel_sim'   : [
+    'sel_sims'  : [
         'ASW000102p',
         'ASW000195x',
         'ASW0000vqg',
@@ -32,36 +33,10 @@ args = AttrDict({
 })
 
 
-
-args.figure = AttrDict({
-    'figsize'   : (8,6),  # size in inches
-    'dpi'       : 80,       #
-    'facecolor' : 'w',
-    'edgecolor' : 'k',
-})
-
-
-args.squarefig = AttrDict(args.figure)
-args.squarefig.update({
-    'figsize'   : (8,8),
-})
-
-
-
-args.contour = AttrDict({
-    'extend'        : 'both', # contour levels are automatically added to one or both ends of the range so that all data are included
-    'aspect'        : 'equal',
-    'origin'        : 'upper',
-    'colors'        : 'k',
-    'antialiased'   : True,
-    'cldelta'       : 0.05, # contour level spacing in log space
-})
-
-args.savefig = AttrDict({
-    'dpi'       : args.figure.dpi,
-})
-
-
+#
+# MATPLOTLIB RC file defaults - overwrite
+# this overwrites de defaults of mpl defined in the rc files
+#
 args.mplrc = AttrDict({
     # see http://matplotlib.org/users/customizing.html
     'backend'               : 'agg',
@@ -98,8 +73,267 @@ args.mplrc = AttrDict({
 })
 
 
+#
+# DEFAULT ATTRIBUTES FOR PLT COMMANDS:
+#
+
+args.figure = AttrDict({
+    'figsize'   : (8,6),    # w,h tuple in inches
+    'dpi'       : 80,       # Dots per inch
+    'facecolor' : 'w',      # The figure patch facecolor; defaults to rc figure.facecolor
+    'edgecolor' : 'k',      # The figure patch edge color; defaults to rc figure.edgecolor
+#    'linewidth' : 1,        # The figure patch edge linewidth; the default linewidth of the frame
+#    'frameon'   : True,     # If False, suppress drawing the figure frame
+#    'subplotpars' : None,   # A SubplotParams instance, defaults to rc
+    'tight_layout'  : True  # If False use subplotpars; if True adjust subplot parameters using tight_layout() with default padding. When providing a dict containing the keys pad, w_pad, h_pad and rect, the default tight_layout() paddings will be overridden. Defaults to rc figure.autolayout.
+})
 
 
+args.add_subplot = AttrDict({
+# http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure.add_subplot
+#adjustable 	[ ‘box’ | ‘datalim’ | ‘box-forced’]
+#agg_filter 	unknown
+#alpha 	float (0.0 transparent through 1.0 opaque)
+#anchor 	unknown
+#animated 	[True | False]
+#aspect 	unknown
+#autoscale_on 	unknown
+#autoscalex_on 	unknown
+#autoscaley_on 	unknown
+#axes 	an Axes instance
+#axes_locator 	unknown
+#axis_bgcolor 	any matplotlib color - see colors()
+#axisbelow 	[ True | False ]
+#clip_box 	a matplotlib.transforms.Bbox instance
+#clip_on 	[True | False]
+#clip_path 	[ (Path, Transform) | Patch | None ]
+#color_cycle 	unknown
+#contains 	a callable function
+#figure 	unknown
+#frame_on 	[ True | False ]
+#gid 	an id string
+#label 	string or anything printable with ‘%s’ conversion.
+#lod 	[True | False]
+#navigate 	[ True | False ]
+#navigate_mode 	unknown
+#path_effects 	unknown
+#picker 	[None|float|boolean|callable]
+#position 	unknown
+#rasterization_zorder 	unknown
+#rasterized 	[True | False | None]
+#sketch_params 	unknown
+#snap 	unknown
+#title 	unknown
+#transform 	Transform instance
+#url 	a url string
+#visible 	[True | False]
+#xbound 	unknown
+#xlabel 	unknown
+#xlim 	length 2 sequence of floats
+#xmargin 	unknown
+#xscale 	[‘linear’ | ‘log’ | ‘symlog’]
+#xticklabels 	sequence of strings
+#xticks 	sequence of floats
+#ybound 	unknown
+#ylabel 	unknown
+#ylim 	length 2 sequence of floats
+#ymargin 	unknown
+#yscale 	[‘linear’ | ‘log’ | ‘symlog’]
+#yticklabels 	sequence of strings
+#yticks 	sequence of floats
+#zorder 	any number
+})
+
+
+args.plot = AttrDict({
+# http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot
+
+#agg_filter 	unknown
+#alpha 	float (0.0 transparent through 1.0 opaque)
+#animated 	[True | False]
+#antialiased or aa 	[True | False]
+#axes 	an Axes instance
+#clip_box 	a matplotlib.transforms.Bbox instance
+#clip_on 	[True | False]
+#clip_path 	[ (Path, Transform) | Patch | None ]
+#color or c 	any matplotlib color
+#contains 	a callable function
+#dash_capstyle 	[‘butt’ | ‘round’ | ‘projecting’]
+#dash_joinstyle 	[‘miter’ | ‘round’ | ‘bevel’]
+#dashes 	sequence of on/off ink in points
+#drawstyle 	[‘default’ | ‘steps’ | ‘steps-pre’ | ‘steps-mid’ | ‘steps-post’]
+#figure 	a matplotlib.figure.Figure instance
+#fillstyle 	[‘full’ | ‘left’ | ‘right’ | ‘bottom’ | ‘top’ | ‘none’]
+#gid 	an id string
+#label 	string or anything printable with ‘%s’ conversion.
+#linestyle or ls 	['-' | '--' | '-.' | ':' | 'None' | ' ' | ''] and any drawstyle in combination with a linestyle, e.g., 'steps--'.
+#linewidth or lw 	float value in points
+#lod 	[True | False]
+#marker 	unknown
+#markeredgecolor or mec 	any matplotlib color
+#markeredgewidth or mew 	float value in points
+#markerfacecolor or mfc 	any matplotlib color
+#markerfacecoloralt or mfcalt 	any matplotlib color
+#markersize or ms 	float
+#markevery 	None | integer | (startind, stride)
+#path_effects 	unknown
+#picker 	float distance in points or callable pick function fn(artist, event)
+#pickradius 	float distance in points
+#rasterized 	[True | False | None]
+#sketch_params 	unknown
+#snap 	unknown
+#solid_capstyle 	[‘butt’ | ‘round’ | ‘projecting’]
+#solid_joinstyle 	[‘miter’ | ‘round’ | ‘bevel’]
+#transform 	a matplotlib.transforms.Transform instance
+#url 	a url string
+#visible 	[True | False]
+#xdata 	1D array
+#ydata 	1D array
+#zorder 	any number
+
+})
+
+
+args.savefig = AttrDict({
+# http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.savefig
+    'dpi'           : args.figure.dpi,
+    'facecolor'     : args.figure.facecolor,
+    'edgecolor'     : args.figure.edgecolor,
+#    'transparent'   : False,    # If True, the axes patches will all be transparent; the figure patch will also be transparent unless facecolor and/or edgecolor are specified via kwargs 
+#    'frameon'       : True,     # If True, the figure patch will be colored, if False, the figure background will be transparent.
+#    'bbox_inches'   : 'tight',  # Bbox in inches. Only the given portion of the figure is saved. If ‘tight’, try to figure out the tight bbox of the figure.
+#    'pad_inches'    : 0,        # Amount of padding around the figure when bbox_inches is ‘tight’.
+})
+
+
+# putting together the default plot style
+pltkw = AttrDict()
+
+pltkw.default = AttrDict()
+pltkw.default.figure    = args.figure
+pltkw.default.addsub    = args.add_subplot
+pltkw.default.plot      = args.plot
+pltkw.default.savefig   = args.savefig
+
+
+#
+# TEMPLATES
+#  template styles to overwrite default plotting styles
+#
+tmpl = AttrDict()
+
+# square figure format 
+tmpl.squares = AttrDict(pltkw.default)
+tmpl.squares.figure.update({
+    'figsize'   : (8,8),
+})
+tmpl.squares.addsub.update({
+    'aspect'   : 'equal',
+})
+tmpl.squares.savefig.update({
+    'bbox_inches'   : 'tight',  # Bbox in inches. Only the given portion of the figure is saved. If ‘tight’, try to figure out the tight bbox of the figure.
+    'pad_inches'    : 0,        # Amount of padding around the figure when bbox_inches is ‘tight’.
+})
+tmpl.squares.contour = AttrDict({
+    'extend'        : 'both', # contour levels are automatically added to one or both ends of the range so that all data are included
+    'aspect'        : 'equal',
+    'origin'        : 'upper',
+    'colors'        : 'k',
+    'antialiased'   : True,
+})
+
+# the others have default values
+tmpl.rects = AttrDict(pltkw.default)
+
+
+# Formatter Functions
+
+def remove_all_ticks(fig=None, axes=None, lines=None):
+    axes.tick_params(
+        axis='both',       # changes apply to the x- and y-axis
+        which='both',      # both major and minor ticks are affected
+        bottom='off',      # ticks along the bottom edge are off
+        top='off',         # ticks along the top edge are off
+        left='off',        # ticks along the bottom edge are off
+        right='off',       # ticks along the top edge are off
+        labelbottom='off',
+        labeltop='off',
+        labelleft='off',
+        labelright='off'
+        )
+    return
+
+#collect the formatter
+pltkw.formatter = AttrDict({
+    'removeticks'   :   remove_all_ticks,
+})
+
+
+#
+# INDIVIDUAL PLOTS / STYLES DEFINITIONS
+#
+#
+
+pltkw.kappaplot = AttrDict(tmpl.squares)
+pltkw.kappaplot.update({
+    'cldelta'       : 0.05, # contour level spacing in log space
+})
+pltkw.kappaplot.formatter = remove_all_ticks
+
+
+# arrivtime
+pltkw.arriv = AttrDict(tmpl.squares)
+pltkw.arriv.majorc = AttrDict(tmpl.squares.contour)
+pltkw.arriv.majorc.update({
+    'colors'    : 'black',
+    'linewidths': 4,
+})
+pltkw.arriv.minorc = AttrDict(tmpl.squares.contour)
+pltkw.arriv.minorc.update({
+    'colors'    : 'magenta',
+#    'linewidths': 2, #use default
+})
+
+
+# kappa enclosed for models
+pltkw.kappaenc = AttrDict(tmpl.rects)
+pltkw.kappaenc.addsub.update({
+    'yscale'    : 'log',
+})
+pltkw.kappaenc.update({
+    'model'     : AttrDict({'colors': 'blue'}),
+    'modelface' : AttrDict({'facecolor': 'blue', 'alpha': 0.5}),
+    'sim'       : AttrDict({'colors': 'red' }),
+    'min'       : AttrDict({'colors': 'cyan' , 'linestyle':':' }),
+    'max'       : AttrDict({'colors': 'red'  , 'linestyle':':' }),
+    'sad'       : AttrDict({'colors': 'green', 'linestyle':':' }),
+    'text'      : AttrDict({'ha': 'left', 'va':'bottom' }),
+    'unity'     : AttrDict({'colors': 'magenta' , 'linestyle':':' }),
+
+    'rEmod'     : AttrDict({'colors': 'darkgreen' , 'linestyle':'--' }),
+    'rEsim'     : AttrDict({'colors': 'red' ,       'linestyle':'--' }),
+})
+
+
+# final plot with the einstein radii
+pltkw.eR4 = AttrDict(tmpl.rects)
+pltkw.eR4.addsub.update({
+    'xscale'    : 'log',
+    'yscale'    : 'log',
+})
+
+pltkw.eR4.update({
+    'markersize'    : 4,
+    'unity'     : AttrDict({
+        'color'     :'green',
+        'linestyle' :'dashed',
+        'marker'    :'o',
+        'markerfacecolor':'blue',
+        'markersize': 4
+        }),
+
+    'unity'     : AttrDict({'colors': 'magenta' , 'linestyle':':' }),
+})
 
 
 def set_mpl():

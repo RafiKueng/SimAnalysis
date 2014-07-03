@@ -60,7 +60,7 @@ import os
 import shutil
 
 import requests as rq
-import csv
+#import csv
 
 import numpy as np
 from numpy import pi
@@ -72,11 +72,12 @@ import defaults
 
 
 defaults.set_mpl()
-args = defaults.args
+kw = defaults.pltkw
 
 
 
 debug = False
+
 
 # set to false to do a dry run in /plots/[outdir]
 write_to_tex_folder = False
@@ -160,7 +161,10 @@ pardir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)
 sys.path.append(os.path.join(pardir, 'spaghetti'))
 sys.path.append(os.path.join(pardir, 'systems'))
 
-import matplotlib.pylab as pl
+import matplotlib.pyplot as plt
+from matplotlib.ticker import LogFormatter
+
+
 import gen_kappa_encl_plots as spg
 import many
 # import after, to be sure mpl.rc changes are valid
@@ -481,7 +485,7 @@ def plot_sel():
 def run():
   all_sim_plots()
   all_mod_plots()
-  all_tex()
+  #all_tex()
   plotAllRE()
 
 #==============================================================================
@@ -594,255 +598,259 @@ def fetch_sel_mod():
 
     get_mod_adv_data(mid) #download plots generated on server with glass
   
+#
+# OLD STUFF THAT WAS NEVER UPDATED
+# ...and probably wont run any more
+#
   
 #==============================================================================
 #   # create tex folder / files for easy include
 #==============================================================================
-def all_tex():
-  print '\nTEX'
-  print '============================================='
-  mid_list = []
-  for idd, elem in enumerate(spg.data):
-
-    mid = elem['id']
-    asw = elem['name']
-    
-      
-    spath = os.path.join(resdir, asw)
-    mpath = os.path.join(resdir, '%06i'%mid)
-    for path in [spath, mpath]:
-      #print path
-      if not os.path.isdir(path):
-        os.makedirs(path)
-
-    t1 = copy_model_files(mid)
-    t2 = copy_sim_files(asw)
-    
-    #only create tex file if all files available and copied    
-    if t1 and t2:
-      create_tex(mid, asw)
-      create_alt_tex(mid, asw)
-      mid_list.append(str(mid))
-    if debug: break
-  
-  with open(os.path.join(resdir, '_all.tex'), 'w') as ff:
-    ff.write('\n'.join(['\input{fig/sims/%s}\n\clearpage'%_ for _ in mid_list]))
-
-  with open(os.path.join(resdir, '_all_alt.tex'), 'w') as ff:
-    ff.write('\n'.join(['\input{fig/sims/%s_alt}\n\clearpage'%_ for _ in mid_list]))
-
-class tFig(dict):
-  def __init__(self, sf_path, sf_capt, sf_label, sf_opt):
-    self.sf_path = sf_path
-    self.sf_capt = sf_capt
-    self.sf_label = sf_label
-    self.sf_opt = sf_opt
-    
-  def __getitem__(self, key):
-    return self.__dict__[key]
-    
-  
-def create_tex(mid, asw):
-  
-  print '> generating tex file',mid,
-  
-  sf_opt = r'[width=0.45\textwidth]'
-  txFigs = [
-    tFig(
-      r'fig/sims/%s/kappa.%s'%(asw, ext),
-      r'[real mass distribution]',
-      r'%04i_sim_mass' % mid,
-      sf_opt
-    ),
-    tFig(
-      r'fig/sims/%s/arriv.%s'%(asw, ext),
-      r'[real arrival-time surface]',
-      r'%04i_sim_arr' % mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%06i/mass.%s'%(mid, ext),
-      r'[model mass distribution]',
-      r'%04i_mass'%mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
-      r'[model arrival-time surface]',
-      r'%04i_cont'%mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%06i/kappa_encl.%s'%(mid, ext),
-      r'[real vs model enclosed mass]',
-      r'%04i_kappa'%mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%06i/arr_time.%s'%(mid, ext),
-      r'[model lensed image]',
-      r'%04i_atime'%mid,
-      sf_opt
-    ),
-  ]
-
-  #figpath = os.path.join(resdir, '%06i'%mid)
-  texpath = resdir
-
-#  try:
-#    figpath = os.path.join(resdir, '%06i'%mid)
-#    texpath = resdir
-#    #os.makedirs(figpath)
-#  except OSError as e:
-#    print 'error creating dir', e
-
-  tex_env = r"""
-\begin{figure}
-  \centering
-%(subfigtex)s
-  \caption%(env_capt_short)s{%(env_capt_long)s}
-  \label{fig:%(env_label)s}
-\end{figure}
-  """
-  
-  tex_sub = r"""  \subfigure%(sf_capt)s{
-    \label{fig:%(sf_label)s}
-    \includegraphics%(sf_opt)s{%(sf_path)s}
-  }
-"""
-
-  subfigtex = ''
-  
-  for fig in txFigs:
-    data = {
-#      'sf_path'   : r'fig/sims/%06i/img.%s' % (mid, ext),
-#      'sf_capt'   : r'[some capt]',
-#      'sf_label'  : r'tmplbl',
-#      'sf_opt'    : r'[width=0.3\textwidth]'
-    }
-    subfigtex += tex_sub % fig
-    
-  data = {
-    'subfigtex'      : subfigtex,
-    'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
-    'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
-    'env_label'      : r'%04i'%mid,
-  }
-  
-  tex = tex_env % data
-  
-  with open(os.path.join(texpath, '%04i.tex'%mid), 'w') as ff:
-    ff.write(tex)
-
-  print '...DONE.'
-  print '  - %04i.tex'%mid
-
-
-
-def create_alt_tex(mid, asw):
-  '''creates tex files for alternative arrangement (to compare point placement)
-  you have to manually copy the output of many2 into the sims folder..  
-  '''
-  print '> generating alt tex file',mid,
-  
-  sf_opt = r'[height=0.4\vsize]'
-  
-  txFigs = [
-    tFig(
-      r'fig/sims/%s/arriv.%s'%(asw, ext),
-      r'[real arrival-time surface]',
-      r'%04i_sim_arr' % mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
-      r'[model arrival-time surface]',
-      r'%04i_cont'%mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%s/extr_points.%s'%(asw, ext),
-      r'[sw image]',
-      r'%04i_sw'%mid,
-      sf_opt
-    ),  
-    tFig(
-      r'fig/sims/%06i/input.%s'%(mid, ext),
-      r'[input image]',
-      r'%04i_input'%mid,
-      sf_opt
-    ),
-  ]
-
-  #figpath = os.path.join(resdir, '%06i'%mid)
-  texpath = resdir
-
-#  try:
-#    figpath = os.path.join(resdir, '%06i'%mid)
-#    texpath = resdir
-#    #os.makedirs(figpath)
-#  except OSError as e:
-#    print 'error creating dir', e
-
-  tex_env = r"""
-\begin{figure}
-  \centering
-%(subfigtex)s
-  \caption%(env_capt_short)s{%(env_capt_long)s}
-  \label{fig:%(env_label)s}
-\end{figure}
-  """
-  
-  tex_sub = r"""  \subfigure%(sf_capt)s{
-    \label{fig:%(sf_label)s}
-    \includegraphics%(sf_opt)s{%(sf_path)s}
-  }
-"""
-
-  tex = []
-  for i in [0,1]:
-    subfigtex = ''
-    
-    for fig in txFigs[i*2:i*2+2]:
-      subfigtex += tex_sub % fig
-      
-    data = {
-      'subfigtex'      : subfigtex,
-      'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
-      'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
-      'env_label'      : r'%04i.%i'%(mid,i),
-    }
-    
-    tex.append(tex_env % data)
-  
-  with open(os.path.join(texpath, '%04i_alt.tex'%mid), 'w') as ff:
-    s = '\n'+r'\clearpage'+'\n'
-    ff.write(s.join(tex))
-
-  print '...DONE.'
-  print '  - %04i_alt.tex'%mid
-
-
-def create_csv():
-  '''creates an overview in csv format over results and models'''
-
-  path = os.path.join(outdir,'overview.csv')  
-  
-  s = {}
-  for d in spg.data:
-    name = d['name']
-    try:
-      s[name]
-    except KeyError:
-      s[name] = []
-    s[name].append(d)
-    
-  with open(path, 'wb') as csvfile:
-    writer = csv.writer(csvfile)
-    for key, val in s.items():
-      writer.writerow([key])
-      for v in val:
-        writer.writerow(['',v['id'],v['nPnt'],v['user']])
+#def all_tex():
+#  print '\nTEX'
+#  print '============================================='
+#  mid_list = []
+#  for idd, elem in enumerate(spg.data):
+#
+#    mid = elem['id']
+#    asw = elem['name']
+#    
+#      
+#    spath = os.path.join(resdir, asw)
+#    mpath = os.path.join(resdir, '%06i'%mid)
+#    for path in [spath, mpath]:
+#      #print path
+#      if not os.path.isdir(path):
+#        os.makedirs(path)
+#
+#    t1 = copy_model_files(mid)
+#    t2 = copy_sim_files(asw)
+#    
+#    #only create tex file if all files available and copied    
+#    if t1 and t2:
+#      create_tex(mid, asw)
+#      create_alt_tex(mid, asw)
+#      mid_list.append(str(mid))
+#    if debug: break
+#  
+#  with open(os.path.join(resdir, '_all.tex'), 'w') as ff:
+#    ff.write('\n'.join(['\input{fig/sims/%s}\n\clearpage'%_ for _ in mid_list]))
+#
+#  with open(os.path.join(resdir, '_all_alt.tex'), 'w') as ff:
+#    ff.write('\n'.join(['\input{fig/sims/%s_alt}\n\clearpage'%_ for _ in mid_list]))
+#
+#
+#class tFig(dict):
+#  def __init__(self, sf_path, sf_capt, sf_label, sf_opt):
+#    self.sf_path = sf_path
+#    self.sf_capt = sf_capt
+#    self.sf_label = sf_label
+#    self.sf_opt = sf_opt
+#    
+#  def __getitem__(self, key):
+#    return self.__dict__[key]
+#    
+#def create_tex(mid, asw):
+#  
+#  print '> generating tex file',mid,
+#  
+#  sf_opt = r'[width=0.45\textwidth]'
+#  txFigs = [
+#    tFig(
+#      r'fig/sims/%s/kappa.%s'%(asw, ext),
+#      r'[real mass distribution]',
+#      r'%04i_sim_mass' % mid,
+#      sf_opt
+#    ),
+#    tFig(
+#      r'fig/sims/%s/arriv.%s'%(asw, ext),
+#      r'[real arrival-time surface]',
+#      r'%04i_sim_arr' % mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%06i/mass.%s'%(mid, ext),
+#      r'[model mass distribution]',
+#      r'%04i_mass'%mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
+#      r'[model arrival-time surface]',
+#      r'%04i_cont'%mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%06i/kappa_encl.%s'%(mid, ext),
+#      r'[real vs model enclosed mass]',
+#      r'%04i_kappa'%mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%06i/arr_time.%s'%(mid, ext),
+#      r'[model lensed image]',
+#      r'%04i_atime'%mid,
+#      sf_opt
+#    ),
+#  ]
+#
+#  #figpath = os.path.join(resdir, '%06i'%mid)
+#  texpath = resdir
+#
+##  try:
+##    figpath = os.path.join(resdir, '%06i'%mid)
+##    texpath = resdir
+##    #os.makedirs(figpath)
+##  except OSError as e:
+##    print 'error creating dir', e
+#
+#  tex_env = r"""
+#\begin{figure}
+#  \centering
+#%(subfigtex)s
+#  \caption%(env_capt_short)s{%(env_capt_long)s}
+#  \label{fig:%(env_label)s}
+#\end{figure}
+#  """
+#  
+#  tex_sub = r"""  \subfigure%(sf_capt)s{
+#    \label{fig:%(sf_label)s}
+#    \includegraphics%(sf_opt)s{%(sf_path)s}
+#  }
+#"""
+#
+#  subfigtex = ''
+#  
+#  for fig in txFigs:
+#    data = {
+##      'sf_path'   : r'fig/sims/%06i/img.%s' % (mid, ext),
+##      'sf_capt'   : r'[some capt]',
+##      'sf_label'  : r'tmplbl',
+##      'sf_opt'    : r'[width=0.3\textwidth]'
+#    }
+#    subfigtex += tex_sub % fig
+#    
+#  data = {
+#    'subfigtex'      : subfigtex,
+#    'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
+#    'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
+#    'env_label'      : r'%04i'%mid,
+#  }
+#  
+#  tex = tex_env % data
+#  
+#  with open(os.path.join(texpath, '%04i.tex'%mid), 'w') as ff:
+#    ff.write(tex)
+#
+#  print '...DONE.'
+#  print '  - %04i.tex'%mid
+#
+#
+#
+#def create_alt_tex(mid, asw):
+#  '''creates tex files for alternative arrangement (to compare point placement)
+#  you have to manually copy the output of many2 into the sims folder..  
+#  '''
+#  print '> generating alt tex file',mid,
+#  
+#  sf_opt = r'[height=0.4\vsize]'
+#  
+#  txFigs = [
+#    tFig(
+#      r'fig/sims/%s/arriv.%s'%(asw, ext),
+#      r'[real arrival-time surface]',
+#      r'%04i_sim_arr' % mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%06i/spaghetti.%s'%(mid, ext),
+#      r'[model arrival-time surface]',
+#      r'%04i_cont'%mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%s/extr_points.%s'%(asw, ext),
+#      r'[sw image]',
+#      r'%04i_sw'%mid,
+#      sf_opt
+#    ),  
+#    tFig(
+#      r'fig/sims/%06i/input.%s'%(mid, ext),
+#      r'[input image]',
+#      r'%04i_input'%mid,
+#      sf_opt
+#    ),
+#  ]
+#
+#  #figpath = os.path.join(resdir, '%06i'%mid)
+#  texpath = resdir
+#
+##  try:
+##    figpath = os.path.join(resdir, '%06i'%mid)
+##    texpath = resdir
+##    #os.makedirs(figpath)
+##  except OSError as e:
+##    print 'error creating dir', e
+#
+#  tex_env = r"""
+#\begin{figure}
+#  \centering
+#%(subfigtex)s
+#  \caption%(env_capt_short)s{%(env_capt_long)s}
+#  \label{fig:%(env_label)s}
+#\end{figure}
+#  """
+#  
+#  tex_sub = r"""  \subfigure%(sf_capt)s{
+#    \label{fig:%(sf_label)s}
+#    \includegraphics%(sf_opt)s{%(sf_path)s}
+#  }
+#"""
+#
+#  tex = []
+#  for i in [0,1]:
+#    subfigtex = ''
+#    
+#    for fig in txFigs[i*2:i*2+2]:
+#      subfigtex += tex_sub % fig
+#      
+#    data = {
+#      'subfigtex'      : subfigtex,
+#      'env_capt_short' : r'[result %4i (%s)]' % (mid, asw),
+#      'env_capt_long'  : r'data for result %4i, of %s' % (mid, asw),
+#      'env_label'      : r'%04i.%i'%(mid,i),
+#    }
+#    
+#    tex.append(tex_env % data)
+#  
+#  with open(os.path.join(texpath, '%04i_alt.tex'%mid), 'w') as ff:
+#    s = '\n'+r'\clearpage'+'\n'
+#    ff.write(s.join(tex))
+#
+#  print '...DONE.'
+#  print '  - %04i_alt.tex'%mid
+#
+#
+#def create_csv():
+#  '''creates an overview in csv format over results and models'''
+#
+#  path = os.path.join(outdir,'overview.csv')  
+#  
+#  s = {}
+#  for d in spg.data:
+#    name = d['name']
+#    try:
+#      s[name]
+#    except KeyError:
+#      s[name] = []
+#    s[name].append(d)
+#    
+#  with open(path, 'wb') as csvfile:
+#    writer = csv.writer(csvfile)
+#    for key, val in s.items():
+#      writer.writerow([key])
+#      for v in val:
+#        writer.writerow(['',v['id'],v['nPnt'],v['user']])
       
     
 
@@ -1123,7 +1131,7 @@ def draw_sim(asw, sim):
         if simplots['kappa']:
             print '::: plot mass map'
             mpl.rcParams['contour.negative_linestyle'] = 'dashed'
-            fig = pl.figure(figsize=figsize)
+            fig = plt.figure(**kw.kappaplot.figure)
             panel = fig.add_subplot(1,1,1)
             panel.set_aspect('equal')
             
@@ -1146,25 +1154,30 @@ def draw_sim(asw, sim):
             x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
             y_cm=y_cm[rr:-rr]
             
+            #TODO fix n contours
             n_contours=15
+            cldelta = kw.kappaplot.cldelta
+            cldelta += 1
             
-            pc = panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+            #panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
+            panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, **kw.kappaplot.contour)
             
             #panel.clabel(pc, inline=1, fontsize=10)
-            panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
+            #panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
             
-            panel.tick_params(
-                axis='both',       # changes apply to the x- and y-axis
-                which='both',      # both major and minor ticks are affected
-                bottom='off',      # ticks along the bottom edge are off
-                top='off',         # ticks along the top edge are off
-                left='off',        # ticks along the bottom edge are off
-                right='off',       # ticks along the top edge are off
-                labelbottom='off',
-                labeltop='off',
-                labelleft='off',
-                labelright='off'
-                )
+            kw.kappaplot.formatter(axes=panel)
+#            panel.tick_params(
+#                axis='both',       # changes apply to the x- and y-axis
+#                which='both',      # both major and minor ticks are affected
+#                bottom='off',      # ticks along the bottom edge are off
+#                top='off',         # ticks along the top edge are off
+#                left='off',        # ticks along the bottom edge are off
+#                right='off',       # ticks along the top edge are off
+#                labelbottom='off',
+#                labeltop='off',
+#                labelleft='off',
+#                labelright='off'
+#                )
                 
             #panel.set_xlim([-R,R])
             #panel.set_ylim([-R,R])
@@ -1174,17 +1187,18 @@ def draw_sim(asw, sim):
             #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[1],'png')))
             for ext in exts:
               p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
-              pl.savefig(p, bbox_inches='tight', pad_inches=0)
+              #pl.savefig(p, bbox_inches='tight', pad_inches=0)
+              plt.savefig(p, **kw.kappaplot.savefig)
               print '  - %s'%p
 
-            pl.clf() #close current figure
+            plt.clf() #close current figure
             
             
         #
         # KAPPA ENCLOSED
         #
         if simplots['kappaenc']:
-            fig = pl.figure(figsize=figsize)
+            fig = plt.figure(**kw.kappaenc.figure)
             panel = fig.add_subplot(1,1,1)
             rad = np.linspace(0,R,20)[1:]
             radq = rad*rad
@@ -1214,37 +1228,44 @@ def draw_sim(asw, sim):
             #pl.savefig(os.path.join(path + '_%s.%s'%(filenames[2],'pdf')))
             for ext in exts:
               p = os.path.join(path + '_%s.%s'%(filenames[2],ext))
-              pl.savefig(p)
+              plt.savefig(p, **kw.kappaenc.savefig)
               print '  - %s'%p
             
-            pl.clf() #close current figure
+            plt.clf() #close current figure
             
         #
         # ARRIVAL TIME CONTOUR PLOT
         #
         if simplots['arriv']:
-            fig = pl.figure(figsize=figsize)
-            panel = fig.add_subplot(1,1,1, axisbg='white')
-            panel.set_aspect('equal')
+            fig = plt.figure(**kw.arriv.figure)
+            #panel = fig.add_subplot(1,1,1, axisbg='white')
+            panel = fig.add_subplot(1,1,1, **kw.arriv.addsub)
+            #panel.set_aspect('equal')
             lo,hi = np.amin(arriv), np.amax(arriv)
             lev = np.linspace(lo,lo+.2*(hi-lo),30)
             
             mpl.rcParams['contour.negative_linestyle'] = 'solid'
             #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
-            panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
-            panel.contour(x,y,arriv,levels[asw], colors='black', linewidths=4)
+            
+            #panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
+            #panel.contour(x,y,arriv,levels[asw], colors='black', linewidths=4)
+            panel.contour(x,y,arriv,lev, **kw.arriv.minorc)
+            panel.contour(x,y,arriv,levels[asw], **kw.arriv.majorc)
 
             
             # hide axis
-            panel.axes.get_xaxis().set_ticks([])
-            panel.axes.get_yaxis().set_ticks([])
+            #panel.axes.get_xaxis().set_ticks([])
+            #panel.axes.get_yaxis().set_ticks([])
+            kw.formatter.removeticks(panel)
+
             
             for ext in exts:
               p = os.path.join(path + '_%s.%s'%(filenames[0],ext))
-              pl.savefig(p, bbox_inches='tight', pad_inches=0)
+              #pl.savefig(p, bbox_inches='tight', pad_inches=0)
+              plt.savefig(p, **kw.arriv.savefig)
               print '  - %s'%p
           
-            pl.clf() #close current figure
+            plt.clf() #close current figure
     
     
     if not debug:
@@ -1305,23 +1326,24 @@ def draw_mod(mid, elem, data, sims):
   ############################
 
   #where (y val) to start plotting the extr points markers
-  mmax = np.max([np.max(elem['err_p']), np.max(sims[name]['y'])])
-  ofs = max(round(mmax*0.5), 2) 
-  rE_pos = max(round(mmax*0.75), 3) # there to draw the einsteinradius text
+  #mmax = np.max([np.max(elem['err_p']), np.max(sims[name]['y'])])
+  #ofs = max(round(mmax*0.5), 2) 
+  #rE_pos = max(round(mmax*0.75), 3) # there to draw the einsteinradius text
   
   yvals_extr = np.logspace(np.log10(3.5),np.log10(1),8)
   ypos_theta = np.logspace(np.log10(7),np.log10(5),4)
   
   # text offsets and properties
   t_dx = 0.0
-  t_dy = 0.1
-  t_dt = mmax/16.
-  t_props = {'ha':'left', 'va':'bottom', 'fontsize':params['text.fontsize']} 
+  #t_dy = 0.1
+  #t_dt = mmax/16.
+  
+  #t_props = {'ha':'left', 'va':'bottom', }#'fontsize':params['text.fontsize']} 
     
     
-  pl.ioff()
-  fig = pl.figure(figsize=figsizeKE)
-  ax = fig.add_subplot(1,1,1)
+  #pl.ioff()
+  fig = plt.figure(**kw.kappaenc.figure)
+  fig.add_subplot(1,1,1, **kw.kappaenc.addsub)
   
   x  = elem['x']
   #y  = elem['y']
@@ -1340,29 +1362,32 @@ def draw_mod(mid, elem, data, sims):
   
 
   #plot the model values
-  pl.plot(elem['x'], elem['err_p'], 'b')
-  pl.plot(elem['x'], elem['err_m'], 'b')
-  pl.fill_between(x_ip[mask], yp_ip[mask], ym_ip[mask], facecolor='blue', alpha=0.5)
+  plt.plot(elem['x'], elem['err_p'], **kw.kappaenc.model)
+  plt.plot(elem['x'], elem['err_m'], **kw.kappaenc.model)
+  plt.fill_between(x_ip[mask], yp_ip[mask], ym_ip[mask], **kw.kappaenc.modelface)
 
   
   #plot vertical lines for point location
   for jj, p in enumerate(sorted(elem['pnts'])):
-    if   p['t']=='min': c='c'
-    elif p['t']=='max': c='r'
-    elif p['t']=='sad': c='g'
+    #if   p['t']=='min': c='c'
+    #elif p['t']=='max': c='r'
+    #elif p['t']=='sad': c='g'
     #pl.plot([p['d'], p['d']], [0.01,ofs-t_dt*jj], c+':')
     #pl.text(p['d']+t_dx, ofs-t_dt*jj+t_dy, p['t'], **t_props)
     
     # new placement in logscales
-    pl.plot([p['d'], p['d']], [0.01,yvals_extr[jj]], c+':')
-    pl.text(p['d']+t_dx, yvals_extr[jj], p['t'], **t_props)
+    #pl.plot([p['d'], p['d']], [0.01,yvals_extr[jj]], c+':')
+    #pl.text(p['d']+t_dx, yvals_extr[jj], p['t'], **t_props)
+    
+    plt.plot([p['d'], p['d']], [0.01,yvals_extr[jj]], **kw.kappaenc[p['t']])
+    plt.text(p['d']+t_dx, yvals_extr[jj], p['t'], **kw.kappaenc.text)
 
   # plot simulation parameter data
-  pl.plot(sims[name]['x'], sims[name]['y'], 'r')
-  pl.plot([0.01,np.max(elem['x'])], [1,1], ':m')  
+  plt.plot(sims[name]['x'], sims[name]['y'], **kw.kappaenc.sim)
+  plt.plot([0.01,np.max(elem['x'])], [1,1], **kw.kappaenc.unity)  
   
   #titles etc
-  pl.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
+  #plt.suptitle('Analysis for ID: %s - model of: %s' % (elem['id'], name), fontsize=18)
   #pl.title('by: %s - pixrad: %i - nModels: %i' % (r'\verb|%s|'%elem['user'], elem['pxR'], elem['nMod']), fontsize=14)
   
 
@@ -1391,8 +1416,8 @@ def draw_mod(mid, elem, data, sims):
     #pl.text(rE_mean+t_dx, rE_pos+t_dy, r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **t_props)
     
     #new placement due to logscale
-    pl.plot(a_re_mean, [0.001,ypos_theta[2]], '--', color=(0,0.5,0))
-    pl.text(rE_mean+t_dx, ypos_theta[2], r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **t_props)
+    plt.plot(a_re_mean, [0.001,ypos_theta[2]], **kw.kappaenc.rEmod)
+    plt.text(rE_mean+t_dx, ypos_theta[2], r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **kw.kappaenc.text)
     #pl.plot(a_re_min, [0,rE_pos-0.25], ':b')
     #pl.plot(a_re_max, [0,rE_pos-0.25], ':b')
 
@@ -1413,17 +1438,17 @@ def draw_mod(mid, elem, data, sims):
     #pl.plot(a_re_data, [0.001,rE_pos+t_dt], '--r')
     #pl.text(rE_data+t_dx, rE_pos+t_dt+t_dy, r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
     # new placement due to log scale
-    pl.plot(a_re_data, [0.001,ypos_theta[0]], '--r')
-    pl.text(rE_data+t_dx, ypos_theta[0], r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
+    plt.plot(a_re_data, [0.001,ypos_theta[0]], **kw.kappaenc.rEsim)
+    plt.text(rE_data+t_dx, ypos_theta[0], r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **kw.kappaenc.text)
     
 
   
   
-  pl.xlabel(r'image radius [pixels]')
-  pl.ylabel(r'mean convergance [1]')  
+  plt.xlabel(r'image radius [pixels]')
+  plt.ylabel(r'mean convergance [1]')  
   
-  pl.xlim([0,np.max(elem['x'])])
-  pl.ylim([0.4,10])
+  plt.xlim([0,np.max(elem['x'])])
+  plt.ylim([0.4,10])
 
   #ax = pl.gca()
   #pl.text(0.95, 0.95,elem['name'],
@@ -1432,11 +1457,11 @@ def draw_mod(mid, elem, data, sims):
   #  fontsize=14,
   #  transform = ax.transAxes)
 
-  ax.set_yscale('log')
+  #ax.set_yscale('log')
   
   if show:
     #print 'show'
-    pl.show()
+    plt.show()
   else:
     #imgname = ('kappa_encl.%s'%ext)
     #pl.savefig(os.path.join(save_fig_path, imgname))
@@ -1447,7 +1472,7 @@ def draw_mod(mid, elem, data, sims):
 
     for ext in exts:
       imgname1 = ('_kappa_encl.%s'%ext)
-      pl.savefig(os.path.join(save_fig_path + imgname1))
+      plt.savefig(os.path.join(save_fig_path + imgname1), **kw.kappaenc.savefig)
     pass
   
   
@@ -1508,7 +1533,7 @@ def plotAllRE():
   re = np.array(re)
   ep = np.array(ep) - re
   em = re - np.array(em)
-  ee = [ep, em]
+  #ee = [ep, em]
   re_rel = np.array(re_rel)
   ep_rel = np.array(ep_rel) - re_rel
   em_rel = re_rel - np.array(em_rel)
@@ -1516,102 +1541,105 @@ def plotAllRE():
 
   ac = np.array(ac, dtype=bool)
   
-  if ERplots[0]:
-    pl.figure(figsize=figsizeER)
-    #paint accepted
-    pl.errorbar(xi[ac], re[ac], [ep[ac], em[ac]], marker='s', mfc='blue', ls='' ,ecolor='blue')
-    #paint rejected
-    pl.errorbar(xi[~ac], re[~ac], [ep[~ac], em[~ac]], marker='o', mfc='green', ls='' ,ecolor='green')
-    pl.plot(xi, se, 'rx')
-    pl.xlim([np.min(xi), np.max(xi)])
-    pl.ylim([0., 35.])
-    pl.xlabel('model id')
-    pl.ylabel(r'Einstrin radius $\Theta_\text{E}$ [pixel]')
-    
-    for ext in exts:
-      pl.savefig(os.path.join(path, 'eR_1.'+ext))
-    print '.',
-    #pl.show()
-  
-  if ERplots[1]:  
-    pl.figure(figsize=figsizeER)
-    pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
-    pl.plot(xi, xi*0+1, '-r')
-    
-    for ext in exts:
-      pl.savefig(os.path.join(path, 'eR_2.'+ext))
-    print '.',
-    #pl.show()
-  
-  if ERplots[2]:
-    pl.figure(figsize=figsizeER)
-    for i, dat in enumerate(spg.data):
-      simn = dat['name']    
-      try:
-        lu[simn]
-      except KeyError:
-        continue
-      pl.plot(lu[simn], dat['rE_mean'], 'bx')
-      
-    lbls = [key for key, val in spg.sims.items()]
-    for i, item in enumerate(spg.sims.items()):
-      key, val = item
-      try:
-        pl.plot(lu[key], val['rE'], 'rs')
-      except KeyError:
-        continue
-      #lbls[i] = key
-      
-    pl.xticks(range(i+1), lbls, rotation=90)
-    pl.gcf().subplots_adjust(bottom=0.2)
-    pl.xlim([-.5, i+0.5])
-    pl.ylabel(r'Einstein Radius $\Theta_{\text{E}}$')
 
-    for ext in exts:
-      pl.savefig(os.path.join(path, 'eR_3.'+ext))
-    print '.',
-    #pl.show()
-    
-  if ERplots[3]:
-    pl.figure(figsize=figsizeER)
-    for i, dat in enumerate(spg.data):
-      simn = dat['name']    
-      try:
-        lu[simn]
-      except KeyError:
-        continue
-      if dat['user']=='psaha':
-        style = 'rx'
-      elif not tab.all_mods[str(dat['id'])]['acc']:
-        style = 'g+'
-      else:
-        style = 'bx'
-      xofs = 0.15 if dat['user']=='psaha' else -0.15
-      pl.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
-      
-    lbls = [key for key, val in spg.sims.items()]
-    for i, item in enumerate(spg.sims.items()):
-      key, val = item
-    pl.plot([-0.5, i+0.5], [1,1], '--r')
-    
-    pl.xticks(range(i+1), lbls, rotation=90)
-    pl.yticks(np.linspace(0,2,(2/0.25)+1))
-    pl.grid(axis='y')
-    pl.gcf().subplots_adjust(bottom=0.25)
-    pl.xlim([-.5, i+0.5])
-    pl.xlabel('Simulation id')
-    pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
-
-    for ext in exts:
-      pl.savefig(os.path.join(path, 'eR_4.'+ext))
-    print '.',
-    #pl.show()
+# almost all of those are not updated to use the new painting schema  
+#  
+#  if ERplots[0]:
+#    pl.figure(figsize=figsizeER)
+#    #paint accepted
+#    pl.errorbar(xi[ac], re[ac], [ep[ac], em[ac]], marker='s', mfc='blue', ls='' ,ecolor='blue')
+#    #paint rejected
+#    pl.errorbar(xi[~ac], re[~ac], [ep[~ac], em[~ac]], marker='o', mfc='green', ls='' ,ecolor='green')
+#    pl.plot(xi, se, 'rx')
+#    pl.xlim([np.min(xi), np.max(xi)])
+#    pl.ylim([0., 35.])
+#    pl.xlabel('model id')
+#    pl.ylabel(r'Einstrin radius $\Theta_\text{E}$ [pixel]')
+#    
+#    for ext in exts:
+#      pl.savefig(os.path.join(path, 'eR_1.'+ext))
+#    print '.',
+#    #pl.show()
+#  
+#  if ERplots[1]:  
+#    pl.figure(figsize=figsizeER)
+#    pl.errorbar(xi, re_rel, ee_rel, marker='s', mfc='blue', ls='' ,ecolor='blue')
+#    pl.plot(xi, xi*0+1, '-r')
+#    
+#    for ext in exts:
+#      pl.savefig(os.path.join(path, 'eR_2.'+ext))
+#    print '.',
+#    #pl.show()
+#  
+#  if ERplots[2]:
+#    pl.figure(figsize=figsizeER)
+#    for i, dat in enumerate(spg.data):
+#      simn = dat['name']    
+#      try:
+#        lu[simn]
+#      except KeyError:
+#        continue
+#      pl.plot(lu[simn], dat['rE_mean'], 'bx')
+#      
+#    lbls = [key for key, val in spg.sims.items()]
+#    for i, item in enumerate(spg.sims.items()):
+#      key, val = item
+#      try:
+#        pl.plot(lu[key], val['rE'], 'rs')
+#      except KeyError:
+#        continue
+#      #lbls[i] = key
+#      
+#    pl.xticks(range(i+1), lbls, rotation=90)
+#    pl.gcf().subplots_adjust(bottom=0.2)
+#    pl.xlim([-.5, i+0.5])
+#    pl.ylabel(r'Einstein Radius $\Theta_{\text{E}}$')
+#
+#    for ext in exts:
+#      pl.savefig(os.path.join(path, 'eR_3.'+ext))
+#    print '.',
+#    #pl.show()
+#    
+#  if ERplots[3]:
+#    pl.figure(figsize=figsizeER)
+#    for i, dat in enumerate(spg.data):
+#      simn = dat['name']    
+#      try:
+#        lu[simn]
+#      except KeyError:
+#        continue
+#      if dat['user']=='psaha':
+#        style = 'rx'
+#      elif not tab.all_mods[str(dat['id'])]['acc']:
+#        style = 'g+'
+#      else:
+#        style = 'bx'
+#      xofs = 0.15 if dat['user']=='psaha' else -0.15
+#      pl.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
+#      
+#    lbls = [key for key, val in spg.sims.items()]
+#    for i, item in enumerate(spg.sims.items()):
+#      key, val = item
+#    pl.plot([-0.5, i+0.5], [1,1], '--r')
+#    
+#    pl.xticks(range(i+1), lbls, rotation=90)
+#    pl.yticks(np.linspace(0,2,(2/0.25)+1))
+#    pl.grid(axis='y')
+#    pl.gcf().subplots_adjust(bottom=0.25)
+#    pl.xlim([-.5, i+0.5])
+#    pl.xlabel('Simulation id')
+#    pl.ylabel(r'rel Einstein Radius $\Theta_{\text{E}}$/$\Theta_{\text{E, sim}}$')
+#
+#    for ext in exts:
+#      pl.savefig(os.path.join(path, 'eR_4.'+ext))
+#    print '.',
+#    #pl.show()
   
   mod_err = getModelError()
   
   if ERplots[4]:
-    fig = pl.figure(figsize=figsizeER)
-    ax = fig.add_subplot(1,1,1)
+    fig = plt.figure(**kw.eR4.figure)
+    ax = fig.add_subplot(1,1,1, **kw.eR4.addsub)
     
     draw_later = []
     draw_later2 = []
@@ -1619,7 +1647,7 @@ def plotAllRE():
     new_data = []
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
-      skip = False
+      #skip = False
       try:
         lu[simn]
       except KeyError:
@@ -1648,7 +1676,7 @@ def plotAllRE():
     with open("new_data.csv", "w") as f:
         for d in new_data:
             f.write("%f,%f,%s\n" % d)
-    ddd = 0.5
+    #ddd = 0.5
     for d in draw_later:
       #pass
       ax.plot(d[0], d[1], 'co', markersize=4)
@@ -1658,17 +1686,17 @@ def plotAllRE():
       ax.plot(d[0], d[1], 'bx', markersize=4)
     
       
-    lbls = [key for key, val in spg.sims.items()]
-    for i, item in enumerate(spg.sims.items()):
-      key, val = item
+#    lbls = [key for key, val in spg.sims.items()]
+#    for i, item in enumerate(spg.sims.items()):
+#      key, val = item
     
-    ax.plot([0.1, 100], [0.1,100], 'm:')
+    ax.plot([0.1, 100], [0.1,100], **kw.eR4.unity)
     #ax.plot([1, 100], [2,200], 'm')
     
-    ax.set_xscale('log')
-    ax.set_yscale('log')
+#    ax.set_xscale('log')
+#    ax.set_yscale('log')
     
-    from matplotlib.ticker import LogFormatter, ScalarFormatter
+    
     
     #ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
     ax.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
@@ -1680,10 +1708,10 @@ def plotAllRE():
     #pl.yticks(np.linspace(0,2,(2/0.25)+1))
     #pl.grid(axis='y')
     #pl.gcf().subplots_adjust(bottom=0.25)
-    pl.xlim([4, 25])
-    pl.ylim([1, 40])
-    pl.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
-    pl.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')
+    plt.xlim([4, 25])
+    plt.ylim([1, 40])
+    plt.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
+    plt.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')
 
     
     for ext in exts:

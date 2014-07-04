@@ -31,9 +31,9 @@ def shear(xs,x,y):
 def poten_gal(gal,x,y):
     z = zeros((len(y),len(x)))
     re,ell,ell_pa = float(gal[1]), float(gal[2]), float(gal[3])
-    print 'Einstein radius',re
-    print 'ellipticity',ell
-    print 'pos ang',ell_pa
+    #print 'Einstein radius',re
+    #print 'ellipticity',ell
+    #print 'pos ang',ell_pa
     for i in range(len(x)):
         for j in range(len(y)):
             z[j,i] = poten_SIE(x[i],y[j],re,ell,ell_pa)

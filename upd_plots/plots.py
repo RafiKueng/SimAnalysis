@@ -13,12 +13,12 @@ import numpy as np
 np.set_printoptions(precision=3)
 
 sys.path.append(os.path.abspath("../plots"))
-from defaults import AttrDict
+#from defaults import AttrDict
 
 
 def new_kappaplot(model, obj_index=0, **kwargs):
     """basically copied from glass plot.py, but heavily modified"""
-    print type(kwargs), kwargs    
+    #print type(kwargs), kwargs    
     kw = kwargs
 
     obj, data = model['obj,data'][obj_index]
@@ -38,7 +38,7 @@ def new_kappaplot(model, obj_index=0, **kwargs):
     #sl scaling factors
     rscale          = kw.pop('rscale', 440./500*100) # default Spacewarps -> SL -> glass scaling of radius
     dist_fact       = kw.pop('dist_fact', 0.428)     # because measurement at different redshiffts (we had 0.5/1 hardcoded in beginning)
-    delta           = kw['contour'].pop('cldelta', 0.1) # contour level spacing in log space
+    delta           = kw['kappa'].pop('cldelta', 0.1) # contour level spacing in log space
 
 
 
@@ -47,7 +47,7 @@ def new_kappaplot(model, obj_index=0, **kwargs):
 
     # fix the different scaling of glass and SL
     R = obj.basis.mapextent
-    extent = np.array([-R,R,-R,R]) / rscale
+    extent = np.array([-R,R,-R,R]) * rscale
 
     # prepare data
     grid = obj.basis._to_grid(data['kappa'],1)
@@ -70,7 +70,7 @@ def new_kappaplot(model, obj_index=0, **kwargs):
     # PLOTTING
 
     # setup
-    kw['contour'].setdefault('extent', extent)
+    kw['kappa'].contour.update({'extent': extent})
 #    kw.setdefault('extend', 'both') # contour levels are automatically added to one or both ends of the range so that all data are included
 #    #kw.setdefault('interpolation', 'nearest')
 #    kw.setdefault('aspect', 'equal')
@@ -80,10 +80,11 @@ def new_kappaplot(model, obj_index=0, **kwargs):
 #    kw.setdefault('antialiased', True)
 
     # plot
-    fig = plt.figure(**kw['figure'])
+    fig = plt.figure(**kw['kappa'].figure)
     ax = fig.add_subplot(1,1,1)
-    C = ax.contour(grid, levels=clevels, **kw['contour'])
-    ax.set_aspect('equal')
+    ax.contour(grid, levels=clevels, **kw['kappa'].contour)
+    kw['formatter'].removeticks(axes=ax)
+    #ax.set_aspect('equal')
     return fig
 
 

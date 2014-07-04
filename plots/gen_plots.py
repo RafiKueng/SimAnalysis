@@ -72,7 +72,7 @@ import defaults
 
 
 defaults.set_mpl()
-kw = defaults.pltkw
+kw = defaults.args
 
 
 
@@ -92,12 +92,12 @@ simplots = {'arriv': True, 'kappa':True, 'kappaenc':False}
 #exts = ['png', 'pdf']
 exts = ['png']
 
-figsize   = (10,10) 
-figsizeER = (10,8)
-figsizeKE = (10,8)
+#figsize   = (10,10) 
+#figsizeER = (10,8)
+#figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
-outdir = 'figs_new4'
+outdir = 'figs_new5'
 
 #select sims to produce plots for (using sel_sim_plots())
 sel_sim = [
@@ -128,7 +128,8 @@ sel_mod = [
 #enable ER plots to produce
 ERplots = [True, True, True, True, True]
 if debug: ERplots = [0, True, 0, 0, True]
-
+# all the others dont work anymore
+ERplots = [0, 0, 0, 0, True]
 
 
 #params = {
@@ -164,6 +165,7 @@ sys.path.append(os.path.join(pardir, 'systems'))
 import matplotlib.pyplot as plt
 from matplotlib.ticker import LogFormatter
 
+plt.ioff()
 
 import gen_kappa_encl_plots as spg
 import many
@@ -183,6 +185,9 @@ simdir = os.path.abspath(os.path.join(outdir, simdir))
 moddir = os.path.abspath(os.path.join(outdir, moddir))
 resdir = os.path.abspath(os.path.join(outdir, resdir))
 
+for pp in [outdir, simdir, moddir, resdir]:
+    if not os.path.isdir(pp):
+        os.makedirs(pp) 
 
 if write_to_tex_folder:
   resdir = os.path.abspath(os.path.join(pardir, texdir))
@@ -467,13 +472,24 @@ levels = {
 
 
 def test():
-#  for idd, elem in enumerate(spg.data):
-#    mid = elem['id']
-#    draw_mod(0, mid, 0, spg.data, spg.sims)
-#    break
-  for asw in many.sim:
-    draw_sim(asw, many.sim)
-    break
+
+    for idd, elem in enumerate(spg.data):
+        mid = elem['id']
+        if not mid in sel_mod:
+            continue
+        path = os.path.join(moddir, '%06i'%mid)
+        if not os.path.isdir(path):
+            os.makedirs(path)    
+        get_mod_adv_data(mid) #download plots generated on server with glass
+        draw_mod(mid, elem, spg.data, spg.sims)
+        break
+
+    for asw in sel_sim:
+        get_sim_adv_data(asw)
+        draw_sim(asw, many.sim)
+        break
+    
+    plotAllRE()
 
 
 def plot_sel():
@@ -960,8 +976,8 @@ def get_mod_adv_data(mid):
   
   ext = 'png' # server only serves png files...
   
-  imgs = ['img1', 'img2', 'img3']
-  saveas_ = ['spaghetti', 'mass', 'arr_time']
+  imgs = ['img1', 'img2', 'img3', 'img4']
+  saveas_ = ['spaghetti', 'mass', 'arr_time', 'arr_time_ipol']
 
   # box to cut
   x=171
@@ -1022,7 +1038,7 @@ def get_mod_adv_data(mid):
     b = (w-h)/2
     im.crop((b, 0, w-b, h)).save(os.path.join(path, saveas2[j]))
     print '  -',saveas2[j]
-  
+
 
 
 def get_sim_adv_data(asw):
@@ -1034,6 +1050,8 @@ def get_sim_adv_data(asw):
     return
 
   path = os.path.join(simdir, asw)
+  if not os.path.isdir(path):
+      os.makedirs(path)    
 
   #get sw image
   data = {
@@ -1063,6 +1081,8 @@ def get_sim_adv_data(asw):
 
 
 def draw_sim(asw, sim):
+    
+    plt.close("all")
   
     path = os.path.join(simdir, asw)
 #    try: 
@@ -1081,12 +1101,13 @@ def draw_sim(asw, sim):
     #  os.makedirs(path)  
     
     #prevent submodules prints..
-    if not debug:
-        old_stdout = sys.stdout
-        old_stderr = sys.stderr
-        devnull = open(os.devnull, 'w')
-        sys.stdout = devnull
-        #sys.stderr = devnull
+    
+#    if not debug:
+#        old_stdout = sys.stdout
+#        old_stderr = sys.stderr
+#        devnull = open(os.devnull, 'w')
+#        sys.stdout = devnull
+#        #sys.stderr = devnull
       
     print asw
     
@@ -1112,13 +1133,13 @@ def draw_sim(asw, sim):
     for modid in scales[asw].keys():
     
         path = os.path.join(simdir, '%s_%06i' % (asw, modid))
-        print "   making plots for %s with scales from %06i" % (asw, modid)
+        print "  making plots for %s with scales from %06i" % (asw, modid)
     
         map_ext=scales[asw][modid]['map_e']['arcsec']
         R = map_ext * div_scale_factors
 
-        print map_ext
-        print R
+        #print map_ext
+        #print R
 
         x = np.linspace(-R,R,N)
         y = 1*x
@@ -1129,9 +1150,9 @@ def draw_sim(asw, sim):
         # KAPPA - MASS MAP
         #
         if simplots['kappa']:
-            print '::: plot mass map'
+            print '  :: plot kappa / mass map'
             mpl.rcParams['contour.negative_linestyle'] = 'dashed'
-            fig = plt.figure(**kw.kappaplot.figure)
+            fig = plt.figure(**kw.kappa.figure)
             panel = fig.add_subplot(1,1,1)
             panel.set_aspect('equal')
             
@@ -1147,25 +1168,31 @@ def draw_sim(asw, sim):
             y_cm=1.*x_cm
             
             # cut border of 0 pixels, delete rrr rows on each side
-            rr=2
+            rr= kw.kappa.rmnrow
             kappa_cut = kappa[rr:-rr,rr:-rr]
             x_cut=x[rr:-rr] #original x,y will be used later
             y_cut=y[rr:-rr] 
             x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
             y_cm=y_cm[rr:-rr]
             
-            #TODO fix n contours
-            n_contours=15
-            cldelta = kw.kappaplot.cldelta
-            cldelta += 1
+            cldelta = kw.kappa.cldelta
+            
+            vals = 2.5*np.log10(kappa_cut+eps)
+            
+            ma = np.nanmax(vals)
+            mi = np.nanmin(vals)
+            ab = ma if ma>-mi else -mi
+            clev = np.arange(0,ab+1e-10,cldelta)
+            clevels = np.concatenate((-clev[:0:-1],clev))
+
             
             #panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, colors='0.9' )
-            panel.contour(x_cut,y_cut, 2.5*np.log10(kappa_cut+eps), n_contours, **kw.kappaplot.contour)
+            panel.contour(x_cut,y_cut, vals, clevels, **kw.kappa.contour)
             
             #panel.clabel(pc, inline=1, fontsize=10)
             #panel.pcolormesh(x_cm, y_cm, np.log10(kappa_cut+eps), vmin=np.log10(eps), vmax=np.log10(np.amax(kappa_cut)), edgecolors="None", cmap='bone', shading="flat")
             
-            kw.kappaplot.formatter(axes=panel)
+            kw.formatter.removeticks(axes=panel)
 #            panel.tick_params(
 #                axis='both',       # changes apply to the x- and y-axis
 #                which='both',      # both major and minor ticks are affected
@@ -1188,7 +1215,7 @@ def draw_sim(asw, sim):
             for ext in exts:
               p = os.path.join(path + '_%s.%s'%(filenames[1],ext))
               #pl.savefig(p, bbox_inches='tight', pad_inches=0)
-              plt.savefig(p, **kw.kappaplot.savefig)
+              plt.savefig(p, **kw.kappa.savefig)
               print '  - %s'%p
 
             plt.clf() #close current figure
@@ -1198,6 +1225,7 @@ def draw_sim(asw, sim):
         # KAPPA ENCLOSED
         #
         if simplots['kappaenc']:
+            print '  :: plot kappa encl'
             fig = plt.figure(**kw.kappaenc.figure)
             panel = fig.add_subplot(1,1,1)
             rad = np.linspace(0,R,20)[1:]
@@ -1237,14 +1265,17 @@ def draw_sim(asw, sim):
         # ARRIVAL TIME CONTOUR PLOT
         #
         if simplots['arriv']:
+            print '  :: plot arriv'
             fig = plt.figure(**kw.arriv.figure)
             #panel = fig.add_subplot(1,1,1, axisbg='white')
             panel = fig.add_subplot(1,1,1, **kw.arriv.addsub)
             #panel.set_aspect('equal')
             lo,hi = np.amin(arriv), np.amax(arriv)
-            lev = np.linspace(lo,lo+.2*(hi-lo),30)
+            nlev = kw.arriv.nlev
+            rangef = kw.arriv.rangef
+            lev = np.linspace(lo,lo+rangef*(hi-lo),nlev)
             
-            mpl.rcParams['contour.negative_linestyle'] = 'solid'
+            #mpl.rcParams['contour.negative_linestyle'] = 'solid'
             #panel.contour(x,y,arriv,lev, cmap=mpl.cm.gist_rainbow, linewidths=3)
             
             #panel.contour(x,y,arriv,lev, colors='magenta', linewidths=2)
@@ -1256,7 +1287,7 @@ def draw_sim(asw, sim):
             # hide axis
             #panel.axes.get_xaxis().set_ticks([])
             #panel.axes.get_yaxis().set_ticks([])
-            kw.formatter.removeticks(panel)
+            kw.formatter.removeticks(axes=panel)
 
             
             for ext in exts:
@@ -1268,10 +1299,10 @@ def draw_sim(asw, sim):
             plt.clf() #close current figure
     
     
-    if not debug:
-        #restore stdout
-        sys.stdout = old_stdout
-        sys.stderr = old_stderr
+#    if not debug:
+#        #restore stdout
+#        sys.stdout = old_stdout
+#        sys.stderr = old_stderr
     
     print '...DONE.'
     #for f in filenames: print '  - %s'%(f+'.'+repr(exts))
@@ -1279,7 +1310,8 @@ def draw_sim(asw, sim):
 
 def draw_mod(mid, elem, data, sims):
 #def plot2(idd, count):
-
+  plt.close("all")
+  
   plot_rE = True
   print_rE = True
   prnt = False
@@ -1485,7 +1517,8 @@ tmp={}
 def plotAllRE():
   '''plots the final big scatter plot with all rE'''
   print '> drawing EinsteinR plots',
-
+  plt.close("all")
+  
   import gen_table as tab
 
   tab.read()  
@@ -1537,7 +1570,7 @@ def plotAllRE():
   re_rel = np.array(re_rel)
   ep_rel = np.array(ep_rel) - re_rel
   em_rel = re_rel - np.array(em_rel)
-  ee_rel = [ep_rel, em_rel]
+  #ee_rel = [ep_rel, em_rel]
 
   ac = np.array(ac, dtype=bool)
   
@@ -1654,23 +1687,23 @@ def plotAllRE():
         continue
       style = 'wo'
       if dat['user']=='psaha':
-        style = 'bo'
+        style = kw.eR4.expert
         #skip=True
         draw_later.append([sims[simn], dat['rE_mean']])
         flag = "expert"
       elif not tab.all_mods[str(dat['id'])]['acc']:
-        style = 'g+'
+        style = kw.eR4.rejected
         flag = "rejected"
       elif mod_err[dat['id']]['anyerr']:
-        style = 'bx'
+        style = kw.eR4.failed
         draw_later2.append([sims[simn], dat['rE_mean']])
         flag = "imgrecon wrong"
       else:
-        style = 'wo'
+        style = kw.eR4.regular
         flag = "good"
       #xofs = 0.15 if dat['user']=='psaha' else -0.15
       #ax.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
-      ax.plot(sims[simn], dat['rE_mean'], style, markersize=4)
+      ax.plot(sims[simn], dat['rE_mean'], **style)
       new_data.append((sims[simn], dat['rE_mean'], flag))
     
     with open("new_data.csv", "w") as f:
@@ -1679,11 +1712,11 @@ def plotAllRE():
     #ddd = 0.5
     for d in draw_later:
       #pass
-      ax.plot(d[0], d[1], 'co', markersize=4)
+      ax.plot(d[0], d[1], **kw.eR4.expert)
       #ax.arrow(d[0]+ddd, d[1]-ddd, -ddd, ddd, fc="k", ec="k", head_width=0.3, head_length=0.2, length_includes_head=True, zorder=1000)
 
     for d in draw_later2:
-      ax.plot(d[0], d[1], 'bx', markersize=4)
+      ax.plot(d[0], d[1], **kw.eR4.failed)
     
       
 #    lbls = [key for key, val in spg.sims.items()]
@@ -1699,10 +1732,11 @@ def plotAllRE():
     
     
     #ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
-    ax.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
-    ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
-    ax.yaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
-    ax.yaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+#    ax.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+#    ax.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+#    ax.yaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+#    ax.yaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    kw.formatter.detailed_log_capt(axes=ax)
     
     #pl.xticks(range(i+1), lbls, rotation=90)
     #pl.yticks(np.linspace(0,2,(2/0.25)+1))
@@ -1715,7 +1749,7 @@ def plotAllRE():
 
     
     for ext in exts:
-      pl.savefig(os.path.join(path, 'eR_5.'+ext))
+      plt.savefig(os.path.join(path, 'eR_5.'+ext), **kw.eR4.savefig)
     print '.',
     #pl.show()
     
@@ -1746,7 +1780,7 @@ def getModelError():
                     'err6'  : err6,
                 }
                 #print modnr, err5, err6, err5 or err6
-            except StandardError as e:
+            except StandardError:
                 #print e
                 pass
     return err_data

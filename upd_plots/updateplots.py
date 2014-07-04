@@ -79,7 +79,6 @@ except:
 args = defaults.args
 
 
-
 inppath = "states"
 outpath = "outp"
 outfn = "Image for %(name)s.%(ext)s"
@@ -113,7 +112,7 @@ for fn, fe in files: # filename fn, fileextension fe
         args.file.ext = ext
         ofpath = os.path.join(outpath,outfn % args.file)
         #fig.savefig(ofpath, facecolor='black', edgecolor='none')
-        fig.savefig(ofpath, **args.savefig)
+        fig.savefig(ofpath, **args.kappa.savefig)
     
         plt.close()
       

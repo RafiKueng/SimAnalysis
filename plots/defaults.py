@@ -5,11 +5,15 @@ Created on Wed Jul 02 15:31:20 2014
 @author: RafiK
 """
 import matplotlib as mpl
+from copy import deepcopy
 
 class AttrDict(dict):
     def __init__(self, *args, **kwargs):
         super(AttrDict, self).__init__(*args, **kwargs)
         self.__dict__ = self
+        
+def copyAD(ad):
+    return AttrDict(deepcopy(ad))
 
 
 # First programm specific values direclty in args
@@ -85,7 +89,7 @@ args.figure = AttrDict({
 #    'linewidth' : 1,        # The figure patch edge linewidth; the default linewidth of the frame
 #    'frameon'   : True,     # If False, suppress drawing the figure frame
 #    'subplotpars' : None,   # A SubplotParams instance, defaults to rc
-    'tight_layout'  : True  # If False use subplotpars; if True adjust subplot parameters using tight_layout() with default padding. When providing a dict containing the keys pad, w_pad, h_pad and rect, the default tight_layout() paddings will be overridden. Defaults to rc figure.autolayout.
+#    'tight_layout'  : True  # If False use subplotpars; if True adjust subplot parameters using tight_layout() with default padding. When providing a dict containing the keys pad, w_pad, h_pad and rect, the default tight_layout() paddings will be overridden. Defaults to rc figure.autolayout.
 })
 
 
@@ -207,13 +211,13 @@ args.savefig = AttrDict({
 
 
 # putting together the default plot style
-pltkw = AttrDict()
+#args = AttrDict()
 
-pltkw.default = AttrDict()
-pltkw.default.figure    = args.figure
-pltkw.default.addsub    = args.add_subplot
-pltkw.default.plot      = args.plot
-pltkw.default.savefig   = args.savefig
+args.default = AttrDict()
+args.default.figure    = args.figure
+args.default.addsub    = args.add_subplot
+args.default.plot      = args.plot
+args.default.savefig   = args.savefig
 
 
 #
@@ -223,7 +227,7 @@ pltkw.default.savefig   = args.savefig
 tmpl = AttrDict()
 
 # square figure format 
-tmpl.squares = AttrDict(pltkw.default)
+tmpl.squares = copyAD(args.default)
 tmpl.squares.figure.update({
     'figsize'   : (8,8),
 })
@@ -243,7 +247,7 @@ tmpl.squares.contour = AttrDict({
 })
 
 # the others have default values
-tmpl.rects = AttrDict(pltkw.default)
+tmpl.rects = copyAD(args.default)
 
 
 # Formatter Functions
@@ -262,10 +266,22 @@ def remove_all_ticks(fig=None, axes=None, lines=None):
         labelright='off'
         )
     return
+    
+    
+def detailed_log_capt(fig=None, axes=None, lines=None):
+    from matplotlib.ticker import LogFormatter
+    axes.xaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+    axes.xaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    axes.yaxis.set_major_formatter(LogFormatter(labelOnlyBase=False))
+    axes.yaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
+    return
+
 
 #collect the formatter
-pltkw.formatter = AttrDict({
-    'removeticks'   :   remove_all_ticks,
+args.formatter = AttrDict({
+#    'removeticks'   :   remove_all_ticks,
+    'removeticks'   :   lambda axes: None,
+    'detailed_log_capt' : detailed_log_capt,   
 })
 
 
@@ -274,65 +290,96 @@ pltkw.formatter = AttrDict({
 #
 #
 
-pltkw.kappaplot = AttrDict(tmpl.squares)
-pltkw.kappaplot.update({
-    'cldelta'       : 0.05, # contour level spacing in log space
+args.kappa = copyAD(tmpl.squares)
+args.kappa.update({
+    'cldelta'       : 0.1, # contour level spacing in log space
+    'rmnrow'        : 1 # remove n rows for kappa plot
 })
-pltkw.kappaplot.formatter = remove_all_ticks
+args.kappa.formatter = remove_all_ticks
 
 
 # arrivtime
-pltkw.arriv = AttrDict(tmpl.squares)
-pltkw.arriv.majorc = AttrDict(tmpl.squares.contour)
-pltkw.arriv.majorc.update({
+args.arriv = copyAD(tmpl.squares)
+args.arriv.update({
+    'nlev'  : 30,
+    'rangef': 0.8,
+})
+args.arriv.majorc = copyAD(tmpl.squares.contour)
+args.arriv.majorc.update({
     'colors'    : 'black',
     'linewidths': 4,
+    'linestyles': 'solid',
 })
-pltkw.arriv.minorc = AttrDict(tmpl.squares.contour)
-pltkw.arriv.minorc.update({
+args.arriv.minorc = copyAD(tmpl.squares.contour)
+args.arriv.minorc.update({
     'colors'    : 'magenta',
 #    'linewidths': 2, #use default
+    'linestyles': 'solid',
 })
 
 
 # kappa enclosed for models
-pltkw.kappaenc = AttrDict(tmpl.rects)
-pltkw.kappaenc.addsub.update({
+args.kappaenc = copyAD(tmpl.rects)
+args.kappaenc.addsub.update({
     'yscale'    : 'log',
 })
-pltkw.kappaenc.update({
-    'model'     : AttrDict({'colors': 'blue'}),
+args.kappaenc.update({
+    'model'     : AttrDict({'color': 'blue'}),
     'modelface' : AttrDict({'facecolor': 'blue', 'alpha': 0.5}),
-    'sim'       : AttrDict({'colors': 'red' }),
-    'min'       : AttrDict({'colors': 'cyan' , 'linestyle':':' }),
-    'max'       : AttrDict({'colors': 'red'  , 'linestyle':':' }),
-    'sad'       : AttrDict({'colors': 'green', 'linestyle':':' }),
+    'sim'       : AttrDict({'color': 'red' }),
+    'min'       : AttrDict({'color': 'black' , 'linestyle':':' }),
+    'max'       : AttrDict({'color': 'black'  , 'linestyle':':' }),
+    'sad'       : AttrDict({'color': 'black', 'linestyle':':' }),
     'text'      : AttrDict({'ha': 'left', 'va':'bottom' }),
-    'unity'     : AttrDict({'colors': 'magenta' , 'linestyle':':' }),
+    'unity'     : AttrDict({'color': 'black' , 'linestyle':':' }),
 
-    'rEmod'     : AttrDict({'colors': 'darkgreen' , 'linestyle':'--' }),
-    'rEsim'     : AttrDict({'colors': 'red' ,       'linestyle':'--' }),
+    'rEmod'     : AttrDict({'color': 'blue' , 'linestyle':'--' }),
+    'rEsim'     : AttrDict({'color': 'red' ,       'linestyle':'--' }),
 })
 
 
 # final plot with the einstein radii
-pltkw.eR4 = AttrDict(tmpl.rects)
-pltkw.eR4.addsub.update({
+args.eR4 = copyAD(tmpl.rects)
+args.eR4.addsub.update({
     'xscale'    : 'log',
     'yscale'    : 'log',
 })
 
-pltkw.eR4.update({
-    'markersize'    : 4,
-    'unity'     : AttrDict({
-        'color'     :'green',
-        'linestyle' :'dashed',
+markersize = 4
+
+args.eR4.update({
+    'expert'        : AttrDict({
+        'color'     :'blue',
         'marker'    :'o',
-        'markerfacecolor':'blue',
-        'markersize': 4
+        'markerfacecolor': 'cyan',
+        'markersize': markersize
         }),
 
-    'unity'     : AttrDict({'colors': 'magenta' , 'linestyle':':' }),
+    'rejected'      : AttrDict({
+        'color'     :'green',
+        'marker'    :'+',
+#        'markerfacecolor': 'green',
+        'markersize': markersize
+        }),
+
+    'regular'       : AttrDict({
+        'color'     :'black',
+        'marker'    :'o',
+        'markerfacecolor': 'white',
+        'markersize': markersize
+        }),
+
+    'failed'        : AttrDict({
+        'color'     :'blue',
+        'marker'    :'x',
+#        'markerfacecolor': 'white',
+        'markersize': markersize
+        }),
+
+    'unity'     : AttrDict({
+        'color': 'black' ,
+        'linestyle':':'
+    }),
 })
 
 

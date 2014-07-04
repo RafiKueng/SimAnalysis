@@ -83,7 +83,7 @@ args.mplrc = AttrDict({
 
 args.figure = AttrDict({
     'figsize'   : (8,6),    # w,h tuple in inches
-    'dpi'       : 80,       # Dots per inch
+    'dpi'       : 300,       # Dots per inch
     'facecolor' : 'w',      # The figure patch facecolor; defaults to rc figure.facecolor
     'edgecolor' : 'k',      # The figure patch edge color; defaults to rc figure.edgecolor
 #    'linewidth' : 1,        # The figure patch edge linewidth; the default linewidth of the frame
@@ -279,8 +279,8 @@ def detailed_log_capt(fig=None, axes=None, lines=None):
 
 #collect the formatter
 args.formatter = AttrDict({
-#    'removeticks'   :   remove_all_ticks,
-    'removeticks'   :   lambda axes: None,
+    'removeticks'   :   remove_all_ticks,
+#    'removeticks'   :   lambda axes: None,
     'detailed_log_capt' : detailed_log_capt,   
 })
 

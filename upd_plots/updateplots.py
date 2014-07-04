@@ -81,7 +81,7 @@ args = defaults.args
 
 inppath = "states"
 outpath = "outp"
-outfn = "Image for %(name)s.%(ext)s"
+outfn = "%(name)s_mass.%(ext)s"
 exts = args.pop('exts', ['png'])
 
 sel_mod = args.pop('sel_mods', None)
@@ -117,7 +117,7 @@ for fn, fe in files: # filename fn, fileextension fe
         plt.close()
       
     print " \--- DONE"
-    break
+
   
 
 

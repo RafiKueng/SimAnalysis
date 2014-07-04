@@ -90,7 +90,7 @@ simplots = {'arriv': True, 'kappa':True, 'kappaenc':False}
 
 #image extension (png or pdf)
 #exts = ['png', 'pdf']
-exts = ['png']
+exts = kw.exts
 
 #figsize   = (10,10) 
 #figsizeER = (10,8)
@@ -1135,11 +1135,10 @@ def draw_sim(asw, sim):
         path = os.path.join(simdir, '%s_%06i' % (asw, modid))
         print "  making plots for %s with scales from %06i" % (asw, modid)
     
-        map_ext=scales[asw][modid]['map_e']['arcsec']
+        map_ext = scales[asw][modid]['map_e']['arcsec']
         R = map_ext * div_scale_factors
 
-        #print map_ext
-        #print R
+        print 'me', map_ext, R
 
         x = np.linspace(-R,R,N)
         y = 1*x
@@ -1163,21 +1162,22 @@ def draw_sim(asw, sim):
             
             # kappa(x,y) is value at (x,y), but pcolormesh needs edge coordinates of patches
             # kappa(xi, yj) => x[i]-d / y[j]-d ... x[i+1]-d / y[j+1]-d ; with d step/cell width
-            d=2.*R/(N-1)
-            x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
-            y_cm=1.*x_cm
+#            d=2.*R/(N-1)
+#            x_cm=np.linspace(-R-d/2.,R+d/2.,N+1)
+#            y_cm=1.*x_cm
             
             # cut border of 0 pixels, delete rrr rows on each side
             rr= kw.kappa.rmnrow
             kappa_cut = kappa[rr:-rr,rr:-rr]
             x_cut=x[rr:-rr] #original x,y will be used later
             y_cut=y[rr:-rr] 
-            x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
-            y_cm=y_cm[rr:-rr]
+#            x_cm=x_cm[rr:-rr] #x_cm not, just overwrite
+#            y_cm=y_cm[rr:-rr]
             
             cldelta = kw.kappa.cldelta
             
-            vals = 2.5*np.log10(kappa_cut+eps)
+            #vals = 2.5*np.log10(kappa_cut+eps)
+            vals = np.log10(kappa_cut+eps)
             
             ma = np.nanmax(vals)
             mi = np.nanmin(vals)

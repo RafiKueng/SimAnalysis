@@ -84,7 +84,7 @@ def new_kappaplot(model, obj_index=0, **kwargs):
     ax = fig.add_subplot(1,1,1)
     ax.contour(grid, levels=clevels, **kw['kappa'].contour)
     kw['formatter'].removeticks(axes=ax)
-    #ax.set_aspect('equal')
+    ax.set_aspect('equal')
     return fig
 
 

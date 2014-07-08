@@ -50,3 +50,6 @@ Backup[ ]of[ ]*.numbers/
 # texnic center temp settings
 *.tps
 msdiff.tex
+
+fig_old
+!fig/*.pdf

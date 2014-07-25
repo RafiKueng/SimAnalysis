@@ -345,13 +345,13 @@ args.eR4.addsub.update({
     'yscale'    : 'log',
 })
 
-markersize = 4
+markersize = 6
 
 args.eR4.update({
     'expert'        : AttrDict({
         'color'     :'blue',
         'marker'    :'o',
-        'markerfacecolor': 'cyan',
+        'markerfacecolor': 'blue',
         'markersize': markersize
         }),
 
@@ -370,7 +370,7 @@ args.eR4.update({
         }),
 
     'failed'        : AttrDict({
-        'color'     :'blue',
+        'color'     :'black',
         'marker'    :'x',
 #        'markerfacecolor': 'white',
         'markersize': markersize
@@ -379,7 +379,23 @@ args.eR4.update({
     'unity'     : AttrDict({
         'color': 'black' ,
         'linestyle':':'
-    }),
+        }),
+
+    'expertband'     : AttrDict({
+        'color': 'blue' ,
+        'linestyle': 'solid',
+        'linewidth' : 0,
+        'alpha': 0.5,
+        #'hatch': '/'
+        }),
+
+    'regularband'     : AttrDict({
+        'color': 'black' ,
+        'linestyle': 'solid',
+        'linewidth' : 0,
+        'alpha': 0.3
+        }),
+        
 })
 
 

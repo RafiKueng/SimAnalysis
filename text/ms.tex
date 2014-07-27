@@ -1,3 +1,5 @@
+% ====================================================================
+
 \documentclass[usenatbib]{mn2e}
 
 \usepackage{amsmath}
@@ -92,6 +94,9 @@
 \newcommand{\needref}[1][]{\todo[cyan]{ref #1}}
 \newcommand{\needchk}[1][]{\todo[red]{chk #1}}
 
+\definecolor{purple}{RGB}{150,0,200}
+\newcommand{\phil}[1]{\noindent\textcolor{purple}{\bf Phil: #1}}
+
 % \\\ END OF REMOVAL SECION
 
 \newlength{\myplotswidth}
@@ -99,25 +104,26 @@
 
 \newcommand{\hr}{\vspace{5mm}\noindent\rule{0.8\textwidth}{0.4pt}\vspace{5mm}}
 
+% ====================================================================
 
 \begin{document}
 
 \title{Lens Modeling in a Citizen-Science context}
 
 \author[Kueng et al]{Rafael Kueng,$^{1}$
+Prasenjit Saha$^{1}$
+Elisabeth Baeten,$^{5}$
+Claude Cornen,$^{5}$
+\newauthor
+Christine McMillan,$^{5}$
+Julianne Wilcox,$^{5}$
+Jonas Odermatt,$^{6}$
+Jonathan Coles,$^{7}$
+\newauthor
 Phil Marshall,$^{2}$
 Anupreeta More,$^{3}$
 Aprajita Verma,$^{4}$
-\newauthor
-Elisabeth Baeten,$^{5}$
-Claude Cornen,$^{5}$
-Christine McMillan,$^{5}$
-Julianne Wilcox,$^{5}$
-\newauthor
-Jonas Odermatt,$^{6}$
-Jonathan Coles,$^{7}$
-Surhud More$^{3}$
-and Prasenjit Saha$^{1}$ \\
+and Surhud More$^{3}$ \\
 $^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland\\
 $^{2}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
 $^{3}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
@@ -152,6 +158,8 @@ improvement are discussed.
 
 \begin{keywords}
 \end{keywords}
+
+% ====================================================================
 
 \section{Introduction}
 
@@ -295,11 +303,15 @@ in \citep{2014arXiv1401.7990C}.
 
 \secref{todo} gives the general outlook and next steps.
 
+% ====================================================================
+
 \section{Fermat's principle and spaghetti diagrams} \label{sec:Fermat}
 
 We now explain the lensing theory relevant to \spl, following the
 formulation of gravitational lensing in terms of Fermat's principle by
 \cite{1986ApJ...310..568B}.
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 \subsection{Geometrical and gravitational time delays} 
 
@@ -375,6 +387,9 @@ Appendix~\ref{more-theory}.
 \label{fig:arriv}
 \end{figure}
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 \subsection{Arrival-time contours} \label{sec:arriv}
 
 The full function $t(x,y)$, also known as the arrival-time surface,
@@ -419,6 +434,9 @@ tends to be highly curved near the maximum.  Hence maximum tend to be
 demagnified.  In practice, maxima of the arrival time are nearly
 always too faint to see. The minima and saddle points dominate.
 
+
+% ====================================================================
+
 \section{A lens-modelling program} \label{sec:SpaghettiLens}
 
 \spl is not part of \sw, but it makes use of the \sw infrastructure,
@@ -440,6 +458,9 @@ Modelling with \spl involves three stages, markup of the image,
 followed by intensive numerics in the background, followed by review
 of diagnostics and possible discussion.  We now describe each of
 these.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 \subsection{Image markup}
 
@@ -469,6 +490,9 @@ single galaxy.  Only one maximum is permitted, and it is taken as the
 centre of the main lensing galaxy.  The user can, however, mark
 additional minor galaxies.  The latter are modelled as point
 masses.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 \subsection{Numerics}
 
@@ -509,6 +533,9 @@ Typically, ensembles of 200 models are used.  That is to say, what we
 call a \spl model is really the mean of an ensemble of 200 models, and
 its estimated uncertainty is the range covered by the whole ensemble.
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 \subsection{Diagnostics} \label{sec:diag}
 
 After the model ensemble has been generated, \spl post-processes it to
@@ -546,6 +573,9 @@ focusing attention on the most interesting models.\footnote{See
   ``Collaborative gravitational lens modelling\dots'' in {\tt
     http://letters.zooniverse.org} for an example.}
 
+
+% ====================================================================
+
 \section{A lens modelling challenge} \label{sec:mod_challenge}
 
 We now describe a test of the lens-modelling system, under conditions
@@ -565,6 +595,9 @@ Once the modelling was complete, the models were compared with the
 originals.  There were two main tests: a check of whether the
 spaghetti diagrams were correct for the lens in question, and a
 comparison of the effective Einstein radii of the sims and the models.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 \subsection{The simulated lenses} \label{sec:sims}
 
@@ -596,6 +629,9 @@ the modellers had no advance knowledge of what kind of
 parameterisation had been used to make the sims.  After the modelling
 stage, AM released the details of the sims for post-modelling
 analysis.  Results from the latter now follow.
+
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 \subsection{Some example models} \label{sec:example_models}
 
@@ -832,6 +868,8 @@ Let us now consider these cases in turn.
 \end{itemize}
 
 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 \subsection{Test of image identification} \label{sec:tests.t1}
 
 The first post-modelling test was a qualitative comparison of the
@@ -928,6 +966,9 @@ were quite robust.  We will consider this aspect in the next section.
 \label{fig:kapenc_compare_faulty}
 \end{figure}
 
+
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
 \subsection{Test of mass-profile recovery} \label{sec:tests.t2}
 
 The second test was to compare the mass distributions $\kappa(x,y)$ of
@@ -992,6 +1033,9 @@ having mean and standard deviation of the overestimate being 20\% and
 8\%.  One of the reasons for this is that it is hard to get the center
 of the lens on spot.  An offset leads to a flatter mass profile for
 the model compared to the simulation.
+
+
+% ====================================================================
 
 \section{Outlook} \label{sec:todo}
 
@@ -1067,11 +1111,16 @@ S.~More and Verma.  Modelling was done by Baeten, Cornen, McMillan,
 Odermatt, Saha and Wilcox, with post-modelling analysis by Kueng and
 Saha.  All authors participated in writing and editing the manuscript.
 
+
+% ====================================================================
+
 \section*{Acknowledgments}
 
 We thank the Swiss Society for Astrophysics and Astronomy and the
 Swiss Academy of Sciences. AV is supported by a research fellowship
 from the Leverhulme Trust.
+
+% ====================================================================
 
 \appendix
 
@@ -1148,8 +1197,15 @@ limit of a small grid.  The result is the implicit
 equation \eqref{eq:tgrav}.
 
 
+% ====================================================================
+
 \bibliographystyle{mn2e}
 \bibliography{bib/ms}
 
+% ====================================================================
+
 \end{document}
+
+% ====================================================================
+
 

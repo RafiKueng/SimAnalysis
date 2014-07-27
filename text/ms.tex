@@ -95,7 +95,7 @@
 \newcommand{\needchk}[1][]{\todo[red]{chk #1}}
 
 \definecolor{purple}{RGB}{150,0,200}
-\newcommand{\phil}[1]{\noindent\textcolor{purple}{\bf Phil: #1}}
+\newcommand{\phil}[1]{\noindent\textcolor{purple}{\bf #1}}
 
 % \\\ END OF REMOVAL SECION
 
@@ -108,52 +108,60 @@
 
 \begin{document}
 
-\title{Lens Modeling in a Citizen-Science context}
+\title{Gravitational Lens Modeling in a Citizen Science Context}
 
 \author[Kueng et al]{Rafael Kueng,$^{1}$
-Prasenjit Saha$^{1}$
-Elisabeth Baeten,$^{5}$
-Claude Cornen,$^{5}$
+Prasenjit Saha,$^{1}$
+Elisabeth Baeten,$^{2}$
+Claude Cornen,$^{2}$
 \newauthor
-Christine McMillan,$^{5}$
-Julianne Wilcox,$^{5}$
-Jonas Odermatt,$^{6}$
-Jonathan Coles,$^{7}$
+Christine McMillan,$^{2}$
+Julianne Wilcox,$^{2}$
+Jonas Odermatt,$^{3}$
+Jonathan Coles,$^{4}$
 \newauthor
-Phil Marshall,$^{2}$
-Anupreeta More,$^{3}$
-Aprajita Verma,$^{4}$
-and Surhud More$^{3}$ \\
+Aprajita Verma,$^{5}$
+Anupreeta More,$^{6}$
+Surhud More,$^{6}$
+and Phil Marshall$^{7}$ \\
 $^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland\\
-$^{2}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
-$^{3}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
-$^{4}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
-$^{5}$Spacewarps\\
-$^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
-$^{7}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France}
-%$^{8}$Adler Planetarium, 1300 S. Lake Shore Drive, Chicago, IL 60605, USA\\
-
+$^{2}$The Space Warps Collaboration\\
+$^{3}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
+$^{4}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France\\
+$^{5}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
+$^{6}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
+$^{7}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
+}
 
 \maketitle
 
 \begin{abstract}
-We develop a method to enable collaborative modelling of gravitational
-lenses and lens candidates by experienced but non-professional lens
-enthusiasts.  It uses an existing free-form modelling program (GLASS)
-but provides the modelling input in a novel way, via a user-provided
-diagram that is essentially a sketch of an arrival-time surface. 
 
-An implementation (\spl) is tested in a modelling challenge using 29
-simulated lenses out of a larger set created for a citizen-science
-lens search (\sw).  We find that amateur lensers inferred the image
-parities and time ordering consistently in some lenses, while tending
-to make errors in other lenses, depending on the image morphology.
-Errors in image parity and time ordering lead to large errors in the
-mass distribution, but the enclosed mass is more robust.  Shortcomings
-include (a)~lens profiles that tend to be systematically shallower
-than the lenses, and consequent over-estimation of the Einstein radius
-by $\sim25\%$, and (b)~lack of detailed source modelling.  Ideas for
-improvement are discussed.
+We develop a method to enable collaborative modelling of gravitational
+lenses, and lens candidates, by non-professional lens enthusiasts.  It
+uses an existing free-form modelling program (GLASS), but
+\phil{enables the input to this code to be provided in a novel way,}
+via a user-provided diagram that is essentially a sketch of an
+arrival-time surface.
+
+An implementation \phil{of this method, \spl} is tested in a modelling
+challenge using 29 simulated lenses \phil{drawn from the} set created
+for \phil{the \sw citizen-science lens search}.  We find that
+\phil{volunteers from this online community} asserted the image
+parities and time ordering consistently in some lenses, but made
+errors in other lenses depending on the image morphology. \phil{While}
+errors in image parity and time ordering lead to  large errors in the
+mass distribution, the enclosed mass \phil{was found to be more
+robust: the model-derived Einstein radii found by the volunteers were
+consistent with those produced by one of the professional team,
+suggesting that given the appropriate tools, gravitational lens
+modelling is a data analysis activity that can be crowd-sourced.}
+Shortcomings \phil{of the implementation itself include} (a)~lens
+profiles that tend to be systematically shallower than the lenses
+\phil{(leading to systematic over-estimation of the Einstein radius 
+by some $\sim25\%$}, and (b)~lack of detailed \phil{arc} modelling. 
+Ideas for improvement are discussed. 
+
 \end{abstract}
 
 \begin{keywords}

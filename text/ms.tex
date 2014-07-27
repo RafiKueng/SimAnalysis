@@ -31,7 +31,7 @@
 \def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
-\newcommand{\sw}{Spacewarps\xspace}
+\newcommand{\sw}{Space Warps\xspace}
 
 % shortcut for einstein radius (Text Greek Full Math)
 \newcommand{\ERf}[1][]{$\Theta_\text{E#1}$\xspace} % full output
@@ -173,7 +173,8 @@ Ideas for improvement are discussed.
 
 The first two discoveries of gravitational lenses
 \citep{1979Natur.279..381W,1980Natur.285..641W}, where a galaxy images
-a background quasar into two (four), brought in their wake the first
+a single background quasar into two (four), brought in their wake the
+first
 work on lens modelling
 \citep{1981ApJ...244..723Y,1981ApJ...244..736Y}.  For the second lens
 (PG1115+080), mass models scored an early success with the prediction
@@ -195,81 +196,67 @@ where $D_L$ is the distance to the lens, and $M$ its mass.  A lensing
 galaxy with $M\sim10^{11}M_\odot$ at $10^9\rm\,pc$ would cause image
 separations of $\sim1''$, which is comparable to the size of the
 galaxy; typically the lensed images are seen through the galaxy halo.
-Hence the lensed images depend on the detailed mass distribution of
+Hence, the lensed images depend on the detailed mass distribution of
 the lensing galaxy.  Galaxy lenses demand modelling.
 
-Since the early discoveries, more than 400 secure lenses are now known
-(see Figure \ref{fig:masterlens}).  Modelling of the mass distribution
-is part of any research using lenses, but so far no modelling study
-has spanned all known lenses.  The largest single one
-\citep{2009ApJ...703L..51K} models 58 lenses to infer the distribution
-of dark matter around galaxies.  In other work,
-\cite{2011ApJ...740...97L} combined lens models of 21 galaxies with
-models of their stellar populations, to find the relation between
-stars and dark matter, and \cite{2014MNRAS.437..600S} modelled 18
-time-delay lenses together to infer cosmological parameters.
+Since the early discoveries, more than 400 secure lenses are now
+known. Modelling of the mass distribution is part of any research
+using lenses, but so far no modelling study has spanned all known
+lenses.  The largest single one \citep{2009ApJ...703L..51K} models 58
+lenses to infer the distribution of dark matter around galaxies.  In
+other work, \cite{2011ApJ...740...97L} combined lens models of 21
+galaxies with models of their stellar populations, to find the
+relation between stars and dark matter, and \cite{2014MNRAS.437..600S}
+modelled 18 time-delay lenses together to infer cosmological
+parameters.
 
-\begin{figure}
-\centering
-\includegraphics[width=\hsize]{fig/lenssky}
-\caption{Sky distribution of 423 published lenses considered secure
-  (from the Masterlens catalog at the University of Utah, maintained
-  by Joel Brownstein and Leonidas Moustakas).  The map is in
-  Hammer-Aitoff projection, with North up and $\rm RA=0$ in the
-  middle. The empty swathes to the left and right of centre are the
-  Milky Way. {\em Should we drop this figure?  It's not relevant to
-    modelling, but as there seems to be no publicly available summary
-    of all known lenses, it does help set context.}}
-\label{fig:masterlens}
-\end{figure}
+Imaging surveys now under way aim to increase the inventory of lenses
+another ten or a hundred fold \phil{\citep[see
+e.g.][]{Marshall2005,OguriMarshall2010}, with both automated and
+visual search techniques proposed
+\citep[e.g.][]{Marshall2009,More2012ApJ,Gavazzi2014}. For example, \sw
+(Marshall et al, in prep, More et al, in prep) is a citizen science
+project\footnote{\tt http://www.spacewarps.org} in which volunteers
+are presented sky-survey images and invited to identify lens
+candidates, by eye.}  Simulated lenses are mixed in with the data,
+both to help train volunteers on what to look for, and to provide
+measures of the effectiveness of the search.  The motivation for \sw
+is to enable volunteers, some of whom had previously serendipitously
+identified lens candidates on earlier citizen-science surveys,
+\phil{either} to make discoveries missed in automatic searches by
+software robots, \phil{or to perform the necessary inspection of an
+automatically-generated sample, for quality control}.  Robots can be
+built to be good at detecting clean lensing system in uncrowded fields
+with high signal-to-noise, but in more general test situations robots
+miss lenses (low completeness) or contaminate the results with
+non-lenses (low purity) \citep{Marshall2009}. 
 
-Surveys now under way aim to increase the inventory of lenses another
-ten or a hundred fold.  Among these is \sw (Marshall et al, in prep,
-More et al, in prep).  \sw is a citizen science project\footnote{\tt
-  http://www.spacewarps.org} in which volunteers are presented
-sky-survey images and invited to identify lens candidates.  Simulated
-lenses are mixed in with the data, both to help train volunteers on
-what to look for, and to provide measures of the effectiveness of the
-search.  The motivation for \sw is to enable volunteers, some of whom
-had previously serendipitously identified lens candidates on earlier
-citizen-science surveys, to make discoveries missed in automatic
-searches by software robots.  Robots are very good with clean lensing
-system in uncrowded fields with high signal-to-noise, but in general
-test situations \citep{2009ApJ...694..924M} robots miss lenses (low
-completeness) or contaminate the results with non-lenses (low purity).
-\sw introduced its first tranche of survey data, in May 2013, from the
-Canada-France-Hawaii Telescope Legacy Survey, or CFHTLS
-\citep{Coupon2009}, covering $\simeq172$ square degrees (0.4\% of the
-sky) was divided into tiles of $\simeq 80''\times80''$ ($440\times
-440$ pixels).  Each such tile was shown to ten volunteers.  Despite
-the rarity of detectable lenses ($<10^{-3}$ per tile), the \sw
-collective soon found lens candidates, both rediscoveries already
-known from robots \citep{Gavazzi2012, More2012ApJ} and possible new
-lenses.
-
-The encouraging early results prompted the question: could modelling
-of the lenses also be done by volunteers?  If so, modelling could help
-assess prioritise lens candidates at an early stage, which would be
-very useful with new wide-field and sensitive surveys, which will
-yield thousands of lens candidates. There are several software tools
-for lensing modelling available, and work has been done on generic
-interfaces \citep{2014A&C.....5...28L}.  Some early designs for \sw
-included a prototype lens modelling tool \citep{2010AAS...21543527N}.
-Moreover, some {\em Spacewarps\/} volunteers are quite experienced
-from earlier projects, having spent a thousand hours or more with
-data, and are very interested in more demanding projects.  The
-interests of citizen-science communities are just beginning to be
-studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but it is clear that
-some volunteers welcome open-ended challenges, and sometimes these
-have led to new scientific results: one example is the discovery of an
-exceptional extra-solar planet \citep{2013ApJ...768..127S}; another is
-the development of new algorithms for protein folding
-\citep{Khatib22112011}.  All these are grounds for optimism.  There
-is, however, a basic difficulty in strong gravitational lensing.
-Lensed images do not look much like their source, and still less do
-they resemble the lensing-mass distribution.  To model a lens, one
-needs either to do a lot of random guessing, or to have a good
-intuition for what works.
+\phil{The encouraging early results from the first \sw lens search,
+carried out on the  $\simeq172$ square degree Canada-France-Hawaii
+Telescope Legacy Survey (CFHTLS) imaging by over 30,000 volunteers
+(Marshall et al, in prep, More et al, in prep) prompted the question:}
+could the modelling of the lenses also be done by the volunteers?  If
+so, modelling could help assess prioritise lens candidates at an early
+stage, which would be very useful with new wide-field and sensitive
+surveys, which will yield thousands of lens candidates. There are
+several software tools for lensing modelling available, and work has
+been done on generic interfaces \citep[e.g.][]{2014A&C.....5...28L}. 
+Indeed, some early designs for \sw included a prototype lens modelling
+tool \citep{2010AAS...21543527N}. Moreover, some \sw volunteers are
+quite experienced from earlier projects, having spent a thousand hours
+or more with data, and are very interested in more demanding
+projects.  The interests of citizen-science communities are just
+beginning to be studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but it
+is clear that some volunteers welcome open-ended challenges, and
+sometimes these have led to new scientific results: one example is the
+discovery of an exceptional extra-solar planet
+\citep{2013ApJ...768..127S}; another is the development of new
+algorithms for protein folding \citep{Khatib22112011}.  All these are
+grounds for optimism.  There is, however, a basic difficulty in strong
+gravitational lensing. Lensed images do not look much like their
+source, and still less do they resemble the lensing-mass
+distribution.  To model a lens, one needs either to do a lot of random
+guessing, or to have a good intuition for what works.
 
 In this paper, we propose a way around the difficulty, and report on a
 modelling test on \sw using simulated lenses.  The three following
@@ -277,7 +264,7 @@ sections are devoted to the concept, the implementation, and tests
 respectively.
 
 In \secref{Fermat} we introduce a markup system for lensed images,
-which we call a ``spaghetti diagram''.  A spaghetti diagram resembles
+which we call a ``spaghetti diagram.''  A spaghetti diagram resembles
 the visible image system, in a cartoon-like way, and at the same time
 it encodes the basis of a mass model.  This supplies an intuitive link
 between the image system and the mass distribution, which look
@@ -286,28 +273,29 @@ essentially the saddle-point contours originally introduced to
 gravitational lensing by \cite{1986ApJ...310..568B} as a way of
 classifying lensed images.  They are sometimes shown as part of the
 output of lens models \citep[for
-  example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.  In
+example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.  In
 the present work, however, spaghetti diagrams are the {\em input\/}
 through which the modeller tells the program what to do.
 
 In \secref{SpaghettiLens} we describe the \spl program, which
-implements everything.  \spl is an extension of the GLASS framework
-for modelling lenses \citep{2014arXiv1401.7990C}.  We will not go into
-software details in this paper, concentrating instead on lens
-modelling per se, but we remark that \spl is designed to be friendly
-to the forum style of citizen-science projects, and enable incremental
-model refinement by different people, without sacrificing any features
-of GLASS.
+implements \phil{the above scheme}.  \spl is an \phil{interface to and
+extension of} the GLASS framework for modelling lenses
+\citep{2014arXiv1401.7990C}.  We will not go into software details in
+this paper, but instead concentrate on lens modelling per se, but we
+remark that \spl is designed to be friendly to the forum style of
+citizen-science projects, and enable incremental \phil{collaborative}
+model refinement by different people, without sacrificing any of the
+technical features of GLASS.
 
 In \secref{mod_challenge} we describe a modelling challenge where a
 diverse sample of 29 simulated lenses was modelled multiple times
-using \spl.  The models are then examined in two ways.  One was
-whether the spaghetti diagram was correct.  The other was the recovery
-of the Einstein radius.  In addition, we show some visual comparisons
-of actual and recovered lens shape and radial profile, and identify
-some areas to improve, but do not compute statistics on these aspects.
-Profile and shape recovery with GLASS has been studied in more detail
-in \citep{2014arXiv1401.7990C}.
+\phil{by a small number of \sw volunteers} using \spl.  The models
+were then examined in two ways.  One was whether the spaghetti diagram
+was correct.  The other was the recovery of the Einstein radius of the
+lens.  In addition, we show some visual comparisons of the actual and
+recovered lens shape and radial profile, and identify some areas to
+improve. Profile and shape recovery with GLASS has been studied in
+more detail in \citep{2014arXiv1401.7990C}.
 
 \secref{todo} gives the general outlook and next steps.
 
@@ -315,7 +303,7 @@ in \citep{2014arXiv1401.7990C}.
 
 \section{Fermat's principle and spaghetti diagrams} \label{sec:Fermat}
 
-We now explain the lensing theory relevant to \spl, following the
+We first explain the lensing theory relevant to \spl, following the
 formulation of gravitational lensing in terms of Fermat's principle by
 \cite{1986ApJ...310..568B}.
 
@@ -655,7 +643,7 @@ $$ \begin{matrix}
 t(x,y)                        &\hbox{model } t(x,y) \\
 \kappa(x,y)                   &\hbox{model } \kappa(x,y)
 \end{matrix} $$
-The marked-up image is a zoom of the lensed image on Spacewarps,
+The marked-up image is a zoom of the lensed image on \sw,
 marked up with one or more spaghetti contours; this is the modeller's
 input to \spl.  The three panels on the right show the graphical
 output returned to the modeller by \spl, listed as (i), (ii), (iii) in

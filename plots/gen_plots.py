@@ -1738,11 +1738,25 @@ def plotAllRE():
 #    ax.yaxis.set_minor_formatter(LogFormatter(labelOnlyBase=False))
     kw.formatter.detailed_log_capt(axes=ax)
     
+    xlims = [4, 25]
+    
+    # add bands
+    bx = np.linspace(xlims[0], xlims[1], 100)
+    
+    be1 = 1.12 * bx
+    be2 = 1.28 * bx
+    
+    br1 = 1.05 * bx
+    br2 = 1.45 * bx
+    
+    ax.fill_between(bx, be1, be2, **kw.eR4.expertband)
+    ax.fill_between(bx, br1, br2, **kw.eR4.regularband)
+    
     #pl.xticks(range(i+1), lbls, rotation=90)
     #pl.yticks(np.linspace(0,2,(2/0.25)+1))
     #pl.grid(axis='y')
     #pl.gcf().subplots_adjust(bottom=0.25)
-    plt.xlim([4, 25])
+    plt.xlim(xlims)
     plt.ylim([1, 40])
     plt.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
     plt.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')

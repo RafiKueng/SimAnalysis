@@ -96,7 +96,6 @@
 
 \definecolor{purple}{RGB}{150,0,200}
 \newcommand{\phil}[1]{\noindent\textcolor{purple}{\bf #1}}
-\let\phil\relax
 
 % \\\ END OF REMOVAL SECION
 
@@ -141,27 +140,27 @@ $^{7}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford Universi
 We develop a method to enable collaborative modelling of gravitational
 lenses, and lens candidates, by non-professional lens enthusiasts.  It
 uses an existing free-form modelling program (GLASS), but
-\phil{enables the input to this code to be provided in a novel way,}
+enables the input to this code to be provided in a novel way,
 via a user-provided diagram that is essentially a sketch of an
 arrival-time surface.
 
-An implementation \phil{of this method, \spl} is tested in a modelling
-challenge using 29 simulated lenses \phil{drawn from the} set created
-for \phil{the \sw citizen-science lens search}.  We find that
-\phil{volunteers from this online community} asserted the image
+An implementation of this method, \spl is tested in a modelling
+challenge using 29 simulated lenses drawn from the set created
+for the \sw citizen-science lens search.  We find that
+volunteers from this online community asserted the image
 parities and time ordering consistently in some lenses, but made
-errors in other lenses depending on the image morphology. \phil{While}
+errors in other lenses depending on the image morphology. While
 errors in image parity and time ordering lead to  large errors in the
-mass distribution, the enclosed mass \phil{was found to be more
+mass distribution, the enclosed mass was found to be more
 robust: the model-derived Einstein radii found by the volunteers were
 consistent with those produced by one of the professional team,
 suggesting that given the appropriate tools, gravitational lens
 modelling is a data analysis activity that can be crowd-sourced to
-good effect.} Shortcomings \phil{of the software implementation 
-include} (a)~lens profiles that tend to be systematically shallower
-than the lenses \phil{(leading to systematic over-estimation of the
-Einstein radius  by some $\sim25\%$}, and (b)~lack of detailed
-\phil{arc} modelling.  Ideas for improvement are discussed. 
+good effect. Shortcomings of the software implementation 
+include (a)~lens profiles that tend to be systematically shallower
+than the lenses (leading to systematic over-estimation of the
+Einstein radius  by some $\sim25\%$, and (b)~lack of detailed
+arc modelling.  Ideas for improvement are discussed. 
 
 \end{abstract}
 
@@ -212,30 +211,30 @@ modelled 18 time-delay lenses together to infer cosmological
 parameters.
 
 Imaging surveys now under way aim to increase the inventory of lenses
-another ten or a hundred fold \phil{\citep[see
+another ten or a hundred fold \citep[see
 e.g.][]{Marshall2005,OguriMarshall2010}, with both automated and
 visual search techniques proposed
 \citep[e.g.][]{Marshall2009,More2012ApJ,Gavazzi2014}. For example, \sw
 (Marshall et al, in prep, More et al, in prep) is a citizen science
 project\footnote{\tt http://www.spacewarps.org} in which volunteers
 are presented sky-survey images and invited to identify lens
-candidates, by eye.}  Simulated lenses are mixed in with the data,
+candidates, by eye.  Simulated lenses are mixed in with the data,
 both to help train volunteers on what to look for, and to provide
 measures of the effectiveness of the search.  The motivation for \sw
 is to enable volunteers, some of whom had previously serendipitously
 identified lens candidates on earlier citizen-science surveys,
-\phil{either} to make discoveries missed in automatic searches by
-software robots, \phil{or to perform the necessary inspection of an
-automatically-generated sample, for quality control}.  Robots can be
+either to make discoveries missed in automatic searches by
+software robots, or to perform the necessary inspection of an
+automatically-generated sample, for quality control.  Robots can be
 built to be good at detecting clean lensing system in uncrowded fields
 with high signal-to-noise, but in more general test situations robots
 miss lenses (low completeness) or contaminate the results with
 non-lenses (low purity) \citep{Marshall2009}. 
 
-\phil{The encouraging early results from the first \sw lens search,
+The encouraging early results from the first \sw lens search,
 carried out on the  $\simeq172$ square degree Canada-France-Hawaii
 Telescope Legacy Survey (CFHTLS) imaging by over 30,000 volunteers
-(Marshall et al, in prep, More et al, in prep) prompted the question:}
+(Marshall et al, in prep, More et al, in prep) prompted the question:
 could the modelling of the lenses also be done by the volunteers?  If
 so, modelling could help assess prioritise lens candidates at an early
 stage, which would be very useful with new wide-field and sensitive
@@ -279,18 +278,18 @@ the present work, however, spaghetti diagrams are the {\em input\/}
 through which the modeller tells the program what to do.
 
 In \secref{SpaghettiLens} we describe the \spl program, which
-implements \phil{the above scheme}.  \spl is an \phil{interface to and
-extension of} the GLASS framework for modelling lenses
+implements the above scheme.  \spl is an interface to and
+extension of the GLASS framework for modelling lenses
 \citep{2014arXiv1401.7990C}.  We will not go into software details in
 this paper, but instead concentrate on lens modelling per se, but we
 remark that \spl is designed to be friendly to the forum style of
-citizen-science projects, and enable incremental \phil{collaborative}
+citizen-science projects, and enable incremental collaborative
 model refinement by different people, without sacrificing any of the
 technical features of GLASS.
 
 In \secref{mod_challenge} we describe a modelling challenge where a
 diverse sample of 29 simulated lenses was modelled multiple times
-\phil{by a small number of \sw volunteers} using \spl.  The models
+by a small number of \sw volunteers using \spl.  The models
 were then examined in two ways.  One was whether the spaghetti diagram
 was correct.  The other was the recovery of the Einstein radius of the
 lens.  In addition, we show some visual comparisons of the actual and
@@ -438,8 +437,8 @@ always too faint to see. The minima and saddle points dominate.
 \label{sec:SpaghettiLens}
 
 \spl is not part of \sw, but it makes use of the \sw infrastructure,
-in particular, the image database and the \phil{discussion
-forum.\footnote{\texttt{http://talk.spacewarps.org}}  The forum is
+in particular, the image database and the discussion
+forum.\footnote{\tt http://talk.spacewarps.org}  The forum is
 essential for establishing contact between interested members of the
 \sw community and the project science team, and then for enabling
 collaboration between them. We were able to collaborate together on 
@@ -447,8 +446,12 @@ modelling objects from \sw in the usual style of medium-sized
 astronomical collaborations, with video-conferencing and in-person
 meetings where possible. Preliminary results were immediately
 summarized on modelling threads on the forum, and anyone interested
-was made welcome to join at any time.} 
-%
+was made welcome to join at any time.
+% {\bf Phil asks: how much training was necessary before the volunteers
+% understood how to work the interface? Could this training be done with
+% no input from the \spl developers, in future? It would be good to
+% comment on how scalable this approach to modeling is.}
+
 % PJM: The following paragraph is not accurate: the manipulation of 
 %  FITS images in the Tools viewer, for example, is done client side.
 %  In future I very much hope to see lens modeling enabled in this
@@ -461,9 +464,10 @@ was made welcome to join at any time.}
 % considerations, but we will not go into them in this paper,
 % concentrating instead on aspects specific to lens modelling.
 %
+
 Modelling with \spl involves three stages, markup of the image,
-followed by intensive \phil{numerical computation carried out on a
-server in the background,} followed by review
+followed by intensive numerical computation carried out on a
+server in the background, followed by review
 of diagnostics and possible discussion.  We now describe each of
 these.
 
@@ -487,20 +491,15 @@ The loops in the markup tool were the origin of the ``spaghetti''
 metaphor.
 
 The markup tool allows only valid lensing configurations to be
-entered.  The user does not need to think explicitly the image
+entered.  The user does not need to think explicitly about the image
 parities (though the markup tool provides this information using
 colour codes) or about time-ordering, or worry about the odd-image
 theorem.  The exact placement of the loops in a spaghetti diagram has
 no significance.  Only the hierarchy of which loop is inside which is
 relevant.  The loops are there simply to help modeller's intuition.
 
-{\bf Phil asks: how much training was necessary before the volunteers
-understood how to work the interface? Could this training be done with
-no input from the \spl developers, in future? It would be good to
-comment on how scalable this approach to modeling is.}
-
 As implemented so far, \spl assumes that the lens is dominated by a
-single galaxy.  Only one maximum in the arrival-time surface
+single galaxy.  Accordingly, only one maximum in the arrival-time surface
 is permitted, and it is taken to be the centre of the main lensing
 galaxy.  The user can, however, mark additional minor galaxies: these
 are modelled as point masses, the mass being fitted by the program along
@@ -527,9 +526,9 @@ are necessary.  GLASS uses the following prior
   mass.  (Sometimes these tiles are called mass pixels, but we should
   emphasize that they are unrelated to image pixels, and are much
   larger.)
-\item There is a notional lens center, say $(x_0,y_0)$ which is
+\item There is a notional lens centre, say $(x_0,y_0)$ which is
   identified with the maximum of the arrival time.  The source can
-  have an arbitrary offset with respect to the lens center.
+  have an arbitrary offset with respect to the lens centre.
 \item The mass distribution must be centrally concentrated, in two
   respects.  First, the circularly averaged density must fall away
   like $$ \left[(x-x_0)^2+(y-y_0)^2\right]^{-1/2}$$ or more steeply.
@@ -562,11 +561,11 @@ the form of three figures.
 \item A gray scale plus contour map of the mass distribution.
 \end{enumerate}
 The synthetic image generated by \spl assumes a simple
-\phil{circularly symmetric} source \phil{with linearly decreasing
-surface brightness profile}.  The user can change the contrast level
+circularly symmetric source with linearly decreasing
+surface brightness profile.  The user can change the contrast level
 on the image, which (though it is not saved) amounts to adjusting the
-\phil{size of the source}. These synthetic images are still very
-crude, and \phil{not always} useful for assessing models.  The best
+size of the source. These synthetic images are still very
+crude, and not always useful for assessing models.  The best
 indicator, in practice, of whether the modelling was successful is
 contour map of $t(x,y)$, with saddle-point contours highlighted.  It
 is, in effect, the computer's refinement of the spaghetti diagram
@@ -577,14 +576,14 @@ successful models generally lead to smooth-looking mass distribution,
 whereas an irregular or checkboard pattern in the mass map signals a
 bad model.
 
-After examining this feedback, the user can choose to \phil{save the
+After examining this feedback, the user can choose to save the
 model to the \spl archive, at which point it is assigned a unique
-URL}.  They can also modify their input and try again, or discard the
+URL.  They can also modify their input and try again, or discard the
 attempt altogether.  After archiving, there can be discussion among
 modellers, through the \sw forum or by any other means, and revision
-of the model.  \phil{This is achieved simply by sharing the model's
+of the model.  This is achieved simply by sharing the model's
 URL; following its hyperlink takes one to the \spl app, pre-loaded
-with the correct data image and input spaghetti.} Any archived model
+with the correct data image and input spaghetti. Any archived model
 can be revised by any user: they can modify the spaghetti
 configuration slightly or drastically, or change options like the size
 of the mass tiles. Particularly interesting lens candidates lead to
@@ -674,6 +673,18 @@ $$ \begin{matrix}
 t(x,y)                        &\hbox{model } t(x,y) \\
 \kappa(x,y)                   &\hbox{model } \kappa(x,y)
 \end{matrix} $$
+The marked-up image is a zoom of the lensed image on \sw,
+marked up with one or more spaghetti contours; this is the modeller's
+input to \spl.  The three panels on the right show the graphical
+output returned to the modeller by \spl, listed as (i), (ii), (iii) in
+\secref{SpaghettiLens}.  These derive from the mean of an ensemble of
+200 models generated by \spl. The model synthetic image is too crude
+to be useful, because there is no fitting for the source light
+distribution, as already noted in \secref{diag}.  The quality of the
+synthetic images can be improved by interpolation, but as this feature
+was not available during the modelling challenge, we do not show the
+improved versions here.
+
 
 \FloatBarrier
 
@@ -806,18 +817,6 @@ t(x,y)                        &\hbox{model } t(x,y) \\
 \end{figure}
 
 \FloatBarrier
-
-\noindent The marked-up image is a zoom of the lensed image on \sw,
-marked up with one or more spaghetti contours; this is the modeller's
-input to \spl.  The three panels on the right show the graphical
-output returned to the modeller by \spl, listed as (i), (ii), (iii) in
-\secref{SpaghettiLens}.  These derive from the mean of an ensemble of
-200 models generated by \spl. The model synthetic image is too crude
-to be useful, because there is no fitting for the source light
-distribution, as already noted in \secref{diag}.  The quality of the
-synthetic images can be improved by interpolation, but as this feature
-was not available during the modelling challenge, we do not show the
-improved versions here.
 
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 % THIS PARAGRAPH TO BE REMOVED WHEN THE FIGURES ARE FIXED!
@@ -1045,7 +1044,7 @@ model uncertainties.  Now, steeper mass profiles tend to give wider
 image separations --- recall that the image separation for a circular
 isothermal lens is 2\ERf, whereas for a point mass it is more
 \citep[see, e.g.,][]{2002LNP...608....1C} --- so \ERf[,rec] being too
-high is really a consequence of the \phil{GLASS} models being too shallow for
+high is really a consequence of the GLASS models being too shallow for
 the sims.
 
 \begin{figure*}
@@ -1063,7 +1062,7 @@ the sims.
 % TODO: update figure, fix caption.
 
 \Figref{ER_per_sim} shows that \ERf[,rec] of the models tend to be too
-high.  \phil{However, this is entirely due to the GLASS model density
+high.  However, this is entirely due to the GLASS model density
 profiles being too shallow, as illustrated above. We can separate out
 the performance of the \spl interface and its users by comparing their
 results with the  Einstein radii of \spl models made by an expert
@@ -1071,8 +1070,8 @@ results with the  Einstein radii of \spl models made by an expert
 poor, the mean Einstein radius overestimate was 25\%, with a 20\%
 standard deviation (shown by the grey band in \Figref{ER_per_sim}). 
 The expert models show a statistically indistinguishable bias of 20\%,
-with standard deviation 8\% (the blue band in \Figref{ER_per_sim}).  }
-One source of this systematic error is that it is difficult to center
+with standard deviation 8\% (the blue band in \Figref{ER_per_sim}).
+One source of this systematic error is that it is difficult to centre
 of the lens accurately: an offset leads to a flatter mass profile for
 the model compared to the simulation.
 
@@ -1096,10 +1095,10 @@ lens-modelling engine \citep[GLASS, by][]{2014arXiv1401.7990C}.
 non-professional lens enthusiasts to model newly-discovered lens
 candidates from the \sw citizen-science platform.  The tests in this
 paper indicate that such modelling would be both feasible and
-scientifically interesting: \phil{given a suitable modelling tool, and
+scientifically interesting: given a suitable modelling tool, and
 appropriate guidance, a small team of non-professional volunteers was
 able to model a sample of 29 test lenses, and measure their Einstein
-radii with comparable accuracy to a professional expert.}
+radii with comparable accuracy to a professional expert.
 
 There is, however, plenty of room for improvement:
 \begin{enumerate}
@@ -1110,8 +1109,8 @@ There is, however, plenty of room for improvement:
   mass model fixes a comparatively large area near the central at
   constant density.  One way to solve this problem would be to
   introduce smaller pixels in the central region, thus enabling a
-  steeper centre. \phil{The use of simply parameterised, appropriately
-  steeply-profiled models would also avoid this problem.}
+  steeper centre. The use of simply parameterised, appropriately
+  steeply-profiled models would also avoid this problem.
 \item Currently, \spl does not attempt to model the source shape; the
   user identifies the brightest points on the image, and these are
   taken as images of a point-like source, whose positions must be
@@ -1141,9 +1140,9 @@ There is, however, plenty of room for improvement:
   different models of a given system, both visually and through
   different statistical measures.  As evidenced by a current
   collaborative modeling effort, a particularly interesting candidate
-  can lead to an extended discussion and dozens of models, \phil{that
+  can lead to an extended discussion and dozens of models, that
   in some way sample the high likelihood region of model parameter
-  space}.
+  space.
 \item Better tutorial materials are also needed, and this would
   address some of the problem areas found in the modeling challenge.
   For example, we saw in \secref{tests.t1} that volunteers are most

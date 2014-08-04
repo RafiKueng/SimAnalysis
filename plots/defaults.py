@@ -399,6 +399,12 @@ args.eR4.update({
 })
 
 
+
+#args.inp = AttrDict({
+#    'dim' : tmpl.squares.figure['figsize'][0] * tmpl.squares.figure['dpi']
+#})
+
+
 def set_mpl():
     #mpl.rcParams.update(args.mplrc)
     for k, v in args.mplrc.items():

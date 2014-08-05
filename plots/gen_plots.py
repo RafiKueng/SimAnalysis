@@ -1678,6 +1678,8 @@ def plotAllRE():
     draw_later2 = []
     flag = ''    
     new_data = []
+    leg_f = [None, None, None, None] # used for legend
+    leg_k = [None, None, None, None] # used for legend
     for i, dat in enumerate(spg.data):
       simn = dat['name']    
       #skip = False
@@ -1690,20 +1692,26 @@ def plotAllRE():
         style = kw.eR4.expert
         #skip=True
         draw_later.append([sims[simn], dat['rE_mean']])
-        flag = "expert"
+        flag = "modelled by expert"
+        nn = 1
       elif not tab.all_mods[str(dat['id'])]['acc']:
         style = kw.eR4.rejected
-        flag = "rejected"
+        flag = "rejected model"
+        nn = 3
       elif mod_err[dat['id']]['anyerr']:
         style = kw.eR4.failed
         draw_later2.append([sims[simn], dat['rE_mean']])
-        flag = "imgrecon wrong"
+        flag = "model with wrong ordering"
+        nn = 2
       else:
         style = kw.eR4.regular
-        flag = "good"
+        flag = "model with correct ordering"
+        nn = 0
       #xofs = 0.15 if dat['user']=='psaha' else -0.15
       #ax.plot(lu[simn]+xofs, dat['rE_mean']/sims[simn], style)
-      ax.plot(sims[simn], dat['rE_mean'], **style)
+      ap = ax.plot(sims[simn], dat['rE_mean'], **style)
+      leg_f[nn] = flag
+      leg_k[nn] = ap[0]
       new_data.append((sims[simn], dat['rE_mean'], flag))
     
     with open("new_data.csv", "w") as f:
@@ -1760,6 +1768,9 @@ def plotAllRE():
     plt.ylim([1, 40])
     plt.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
     plt.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')
+    
+    
+    plt.legend(leg_k,leg_f, **kw.eR4.legend)
 
     
     for ext in exts:

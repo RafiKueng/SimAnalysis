@@ -1,119 +1,119 @@
-11.405027,15.096240,good
-11.405027,15.082520,good
-11.405027,14.298260,good
-11.405027,14.960745,good
-11.405027,14.397544,good
-11.405027,15.264696,good
-5.728509,9.089781,good
-5.728509,8.649959,good
-5.728509,8.614736,good
-5.836087,6.188417,imgrecon wrong
-5.836087,6.751537,expert
-5.836087,6.723065,expert
-5.836087,6.863331,expert
-5.836087,6.769050,good
-5.836087,6.127287,imgrecon wrong
-13.844627,17.192594,good
-13.844627,17.251188,good
-13.844627,17.141917,good
-13.844627,16.400922,imgrecon wrong
-13.844627,15.262863,imgrecon wrong
-13.844627,16.780828,imgrecon wrong
-13.844627,17.823570,imgrecon wrong
-13.844627,16.890457,imgrecon wrong
-5.679209,7.028742,imgrecon wrong
-5.679209,7.401070,imgrecon wrong
-5.679209,7.708936,imgrecon wrong
-5.679209,7.728711,imgrecon wrong
-9.234206,13.043426,good
-9.234206,11.972867,expert
-9.234206,11.926875,expert
-9.234206,12.448956,good
-9.234206,2.134594,rejected
-9.234206,3.015733,rejected
-9.234206,2.915073,rejected
-9.234206,11.619997,good
-9.253333,11.126120,good
-9.253333,10.937936,good
-9.253333,10.370205,good
-9.253333,8.252221,good
-5.787072,8.117222,good
-5.787072,9.800218,good
-5.787072,0.000000,rejected
-5.787072,8.012003,good
-5.321628,7.154465,good
-5.321628,7.068105,good
-5.321628,7.618835,good
-5.321628,8.719443,good
-14.458064,20.619345,good
-14.458064,29.169432,good
-12.179426,13.979091,imgrecon wrong
-12.179426,13.803650,imgrecon wrong
-12.179426,13.161013,imgrecon wrong
-12.179426,14.209056,imgrecon wrong
-12.179426,13.555996,imgrecon wrong
-16.047619,19.448294,good
-16.047619,19.598963,good
-16.047619,19.418268,good
-16.047619,27.147603,good
-16.047619,19.624466,good
-6.257030,7.679353,imgrecon wrong
-6.257030,7.994685,good
-6.257030,7.974221,imgrecon wrong
-6.257030,8.085004,imgrecon wrong
-7.918508,8.390266,imgrecon wrong
-7.918508,9.127993,imgrecon wrong
-8.772941,9.537905,imgrecon wrong
-8.772941,7.546837,good
-8.772941,9.649135,imgrecon wrong
-18.980644,22.043921,good
-18.980644,22.061171,good
-18.980644,22.921204,good
-18.980644,14.989376,good
-6.997419,10.367607,good
-6.997419,1.125442,rejected
-8.512920,10.548643,imgrecon wrong
-8.512920,10.941918,imgrecon wrong
-8.512920,10.537700,imgrecon wrong
-8.512920,9.899275,imgrecon wrong
-17.491057,19.827327,imgrecon wrong
-17.491057,17.528084,imgrecon wrong
-17.491057,18.371062,imgrecon wrong
-17.491057,19.529696,imgrecon wrong
-6.918101,3.336059,good
-11.241758,14.061971,good
-11.241758,15.196179,good
-11.241758,14.680698,good
-11.241758,15.126862,good
-11.241758,14.919392,good
-11.241758,15.623358,good
-9.178889,12.454188,good
-9.178889,14.474202,imgrecon wrong
-9.178889,14.777050,imgrecon wrong
-6.092461,7.452012,good
-6.092461,7.959358,imgrecon wrong
-6.092461,7.938456,imgrecon wrong
-6.092461,7.694203,imgrecon wrong
-6.092461,1.613200,rejected
-15.118033,21.185272,good
-15.118033,19.495515,imgrecon wrong
-15.118033,20.868110,good
-15.118033,0.000000,rejected
-6.460940,7.222600,good
-6.460940,7.645799,good
-6.057850,7.237172,good
-6.057850,7.506831,good
-6.057850,5.103062,imgrecon wrong
-16.981817,24.493318,good
-16.981817,23.262569,good
-16.981817,23.695650,good
-14.455173,18.476644,good
-14.455173,17.741915,good
-14.455173,18.248125,good
-14.455173,18.378987,good
-9.389231,10.713580,imgrecon wrong
-9.389231,11.037008,imgrecon wrong
-9.389231,10.759436,expert
-9.389231,9.645134,imgrecon wrong
-9.389231,10.797134,imgrecon wrong
-9.389231,11.162143,imgrecon wrong
+11.405027,15.096240,model with correct ordering
+11.405027,15.082520,model with correct ordering
+11.405027,14.298260,model with correct ordering
+11.405027,14.960745,model with correct ordering
+11.405027,14.397544,model with correct ordering
+11.405027,15.264696,model with correct ordering
+5.728509,9.089781,model with correct ordering
+5.728509,8.649959,model with correct ordering
+5.728509,8.614736,model with correct ordering
+5.836087,6.188417,model with wrong ordering
+5.836087,6.751537,modelled by expert
+5.836087,6.723065,modelled by expert
+5.836087,6.863331,modelled by expert
+5.836087,6.769050,model with correct ordering
+5.836087,6.127287,model with wrong ordering
+13.844627,17.192594,model with correct ordering
+13.844627,17.251188,model with correct ordering
+13.844627,17.141917,model with correct ordering
+13.844627,16.400922,model with wrong ordering
+13.844627,15.262863,model with wrong ordering
+13.844627,16.780828,model with wrong ordering
+13.844627,17.823570,model with wrong ordering
+13.844627,16.890457,model with wrong ordering
+5.679209,7.028742,model with wrong ordering
+5.679209,7.401070,model with wrong ordering
+5.679209,7.708936,model with wrong ordering
+5.679209,7.728711,model with wrong ordering
+9.234206,13.043426,model with correct ordering
+9.234206,11.972867,modelled by expert
+9.234206,11.926875,modelled by expert
+9.234206,12.448956,model with correct ordering
+9.234206,2.134594,rejected model
+9.234206,3.015733,rejected model
+9.234206,2.915073,rejected model
+9.234206,11.619997,model with correct ordering
+9.253333,11.126120,model with correct ordering
+9.253333,10.937936,model with correct ordering
+9.253333,10.370205,model with correct ordering
+9.253333,8.252221,model with correct ordering
+5.787072,8.117222,model with correct ordering
+5.787072,9.800218,model with correct ordering
+5.787072,0.000000,rejected model
+5.787072,8.012003,model with correct ordering
+5.321628,7.154465,model with correct ordering
+5.321628,7.068105,model with correct ordering
+5.321628,7.618835,model with correct ordering
+5.321628,8.719443,model with correct ordering
+14.458064,20.619345,model with correct ordering
+14.458064,29.169432,model with correct ordering
+12.179426,13.979091,model with wrong ordering
+12.179426,13.803650,model with wrong ordering
+12.179426,13.161013,model with wrong ordering
+12.179426,14.209056,model with wrong ordering
+12.179426,13.555996,model with wrong ordering
+16.047619,19.448294,model with correct ordering
+16.047619,19.598963,model with correct ordering
+16.047619,19.418268,model with correct ordering
+16.047619,27.147603,model with correct ordering
+16.047619,19.624466,model with correct ordering
+6.257030,7.679353,model with wrong ordering
+6.257030,7.994685,model with correct ordering
+6.257030,7.974221,model with wrong ordering
+6.257030,8.085004,model with wrong ordering
+7.918508,8.390266,model with wrong ordering
+7.918508,9.127993,model with wrong ordering
+8.772941,9.537905,model with wrong ordering
+8.772941,7.546837,model with correct ordering
+8.772941,9.649135,model with wrong ordering
+18.980644,22.043921,model with correct ordering
+18.980644,22.061171,model with correct ordering
+18.980644,22.921204,model with correct ordering
+18.980644,14.989376,model with correct ordering
+6.997419,10.367607,model with correct ordering
+6.997419,1.125442,rejected model
+8.512920,10.548643,model with wrong ordering
+8.512920,10.941918,model with wrong ordering
+8.512920,10.537700,model with wrong ordering
+8.512920,9.899275,model with wrong ordering
+17.491057,19.827327,model with wrong ordering
+17.491057,17.528084,model with wrong ordering
+17.491057,18.371062,model with wrong ordering
+17.491057,19.529696,model with wrong ordering
+6.918101,3.336059,model with correct ordering
+11.241758,14.061971,model with correct ordering
+11.241758,15.196179,model with correct ordering
+11.241758,14.680698,model with correct ordering
+11.241758,15.126862,model with correct ordering
+11.241758,14.919392,model with correct ordering
+11.241758,15.623358,model with correct ordering
+9.178889,12.454188,model with correct ordering
+9.178889,14.474202,model with wrong ordering
+9.178889,14.777050,model with wrong ordering
+6.092461,7.452012,model with correct ordering
+6.092461,7.959358,model with wrong ordering
+6.092461,7.938456,model with wrong ordering
+6.092461,7.694203,model with wrong ordering
+6.092461,1.613200,rejected model
+15.118033,21.185272,model with correct ordering
+15.118033,19.495515,model with wrong ordering
+15.118033,20.868110,model with correct ordering
+15.118033,0.000000,rejected model
+6.460940,7.222600,model with correct ordering
+6.460940,7.645799,model with correct ordering
+6.057850,7.237172,model with correct ordering
+6.057850,7.506831,model with correct ordering
+6.057850,5.103062,model with wrong ordering
+16.981817,24.493318,model with correct ordering
+16.981817,23.262569,model with correct ordering
+16.981817,23.695650,model with correct ordering
+14.455173,18.476644,model with correct ordering
+14.455173,17.741915,model with correct ordering
+14.455173,18.248125,model with correct ordering
+14.455173,18.378987,model with correct ordering
+9.389231,10.713580,model with wrong ordering
+9.389231,11.037008,model with wrong ordering
+9.389231,10.759436,modelled by expert
+9.389231,9.645134,model with wrong ordering
+9.389231,10.797134,model with wrong ordering
+9.389231,11.162143,model with wrong ordering

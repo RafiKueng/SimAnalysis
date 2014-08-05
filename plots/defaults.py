@@ -249,6 +249,9 @@ tmpl.squares.contour = AttrDict({
 # the others have default values
 tmpl.rects = copyAD(args.default)
 
+tmpl.rects.figure.update({
+    'figsize'   : (6,4.5),
+})
 
 # Formatter Functions
 
@@ -335,6 +338,8 @@ args.kappaenc.update({
 
     'rEmod'     : AttrDict({'color': 'blue' , 'linestyle':'--' }),
     'rEsim'     : AttrDict({'color': 'red' ,       'linestyle':'--' }),
+
+
 })
 
 

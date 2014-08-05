@@ -21,6 +21,6 @@ expert = [p[0] for p in ratio if p[1][:6]=='expert']
 good = [p[0] for p in ratio if p[1][:4]=='good']
 many = [p[0] for p in ratio if p[1][:6]!='reject']
 
-print len(good), len(ratio)
+print len(good), len(ratio), len(expert)
 print mean(expert), std(expert)
 print mean(many), std(many)

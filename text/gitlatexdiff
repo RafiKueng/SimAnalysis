@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# Generates and compile a latexdiff tex file using an older version in a git
+# repository. The older version is stored in a file ending with -prev.tex and
+# the generated diff is in -diff.tex.
+#
+# Usage: gitlatexdiff <git log commit> [file]
+#
+# The optional 'file' argument will default to ms.tex in the current directory.
+#
+# Report problems to Jonathan Coles <jonathan@jpcoles.com>
+#
+
+# -- Feel free to change these --
+
+GIT=git
+LATEX=pdflatex
+LATEXDIFF=latexdiff
+DEFAULT=./ms                            # The ./ is important for git
+
+
+# -- One shouldn't need to change the following --
+
+REV=$1
+if [ "x$2" == "x" ]; then
+    BASETEX=$DEFAULT
+else
+    BASETEX=`basename $2 .tex`
+fi
+TEXFILE=${BASETEX}.tex
+PREVTEX=${BASETEX}-prev.tex
+DIFFTEX=${BASETEX}-diff.tex
+
+$GIT show $REV:$TEXFILE > $PREVTEX
+$LATEXDIFF $PREVTEX $TEXFILE > $DIFFTEX
+$LATEX `basename $DIFFTEX .tex`
+

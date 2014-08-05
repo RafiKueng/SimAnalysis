@@ -249,6 +249,9 @@ tmpl.squares.contour = AttrDict({
 # the others have default values
 tmpl.rects = copyAD(args.default)
 
+tmpl.rects.figure.update({
+    #'figsize'   : (6,4.5),
+})
 
 # Formatter Functions
 
@@ -320,6 +323,10 @@ args.arriv.minorc.update({
 
 # kappa enclosed for models
 args.kappaenc = copyAD(tmpl.rects)
+
+args.kappaenc.figure.update({
+    'figsize'   : (6,4.5),
+})
 args.kappaenc.addsub.update({
     'yscale'    : 'log',
 })
@@ -335,6 +342,8 @@ args.kappaenc.update({
 
     'rEmod'     : AttrDict({'color': 'blue' , 'linestyle':'--' }),
     'rEsim'     : AttrDict({'color': 'red' ,       'linestyle':'--' }),
+
+
 })
 
 
@@ -345,35 +354,39 @@ args.eR4.addsub.update({
     'yscale'    : 'log',
 })
 
-markersize = 6
+markersize = 7
 
 args.eR4.update({
     'expert'        : AttrDict({
-        'color'     :'blue',
+        'color'     :'black',
         'marker'    :'o',
-        'markerfacecolor': 'blue',
-        'markersize': markersize
+        'markerfacecolor': 'black',
+        'markersize': markersize,
+        'linestyle' : 'none',
         }),
 
     'rejected'      : AttrDict({
-        'color'     :'green',
+        'color'     :'black',
         'marker'    :'+',
 #        'markerfacecolor': 'green',
-        'markersize': markersize
+        'markersize': markersize*0.75,
+        'linestyle' : 'none',
         }),
 
     'regular'       : AttrDict({
         'color'     :'black',
         'marker'    :'o',
         'markerfacecolor': 'white',
-        'markersize': markersize
+        'markersize': markersize,
+        'linestyle' : 'none',
         }),
 
     'failed'        : AttrDict({
         'color'     :'black',
         'marker'    :'x',
 #        'markerfacecolor': 'white',
-        'markersize': markersize
+        'markersize': markersize,
+        'linestyle' : 'none',
         }),
 
     'unity'     : AttrDict({
@@ -382,10 +395,10 @@ args.eR4.update({
         }),
 
     'expertband'     : AttrDict({
-        'color': 'blue' ,
+        'color': 'black' ,
         'linestyle': 'solid',
         'linewidth' : 0,
-        'alpha': 0.5,
+        'alpha': 0.45,
         #'hatch': '/'
         }),
 
@@ -393,10 +406,23 @@ args.eR4.update({
         'color': 'black' ,
         'linestyle': 'solid',
         'linewidth' : 0,
-        'alpha': 0.3
+        'alpha': 0.25
+        }),
+
+    'legend'     : AttrDict({
+        'loc': 'lower right' ,
+        'numpoints': 1,
+        'frameon' : True,
+        'fontsize': 12,
         }),
         
 })
+
+
+
+#args.inp = AttrDict({
+#    'dim' : tmpl.squares.figure['figsize'][0] * tmpl.squares.figure['dpi']
+#})
 
 
 def set_mpl():

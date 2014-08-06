@@ -42,16 +42,34 @@ mids = "
     canvas.style.width  = '2048px';
     canvas.style.height = '2048px';
 
-    var f = 2; //scale factor for line widths ect..
+    //var f = 2; //scale factor for line widths ect..
+
+    // new element sizes
+    var scale = LMT.settings.display.zoompan.scale;
+    var mapescales = {6915: 0.632, 6919: 1.642, 7022: 0.9865, 7025: 1.112, 6990: 1.3635, 6937: 1.1265, 6941: 0.9645, 6975: 2.145}; // derrived scaling factors from map extent (0.2 is default = fact 1)
+    // using scales.py with:  {key: round(value/0.2, 6) for (key, value) in sc2.items()}
     
-    //$(".contourpath").css({stroke:"blue"})
+    var f = 0.20; // general relative scaling factor for points / contours
+    
+    //get total scale
+    //var tsc = mapescales[LMT.GET.rid] / scale * f;
+    var tsc = mapescales[LMT.GET.rid] * f;
+    
+    var cpnt = 4 * tsc ;
+    var epnt = 7 * tsc;
+    var line = 3 * tsc;
     
     $(".contourpath").each(function(){
-        var $t = $(this);
-        var sw = parseFloat($t.attr("stroke-width"));
-        $t.attr({"stroke-width": String(sw*f)});
+        $(this).attr({"stroke-width": String(line)});
     });
 
+    $(".contourpoint").each(function(){
+        $(this).attr({"r": String(cpnt)});
+    });
+    
+    $(".extremalpoint").each(function(){
+        $(this).attr({"r": String(epnt)});
+    });    
   
     // first add css to the svg!!
     // make a clone and add css to the clone

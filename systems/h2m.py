@@ -62,31 +62,43 @@ def far(asw,x,y):
     sh_str,sh_pa = float(xs[1]), float(xs[2])
     for i in range(len(x)):
         for j in range(len(y)):
-            phix,phiy = alpha_SIE(x[i],y[j],reinst,ell,ell_pa)
-            shx,shy = alpha_shear(x[i],y[j],sh_str,sh_pa)
+            phix,phiy = alpha_SIE(x[i],-y[j],reinst,ell,ell_pa)
+            shx,shy = alpha_shear(x[i],-y[j],sh_str,sh_pa)
             r = sqrt(x[i]**2+y[j]**2)
             dx[j,i] = bx - x[i] + phix + shx
-            dy[j,i] = by - y[j] + phiy + shy
+            dy[j,i] = by + y[j] + phiy + shy
     return dx,dy
 
 
 
 sim = readq()
-
 print sim['ASW0000h2m']
-N,R = 100,20
-x = linspace(-R,R,N)
-y = 1*x
-kappa,arriv = grids('ASW0000h2m',x,y)
-lum = far('ASW0000h2m',x,y)
+
 fig = figure()
 panel = fig.add_subplot(1,1,1)
 panel.set_aspect('equal')
-lo,hi = amin(arriv), amax(arriv)
-lev = linspace(lo,lo+.2*(hi-lo),100)
-panel.contour(x,y,arriv,lev)
+# kappa,arriv = grids('ASW0000h2m',x,y)
+# lo,hi = amin(arriv), amax(arriv)
+# lev = linspace(lo,lo+.2*(hi-lo),100)
+# panel.contour(y+R,x+R,arriv,lev)
+N,R = 100,20
+x = linspace(-R,R,N)
+y = 1*x
+lum = far('ASW0000h2m',x,y)
 lev = linspace(-0.01,0.01,10)
-panel.contour(x,y,lum[0],lev)
-panel.contour(x,y,lum[1],lev)
+x = 1.15*x-1.5
+y = 1.15*y+.5
+panel.contour(x+R,y+R,lum[0],lev)
+panel.contour(x+R,y+R,lum[1],lev)
+
+from pylab import imshow, plot, show
+from matplotlib.image import imread
+
+full = imread('h2m.png')
+xc = 59
+yc = 67
+R = 20
+panel.imshow(full[yc-R:yc+R+1,xc-R:xc+R+1])
+
 show()
 

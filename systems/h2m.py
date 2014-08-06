@@ -40,6 +40,7 @@ def alpha_SIE(x,y,reinst,ell,ell_pa):
     B = sqrt((1-q*q)/(q*q*x*x +y*y))
     phix = A*arctan(B*x)
     phiy = A*arctanh(B*y)
+    phix,phiy = cs*phix - sn*phiy, sn*phix + cs*phiy
     return (phix,phiy)
 
 def alpha_shear(x,y,sh_str,sh_pa):
@@ -64,9 +65,9 @@ def far(asw,x,y):
             phix,phiy = alpha_SIE(x[i],y[j],reinst,ell,ell_pa)
             shx,shy = alpha_shear(x[i],y[j],sh_str,sh_pa)
             r = sqrt(x[i]**2+y[j]**2)
-            dx[j,i] = bx - x[i] + reinst*x[i]/r
-            dy[j,i] = by - y[j] + reinst*y[j]/r
-    return dx*dx + dy*dy
+            dx[j,i] = bx - x[i] + phix + shx
+            dy[j,i] = by - y[j] + phiy + shy
+    return dx,dy
 
 
 
@@ -76,15 +77,16 @@ print sim['ASW0000h2m']
 N,R = 100,20
 x = linspace(-R,R,N)
 y = 1*x
-# kappa,arriv = grids('ASW0000h2m',x,y)
+kappa,arriv = grids('ASW0000h2m',x,y)
 lum = far('ASW0000h2m',x,y)
 fig = figure()
 panel = fig.add_subplot(1,1,1)
 panel.set_aspect('equal')
-# lo,hi = amin(lum), amax(lum)
+lo,hi = amin(arriv), amax(arriv)
+lev = linspace(lo,lo+.2*(hi-lo),100)
+panel.contour(x,y,arriv,lev)
 lev = linspace(-0.01,0.01,10)
-panel.contour(x,y,lum,lev)
-#panel.contour(x,y,lum[0],lev)
-#panel.contour(x,y,lum[1],lev)
+panel.contour(x,y,lum[0],lev)
+panel.contour(x,y,lum[1],lev)
 show()
 

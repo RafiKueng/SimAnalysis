@@ -33,5 +33,5 @@ DIFFTEX=${BASETEX}-diff.tex
 
 $GIT show $REV:$TEXFILE > $PREVTEX
 $LATEXDIFF $PREVTEX $TEXFILE > $DIFFTEX
-$LATEX `basename $DIFFTEX .tex`
+# $LATEX `basename $DIFFTEX .tex`
 

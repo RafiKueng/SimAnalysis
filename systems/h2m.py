@@ -94,7 +94,7 @@ panel.contour(x+R,y+R,lum[1],lev)
 from pylab import imshow, plot, show
 from matplotlib.image import imread
 
-full = imread('h2m.png')
+full = imread('asw/ASW0000h2m.png')
 xc = 59
 yc = 67
 R = 20

@@ -33,7 +33,8 @@ def readq():
 
 def alpha_SIE(x,y,reinst,ell,ell_pa):
     pa = ell_pa*pi/180 + pi/2
-    q = 1 - ell
+    q = sqrt((1-ell)/(1+ell))
+    reinst *= sqrt((1+q*q)/(2*q*q))
     cs,sn = cos(pa),sin(pa)
     x,y = cs*x + sn*y, -sn*x + cs*y
     A = reinst*q/sqrt(1-q*q)
@@ -86,8 +87,8 @@ x = linspace(-R,R,N)
 y = 1*x
 lum = far('ASW0000h2m',x,y)
 lev = linspace(-0.01,0.01,10)
-x = 1.15*x-1.5
-y = 1.15*y+.5
+# x = 1.15*x-1.5
+# y = 1.15*y+.5
 panel.contour(x+R,y+R,lum[0],lev)
 panel.contour(x+R,y+R,lum[1],lev)
 

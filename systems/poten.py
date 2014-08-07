@@ -3,7 +3,8 @@ from numpy import sqrt,pi,cos,sin,arctan2,arctan,arctanh,log
 # See eqns (33-35) from Keeton astro-ph/0102341
 def poten_SIE(x,y,reinst,ell,ell_pa):
     pa = ell_pa*pi/180 + pi/2
-    q = 1 - ell
+    q = sqrt((1-ell)/(1+ell))
+    reinst *= sqrt((1+q*q)/(2*q*q))
     cs,sn = cos(pa),sin(pa)
     x,y = cs*x + sn*y, -sn*x + cs*y
     A = reinst*q/sqrt(1-q*q)

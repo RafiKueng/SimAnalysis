@@ -29,8 +29,8 @@ def draw(asw,xc,yc):
     panel.imshow(swsquare[yc-R:yc+R+1,xc-R:xc+R+1])
     lo,hi = amin(arriv), amax(arriv)
     lev = linspace(lo,lo+.2*(hi-lo),100)
-    x = 1.2*x
-    y = 1.2*y
+#    x = 1.2*x
+#    y = 1.2*y
     panel.contour(x+R,-y+R,arriv,lev)
     show()
 

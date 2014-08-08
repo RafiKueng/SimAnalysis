@@ -11,6 +11,10 @@ should run in this folder /plots, doens't do much by default, you need
 to call some command after importing this module that anything happens.
 Needs the whole repro to be checked out. (folders /spaghetti and /systems)
 
+FORMAT OF PLOTS:
+all the formatting is done in defaults.py! have a look there
+
+
 either:
   use python in interactive mode:
   python -i -c "import gen_plots"
@@ -25,17 +29,21 @@ available commands are:
 - run():
   does all the work below
   
-- all_sim_plot()
-  creates all the simulation data plots ('real' data)
+- sel_sim_plots() / sel_mod_plots()
+  plot only the selected simulations / models
+  (the others probably don't work any more due to missing hardcoed meta data)
   
-- all_mod_plots()
-  creates all the results / modells plots
-  (server side created plots get grabbed from internet)
-  
-- all_tex()
-  assumes the plots are already created (under /plots)
-  creates all the tex files and copies the relevant files
-  to the tex folder
+#- all_sim_plot() !!!BROKEN (probably)
+#  creates all the simulation data plots ('real' data)
+#  
+#- all_mod_plots() !!!BROKEN (probably)
+#  creates all the results / modells plots
+#  (server side created plots get grabbed from internet)
+#  
+#- all_tex() !!!BROKEN (probably) and not up to date anyways
+#  assumes the plots are already created (under /plots)
+#  creates all the tex files and copies the relevant files
+#  to the tex folder
 
 by just calling the script from command line:
   python gen_plots
@@ -68,9 +76,8 @@ import matplotlib as mpl
 
 import PIL
 
+# do this befor importing pylab or pyplot!
 import defaults
-
-
 defaults.set_mpl()
 kw = defaults.args
 
@@ -97,7 +104,7 @@ exts = kw.exts
 #figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
-outdir = 'figs_new5'
+outdir = 'figs_aug8'
 
 #select sims to produce plots for (using sel_sim_plots())
 sel_sim = [
@@ -405,67 +412,138 @@ scales['ASW0000h2m'][7025] = {
 
 
 
-# copy paste output from systems/many2.py and manualy select appropriate
+# copy paste output from systems/extrpoint_detection.py and manualy select appropriate
 levels = {
+#
+#    'ASW0001hpf':[
+#        #-16.142110, # 0, canc
+#        -16.141714, # 1, sad
+#        #-16.361394, # 2, sad
+#        -14.334876, # 3, sad
+#        #-16.592044, # 4, min
+#        #-19.762615, # 5, min
+#        #-0.101102, # 6, max
+#    ],
+#
+#    'ASW0002z6f':[
+#        -162.471264, # 0, sad
+#        #-172.294899, # 1, sad
+#        #-184.197987, # 2, min
+#        #-116.410651, # 3, max
+#    ],
+#
+#    'ASW0000vqg':[
+#        #-190.133668, # 0, sad
+#        #345.775218, # 1, sad
+#        -238.205802, # 2, sad
+#        #-276.154188, # 3, min
+#        #-221.944628, # 4, max
+#    ],
+#
+#    'ASW000102p':[
+#        -21.963930, # 0, sad
+#        #-60.054127, # 1, min
+#        #1.977912, # 2, max
+#    ],
+#
+#    'ASW000195x':[
+#        -682.197488, # 0, sad
+#        #-812.917806, # 1, min
+#        #-643.822578, # 2, max
+#    ],
+#
+#    'ASW0004oux':[
+#        -174.988464, # 0, sad
+#        -159.098235, # 1, sad
+#        #-177.867092, # 2, min
+#        #-178.550062, # 3, min
+#        #-125.416518, # 4, max
+#    ],
+#
+#    'ASW0000h2m':[
+#        #-44.048133, # 0, sad
+#        #-44.044997, # 1, canc
+#        -44.044446, # 2, canc
+#        #-44.046207, # 3, canc
+#        #-44.049515, # 4, canc
+#        #-44.452050, # 5, sad
+#        #-48.079721, # 6, sad
+#        -39.369070, # 7, sad
+#        #-44.839509, # 8, min
+#        #-48.080767, # 9, min
+#        #-0.206511, # 10, max
+#    ],
+
+
 
     'ASW0001hpf':[
-        #-16.142110, # 0, canc
-        -16.141714, # 1, sad
-        #-16.361394, # 2, sad
-        -14.334876, # 3, sad
-        #-16.592044, # 4, min
-        #-19.762615, # 5, min
-        #-0.101102, # 6, max
+        #-20.723308, # 0, canc
+        #-20.980254, # 1, sad
+        -20.723287, # 2, sad
+        #-21.015899, # 3, canc
+        -18.680330, # 4, sad
+        #-21.306952, # 5, min
+        #-24.899922, # 6, min
+        #-0.122513, # 7, max
     ],
 
     'ASW0002z6f':[
-        -162.471264, # 0, sad
-        #-172.294899, # 1, sad
-        #-184.197987, # 2, min
-        #-116.410651, # 3, max
+        #-213.831700, # 0, sad
+        -200.480363, # 1, sad
+        -209.345014, # 2, sad
+        #-209.792586, # 3, sad
+        #-210.299608, # 4, sad
+        #-210.328549, # 5, canc
+        #-210.349532, # 6, canc
+        #-210.359743, # 7, sad
+        #-218.290059, # 8, min
+        #-210.363011, # 9, min
+        #-137.773558, # 10, max
     ],
 
     'ASW0000vqg':[
-        #-190.133668, # 0, sad
-        #345.775218, # 1, sad
-        -238.205802, # 2, sad
-        #-276.154188, # 3, min
-        #-221.944628, # 4, max
+        #-226.837290, # 0, sad
+        #308.125675, # 1, sad
+        -267.577318, # 2, sad
+        #-304.607939, # 3, min
+        #-245.708129, # 4, max
     ],
 
     'ASW000102p':[
-        -21.963930, # 0, sad
-        #-60.054127, # 1, min
-        #1.977912, # 2, max
+        -27.186385, # 0, sad
+        #-68.288541, # 1, min
+        #1.957616, # 2, max
     ],
 
     'ASW000195x':[
-        -682.197488, # 0, sad
-        #-812.917806, # 1, min
-        #-643.822578, # 2, max
+        -859.281277, # 0, sad
+        #-1046.410019, # 1, min
+        #-836.439582, # 2, max
     ],
 
     'ASW0004oux':[
-        -174.988464, # 0, sad
-        -159.098235, # 1, sad
-        #-177.867092, # 2, min
-        #-178.550062, # 3, min
-        #-125.416518, # 4, max
+        -196.094788, # 0, sad
+        -178.625345, # 1, sad
+        #-200.387454, # 2, min
+        #-200.896926, # 3, min
+        #-129.546717, # 4, max
     ],
 
     'ASW0000h2m':[
-        #-44.048133, # 0, sad
-        #-44.044997, # 1, canc
-        -44.044446, # 2, canc
-        #-44.046207, # 3, canc
-        #-44.049515, # 4, canc
-        #-44.452050, # 5, sad
-        #-48.079721, # 6, sad
-        -39.369070, # 7, sad
-        #-44.839509, # 8, min
-        #-48.080767, # 9, min
-        #-0.206511, # 10, max
+        -54.226760, # 0, sad
+        #-54.225679, # 1, canc
+        #-54.226529, # 2, canc
+        #-54.597835, # 3, sad
+        #-54.618094, # 4, canc
+        #-54.638390, # 5, canc
+        #-54.674506, # 6, canc
+        -48.994966, # 7, sad
+        #-55.084263, # 8, min
+        #-58.618374, # 9, canc
+        #-58.617934, # 10, min
+        #-0.235501, # 11, max
     ],
+
 
 
 }
@@ -1751,11 +1829,11 @@ def plotAllRE():
     # add bands
     bx = np.linspace(xlims[0], xlims[1], 100)
     
-    be1 = 1.12 * bx
-    be2 = 1.28 * bx
+    be1 = 1.0026162996559 * bx
+    be2 = 1.1865355710441 * bx
     
-    br1 = 1.05 * bx
-    br2 = 1.45 * bx
+    br1 = (1.10824949996-0.151587532046) * bx
+    br2 = (1.10824949996+0.151587532046) * bx
     
     ax.fill_between(bx, be1, be2, **kw.eR4.expertband)
     ax.fill_between(bx, br1, br2, **kw.eR4.regularband)

@@ -90,8 +90,10 @@ def grids(asw,x,y):
     kappa /= 2*dx*dx
     return (kappa,basic-poten)
 
-def draw(asw):
-    print "\n    '%s':["%asw
+def draw(asw, return_dict):
+    
+    # print "\n    '%s':["%asw
+    restxt = ["\n    '%s':["%asw]
     N,R = 1000,50
     if sim[asw][0] == 'quasar':
         flag,R = 'Q',20
@@ -175,10 +177,12 @@ def draw(asw):
       yy=yids[i]
       t=types[i]
       #print i, xx, yy, t, typestr[t], s1[i], s2[i], arriv[xx,yy]
-      print "        %s%f, # %i, %s" % ("#" if typestr[t]!="sad" else "", arriv[xx,yy], i, typestr[t])
+      #print "        %s%f, # %i, %s" % ("#" if typestr[t]!="sad" else "", arriv[xx,yy], i, typestr[t])
+      restxt.append("        %s%f, # %i, %s" % ("#" if typestr[t]!="sad" else "", arriv[xx,yy], i, typestr[t]))
       
       pnttype[xx,yy]=t
-    print "    ],"
+    #print "    ],"
+    restxt.append("    ],")
     
     #return mask
     if False:
@@ -243,6 +247,9 @@ def draw(asw):
       
       #show()
       savefig(folder+asw+flag+'_all.png')
+      
+    return_dict[asw] = restxt
+    return restxt
         
     
 
@@ -434,12 +441,64 @@ sel_sim = [
     'ASW0002z6f',
 ]
     
-folder = 'figs3/'
-for asw in sim:
-    if asw not in sel_sim: continue
-    #print asw
-    #if not asw.endswith('0kad'): continue
-    draw(asw)
-    #break
 
+folder = 'figs4/'
 
+from multiprocessing import Manager, Pool, Process
+
+if __name__ == '__main__':   
+    
+    #procs = []
+    manager = Manager()
+    
+    return_dicts = []
+    #for i,_ in enumerate(sel_sim):
+    #    return_dicts.append(manager.dict())
+    return_dict = manager.dict()
+    pool = Pool(processes=4)
+    res = []
+    
+    print "starting up"
+    
+    for i, asw in enumerate(sim):
+        if asw not in sel_sim: continue
+        print "%i: starting %s"%(i,asw)
+        #if not asw.endswith('0kad'): continue
+        #draw(asw)
+        #break
+        
+        r = pool.apply_async(draw, [asw, return_dict])
+        res.append((asw, r))
+
+#        p = Process(target=draw, args=(asw,None))
+#        res.append((asw, p))
+#        p.start()
+    
+    
+    print "waiting for results"
+    cont = True
+    for asw, r in res:
+        print "%s |" % asw[-4:],
+    print ":::::::::::"
+    while cont:
+        cont = False
+        
+        for asw, r in res:
+            r.wait(2)
+            rdy = r.ready()
+            print (' RDY |' if rdy else " NOT |"),
+            
+            if not rdy:
+                cont = True
+        print "..."
+        
+    for _, r in res:
+        print '\n'.join(r.get())
+            
+            
+            
+        
+        
+        
+        
+        

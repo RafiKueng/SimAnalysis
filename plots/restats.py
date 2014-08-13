@@ -17,9 +17,9 @@ while True:
 
 ratio = map(lambda p: [float(p[1])/float(p[0]),p[2]],full)
 
-expert = [p[0] for p in ratio if p[1][:-1]=='modelled by expert']
-good = [p[0] for p in ratio if p[1][:-1]=='model with correct ordering']
-many = [p[0] for p in ratio if p[1][:-1]!='rejected model']
+expert = [p[0] for p in ratio if p[1][:-2]=='modelled by expert']
+good = [p[0] for p in ratio if p[1][:-2]=='model with correct ordering']
+many = [p[0] for p in ratio if p[1][:-2]!='rejected model']
 
 print len(good), len(ratio), len(expert)
 print mean(expert), std(expert)

@@ -89,7 +89,7 @@
 % todo annotations on side in red. easy to search for at the end
 % !!! REMOVE THIS LINES FOR FINAL COMPILE
 %
-\usepackage{setspace}    % remove this pgk for final compile!! 
+\usepackage{setspace}    % remove this pgk for final compile!!
 \usepackage{color}    % well... color...
 
 %\newcommand{\todo}[2][red]{%
@@ -172,11 +172,11 @@ robust: the model-derived Einstein radii found by the volunteers were
 consistent with those produced by one of the professional team,
 suggesting that given the appropriate tools, gravitational lens
 modelling is a data analysis activity that can be crowd-sourced to
-good effect. Shortcomings of the software implementation 
+good effect. Shortcomings of the software implementation
 include (a)~lens profiles that tend to be systematically shallower
 than the lenses, leading to systematic over-estimation of the
 Einstein radius by $\sim10\%$, and (b)~lack of detailed
-arc modelling.  Ideas for improvement are discussed. 
+arc modelling.  Ideas for improvement are discussed.
 
 \end{abstract}
 
@@ -245,7 +245,7 @@ automatically-generated sample, for quality control.  Robots can be
 built to be good at detecting clean lensing system in uncrowded fields
 with high signal-to-noise, but in more general test situations robots
 miss lenses (low completeness) or contaminate the results with
-non-lenses (low purity) \citep{Marshall2009}. 
+non-lenses (low purity) \citep{Marshall2009}.
 
 The encouraging early results from the first \sw lens search,
 carried out on the  $\simeq172$ square degree Canada-France-Hawaii
@@ -256,7 +256,7 @@ so, modelling could help assess prioritise lens candidates at an early
 stage, which would be very useful with new wide-field and sensitive
 surveys, which will yield thousands of lens candidates. There are
 several software tools for lensing modelling available, and work has
-been done on generic interfaces \citep[e.g.][]{2014A&C.....5...28L}. 
+been done on generic interfaces \citep[e.g.][]{2014A&C.....5...28L}.
 Indeed, some early designs for \sw included a prototype lens modelling
 tool \citep{2010AAS...21543527N}. Moreover, some \sw volunteers are
 quite experienced from earlier projects, having spent a thousand hours
@@ -323,9 +323,9 @@ We first explain the lensing theory relevant to \spl, following the
 formulation of gravitational lensing in terms of Fermat's principle by
 \cite{1986ApJ...310..568B}.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-\subsection{Geometrical and gravitational time delays} 
+\subsection{Geometrical and gravitational time delays}
 
 Consider a lens at some redshift $z_L$ and let $(x,y)$ be planar
 coordinates at the lens, transverse to the line of sight.  Let
@@ -400,7 +400,7 @@ Appendix~\ref{more-theory}.
 \end{figure}
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{Arrival-time contours} \label{sec:arriv}
 
@@ -449,7 +449,7 @@ always too faint to see. The minima and saddle points dominate.
 
 % ====================================================================
 
-\section{A lens-modelling program} 
+\section{A lens-modelling program}
 \label{sec:SpaghettiLens}
 
 \spl is not part of \sw, but it makes use of the \sw infrastructure,
@@ -457,7 +457,7 @@ in particular, the image database and the discussion
 forum.\footnote{\tt http://talk.spacewarps.org}  The forum is
 essential for establishing contact between interested members of the
 \sw community and the project science team, and then for enabling
-collaboration between them. We were able to collaborate together on 
+collaboration between them. We were able to collaborate together on
 modelling objects from \sw in the usual style of medium-sized
 astronomical collaborations, with video-conferencing and in-person
 meetings where possible. Preliminary results were immediately
@@ -469,7 +469,7 @@ was made welcome to join at any time.
 % comment on how scalable this approach to modeling is.}
 
 
-% PJM: The following paragraph is not accurate: the manipulation of 
+% PJM: The following paragraph is not accurate: the manipulation of
 %  FITS images in the Tools viewer, for example, is done client side.
 %  In future I very much hope to see lens modeling enabled in this
 %  mode as well!
@@ -489,7 +489,7 @@ of diagnostics and possible discussion.  We now describe each of
 these.
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{Image markup}
 
@@ -533,7 +533,7 @@ galaxy.  The user can, however, mark additional minor galaxies: these
 are modelled as point masses, the mass being fitted by the program along
 with the rest of the mass distribution.
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{Numerics}
 
@@ -575,9 +575,9 @@ call a \spl model is really the mean of an ensemble of 200 models, and
 its estimated uncertainty is the range covered by the whole ensemble.
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-\subsection{Diagnostics} 
+\subsection{Diagnostics}
 \label{sec:diag}
 
 After the model ensemble has been generated, \spl post-processes it to
@@ -623,7 +623,7 @@ models.
 % \footnote{See ``Collaborative gravitational lens
 % modelling\dots'' in {\tt http://letters.zooniverse.org} for an
 % example.}
-\footnote{See the ``collaborative modelling'' thread at 
+\footnote{See the ``collaborative modelling'' thread at
 {\tt http://talk.spacewarps.org} for an example.}
 % TODO: fix url!
 
@@ -651,7 +651,7 @@ spaghetti diagrams were correct for the lens in question, and a
 comparison of the effective Einstein radii of the sims and the models.
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{The simulated lenses} \label{sec:sims}
 
@@ -682,7 +682,7 @@ $\gamma$ term in equation (76).
   \centering
   \includegraphics[width=\myplotswidth]{fig/006941_input}
   \includegraphics[width=\myplotswidth]{fig/006941_arr_time_ipol} \\
-  \includegraphics[width=\myplotswidth]{fig/ASW000102p_006941_arriv} 
+  \includegraphics[width=\myplotswidth]{fig/ASW000102p_006941_arriv}
   \includegraphics[width=\myplotswidth]{fig/006941_spaghetti} \\
   \includegraphics[width=\myplotswidth]{fig/ASW000102p_006941_kappa}
   \includegraphics[width=\myplotswidth]{fig/006941_mass}
@@ -697,7 +697,7 @@ $\gamma$ term in equation (76).
 
 \begin{figure}
   \centering
-  
+
   \includegraphics[width=\myplotswidth]{fig/006990_input}
   \includegraphics[width=\myplotswidth]{fig/006990_arr_time_ipol} \\
   \includegraphics[width=\myplotswidth]{fig/ASW0004oux_006990_arriv}
@@ -759,7 +759,7 @@ $\gamma$ term in equation (76).
     }
   \label{fig:6975}
 \end{figure}
-  
+
 \begin{figure}
   \centering
 
@@ -820,7 +820,7 @@ stage, AM released the details of the sims for post-modelling
 analysis.  Results from the latter now follow.
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{Some example models} \label{sec:example_models}
 
@@ -843,7 +843,7 @@ presented during the original experiment was more rough. The two plots in
 the middle showing $t(x,y)$ have uniform, but arbitrary spaced contour lines.
 The $\kappa(x,y)$ plots in the bottom row show solid lines for $\kappa>1$
 and dashed lines for $\kappa<1$. The spacing is logarithmic, with 10 contours
-for every decade --- that means contour spacing is a quarter magnitude in 
+for every decade --- that means contour spacing is a quarter magnitude in
 optical terms.
 
 Let us now consider these cases in turn.
@@ -922,7 +922,7 @@ Let us now consider these cases in turn.
 \end{itemize}
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{Test of image identification} \label{sec:tests.t1}
 
@@ -1022,7 +1022,7 @@ section.
 \end{figure}
 
 
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 \subsection{Test of mass-profile recovery} \label{sec:tests.t2}
 
@@ -1087,7 +1087,7 @@ the performance of the \spl interface and its users by comparing their
 results with the  Einstein radii of \spl models made by an expert
 (PS). Discounting the models which were flagged by the volunteers as
 poor, the mean Einstein radius overestimate was 10\%, with a 15\%
-standard deviation (shown by the light grey band in \Figref{ER_per_sim}). 
+standard deviation (shown by the light grey band in \Figref{ER_per_sim}).
 The expert models show a similar bias,
 with standard deviation 10\% (the dark grey band in \Figref{ER_per_sim}).
 One source of this systematic error is that it is difficult to center
@@ -1139,7 +1139,7 @@ There is, however, plenty of room for improvement:
   model has been generated, is algorithmically straightforward
   \citep[cf.][]{2003ApJ...590..673W,2006MNRAS.371..983S} and planned
   to be implemented.  This would alleviate another problem with \spl,
-  which is that there is as yet no quantitative figure of merit for 
+  which is that there is as yet no quantitative figure of merit for
   any given model: assessment of each model is a judgment call based
   on the synthetic image, and on whether the mass distribution and the
   arrival-time surface show suspicious features.
@@ -1153,7 +1153,7 @@ There is, however, plenty of room for improvement:
   and Figure 4b in \cite{2003ApJ...590...39K}.
 \item At present, a single false-color composite is used as the data.
   An option could be added to use all available filters, individually
-  or in combination, at the user wishes. 
+  or in combination, at the user wishes.
 \item As mentioned above, the option of revising an already-archived
   model is already available.  Desired now are tools for comparing
   different models of a given system, both visually and through
@@ -1229,7 +1229,7 @@ d_{LS} = \frac{c}{H_0}\,\frac1{1+z_S} \,
 \int_{z_L}^{z_S} \!\! \frac{dz}{\sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}}
 %\raise.5ex\hbox{.}
 \end{equation}
-and similarly $d_L$ and $d_S$.  
+and similarly $d_L$ and $d_S$.
 
 The first line of equation \eqref{cfBN86} is $t_{\rm geom}$ from
 equation \eqref{eq:tgeom} with the proportionality filled in, and with

@@ -1,6 +1,4 @@
 *.png
 *.txt
 *.tex
-figs/
-figs_new/
-figs_new?/
+figs*/

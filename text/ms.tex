@@ -20,7 +20,7 @@
 
 \usepackage{amsmath}
 \usepackage{xspace}     % fixes spaces after custom commands
-\usepackage{float}      % exact placement of figures (using \begin{figure}[H])
+%\usepackage{float}      % exact placement of figures (using \begin{figure}[H])
 \usepackage[section,below]{placeins}   % gives a \FloatBarrier to force all floats to appear
 \usepackage{subfigure}  % does what it says
 \usepackage{hyperref}
@@ -30,7 +30,8 @@
 \DeclareGraphicsExtensions{%
   .pdf,.PDF,%
   .png,.PNG,%
-  .jpg,.mps,.jpeg,.jbig2,.jb2,.JPG,.JPEG,.JBIG2,.JB2}
+  .jpg,.mps,.jpeg,.jbig2,.jb2,.JPG,.JPEG,.JBIG2,.JB2 %
+}
 
 \newcommand{\apj}{ApJ}
 \newcommand{\apjs}{ApJS}
@@ -45,19 +46,16 @@
 \newcommand{\nat}{Nature}
 \newcommand{\nar}{New Astr Rev}
 
-\def\half{{\textstyle\frac12}}
+%\def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
 \newcommand{\sw}{SpaceWarps\xspace}
 
 % shortcut for einstein radius (Text Greek Full Math)
 \newcommand{\ERf}[1][]{$\Theta_\text{E#1}$\xspace} % full output
-
 %\newcommand{\ER}{Einstein radius\xspace} % text
 %\newcommand{\ERg}[1][]{$\Theta_{\text{E#1}}$\xspace} % er in textmode with greek
 %\newcommand{\ERm}[1][]{\Theta_\text{E#1}} % mathmode with greek symbol
-
-%shortcuts for kappa
 %\newcommand{\kenc}[1][r]{$\kappa_\text{encl}(#1)$\xspace}
 %\newcommand{\kap}[1][r]{$\kappa(#1)$\xspace}
 
@@ -79,8 +77,6 @@
 
 %degrees
 \newcommand{\dgr}{^{\circ}}
-
-%more abbrevs
 \newcommand{\tgeom}{t_{\rm geom}}
 \newcommand{\tgrav}{t_{\rm grav}}
 \newcommand{\subcirc}{{\lower.33ex\hbox{$\circ$}}}
@@ -88,34 +84,6 @@
 
 \usepackage{color}
 
-% % todo annotations on side in red. easy to search for at the end
-% % !!! REMOVE THIS LINES FOR FINAL COMPILE
-% %
-% %\usepackage{setspace}    % remove this pgk for final compile!!
-% %\usepackage{color}    % well... color...
-% 
-% %\newcommand{\todo}[2][red]{%
-% %\textcolor{#1}{\textbullet}%
-% %\marginpar{\colorbox{#1}{\parbox{\marginparwidth}{%
-% %\setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{#2}}}}}}
-% 
-% \newcommand{\needfig}[1][]{%
-% \colorbox{yellow}{\parbox{0.5\textwidth}{%
-% \vspace{0.5cm}\setstretch{0.5}\textcolor{black}{\scriptsize{fig #1}}\vspace{0.5cm}}}%
-% \marginpar{\colorbox{yellow}{\parbox{\marginparwidth}{%
-% \setstretch{0.4}\sffamily\textcolor{black}{\scriptsize{fig}}}}}}
-% 
-% \setlength{\marginparsep}{0mm}
-% \setlength{\marginparwidth}{2.2cm}
-% 
-% \newcommand{\needcite}[1][]{\todo[green]{cit #1}}
-% \newcommand{\needref}[1][]{\todo[cyan]{ref #1}}
-% \newcommand{\needchk}[1][]{\todo[red]{chk #1}}
-% 
-% \definecolor{purple}{RGB}{150,0,200}
-% \newcommand{\phil}[1]{\noindent\textcolor{purple}{\bf #1}}
-
-% \\\ END OF REMOVAL SECION
 
 \newlength{\myplotswidth}
 \setlength{\myplotswidth}{0.4\linewidth}
@@ -131,24 +99,27 @@
 \author[Küng et al]{Rafael Küng,$^{1}$
 Prasenjit Saha,$^{1}$
 Elisabeth Baeten,$^{2}$
+Jonathan Coles,$^{3}$
+\newauthor
 Claude Cornen,$^{2}$
-\newauthor
 Christine Macmillan,$^{2}$
-Julianne Wilcox,$^{2}$
-Jonas Odermatt,$^{3}$
-Jonathan Coles,$^{4}$
+Phil Marshall$^{4}$ 
+Anupreeta More,$^{5}$
 \newauthor
-Aprajita Verma,$^{5}$
-Anupreeta More,$^{6}$
-Surhud More,$^{6}$
-and Phil Marshall$^{7}$ \\
+Surhud More,$^{5}$
+Jonas Odermatt,$^{6}$
+Aprajita Verma,$^{7}$
+and Julianne Wilcox,$^{2}$
+%
+\\
+%
 $^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland\\
 $^{2}$The Space Warps Collaboration\\
-$^{3}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
-$^{4}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France\\
-$^{5}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
-$^{6}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
-$^{7}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
+$^{3}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France\\
+$^{4}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
+$^{5}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
+$^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
+$^{7}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
 }
 
 \maketitle

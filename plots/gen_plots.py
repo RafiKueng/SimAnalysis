@@ -104,7 +104,7 @@ exts = kw.exts
 #figsizeKE = (10,8)
 
 # realtive to plots dir, incase of debug
-outdir = 'figs_aug8'
+outdir = 'figs_09-16'
 
 #select sims to produce plots for (using sel_sim_plots())
 sel_sim = [

@@ -47,6 +47,9 @@ Backup[ ]of[ ]*.numbers/
 #meld backups
 *.orig
 
+# project files
+*.kilepr
+
 # texnic center temp settings
 *.tps
 msdiff.tex

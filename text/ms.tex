@@ -98,26 +98,26 @@
 
 \author[Küng et al]{Rafael Küng,$^{1}$
 Prasenjit Saha,$^{1}$
-Elisabeth Baeten,$^{2}$
-Jonathan Coles,$^{3}$
+Anupreeta More,$^{2}$
+Elisabeth Baeten,$^{3}$
 \newauthor
-Claude Cornen,$^{2}$
-Christine Macmillan,$^{2}$
-Phil Marshall$^{4}$ 
-Anupreeta More,$^{5}$
+Jonathan Coles,$^{4}$
+Claude Cornen,$^{3}$
+Christine Macmillan,$^{3}$
+Phil Marshall,$^{5}$ 
 \newauthor
-Surhud More,$^{5}$
+Surhud More,$^{2}$
 Jonas Odermatt,$^{6}$
-Aprajita Verma,$^{7}$
-and Julianne Wilcox,$^{2}$
+Aprajita Verma$^{7}$
+and Julianne Wilcox$^{3}$
 %
 \\
 %
-$^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057, Zurich, Switzerland\\
-$^{2}$The Space Warps Collaboration\\
-$^{3}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France\\
-$^{4}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
-$^{5}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
+$^{1}$Physik-Institut, University of Zurich, 190 Winterthurerstrasse, 8057 Zurich, Switzerland\\
+$^{2}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
+$^{3}$The SpaceWarps Collaboration\\
+$^{4}$Exascale Computing Lab, Versailles Saint-Quentin-en-Yveline University, 55 Avenue des Etats Unis, 78000, Versailles, France\\
+$^{5}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
 $^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
 $^{7}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
 }
@@ -127,13 +127,13 @@ $^{7}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
 \begin{abstract}
 
 We develop a method to enable collaborative modelling of gravitational
-lenses, and lens candidates, by non-professional lens enthusiasts.  It
+lenses and lens candidates by non-professional lens enthusiasts.  It
 uses an existing free-form modelling program (GLASS), but
 enables the input to this code to be provided in a novel way,
 via a user-provided diagram that is essentially a sketch of an
 arrival-time surface.
 
-An implementation of this method, \spl is tested in a modelling
+An implementation of this method, \spl, is tested in a modelling
 challenge using 29 simulated lenses drawn from the set created
 for the \sw citizen-science lens search.  We find that
 volunteers from this online community asserted the image
@@ -182,11 +182,11 @@ parameters \citep{1964MNRAS.128..307R,1966MNRAS.132..101R}, but
 apparently nobody was expecting that lenses would need detailed
 modelling.  The first observations, however, immediately stimulated
 models.  The reason for that lies in the image separation. Recall that
-image separations are of order the angular Einstein radius
+image separations are of order of the angular Einstein radius
 \begin{equation}
 \sim \left(\frac{4GM}{c^2 D_L}\right)^{1/2}
 \simeq 0.1'' \left(\frac{M}{M_\odot}\right)^{1/2}
-             \left(\frac{D_L}{\rm pc}\right)^{-1/2}
+             \left(\frac{D_L}{\rm pc}\right)^{-1/2},
 \end{equation}
 where $D_L$ is the distance to the lens, and $M$ its mass.  A lensing
 galaxy with $M\sim10^{11}M_\odot$ at $10^9\rm\,pc$ would cause image
@@ -211,7 +211,7 @@ another ten or a hundred fold \citep[see
 e.g.][]{Marshall2005,OguriMarshall2010}, with both automated and
 visual search techniques proposed
 \citep[e.g.][]{Marshall2009,More2012ApJ,Gavazzi2014}. For example, \sw
-(Marshall et al, in prep, More et al, in prep) is a citizen science
+(Marshall et al, in prep; More et al, in prep) is a citizen science
 project\footnote{\url{http://www.spacewarps.org}} in which volunteers
 are presented sky-survey images and invited to identify lens
 candidates, by eye.  Simulated lenses are mixed in with the data,
@@ -230,7 +230,7 @@ non-lenses (low purity) \citep{Marshall2009}.
 The encouraging early results from the first \sw lens search,
 carried out on the  $\simeq172$ square degree Canada-France-Hawaii
 Telescope Legacy Survey (CFHTLS) imaging by over 30,000 volunteers
-(Marshall et al, in prep, More et al, in prep) prompted the question:
+(Marshall et al, in prep; More et al, in prep) prompted the question:
 could the modelling of the lenses also be done by the volunteers?  If
 so, modelling could help assess prioritise lens candidates at an early
 stage, which would be very useful with new wide-field and sensitive
@@ -325,7 +325,7 @@ a direction change would increase the light travel time compared to
 coming through $(x_s,y_s)$.  The increased light travel time from the
 geometry of deflection would be
 \begin{equation} \label{eq:tgeom}
-\tgeom(x,y) \propto (x-x_s)^2 + (y-s_y)^2 \,.
+\tgeom(x,y) \propto (x-x_s)^2 + (y-s_y)^2 ,
 \end{equation}
 assuming the delay is small compared to the total light travel time.
 
@@ -527,7 +527,7 @@ extremely under-determined --- there are infinitely many mass
 distributions that will reproduce a given set of maxima, minima and
 saddle points, but typically they (a)~produce lots of extra images,
 and (b)~look very unlike galaxies.  Additional assumptions (a prior)
-are necessary.  GLASS uses the following prior
+are necessary.  GLASS uses the following priors
 \citep[cf.][]{1997MNRAS.292..148S,2008ApJ...679...17C}.
 \begin{enumerate}
 \item The mass distribution is built out of non-negative tiles of
@@ -585,8 +585,8 @@ whereas an irregular or checkboard pattern in the mass map signals a
 bad model.
 
 After examining this feedback, the user can choose to save the
-model to the \spl archive, at which point it is assigned a unique
-URL.  They can also modify their input and try again, or discard the
+model to the \spl archive, at which point it is assigned an unique
+URL.  He can also modify his input and try again, or discard the
 attempt altogether.  After archiving, there can be discussion among
 modellers, through the \sw forum or by any other means, and revision
 of the model.  This is achieved simply by sharing the model's

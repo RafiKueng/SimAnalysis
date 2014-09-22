@@ -322,6 +322,8 @@ args.arriv.minorc.update({
 
 
 # kappa enclosed for models
+fs  = 16
+fs2 = fs*0.8
 args.kappaenc = copyAD(tmpl.rects)
 
 args.kappaenc.figure.update({
@@ -337,13 +339,13 @@ args.kappaenc.update({
     'min'       : AttrDict({'color': 'black' , 'linestyle':':' }),
     'max'       : AttrDict({'color': 'black'  , 'linestyle':':' }),
     'sad'       : AttrDict({'color': 'black', 'linestyle':':' }),
-    'text'      : AttrDict({'ha': 'left', 'va':'bottom' }),
+    'text'      : AttrDict({'ha': 'left', 'va':'bottom', 'size': fs }),
     'unity'     : AttrDict({'color': 'black' , 'linestyle':':' }),
 
     'rEmod'     : AttrDict({'color': 'blue' , 'linestyle':'--' }),
     'rEsim'     : AttrDict({'color': 'red' ,       'linestyle':'--' }),
-
-
+    'label'     : AttrDict({'fontsize': fs }),
+    'ticklabel' : AttrDict({'labelsize': fs2 }),
 })
 
 
@@ -355,6 +357,8 @@ args.eR4.addsub.update({
 })
 
 markersize = 7
+fs  = 12
+fs2 = fs*0.8
 
 args.eR4.update({
     'expert'        : AttrDict({
@@ -392,7 +396,7 @@ args.eR4.update({
     'unity'     : AttrDict({
         'color': 'black' ,
         'linestyle':'--',
-        'linewidth' : 2,
+        'linewidth' : 1,
        
         }),
 
@@ -415,9 +419,11 @@ args.eR4.update({
         'loc': 'lower right' ,
         'numpoints': 1,
         'frameon' : True,
-        'fontsize': 12,
+        'fontsize': fs2,
         }),
         
+    'label'     : AttrDict({'fontsize': fs }),
+    'ticklabel' : AttrDict({'labelsize': fs2 }),
 })
 
 

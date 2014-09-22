@@ -171,6 +171,7 @@ sys.path.append(os.path.join(pardir, 'systems'))
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import LogFormatter
+import matplotlib.ticker
 
 plt.ioff()
 
@@ -1386,6 +1387,7 @@ def draw_sim(asw, sim):
     #for f in filenames: print '  - %s'%(f+'.'+repr(exts))
 
 
+
 def draw_mod(mid, elem, data, sims):
 #def plot2(idd, count):
   plt.close("all")
@@ -1442,6 +1444,9 @@ def draw_mod(mid, elem, data, sims):
   
   yvals_extr = np.logspace(np.log10(3.5),np.log10(1),8)
   ypos_theta = np.logspace(np.log10(7),np.log10(5),4)
+
+  yvals_extr = np.logspace(np.log10(3),np.log10(0.7),8)
+  ypos_theta = np.logspace(np.log10(5),np.log10(3.5),4)
   
   # text offsets and properties
   t_dx = 0.0
@@ -1453,7 +1458,7 @@ def draw_mod(mid, elem, data, sims):
     
   #pl.ioff()
   fig = plt.figure(**kw.kappaenc.figure)
-  fig.add_subplot(1,1,1, **kw.kappaenc.addsub)
+  ax = fig.add_subplot(1,1,1, **kw.kappaenc.addsub)
   
   x  = elem['x']
   #y  = elem['y']
@@ -1490,7 +1495,7 @@ def draw_mod(mid, elem, data, sims):
     #pl.text(p['d']+t_dx, yvals_extr[jj], p['t'], **t_props)
     
     plt.plot([p['d'], p['d']], [0.01,yvals_extr[jj]], **kw.kappaenc[p['t']])
-    plt.text(p['d']+t_dx, yvals_extr[jj], p['t'], **kw.kappaenc.text)
+    plt.text(p['d']+t_dx, yvals_extr[jj], r'$\text{%s}$'%p['t'], **kw.kappaenc.text)
 
   # plot simulation parameter data
   plt.plot(sims[name]['x'], sims[name]['y'], **kw.kappaenc.sim)
@@ -1527,7 +1532,7 @@ def draw_mod(mid, elem, data, sims):
     
     #new placement due to logscale
     plt.plot(a_re_mean, [0.001,ypos_theta[2]], **kw.kappaenc.rEmod)
-    plt.text(rE_mean+t_dx, ypos_theta[2], r'$\Theta _\text{E}$ = %4.2f'%(rE_mean), **kw.kappaenc.text)
+    plt.text(rE_mean+t_dx, ypos_theta[2], r'$\Theta _\text{E,rec} = %4.2f$'%(rE_mean), **kw.kappaenc.text)
     #pl.plot(a_re_min, [0,rE_pos-0.25], ':b')
     #pl.plot(a_re_max, [0,rE_pos-0.25], ':b')
 
@@ -1549,16 +1554,24 @@ def draw_mod(mid, elem, data, sims):
     #pl.text(rE_data+t_dx, rE_pos+t_dt+t_dy, r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **t_props)
     # new placement due to log scale
     plt.plot(a_re_data, [0.001,ypos_theta[0]], **kw.kappaenc.rEsim)
-    plt.text(rE_data+t_dx, ypos_theta[0], r'$\Theta_\text{E,sim}$ = %4.2f'%(rE_data), **kw.kappaenc.text)
+    plt.text(rE_data+t_dx, ypos_theta[0], r'$\Theta_\text{E,act} = %4.2f$'%(rE_data), **kw.kappaenc.text)
     
 
   
   
-  plt.xlabel(r'image radius [pixels]')
-  plt.ylabel(r'mean convergance [1]')  
+  plt.xlabel(r'image radius [pixels]', **kw.kappaenc.label)
+  plt.ylabel(r'mean convergance [1]', **kw.kappaenc.label)
+  
+  plt.tick_params(axis='both', which='both', **kw.kappaenc.ticklabel)
+  plt.tight_layout()
   
   plt.xlim([0,np.max(elem['x'])])
-  plt.ylim([0.4,10])
+#  plt.xlim([0,15])
+  plt.ylim([0.7,7])
+  formatter = matplotlib.ticker.FuncFormatter(lambda x, p: '$'+str(int(round(x)))+'$' if x>=1 else '$'+str(round(x,1))+'$')
+  
+  ax.yaxis.set_major_formatter(formatter)
+  ax.yaxis.set_minor_formatter(formatter)
 
   #ax = pl.gca()
   #pl.text(0.95, 0.95,elem['name'],
@@ -1844,9 +1857,11 @@ def plotAllRE():
     #pl.gcf().subplots_adjust(bottom=0.25)
     plt.xlim(xlims)
     plt.ylim([1, 40])
-    plt.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$')
-    plt.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$')
+    plt.xlabel(r'actual Einstein Radius $\log(\Theta_{\text{E, act}})$', **kw.eR4.label)
+    plt.ylabel(r'recovered Einstein Radius $\log(\Theta_{\text{E, rec}})$', **kw.eR4.label)
     
+    plt.tick_params(axis='both', which='both', **kw.eR4.ticklabel)
+
     
     plt.legend(leg_k,leg_f, **kw.eR4.legend)
 

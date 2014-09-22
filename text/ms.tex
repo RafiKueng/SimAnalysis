@@ -126,30 +126,29 @@ $^{7}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
 
 \begin{abstract}
 
-We develop a method to enable collaborative modelling of gravitational
-lenses and lens candidates by non-professional lens enthusiasts.  It
-uses an existing free-form modelling program (GLASS), but
-enables the input to this code to be provided in a novel way,
-via a user-provided diagram that is essentially a sketch of an
-arrival-time surface.
+We develop a method to enable collaborative modelling of
+gravitational lenses and lens candidates, that could be used by
+non-professional lens enthusiasts.  It uses an existing free-form
+modelling program (GLASS), but enables the input to this code to be
+provided in a novel way, via a user-provided diagram that is
+essentially a sketch of an arrival-time surface.
 
 An implementation of this method, \spl, is tested in a modelling
-challenge using 29 simulated lenses drawn from the set created
-for the \sw citizen-science lens search.  We find that
-volunteers from this online community asserted the image
-parities and time ordering consistently in some lenses, but made
-errors in other lenses depending on the image morphology. While
-errors in image parity and time ordering lead to  large errors in the
-mass distribution, the enclosed mass was found to be more
-robust: the model-derived Einstein radii found by the volunteers were
-consistent with those produced by one of the professional team,
-suggesting that given the appropriate tools, gravitational lens
-modelling is a data analysis activity that can be crowd-sourced to
-good effect. Ideas for improvement are discussed; these include
-(a)~overcoming the tendency of the models to be shallower than the
-correct answer in test cases, leading to systematic over-estimation of
-the Einstein radius by 10\% at present, and (b)~detailed modelling of
-arcs.
+challenge that used 29 simulated lenses that had been drawn from the
+set created for the \sw citizen-science lens search.  We find that
+volunteers from this online community asserted the image parities and
+time ordering consistently in some lenses, but made errors in other
+lenses depending on the image morphology. While errors in image parity
+and time ordering lead to large errors in the mass distribution, the
+enclosed mass was found to be more robust: the model-derived Einstein
+radii found by the volunteers were consistent with those produced by
+one of the professional team, suggesting that given the appropriate
+tools, gravitational lens modelling is a data analysis activity that
+can be crowd-sourced to good effect. Ideas for improvement are
+discussed; these include (a)~overcoming the tendency of the models to
+be shallower than the correct answer in test cases, leading to
+systematic over-estimation of the Einstein radius by 10\% at present,
+and (b)~detailed modelling of arcs.
 
 \end{abstract}
 
@@ -161,16 +160,18 @@ arcs.
 \section{Introduction}
 
 The first two discoveries of gravitational lenses
-\citep{1979Natur.279..381W,1980Natur.285..641W}, where a galaxy images
+, where a galaxy images
 a single background quasar into two (four), brought in their wake the
 first work on lens modelling
-\citep{1981ApJ...244..723Y,1981ApJ...244..736Y}. 
+. 
 
 %CM:
-%The first work on lens modelling (Young et al. 1981a,b) was developed 
-%after the discovery of the first two gravitational lenses (Walsh et al. 
-% 1979; Weymann et al. 1980), where a massive galaxy causes a background 
-% quasar to be presented as two or four images.
+The first work on lens modelling
+\citep{1981ApJ...244..723Y,1981ApJ...244..736Y} was developed after
+the discovery of the first two gravitational lenses
+\citep{1979Natur.279..381W,1980Natur.285..641W}, where a massive
+galaxy causes a background
+quasar to be presented as two or four images.
 
 For the second lens
 (PG1115+080), mass models scored an early success with the prediction
@@ -193,18 +194,19 @@ galaxy with $M\sim10^{11}M_\odot$ at $10^9\rm\,pc$ would cause image
 separations of $\sim1''$, which is comparable to the size of the
 galaxy; typically the lensed images are seen through the galaxy halo.
 Hence, the lensed images depend on the detailed mass distribution of
-the lensing galaxy.  Galaxy lenses demand modelling.
+the lensing galaxy, and to uncover that dependence, galaxy lenses
+require models.
 
-Since the early discoveries, more than 400 secure lenses are now
+Since those early discoveries, more than 400 secure lenses are now
 known. Modelling of the mass distribution is part of any research
 using lenses, but so far no modelling study has spanned all known
 lenses.  The largest single one \citep{2009ApJ...703L..51K} models 58
-lenses to infer the distribution of dark matter around galaxies.  In
-other work, \cite{2011ApJ...740...97L} combined lens models of 21
-galaxies with models of their stellar populations, to find the
-relation between stars and dark matter, and \cite{2014MNRAS.437..600S}
-modelled 18 time-delay lenses together to infer cosmological
-parameters.
+separate lenses to infer the distribution of dark matter around
+galaxies.  In other work, \cite{2011ApJ...740...97L} combined lens
+models of 21 galaxies with models of their stellar populations, to
+find the relation between stars and dark matter, and
+\cite{2014MNRAS.437..600S} modelled 18 time-delay lenses together to
+infer cosmological parameters.
 
 Imaging surveys now under way aim to increase the inventory of lenses
 another ten or a hundred fold \citep[see
@@ -309,9 +311,9 @@ formulation of gravitational lensing in terms of Fermat's principle by
 
 Consider a lens at some redshift $z_L$ and let $(x,y)$ be planar
 coordinates at the lens, transverse to the line of sight.  Let
-$\Sigma(x,y)$ be the mass per unit area, i.e., density projected along
-the line of sight.  This surface density is often given in a
-dimensionless form
+$\Sigma(x,y)$ be the mass distribution.  It is a mass per unit area,
+i.e., density projected along the line of sight.  It is often given in
+a dimensionless form
 \begin{equation} \label{eq:kappa}
 \kappa(x,y) \propto \Sigma(x,y)
 \end{equation}
@@ -597,14 +599,13 @@ configuration slightly or drastically, or change options like the size
 of the mass tiles. Particularly interesting lens candidates lead to
 trees of models in this way.  Discussion among modellers tends to
 prune a model tree, focusing attention on the most interesting
-models.
+models.\footnote{See ``Collaborative gravitational lens
+modelling\dots'' in {\tt http://letters.zooniverse.org} for an example.}
 % PJM: sadly this Letter is no longer available, Julianne took it
 % down. We can post the talk URL instead.
-% \footnote{See ``Collaborative gravitational lens
-% modelling\dots'' in {\tt http://letters.zooniverse.org} for an
-% example.}
-\footnote{See the ``collaborative modelling'' thread at
-\url{ http://talk.spacewarps.org} for an example.}
+% PS: Letter is available again now.
+%\footnote{See the ``collaborative modelling'' thread at
+% \url{ http://talk.spacewarps.org} for an example.}
 
 
 

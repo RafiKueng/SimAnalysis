@@ -220,32 +220,32 @@ with high signal-to-noise, but in more general test situations, robots
 miss lenses (low completeness) or contaminate the results with
 non-lenses (low purity) \citep{Marshall2009}.
 
-The encouraging early results from the first \sw lens search,
-carried out on the  $\simeq172$ square degree Canada-France-Hawaii
-Telescope Legacy Survey (CFHTLS) imaging by over 30,000 volunteers
-(Marshall et al, in prep; More et al, in prep) prompted the question:
-could the modelling of the lenses also be done by the volunteers?  If
-so, modelling could help assess prioritise lens candidates at an early
+The encouraging early results from the first \sw lens search, carried
+out on the $\simeq172$ square degree Canada-France-Hawaii Telescope
+Legacy Survey (CFHTLS) imaging by over 30,000 volunteers (Marshall et
+al, in prep; More et al, in prep) prompted the question: could the
+modelling of the lenses also be done by the volunteers?  If so,
+modelling could help assess prioritise lens candidates at an early
 stage, which would be very useful with new wide-field and sensitive
-surveys, which will yield thousands of lens candidates. There are
-several software tools for lens modelling available, and work has
-been done on generic interfaces \citep[e.g.][]{2014A&C.....5...28L}.
-Indeed, some early designs for \sw included a prototype lens modelling
-tool \citep{2010AAS...21543527N}. Moreover, some \sw volunteers are
-quite experienced from earlier projects, having spent a thousand hours
-or more with data, and are very interested in more demanding
-projects.  The interests of citizen-science communities are just
-beginning to be studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but it
-is clear that some volunteers welcome open-ended challenges, and
-sometimes these have led to new scientific results: one example is the
-discovery of an exceptional extra-solar planet
-\citep{2013ApJ...768..127S}; another is the development of new
-algorithms for protein folding \citep{Khatib22112011}.  All these are
-grounds for optimism.  There is, however, a basic difficulty in strong
-gravitational lensing. Lensed images do not look much like their
-source, and still less do they resemble the lensing-mass
-distribution.  To model a lens, one needs either to do a lot of random
-guessing, or to have a good intuition for what works.
+surveys, which will yield thousands of lens candidates.  There are
+several software tools for lens modelling available, and work has been
+done on generic interfaces \citep[e.g.][]{2014A&C.....5...28L}.  Some
+early designs for \sw included a prototype lens modelling tool
+\citep{2010AAS...21543527N}. Moreover, some \sw volunteers are quite
+experienced from earlier projects, having spent a thousand hours or
+more with data, and are very interested in more demanding projects.
+The interests of citizen-science communities are just beginning to be
+studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but it is clear that
+some volunteers welcome open-ended challenges, and sometimes these
+have led to new scientific results: one example is the discovery of an
+exceptional extra-solar planet \citep{2013ApJ...768..127S}; another is
+the development of new algorithms for protein folding
+\citep{Khatib22112011}.  All these are grounds for optimism.  There
+is, however, a basic difficulty in strong gravitational
+lensing. Lensed images do not look much like their source, and still
+less do they resemble the lensing-mass distribution.  To model a lens,
+one needs either to do a lot of random guessing, or to have a good
+intuition for what works.
 
 In this paper, we propose a way around the difficulty, and report on a
 modelling test on \sw using simulated lenses.  The three following
@@ -425,9 +425,9 @@ always too faint to see. The minima and saddle points dominate.
 \section{A lens-modelling program}
 \label{sec:SpaghettiLens}
 
-\spl is not part of \sw, but it makes use of the \sw infrastructure,
-in particular, the image database and the discussion
-forum.\footnote{\url{ http://talk.spacewarps.org}}  The forum is
+\spl is a mass modelling program that makes use of the \sw
+infrastructure, in particular, the image database and the discussion
+forum.\footnote{\url{ http://talk.spacewarps.org}} The forum is
 essential for establishing contact between interested members of the
 \sw community and the project science team, and then for enabling
 collaboration between them. We were able to collaborate together on
@@ -436,24 +436,6 @@ astronomical collaborations, with video-conferencing and in-person
 meetings where possible. Preliminary results were immediately
 summarized on modelling threads on the forum, and anyone interested
 was made welcome to join at any time.
-% {\bf Phil asks: how much training was necessary before the volunteers
-% understood how to work the interface? Could this training be done with
-% no input from the \spl developers, in future? It would be good to
-% comment on how scalable this approach to modeling is.}
-
-
-% PJM: The following paragraph is not accurate: the manipulation of
-%  FITS images in the Tools viewer, for example, is done client side.
-%  In future I very much hope to see lens modeling enabled in this
-%  mode as well!
-%
-% Another aspect of \sw (and of the Zooniverse family of projects in
-% general) that \spl adopts, is to keep all user interaction in a web
-% browser, with intensive computing done on a server.  Several
-% interesting design and implementation issues arise from these
-% considerations, but we will not go into them in this paper,
-% concentrating instead on aspects specific to lens modelling.
-%
 
 Modelling with \spl involves three stages, markup of the image,
 followed by intensive numerical computation carried out on a
@@ -483,10 +465,10 @@ markup tool were the origin of the ``spaghetti'' metaphor.
   \centering
     \includegraphics[width=0.90\linewidth]{fig/screenshot}
   \caption{Screen grab of \spl in action. A \sw image has been loaded
-    in, re-centred and zoomed, and 5 images and associated time delay
-    surface ``spaghetti'' contours suggested, using the marking tools
-    associated with the buttons along the top of the panel. The mass
-    model is optimized server-side when the right-most button is
+    in, re-centred and zoomed.  Five images and the associated
+    ``spaghetti'' contours have then been suggested, using the marking
+    tools associated with the buttons along the top of the panel. The
+    mass model is generated server-side when the right-most button is
     pressed.}
   \label{fig:screenshot}
 \end{figure}
@@ -592,13 +574,7 @@ trees of models in this way.  Discussion among modellers tends to
 prune a model tree, focusing attention on the most interesting
 models.\footnote{See ``Collaborative gravitational lens
 modelling\dots'' in {\tt http://letters.zooniverse.org} for an example.}
-% PJM: sadly this Letter is no longer available, Julianne took it
-% down. We can post the talk URL instead.
-% PS: Letter is available again now.
-%\footnote{See the ``collaborative modelling'' thread at
-% \url{ http://talk.spacewarps.org} for an example.}
-
-
+% This Letter was inaccessible for a while is available again now.
 
 % ====================================================================
 
@@ -629,18 +605,17 @@ comparison of the effective Einstein radii of the sims and the models.
 
 The \sw sims are described in detail in More et al (in prep), but
 relevant here is that the sims were of three kinds, as follows.
-
 \begin{enumerate}
-  \item Imitating lensed quasars: having a singular elliptical
-    isothermal lens (SIE) plus constant external shear, and a circular
-    Gaussian source.
-  \item Emulating lensed galaxies: similar to the above, but with an
-    elliptical de Vaucouleurs source.
-  \item Resembling cluster lenses: having a source as above, but a
-    more complicated lens, with one dominant elliptical SIE and
-    one or more perturbing elliptical SIEs, plus a circular NFW
-    \citep{1996ApJ...462..563N,1997ApJ...490..493N} to represent
-    the underlying dark matter distribution.
+\item Lensed quasars: The lens is modelled as a singular isothermal
+  ellipsoid (SIE) and a constant external shear whereas the quasar is
+  represented with a circular Gaussian source whose size is given by
+  the point spread function (PSF) in each imaging band.
+\item Galaxy-scale lenses: The lens model is the same as above whereas
+  the background galaxy is modelled as an elliptical de~Vaucouleurs.
+\item Groups-scale lenses: The lens model includes SIE models for the
+  central galaxy and the inner group members, plus a circular NFW
+  (ref) to represent the underlying dark matter distribution and the
+  background galaxy model stays the same as galaxy-scale lenses.
 \end{enumerate}
 The {\tt gravlens} program \citep{2001astro.ph..2340K} was used.
 Formulas for the lenses appear in \cite{2001astro.ph..2341K}. The SIE
@@ -695,8 +670,9 @@ $\gamma$ term in equation (76).
   \includegraphics[width=\myplotswidth]{fig/006919_mass}
 
   \caption[result 6919 (ASW0002z6f)]{Another configuration of arc plus
-    counter-image; here the arc is closer to the lensing galaxy than
-    the counter-image. (See \secref{example_models} for details.)
+    counter-image: an arc and counter image where the arc is closer to
+    the lensing galaxy than the counter image. (See
+    \secref{example_models} for details.)
     \vspace{1em}}
   \label{fig:6919}
 \end{figure}
@@ -804,9 +780,9 @@ common image morphologies, the other four explain some problem cases.
 Each of Figures \ref{fig:6941}--\ref{fig:7022} figures has the
 following layout.
 $$ \begin{matrix}
-\hbox{marked-up image} \qquad &\hbox{model synthetic image} \\
-t(x,y)                        &\hbox{model } t(x,y) \\
-\kappa(x,y)                   &\hbox{model } \kappa(x,y)
+\hbox{marked-up CFHTLS image} \qquad &\hbox{model synthetic image} \\
+t(x,y)                               &\hbox{model } t(x,y) \\
+\kappa(x,y)                          &\hbox{model } \kappa(x,y)
 \end{matrix} $$
 
 The model synthetic image presented in this paper is not the original one,
@@ -1057,15 +1033,15 @@ the sims.
 high.  However, this is entirely due to the GLASS model density
 profiles being too shallow, as illustrated above. We can separate out
 the performance of the \spl interface and its users by comparing their
-results with the  Einstein radii of \spl models made by an expert
+results with the Einstein radii of \spl models made by an expert
 (PS). Discounting the models which were flagged by the volunteers as
 poor, the mean Einstein radius overestimate was 10\%, with a 15\%
-standard deviation (shown by the light grey band in \Figref{ER_per_sim}).
-The expert models show a similar bias,
-with standard deviation 10\% (the dark grey band in \Figref{ER_per_sim}).
-One source of this systematic error is that it is difficult to center
-of the lens accurately: an offset leads to a flatter mass profile for
-the model compared to the simulation.
+standard deviation (shown by the light grey band in
+\Figref{ER_per_sim}).  The expert models show a similar bias, with
+standard deviation 10\% (the dark grey band in \Figref{ER_per_sim}).
+One source of this systematic error is that it is difficult to centre
+the lens accurately: an offset leads to a flatter mass profile for the
+model compared to the simulation.
 
 
 % ====================================================================
@@ -1095,15 +1071,15 @@ radii with comparable accuracy to a professional expert.
 There is, however, plenty of room for improvement:
 \begin{enumerate}
 \item \spl tends to overestimate the Einstein radius (evident from
-  \Figref{ER_per_sim}), and it is also apparent that the model density
-  profiles tend to be too shallow.  The likely explanation is that
-  while the sims are steeply peaked at the centre, the pixellated mass
-  model fixes a comparatively large area near the central at constant
-  density. Allowing smaller pixels in the centre region, thus enabling
-  a steeper centre \citep[similar to the ``high resolution'' feature
-    implemented in][]{2014arXiv1401.7990C} may remove this bias.  The
-  use of simply parameterised, appropriately steeply-profiled models
-  would also avoid the problem.
+  \Figref{ER_per_sim}), and the model density profiles tend to be
+  shallower than the SIE model used for generating the sims.  The
+  likely explanation is that while the sims are steeply peaked at the
+  centre, the pixellated mass model fixes a comparatively large area
+  near the central at constant density. Allowing smaller pixels in the
+  centre region, thus enabling a steeper centre \citep[similar to the
+    ``high resolution'' feature implemented in][]{2014arXiv1401.7990C}
+  may remove this bias.  The use of simply parameterised,
+  appropriately steeply-profiled models would also avoid the problem.
 \item Currently, \spl does not attempt to model the source shape; the
   user identifies the brightest points on the image, and these are
   taken as images of a point-like source, whose positions must be
@@ -1116,7 +1092,10 @@ There is, however, plenty of room for improvement:
   which is that there is as yet no quantitative figure of merit for
   any given model: assessment of each model is a judgment call based
   on the synthetic image, and on whether the mass distribution and the
-  arrival-time surface show suspicious features.
+  arrival-time surface show suspicious features.  Another possibility
+  would be use the \spl models as a feeder to a different
+  lens-modelling program which already implements source-profile
+  fitting.
 \item Another limitation so far in \spl is that the lens is assumed to
   be dominated by one galaxy, which puts most galaxy-group lenses
   beyond the reach of the modeler. Since complicated group lenses are
@@ -1151,7 +1130,7 @@ The \spl program was developed by Küng, with design suggestions from
 Coles, Cornen and Saha, and feedback from all co-authors.  The
 simulations were created by A.~More, in consultation with Marshall,
 S.~More and Verma.  Modelling was done by Baeten, Cornen, Macmillan,
-Odermatt, Saha and Wilcox, with post-modelling analysis by Kueng and
+Odermatt, Saha and Wilcox, with post-modelling analysis by Küng and
 Saha.  All authors participated in writing and editing the manuscript.
 
 
@@ -1160,7 +1139,9 @@ Saha.  All authors participated in writing and editing the manuscript.
 \section*{Acknowledgments}
 
 We thank the Swiss Society for Astrophysics and Astronomy and the
-Swiss Academy of Sciences. AV is supported by a research fellowship
+Swiss Academy of Sciences. The work of AM and SM was supported by
+World Premier International Research Center Initiative (WPI
+Initiative), MEXT, Japan. AV is supported by a research fellowship
 from the Leverhulme Trust. This work was supported in part by the U.S.
 Department of Energy under contract number DE-AC02-76SF00515.
 

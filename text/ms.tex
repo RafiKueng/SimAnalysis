@@ -49,7 +49,7 @@
 %\def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
-\newcommand{\sw}{SpaceWarps\xspace}
+\newcommand{\sw}{Space Warps\xspace}
 
 % shortcut for einstein radius (Text Greek Full Math)
 \newcommand{\ERf}[1][]{$\Theta_\text{E#1}$\xspace} % full output
@@ -119,7 +119,7 @@ $^{3}$Zooniverse, c/o Astrophysics Department, University of Oxford, Oxford \\
 $^{4}$Exascale Research Computing Lab, Campus Teratec, 2 Rue de la Piquetterie, 91680 Bruyeres-le-Chatel, France\\
 $^{5}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
 $^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
-$^{7}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
+$^{7}$Sub-department of Astrophysics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford, OX1 3RH, UK\\
 }
 
 \maketitle
@@ -130,29 +130,30 @@ We develop a method to enable collaborative modelling of
 gravitational lenses and lens candidates, that could be used by
 non-professional lens enthusiasts.  It uses an existing free-form
 modelling program (GLASS), but enables the input to this code to be
-provided in a novel way, via a user-provided diagram that is
+provided in a novel way, via a user-generated diagram that is
 essentially a sketch of an arrival-time surface.
 
-An implementation of this method, \spl, is tested in a modelling
-challenge that used 29 simulated lenses that had been drawn from the
-set created for the \sw citizen-science lens search.  We find that
-volunteers from this online community asserted the image parities and
-time ordering consistently in some lenses, but made errors in other
-lenses depending on the image morphology. While errors in image parity
-and time ordering lead to large errors in the mass distribution, the
-enclosed mass was found to be more robust: the model-derived Einstein
-radii found by the volunteers were consistent with those produced by
-one of the professional team, suggesting that given the appropriate
-tools, gravitational lens modelling is a data analysis activity that
-can be crowd-sourced to good effect. Ideas for improvement are
-discussed; these include (a)~overcoming the tendency of the models to
-be shallower than the correct answer in test cases, leading to
-systematic over-estimation of the Einstein radius by 10\% at present,
-and (b)~detailed modelling of arcs.
+We report on an implementation of this method, \spl, that has been
+tested in a modelling challenge using 29 simulated lenses drawn from a
+larger set created for the \sw citizen science strong lens search. We
+find that volunteers from this online community asserted the image
+parities and time ordering consistently in some lenses, but made
+errors in other lenses depending on the image morphology. While errors
+in image parity and time ordering lead to large errors in the mass
+distribution, the enclosed mass was found to be more robust: the
+model-derived Einstein radii found by the volunteers were consistent
+with those produced by one of the professional team, suggesting that
+given the appropriate tools, gravitational lens modelling is a data
+analysis activity that can be crowd-sourced to good effect. Ideas for
+improvement are discussed; these include (a)~overcoming the tendency
+of the models to be shallower than the correct answer in test cases,
+leading to systematic over-estimation of the Einstein radius by 10\%
+at present, and (b)~detailed modelling of arcs.
 
 \end{abstract}
 
 \begin{keywords}
+gravitational lensing: strong, methods: numerical
 \end{keywords}
 
 % ====================================================================
@@ -265,7 +266,7 @@ classifying lensed images.  They are sometimes shown as part of the
 output of lens models \citep[for
 example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.  In
 the present work, however, spaghetti diagrams are the {\em input\/}
-through which the modeller tells the program what to do.
+through which the modeller tells the \spl program what to do.
 
 In \secref{SpaghettiLens} we describe the \spl program, which
 implements the above scheme.  \spl is an interface to and
@@ -1100,7 +1101,7 @@ There is, however, plenty of room for improvement:
   on the synthetic image, and on whether the mass distribution and the
   arrival-time surface show suspicious features.  Another possibility
   would be use the \spl models as a feeder to a different
-  lens-modelling program which already implements source-profile
+  lens-modelling program that already implements source-profile
   fitting.
 \item Another limitation so far in \spl is that the lens is assumed to
   be dominated by one galaxy, which puts most galaxy-group lenses

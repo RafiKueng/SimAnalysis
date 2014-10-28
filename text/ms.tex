@@ -49,7 +49,7 @@
 %\def\half{{\textstyle\frac12}}
 % makes it easier to have consistent writing, and easy change if needed
 \newcommand{\spl}{SpaghettiLens\xspace}
-\newcommand{\sw}{SpaceWarps\xspace}
+\newcommand{\sw}{Space Warps\xspace}
 
 % shortcut for einstein radius (Text Greek Full Math)
 \newcommand{\ERf}[1][]{$\Theta_\text{E#1}$\xspace} % full output
@@ -119,7 +119,7 @@ $^{3}$Zooniverse, c/o Astrophysics Department, University of Oxford, Oxford \\
 $^{4}$Exascale Research Computing Lab, Campus Teratec, 2 Rue de la Piquetterie, 91680 Bruyeres-le-Chatel, France\\
 $^{5}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
 $^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
-$^{7}$Oxford Astrophysics, Keble Road, Oxford OX1 3RH, UK\\
+$^{7}$Sub-department of Astrophysics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford, OX1 3RH, UK\\
 }
 
 \maketitle
@@ -130,31 +130,31 @@ We develop a method to enable collaborative modelling of
 gravitational lenses and lens candidates, that could be used by
 non-professional lens enthusiasts.  It uses an existing free-form
 modelling program (GLASS), but enables the input to this code to be
-provided in a novel way, via a user-provided diagram that is
+provided in a novel way, via a user-generated diagram that is
 essentially a sketch of an arrival-time surface.
 
-An implementation of this method, \spl, is tested in a modelling
-challenge that used 29 simulated lenses that had been drawn from the
-set created for the \sw citizen-science lens search.  We find that
-volunteers from this online community asserted the image parities and
-time ordering consistently in some lenses, but made errors in other
-lenses depending on the image morphology. While errors in image parity
-and time ordering lead to large errors in the mass distribution, the
-enclosed mass was found to be more robust: the model-derived Einstein
-radii found by the volunteers were consistent with those produced by
-one of the professional team, suggesting that given the appropriate
-tools, gravitational lens modelling is a data analysis activity that
-can be crowd-sourced to good effect. Ideas for improvement are
-discussed; these include (a)~overcoming the tendency of the models to
-be shallower than the correct answer in test cases, leading to
-systematic over-estimation of the Einstein radius by 10\% at present,
-and (b)~detailed modelling of arcs.
+We report on an implementation of this method, \spl, that has been
+tested in a modelling challenge using 29 simulated lenses drawn from a
+larger set created for the \sw citizen science strong lens search. We
+find that volunteers from this online community asserted the image
+parities and time ordering consistently in some lenses, but made
+errors in other lenses depending on the image morphology. While errors
+in image parity and time ordering lead to large errors in the mass
+distribution, the enclosed mass was found to be more robust: the
+model-derived Einstein radii found by the volunteers were consistent
+with those produced by one of the professional team, suggesting that
+given the appropriate tools, gravitational lens modelling is a data
+analysis activity that can be crowd-sourced to good effect. Ideas for
+improvement are discussed; these include (a)~overcoming the tendency
+of the models to be shallower than the correct answer in test cases,
+leading to systematic over-estimation of the Einstein radius by 10\%
+at present, and (b)~detailed modelling of arcs.
 
 \end{abstract}
 
 
 \begin{keywords}
-    gravitational lensing: strong, methods: miscellaneous
+gravitational lensing: strong, methods: numerical
 \end{keywords}
 
 
@@ -166,7 +166,7 @@ The first work on lens modelling
 \citep{1981ApJ...244..723Y,1981ApJ...244..736Y} was developed after
 the discovery of the first two gravitational lenses
 \citep{1979Natur.279..381W,1980Natur.285..641W}, where a massive
-galaxy causes a background quasar to be presented as two or four
+galaxy causes a background quasar to appear as two or four
 images.  For the second lens to be discovered (PG1115+080), mass
 models scored an early success with the prediction that one of the
 lensed images seen would split further into two at higher resolution.
@@ -179,12 +179,13 @@ observations, however, immediately stimulated models.  The reason for
 that lies in the image separation. Recall that image separations are
 of order of the angular Einstein radius
 \begin{equation}
+\Theta_{\rm E}
 \sim \left(\frac{4GM}{c^2 D_L}\right)^{1/2}
 \simeq 0.1'' \left(\frac{M}{M_\odot}\right)^{1/2}
              \left(\frac{D_L}{\rm pc}\right)^{-1/2},
 \end{equation}
 where $D_L$ is the distance to the lens, and $M$ its mass.  A lensing
-galaxy with $M\sim10^{11}M_\odot$ at $10^9\rm\,pc$ would cause image
+galaxy with $M\sim10^{11}\rm\,M_\odot$ at $\sim1\rm\,Gpc$ would cause image
 separations of $\sim1''$, which is comparable to the size of the
 galaxy; typically the lensed images are seen through the galaxy halo.
 Hence, the lensed images depend on the detailed mass distribution of
@@ -228,27 +229,27 @@ out on the $\simeq172$ square degree Canada-France-Hawaii Telescope
 Legacy Survey (CFHTLS) imaging by over 30,000 volunteers (Marshall et
 al, in prep; More et al, in prep) prompted the question: could the
 modelling of the lenses also be done by the volunteers?  If so,
-modelling could help assess prioritise lens candidates at an early
-stage, which would be very useful with new wide-field and sensitive
-surveys, which will yield thousands of lens candidates.  There are
-several software tools for lens modelling available, and work has been
-done on generic interfaces \citep[e.g.][]{2014A&C.....5...28L}.  Some
-early designs for \sw included a prototype lens modelling tool
+modelling could help prioritise lens candidates at an early stage,
+which would be very useful with new wide-field and sensitive surveys,
+which will yield thousands of lens candidates.  There are several
+software tools for lens modelling available, and work has been done on
+generic interfaces \citep[e.g.][]{2014A&C.....5...28L}.  Some early
+designs for \sw included a prototype lens modelling tool
 \citep{2010AAS...21543527N}. Moreover, some \sw volunteers are quite
-experienced from earlier projects, having spent a thousand hours or
-more with data, and are very interested in more demanding projects.
-The interests of citizen-science communities are just beginning to be
-studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but it is clear that
-some volunteers welcome open-ended challenges, and sometimes these
-have led to new scientific results: one example is the discovery of an
-exceptional extra-solar planet \citep{2013ApJ...768..127S}; another is
-the development of new algorithms for protein folding
-\citep{Khatib22112011}.  All these are grounds for optimism.  There
-is, however, a basic difficulty in strong gravitational
-lensing. Lensed images do not look much like their source, and still
-less do they resemble the lensing-mass distribution.  To model a lens,
-one needs either to do a lot of random guessing, or to have a good
-intuition for what works.
+experienced from earlier projects, having individually spent a
+thousand hours or more with data, and are very interested in more
+demanding projects.  The interests of citizen-science communities are
+just beginning to be studied \citep[e.g.,][]{2013AEdRv..12a0106J}, but
+it is clear that some volunteers welcome open-ended challenges, and
+sometimes these have led to new scientific results: one example is the
+discovery of an exceptional extra-solar planet
+\citep{2013ApJ...768..127S}; another is the development of new
+algorithms for protein folding \citep{Khatib22112011}.  All these are
+grounds for optimism.  There is, however, a basic difficulty in strong
+gravitational lensing. Lensed images do not look much like their
+source, and still less do they resemble the lensing-mass distribution.
+To model a lens, one needs either to do a lot of random guessing, or
+to have a good intuition for what works.
 
 In this paper, we propose a way around the difficulty, and report on a
 modelling test on \sw using simulated lenses.  The three following
@@ -267,7 +268,7 @@ classifying lensed images.  They are sometimes shown as part of the
 output of lens models \citep[for
 example][]{2001ApJ...557..594R,2003ApJ...590...39K,Lubini2012}.  In
 the present work, however, spaghetti diagrams are the {\em input\/}
-through which the modeller tells the program what to do.
+through which the modeller tells the \spl program what to do.
 
 In \secref{SpaghettiLens} we describe the \spl program, which
 implements the above scheme.  \spl is an interface to and
@@ -275,7 +276,7 @@ extension of the GLASS framework for modelling lenses
 \citep{2014arXiv1401.7990C}.  We will not go into software details in
 this paper, but instead concentrate on lens modelling per se, but we
 remark that \spl is designed to be friendly to the forum style of
-citizen-science projects, and enable incremental collaborative
+citizen-science projects, and enables incremental collaborative
 model refinement by different people, without sacrificing any of the
 technical features of GLASS.
 
@@ -340,7 +341,9 @@ cosmological expansion factor $(1+z_L)$. Thus
 \end{equation}
 We have used $(x_\subcirc,y_\subcirc)$ to denote the circumference of
 a circle, and $(x_\subbullet,y_\subbullet)$ to indicate the integrated
-mass within the circle.
+mass within the circle.  Appendix~\ref{more-theory} relates this
+expression to the better-known explicit form for the gravitational
+time delay.
 
 The light travel time of a virtual photon is therefore longer by
 \begin{equation}  \label{eq:tarriv}
@@ -440,11 +443,12 @@ meetings where possible. Preliminary results were immediately
 summarized on modelling threads on the forum, and anyone interested
 was made welcome to join at any time.
 
-Modelling with \spl involves three stages, markup of the image,
-followed by intensive numerical computation carried out on a
-server in the background, followed by review
-of diagnostics and possible discussion.  We now describe each of
-these.
+Modelling with \spl involves three stages, (1)~markup of the image,
+followed by (2)~intensive numerical computation carried out on a
+server in the background, followed by (3)~review of diagnostics and
+possible discussion.  Human interaction is essential to the first and
+third stages, while stage~2 is completely automated. We now describe
+the three stages.
 
 
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -564,7 +568,7 @@ bad model.
 
 After examining this feedback, the user can choose to save the
 model to the \spl archive, at which point it is assigned an unique
-URL.  He can also modify his input and try again, or discard the
+URL.  They can also modify the input and try again, or discard the
 attempt altogether.  After archiving, there can be discussion among
 modellers, through the \sw forum or by any other means, and revision
 of the model.  This is achieved simply by sharing the model's
@@ -621,11 +625,6 @@ relevant here is that the sims were of three kinds, as follows.
   underlying dark matter distribution and the background galaxy model
   stays the same as galaxy-scale lenses.
 \end{enumerate}
-The {\tt gravlens} program \citep{2001astro.ph..2340K} was used.
-Formulas for the lenses appear in \cite{2001astro.ph..2341K}. The SIE
-lenses follow equations (33--35) of that work, with core radius set to
-zero.  The NFW lens is in equations (48) and (50), while shear is the
-$\gamma$ term in equation (76).
 
 \FloatBarrier
 
@@ -763,6 +762,12 @@ $\gamma$ term in equation (76).
 
 \FloatBarrier
 
+The {\tt gravlens} program \citep{2001astro.ph..2340K} was used.
+Formulas for the lenses appear in \cite{2001astro.ph..2341K}. The SIE
+lenses follow equations (33--35) of that work, with core radius set to
+zero.  The NFW lens is in equations (48) and (50), while shear is the
+$\gamma$ term in equation (76).
+
 The information in this section was not revealed to the main developer
 of \spl (RK, who also chose the challenge set) or to the modellers
 (EB, CC, CM, JO, PS and JW) while modelling was in progress.  That is,
@@ -887,12 +892,12 @@ ordering of the lensed images in respect of the arrival time.
 While we expected the identification of lensed images to be trivial,
 given the generally clean appearance of the sims in the test, we
 expected the parities and time-ordering to be more difficult.  While
-the \spl tutorials had provided some general rules of thumb, to be
-consistently correct with the time-ordering, a modeller needs to
-develop some intuition for arrival time surfaces.  This is an area
-where experience and tutorials training could improve results at a
-later stage, and correspondingly, feedback on the difficulties
-modellers encounter can help improve the tutorial materials.
+the \spl tutorials had provided general guidelines, to be consistently
+correct with the time-ordering, a modeller needs to develop some
+intuition for arrival time surfaces.  This is an area where experience
+and tutorials training could improve results at a later stage, and
+correspondingly, feedback on the difficulties modellers encounter can
+help improve the tutorial materials.
 
 \tabref{stats} presents a summary of the test.  The evaluation was
 done manually, comparing the input to \spl with the actual
@@ -1098,7 +1103,7 @@ There is, however, plenty of room for improvement:
   on the synthetic image, and on whether the mass distribution and the
   arrival-time surface show suspicious features.  Another possibility
   would be use the \spl models as a feeder to a different
-  lens-modelling program which already implements source-profile
+  lens-modelling program that already implements source-profile
   fitting.
 \item Another limitation so far in \spl is that the lens is assumed to
   be dominated by one galaxy, which puts most galaxy-group lenses

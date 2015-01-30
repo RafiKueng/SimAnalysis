@@ -115,7 +115,7 @@ and Julianne K. Wilcox$^{3}$
 %
 $^{1}$Physik-Institut, University of Zurich, Winterthurerstrasse 190, 8057 Zurich, Switzerland\\
 $^{2}$Kavli Institute for the Physics and Mathematics of the Universe, University of Tokyo, 5-1-5 Kashiwanoha, Kashiwa-shi 277-8583, Japan\\
-$^{3}$Zooniverse, c/o Astrophysics Department, University of Oxford, Oxford \\
+$^{3}$Zooniverse, c/o Astrophysics Department, University of Oxford, Oxford OX1 3RH, UK \\
 $^{4}$Exascale Research Computing Lab, Campus Teratec, 2 Rue de la Piquetterie, 91680 Bruyeres-le-Chatel, France\\
 $^{5}$Kavli Institute for Particle Astrophysics and Cosmology, Stanford University, 452 Lomita Mall, Stanford, CA 94035, USA\\
 $^{6}$Kantonsschule Zug, L\"ussiweg 24, 6300 Zug, Switzerland\\
@@ -322,7 +322,7 @@ a direction change would increase the light travel time compared to
 coming through $(x_s,y_s)$.  The increased light travel time from the
 geometry of deflection would be
 \begin{equation} \label{eq:tgeom}
-\tgeom(x,y) \propto (x-x_s)^2 + (y-s_y)^2 ,
+\tgeom(x,y) \propto (x-x_s)^2 + (y-y_s)^2 ,
 \end{equation}
 assuming the delay is small compared to the total light travel time.
 
@@ -1024,7 +1024,7 @@ Radial locations of the images are marked, along with the image
 parities.  The region between the blue curves is shaded between the
 radii of the innermost and the outermost images: this is the
 confidence region from the modelling.  The definition \eqref{eq:effRE}
-for \ERf corresponds to crossing the dashed horizontal line at $10^0$:
+for \ERf corresponds to crossing the dashed horizontal line at $1$:
 the red curve crosses the dashed line at the actual Einstein radius
 \ERf[,act]; the recovered Einstein radius \ERf[,rec] and its
 uncertainty are given by the blue curves crossing the dashed line.  We
@@ -1111,8 +1111,8 @@ There is, however, plenty of room for improvement:
   some of the most interesting candidates present, removing this
   limitation is most desirable.  From the users' point of view, it
   would mean that spaghetti contours with more than one maximum can be
-  allowed.  For examples, see Figure 5c in \citep{2001ApJ...557..594R}
-  and Figure 4b in \cite{2003ApJ...590...39K}.
+  allowed.  For examples, see Fig. 5c in \citep{2001ApJ...557..594R}
+  and Fig. 4b in \cite{2003ApJ...590...39K}.
 \item At present, a single false-color composite is used as the data.
   An option could be added to use all available filters, individually
   or in combination, at the user wishes.
@@ -1175,7 +1175,7 @@ equations can be rearranged as follows.
 \begin{equation} \label{cfBN86}
 \begin{aligned}
 t_{\rm geom} &= \frac{(1+z_L)}{2c} \frac{d_S}{d_L d_{LS}}
-\left[ (x-s_x)^2 + (y-s_y)^2 \right] \\
+\left[ (x-x_s)^2 + (y-y_s)^2 \right] \\
 \nabla^2 t_{\rm grav} &= -(1+z_L)\frac{8\pi G}{c^3} \, \Sigma(x,y) \\
 \kappa(x,y) &= \frac{4\pi G}{c^2} \frac{d_L d_{LS}}{d_S}
                \times \Sigma(x,y)
@@ -1198,7 +1198,7 @@ and similarly $d_L$ and $d_S$.
 
 The first line of equation \eqref{cfBN86} is $t_{\rm geom}$ from
 equation \eqref{eq:tgeom} with the proportionality filled in, and with
-the source offset at $(s_x,s_y)$ rather than at the origin.
+the source offset at $(x_s,y_s)$ rather than at the origin.
 
 The last line of equation \eqref{cfBN86} fills in the proportionality
 factor in equation \eqref{eq:kappa} for the convergence (or
